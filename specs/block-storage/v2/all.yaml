@@ -1,0 +1,5518 @@
+openapi: 3.1.0
+info:
+  title: OpenStack Volume API
+  description: |+
+    List Api Versions
+
+  version: '2.0'
+paths:
+  /:
+    get:
+      description: |+
+        Shows details for Block Storage API v2.
+
+      operationId: :get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RootListResponse'
+      tags:
+        - version
+      x-openstack:
+        min_ver: '2.0'
+      summary: Show API v2 details
+  /{project_id}/volumes/detail:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists all Block Storage volumes, with details, that the project can access.
+
+      operationId: project_id/volumes/detail:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumesDetailResponse'
+      tags:
+        - volumes
+      summary: List volumes with details
+  /{project_id}/volumes:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists summary information for all Block Storage volumes that the project can
+        access.
+
+      operationId: project_id/volumes:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumesListResponse'
+      tags:
+        - volumes
+      summary: List volumes
+    post:
+      description: |+
+        Creates a volume.
+
+        To create a bootable volume, include the UUID of the image from
+        which you want to create the volume in the `imageRef` attribute
+        in the request body.
+
+        Preconditions
+
+        Asynchronous Postconditions
+
+        Troubleshooting
+
+      operationId: project_id/volumes:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VolumesCreate_20'
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumesCreateResponse'
+      tags:
+        - volumes
+      summary: Create volume
+  /{project_id}/volumes/{id}/action:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/volumes_id'
+    post:
+      operationId: project_id/volumes/id/action:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/VolumesActionOs-Reset_StatusRequest'
+                - $ref: '#/components/schemas/VolumesActionOs-Force_DeleteRequest'
+                - $ref: '#/components/schemas/VolumesAction_Force_Detach'
+                - $ref: '#/components/schemas/VolumesActionOs-Migrate_VolumeRequest'
+                - $ref: '#/components/schemas/VolumesAction_Migrate_Volume_Completion'
+                - $ref: '#/components/schemas/VolumesAction_Attach'
+                - $ref: '#/components/schemas/VolumesAction_Detach'
+                - $ref: '#/components/schemas/VolumesActionOs-ReserveRequest'
+                - $ref: '#/components/schemas/VolumesActionOs-UnreserveRequest'
+                - $ref: '#/components/schemas/VolumesActionOs-Begin_DetachingRequest'
+                - $ref: '#/components/schemas/VolumesActionOs-Roll_DetachingRequest'
+                - $ref: '#/components/schemas/VolumesAction_Initialize_Connection'
+                - $ref: '#/components/schemas/VolumesAction_Terminate_Connection'
+                - $ref: '#/components/schemas/VolumesActionOs-Volume_Upload_ImageRequest'
+                - $ref: '#/components/schemas/VolumesAction_Extend'
+                - $ref: '#/components/schemas/VolumesAction_Volume_Readonly_Update'
+                - $ref: '#/components/schemas/VolumesAction_Retype'
+                - $ref: '#/components/schemas/VolumesAction_Set_Bootable'
+                - $ref: '#/components/schemas/VolumesActionCreate'
+                - $ref: '#/components/schemas/VolumesActionOs-Show_Image_MetadataRequest'
+                - $ref: '#/components/schemas/VolumesActionDelete'
+                - $ref: '#/components/schemas/VolumesActionOs-UnmanageRequest'
+              x-openstack:
+                discriminator: action
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/VolumesActionOs-Reset_StatusResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Force_DeleteResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Force_DetachResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Migrate_VolumeResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-AttachResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-DetachResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-ReserveResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-UnreserveResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Begin_DetachingResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Roll_DetachingResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Terminate_ConnectionResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Volume_Upload_ImageResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-ExtendResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Update_Readonly_FlagResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-RetypeResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-UnmanageResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Reset_StatusResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Force_DeleteResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Force_DetachResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Migrate_VolumeResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-AttachResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-DetachResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-ReserveResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-UnreserveResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Begin_DetachingResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Roll_DetachingResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Terminate_ConnectionResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Volume_Upload_ImageResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-ExtendResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Update_Readonly_FlagResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-RetypeResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-UnmanageResponse'
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/VolumesActionOs-Migrate_Volume_CompletionResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Initialize_ConnectionResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Set_Image_MetadataResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Show_Image_MetadataResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Unset_Image_MetadataResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Migrate_Volume_CompletionResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Initialize_ConnectionResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Set_Image_MetadataResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Show_Image_MetadataResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Unset_Image_MetadataResponse'
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/VolumesActionOs-Set_BootableResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Set_BootableResponse'
+      tags:
+        - volumes
+  /{project_id}/volumes/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/volumes_id'
+    get:
+      description: |+
+        Shows details for a volume.
+
+        Preconditions
+
+      operationId: project_id/volumes/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumeShowResponse'
+      tags:
+        - volumes
+      summary: Show volume details
+    delete:
+      description: |+
+        Deletes a volume.
+
+        Preconditions
+
+        Asynchronous Postconditions
+
+        Troubleshooting
+
+      operationId: project_id/volumes/id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - volumes
+      summary: Delete volume
+    put:
+      description: |+
+        Updates a volume.
+
+      operationId: project_id/volumes/id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VolumeUpdateRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumeUpdateResponse'
+      tags:
+        - volumes
+      summary: Update volume
+  /{project_id}/types:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists volume types.
+
+      operationId: project_id/types:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypesListResponse'
+      tags:
+        - types
+      summary: List all volume types for v2
+    post:
+      description: |+
+        Creates a volume type.
+
+        To create an environment with multiple-storage back ends, you must
+        specify a volume type. Block Storage volume back ends are spawned
+        as children to `cinder-volume`, and they are keyed from a unique
+        queue. They are named `cinder-volume.HOST.BACKEND`. For example,
+        `cinder-volume.ubuntu.lvmdriver`. When a volume is created, the
+        scheduler chooses an appropriate back end to handle the request
+        based on the volume type.
+
+        For information about how to use volume types to create multiple-
+        storage back ends, see [Configure multiple-storage back ends](https://docs.openstack.org/cinder/latest/admin/blockstorage-multi-backend.html).
+
+      operationId: project_id/types:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Types_Create'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypesCreateResponse'
+      tags:
+        - types
+      summary: Create volume type for v2
+  /{project_id}/types/{id}/action:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/types_id'
+    post:
+      operationId: project_id/types/id/action:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/TypesAction_Create'
+                - $ref: '#/components/schemas/TypesAction_Update'
+                - $ref: '#/components/schemas/TypesActionDeleteRequest'
+                - $ref: '#/components/schemas/TypesAction_Addprojectaccess'
+                - $ref: '#/components/schemas/TypesAction_Removeprojectaccess'
+              x-openstack:
+                discriminator: action
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/TypesActionCreateResponse'
+                  - $ref: '#/components/schemas/TypesActionUpdateResponse'
+                  - $ref: '#/components/schemas/TypesActionDeleteResponse'
+                  - $ref: '#/components/schemas/TypesActionAddprojectaccessResponse'
+                  - $ref: '#/components/schemas/TypesActionRemoveprojectaccessResponse'
+                  - $ref: '#/components/schemas/TypesActionCreateResponse'
+                  - $ref: '#/components/schemas/TypesActionUpdateResponse'
+                  - $ref: '#/components/schemas/TypesActionDeleteResponse'
+                  - $ref: '#/components/schemas/TypesActionAddprojectaccessResponse'
+                  - $ref: '#/components/schemas/TypesActionRemoveprojectaccessResponse'
+      tags:
+        - types
+  /{project_id}/types/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/types_id'
+    get:
+      description: |+
+        Shows details for a volume type.
+
+      operationId: project_id/types/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeShowResponse'
+      tags:
+        - types
+      summary: Show volume type details for v2
+    delete:
+      description: |+
+        Deletes a volume type.
+
+      operationId: project_id/types/id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - types
+      summary: Delete volume type
+    put:
+      description: |+
+        Updates the extra specifications that are assigned to a volume type.
+
+      operationId: project_id/types/id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Type_Update'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeUpdateResponse'
+      tags:
+        - types
+      summary: Update extra specs for a volume type
+  /{project_id}/snapshots/detail:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists all Block Storage snapshots, with details, that the project can access.
+
+      operationId: project_id/snapshots/detail:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotsDetailResponse'
+      tags:
+        - snapshots
+      summary: List snapshots with details
+  /{project_id}/snapshots:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists all Block Storage snapshots, with summary information, that the project
+        can access.
+
+      operationId: project_id/snapshots:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotsListResponse'
+      tags:
+        - snapshots
+      summary: List snapshots
+    post:
+      description: |+
+        Creates a volume snapshot, which is a point-in-time, complete copy of a volume.
+        You can create a volume from a snapshot.
+
+      operationId: project_id/snapshots:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SnapshotsCreate'
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotsCreateResponse'
+      tags:
+        - snapshots
+      summary: Create snapshot
+  /{project_id}/snapshots/{id}/action:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/snapshots_id'
+    post:
+      operationId: project_id/snapshots/id/action:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/SnapshotsActionOs-Reset_StatusRequest'
+                - $ref: '#/components/schemas/SnapshotsActionOs-Force_DeleteRequest'
+                - $ref: '#/components/schemas/SnapshotsAction_Update_Snapshot_Status'
+                - $ref: '#/components/schemas/SnapshotsActionOs-UnmanageRequest'
+              x-openstack:
+                discriminator: action
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/SnapshotsActionOs-Reset_StatusResponse'
+                  - $ref: '#/components/schemas/SnapshotsActionOs-Force_DeleteResponse'
+                  - $ref: '#/components/schemas/SnapshotsActionOs-UnmanageResponse'
+                  - $ref: '#/components/schemas/SnapshotsActionOs-Reset_StatusResponse'
+                  - $ref: '#/components/schemas/SnapshotsActionOs-Force_DeleteResponse'
+                  - $ref: '#/components/schemas/SnapshotsActionOs-UnmanageResponse'
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/SnapshotsActionOs-Update_Snapshot_StatusResponse'
+                  - $ref: '#/components/schemas/SnapshotsActionOs-Update_Snapshot_StatusResponse'
+      tags:
+        - snapshots
+  /{project_id}/snapshots/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/snapshots_id'
+    get:
+      description: |+
+        Shows details for a snapshot.
+
+      operationId: project_id/snapshots/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotShowResponse'
+      tags:
+        - snapshots
+      summary: Show snapshot details
+    delete:
+      description: |+
+        Deletes a snapshot.
+
+      operationId: project_id/snapshots/id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - snapshots
+      summary: Delete snapshot
+    put:
+      description: |+
+        Updates a snapshot.
+
+      operationId: project_id/snapshots/id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SnapshotUpdate'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotUpdateResponse'
+      tags:
+        - snapshots
+      summary: Update snapshot
+  /{project_id}/limits:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Shows absolute limits for a project.
+
+        An absolute limit value of `-1` indicates that the absolute limit
+        for the item is infinite.
+
+      operationId: project_id/limits:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LimitsListResponse'
+      tags:
+        - limits
+      summary: Show absolute limits
+  /{project_id}/snapshots/{snapshot_id}/metadata:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/snapshots_snapshot_id'
+    get:
+      description: |+
+        Shows metadata for a snapshot.
+
+      operationId: project_id/snapshots/snapshot_id/metadata:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotsMetadataListResponse'
+      tags:
+        - snapshots
+      summary: Show snapshot metadata
+    post:
+      description: |+
+        Updates metadata for a snapshot.
+
+        Creates or replaces metadata items that match keys. Does not modify items that
+        are not in the request.
+
+      operationId: project_id/snapshots/snapshot_id/metadata:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SnapshotsMetadataCreateRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotsMetadataCreateResponse'
+      tags:
+        - snapshots
+      summary: Create snapshot metadata
+    put:
+      description: |+
+        Replaces all the snapshot’s metadata with the key-value pairs in the request.
+
+      operationId: project_id/snapshots/snapshot_id/metadata:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SnapshotsMetadataUpdate_AllRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotsMetadataUpdate_AllResponse'
+      tags:
+        - snapshots
+      summary: Update snapshot metadata
+  /{project_id}/snapshots/{snapshot_id}/metadata/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/snapshots_snapshot_id'
+      - $ref: '#/components/parameters/snapshots_metadata_id'
+    get:
+      description: |-
+        Return a single metadata item.
+      operationId: project_id/snapshots/snapshot_id/metadata/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotsMetadataShowResponse'
+      tags:
+        - snapshots
+    delete:
+      description: |-
+        Deletes an existing metadata.
+      operationId: project_id/snapshots/snapshot_id/metadata/id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - snapshots
+    put:
+      operationId: project_id/snapshots/snapshot_id/metadata/id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SnapshotsMetadataUpdateRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotsMetadataUpdateResponse'
+      tags:
+        - snapshots
+  /{project_id}/volumes/{volume_id}/metadata:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/volumes_volume_id'
+    get:
+      description: |+
+        Shows metadata for a volume.
+
+      operationId: project_id/volumes/volume_id/metadata:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumesMetadataListResponse'
+      tags:
+        - volumes
+      summary: Show volume metadata
+    post:
+      description: |+
+        Creates or replaces metadata for a volume. Does not modify items that are not
+        in the request.
+
+      operationId: project_id/volumes/volume_id/metadata:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VolumesMetadataCreate'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumesMetadataCreateResponse'
+      tags:
+        - volumes
+      summary: Create volume metadata
+    put:
+      description: |+
+        Replaces all the volume’s metadata with the key-value pairs in the request.
+
+      operationId: project_id/volumes/volume_id/metadata:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VolumesMetadataUpdate_All'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumesMetadataUpdate_AllResponse'
+      tags:
+        - volumes
+      summary: Update volume metadata
+  /{project_id}/volumes/{volume_id}/metadata/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/volumes_volume_id'
+      - $ref: '#/components/parameters/volumes_metadata_id'
+    get:
+      description: |+
+        Shows metadata for a volume for a specific key.
+
+      operationId: project_id/volumes/volume_id/metadata/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumesMetadataShowResponse'
+      tags:
+        - volumes
+      summary: Show volume metadata for a specific key
+    delete:
+      description: |+
+        Deletes metadata for a volume.
+
+      operationId: project_id/volumes/volume_id/metadata/id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - volumes
+      summary: Delete volume metadata
+    put:
+      description: |+
+        Update metadata for a volume for a specific key.
+
+      operationId: project_id/volumes/volume_id/metadata/id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VolumesMetadataUpdate'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumesMetadataUpdateResponse'
+      tags:
+        - volumes
+      summary: Update volume metadata for a specific key
+  /{project_id}/extensions:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists Block Storage API extensions.
+
+      operationId: project_id/extensions:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtensionsListResponse'
+      tags:
+        - extensions
+      summary: List API extensions
+    post:
+      operationId: project_id/extensions:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtensionsCreateRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtensionsCreateResponse'
+      tags:
+        - extensions
+  /{project_id}/extensions/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/extensions_id'
+    get:
+      operationId: project_id/extensions/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtensionShowResponse'
+      tags:
+        - extensions
+    delete:
+      operationId: project_id/extensions/id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - extensions
+  /{project_id}/os-availability-zone:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |-
+        Describe all known availability zones.
+      operationId: project_id/os-availability-zone:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Availability_ZoneListResponse'
+      tags:
+        - os-availability-zone
+  /{project_id}/backups/detail:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists Block Storage backups, with details, to which the project has access.
+
+      operationId: project_id/backups/detail:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackupsDetailResponse'
+      tags:
+        - backups
+      summary: List backups with details
+  /{project_id}/backups/import_record:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    post:
+      description: |-
+        Import a backup.
+      operationId: project_id/backups/import_record:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BackupsImport_RecordImport_Record'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackupsImport_RecordResponse'
+      tags:
+        - backups
+  /{project_id}/backups:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists Block Storage backups to which the project has access.
+
+      operationId: project_id/backups:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackupsListResponse'
+      tags:
+        - backups
+      summary: List backups
+    post:
+      description: |+
+        Creates a Block Storage backup from a volume.
+
+        The status of the volume must be `available` or if the `force` flag is
+        used, backups of `in-use` volumes may also be created.
+
+      operationId: project_id/backups:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BackupsCreateRequest'
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackupsCreateResponse'
+      tags:
+        - backups
+      summary: Create backup
+  /{project_id}/backups/{id}/restore:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/backups_id'
+    post:
+      description: |+
+        Restores a Block Storage backup to an existing or new Block Storage volume.
+
+        You must specify either the UUID or name of the volume. If you
+        specify both the UUID and name, the UUID takes priority.
+
+        If specifying `volume\_id` the status of the volume must be `available`.
+
+      operationId: project_id/backups/id/restore:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BackupsRestoreRestore'
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackupsRestoreResponse'
+      tags:
+        - backups
+      summary: Restore backup
+  /{project_id}/backups/{id}/action:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/backups_id'
+    post:
+      operationId: project_id/backups/id/action:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/BackupsAction_Reset_Status'
+                - $ref: '#/components/schemas/BackupsActionOs-Force_DeleteRequest'
+              x-openstack:
+                discriminator: action
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/BackupsActionOs-Reset_StatusResponse'
+                  - $ref: '#/components/schemas/BackupsActionOs-Force_DeleteResponse'
+                  - $ref: '#/components/schemas/BackupsActionOs-Reset_StatusResponse'
+                  - $ref: '#/components/schemas/BackupsActionOs-Force_DeleteResponse'
+      tags:
+        - backups
+  /{project_id}/backups/{id}/export_record:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/backups_id'
+    get:
+      description: |+
+        Export information about a backup.
+
+      operationId: project_id/backups/id/export_record:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackupsExport_RecordResponse'
+      tags:
+        - backups
+      summary: Export backup
+  /{project_id}/backups/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/backups_id'
+    get:
+      description: |+
+        Shows details for a backup.
+
+      operationId: project_id/backups/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackupShowResponse'
+      tags:
+        - backups
+      summary: Show backup details
+    delete:
+      description: |+
+        Deletes a backup.
+
+      operationId: project_id/backups/id:delete
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+      tags:
+        - backups
+      summary: Delete backup
+  /{project_id}/capabilities/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/capabilities_id'
+    get:
+      description: |+
+        Shows capabilities for a storage back end on the host.
+        The `hostname` takes the form of `hostname@volume\_backend\_name`.
+
+      operationId: project_id/capabilities/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CapabilityShowResponse'
+      tags:
+        - capabilities
+      summary: Show back-end capabilities
+  /{project_id}/cgsnapshots/detail:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists all consistency group snapshots with details.
+
+      operationId: project_id/cgsnapshots/detail:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CgsnapshotsDetailResponse'
+      tags:
+        - cgsnapshots
+      summary: List consistency group snapshots with details
+  /{project_id}/cgsnapshots:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists all consistency group snapshots.
+
+      operationId: project_id/cgsnapshots:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CgsnapshotsListResponse'
+      tags:
+        - cgsnapshots
+      summary: List consistency group snapshots
+    post:
+      description: |+
+        Creates a consistency group snapshot.
+
+      operationId: project_id/cgsnapshots:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CgsnapshotsCreateRequest'
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CgsnapshotsCreateResponse'
+      tags:
+        - cgsnapshots
+      summary: Create consistency group snapshot
+  /{project_id}/cgsnapshots/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/cgsnapshots_id'
+    get:
+      description: |+
+        Shows details for a consistency group snapshot.
+
+      operationId: project_id/cgsnapshots/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CgsnapshotShowResponse'
+      tags:
+        - cgsnapshots
+      summary: Show consistency group snapshot details
+    delete:
+      description: |+
+        Deletes a consistency group snapshot.
+
+      operationId: project_id/cgsnapshots/id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - cgsnapshots
+      summary: Delete consistency group snapshot
+  /{project_id}/consistencygroups/detail:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists consistency groups with details.
+
+      operationId: project_id/consistencygroups/detail:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsistencygroupsDetailResponse'
+      tags:
+        - consistencygroups
+      summary: List consistency groups with details
+  /{project_id}/consistencygroups/create_from_src:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    post:
+      description: |+
+        Creates a consistency group from source.
+
+      operationId: project_id/consistencygroups/create_from_src:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsistencygroupsCreate_From_SrcCreate_From_SrcRequest'
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsistencygroupsCreate_From_SrcResponse'
+      tags:
+        - consistencygroups
+      summary: Create consistency group from source
+  /{project_id}/consistencygroups:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists consistency groups.
+
+      operationId: project_id/consistencygroups:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsistencygroupsListResponse'
+      tags:
+        - consistencygroups
+      summary: List consistency groups
+    post:
+      description: |+
+        Creates a consistency group.
+
+      operationId: project_id/consistencygroups:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsistencygroupsCreateRequest'
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsistencygroupsCreateResponse'
+      tags:
+        - consistencygroups
+      summary: Create consistency group
+  /{project_id}/consistencygroups/{id}/delete:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/consistencygroups_id'
+    post:
+      description: |+
+        Deletes a consistency group.
+
+      operationId: project_id/consistencygroups/id/delete:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsistencygroupsDeleteDeleteRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsistencygroupsDeleteResponse'
+      tags:
+        - consistencygroups
+      summary: Delete consistency group
+  /{project_id}/consistencygroups/{id}/update:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/consistencygroups_id'
+    put:
+      description: |+
+        Updates a consistency group.
+
+      operationId: project_id/consistencygroups/id/update:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsistencygroupsUpdateUpdateRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsistencygroupsUpdateResponse'
+      tags:
+        - consistencygroups
+      summary: Update consistency group
+  /{project_id}/consistencygroups/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/consistencygroups_id'
+    get:
+      description: |+
+        Shows details for a consistency group.
+
+      operationId: project_id/consistencygroups/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsistencygroupShowResponse'
+      tags:
+        - consistencygroups
+      summary: Show consistency group details
+    delete:
+      description: |-
+        Delete a consistency group.
+      operationId: project_id/consistencygroups/id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - consistencygroups
+    put:
+      description: |-
+        Update the consistency group.
+
+        Expected format of the input parameter 'body':
+
+        .. code-block:: json
+
+            {
+                "consistencygroup":
+                {
+                    "name": "my_cg",
+                    "description": "My consistency group",
+                    "add_volumes": "volume-uuid-1,volume-uuid-2,...",
+                    "remove_volumes": "volume-uuid-8,volume-uuid-9,..."
+                }
+            }
+      operationId: project_id/consistencygroups/id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsistencygroupUpdateRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsistencygroupUpdateResponse'
+      tags:
+        - consistencygroups
+  /{project_id}/os-hosts:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists all hosts summary info that is not disabled.
+
+      operationId: project_id/os-hosts:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_HostsListResponse'
+      tags:
+        - os-hosts
+      summary: List all hosts
+    put:
+      operationId: project_id/os-hosts:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Os_HostsUpdateRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_HostsUpdateResponse'
+      tags:
+        - os-hosts
+  /{project_id}/os-hosts/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/os_hosts_id'
+    get:
+      description: |+
+        Shows volume and snapshot details for a cinder-volume host.
+
+        *Note:* This API is meant specifically for cinder-volume hosts only.
+        It is not valid against other Cinder service hosts or hosts where the
+        cinder-volume service has been disabled.
+
+      operationId: project_id/os-hosts/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_HostShowResponse'
+      tags:
+        - os-hosts
+      summary: Show Host Details
+    put:
+      operationId: project_id/os-hosts/id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Os_HostUpdateRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_HostUpdateResponse'
+      tags:
+        - os-hosts
+  /{project_id}/qos-specs:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists quality of service (QoS) specifications.
+
+      operationId: project_id/qos-specs:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Qos_SpecsListResponse'
+      tags:
+        - qos-specs
+      summary: List QoS specs
+    post:
+      description: |+
+        Creates a QoS specification.
+
+        Specify one or more key and value pairs in the request body.
+
+      operationId: project_id/qos-specs:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Qos_SpecsCreate'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Qos_SpecsCreateResponse'
+      tags:
+        - qos-specs
+      summary: Create QoS specification
+  /{project_id}/qos-specs/{id}/associations:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/qos_specs_id'
+    get:
+      description: |+
+        Lists all associations for a QoS specification.
+
+      operationId: project_id/qos-specs/id/associations:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Qos_SpecsAssociationsResponse'
+      tags:
+        - qos-specs
+      summary: Get all associations for QoS specification
+  /{project_id}/qos-specs/{id}/associate:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/qos_specs_id'
+    get:
+      description: |+
+        Associates a QoS specification with a volume type.
+
+      operationId: project_id/qos-specs/id/associate:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Qos_SpecsAssociateResponse'
+      tags:
+        - qos-specs
+      summary: Associate QoS specification with volume type
+  /{project_id}/qos-specs/{id}/disassociate:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/qos_specs_id'
+    get:
+      description: |+
+        Disassociates a QoS specification from a volume type.
+
+      operationId: project_id/qos-specs/id/disassociate:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Qos_SpecsDisassociateResponse'
+      tags:
+        - qos-specs
+      summary: Disassociate QoS specification from volume type
+  /{project_id}/qos-specs/{id}/disassociate_all:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/qos_specs_id'
+    get:
+      description: |+
+        Disassociates a QoS specification from all associations.
+
+      operationId: project_id/qos-specs/id/disassociate_all:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Qos_SpecsDisassociate_AllResponse'
+      tags:
+        - qos-specs
+      summary: Disassociate QoS specification from all associations
+  /{project_id}/qos-specs/{id}/delete_keys:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/qos_specs_id'
+    put:
+      description: |+
+        Unsets keys in a QoS specification.
+
+      operationId: project_id/qos-specs/id/delete_keys:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Qos_SpecsDelete_KeysDelete_Keys'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Qos_SpecsDelete_KeysResponse'
+      tags:
+        - qos-specs
+      summary: Unset keys in QoS specification
+  /{project_id}/qos-specs/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/qos_specs_id'
+    get:
+      description: |+
+        Shows details for a QoS specification.
+
+      operationId: project_id/qos-specs/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Qos_SpecShowResponse'
+      tags:
+        - qos-specs
+      summary: Show QoS specification details
+    delete:
+      description: |+
+        Deletes a QoS specification.
+
+      operationId: project_id/qos-specs/id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - qos-specs
+      summary: Delete QoS specification
+    put:
+      description: |+
+        Sets keys in a QoS specification.
+
+      operationId: project_id/qos-specs/id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Qos_SpecUpdate'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Qos_SpecUpdateResponse'
+      tags:
+        - qos-specs
+      summary: Set keys in QoS specification
+  /{project_id}/os-quota-class-sets/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/os_quota_class_sets_id'
+    get:
+      description: |+
+        Shows quota class set for a project. If no specific value for the quota class
+        resource exists, then the default value will be reported.
+
+      operationId: project_id/os-quota-class-sets/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Quota_Class_SetShowResponse'
+      tags:
+        - os-quota-class-sets
+      summary: Show quota classes
+    put:
+      description: |+
+        Updates quota class set for a project. If the `quota\_class\_name` key does not
+        exist, then the API will create one.
+
+      operationId: project_id/os-quota-class-sets/id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Os_Quota_Class_SetUpdate'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Quota_Class_SetUpdateResponse'
+      tags:
+        - os-quota-class-sets
+      summary: Update quota classes
+  /{project_id}/os-quota-sets/{id}/defaults:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/os_quota_sets_id'
+    get:
+      description: |+
+        Gets default quotas for a project.
+
+      operationId: project_id/os-quota-sets/id/defaults:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Quota_SetsDefaultsResponse'
+      tags:
+        - os-quota-sets
+      summary: Get default quotas
+  /{project_id}/os-quota-sets/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/os_quota_sets_id'
+    get:
+      description: |+
+        Shows quotas for a project.
+
+      operationId: project_id/os-quota-sets/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Quota_SetShowResponse'
+      tags:
+        - os-quota-sets
+      summary: Show quotas
+    delete:
+      description: |+
+        Deletes quotas for a project so the quotas revert to default values.
+
+      operationId: project_id/os-quota-sets/id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - os-quota-sets
+      summary: Delete quotas
+    put:
+      description: |+
+        Updates quotas for a project.
+
+      operationId: project_id/os-quota-sets/id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Os_Quota_SetUpdate'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Quota_SetUpdateResponse'
+      tags:
+        - os-quota-sets
+      summary: Update quotas
+  /{project_id}/scheduler-stats/get_pools:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists all back-end storage pools.
+
+      operationId: project_id/scheduler-stats/get_pools:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scheduler_StatsGet_PoolsResponse'
+      tags:
+        - scheduler-stats
+      summary: List back-end storage pools
+  /{project_id}/os-services:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |-
+        Return a list of all running services.
+
+        Filter by host & service name.
+      operationId: project_id/os-services:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_ServicesListResponse'
+      tags:
+        - os-services
+  /{project_id}/os-services/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/os_services_id'
+    put:
+      description: |-
+        Enable/Disable scheduling for a service.
+
+        Includes Freeze/Thaw which sends call down to drivers
+        and allows volume.manager for the specified host to
+        disable the service rather than accessing the service
+        directly in this API layer.
+      operationId: project_id/os-services/id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Os_ServiceUpdateRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_ServiceUpdateResponse'
+      tags:
+        - os-services
+  /{project_id}/os-snapshot-manage/detail:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |-
+        Returns a detailed list of snapshots available to manage.
+      operationId: project_id/os-snapshot-manage/detail:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Snapshot_ManageDetailResponse'
+      tags:
+        - os-snapshot-manage
+  /{project_id}/os-snapshot-manage:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |-
+        Returns a summary list of snapshots available to manage.
+      operationId: project_id/os-snapshot-manage:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Snapshot_ManageListResponse'
+      tags:
+        - os-snapshot-manage
+    post:
+      description: |-
+        Instruct Cinder to manage a storage snapshot object.
+
+        Manages an existing backend storage snapshot object (e.g. a Linux
+        logical volume or a SAN disk) by creating the Cinder objects required
+        to manage it, and possibly renaming the backend storage snapshot object
+        (driver dependent).
+
+        From an API perspective, this operation behaves very much like a
+        snapshot creation operation.
+
+        Required HTTP Body:
+
+        .. code-block:: json
+
+         {
+           "snapshot":
+           {
+             "volume_id": "<Cinder volume already exists in volume backend>",
+             "ref":
+                "<Driver-specific reference to the existing storage object>"
+           }
+         }
+
+        See the appropriate Cinder drivers' implementations of the
+        manage_snapshot method to find out the accepted format of 'ref'.
+        For example,in LVM driver, it will be the logic volume name of snapshot
+        which you want to manage.
+
+        This API call will return with an error if any of the above elements
+        are missing from the request, or if the 'volume_id' element refers to
+        a cinder volume that could not be found.
+
+        The snapshot will later enter the error state if it is discovered that
+        'ref' is bad.
+
+        Optional elements to 'snapshot' are::
+
+         name           A name for the new snapshot.
+         description    A description for the new snapshot.
+         metadata       Key/value pairs to be associated with the new snapshot.
+      operationId: project_id/os-snapshot-manage:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Os_Snapshot_ManageCreate'
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Snapshot_ManageCreateResponse'
+      tags:
+        - os-snapshot-manage
+  /{project_id}/types/{type_id}/extra_specs:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/types_type_id'
+    get:
+      description: |-
+        Returns the list of extra specs for a given volume type.
+      operationId: project_id/types/type_id/extra_specs:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypesExtra_SpecsListResponse'
+      tags:
+        - types
+    post:
+      operationId: project_id/types/type_id/extra_specs:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TypesExtra_SpecsCreate'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypesExtra_SpecsCreateResponse'
+      tags:
+        - types
+  /{project_id}/types/{type_id}/extra_specs/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/types_type_id'
+      - $ref: '#/components/parameters/types_extra_specs_id'
+    get:
+      description: |-
+        Return a single extra spec item.
+      operationId: project_id/types/type_id/extra_specs/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypesExtra_SpecShowResponse'
+      tags:
+        - types
+    delete:
+      description: |-
+        Deletes an existing extra spec.
+      operationId: project_id/types/type_id/extra_specs/id:delete
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+      tags:
+        - types
+    put:
+      operationId: project_id/types/type_id/extra_specs/id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TypesExtra_SpecUpdate'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypesExtra_SpecUpdateResponse'
+      tags:
+        - types
+  /{project_id}/volumes/{volume_id}/encryption:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/volumes_volume_id'
+    get:
+      description: |-
+        Returns the encryption metadata for a given volume.
+      operationId: project_id/volumes/volume_id/encryption:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumesEncryptionListResponse'
+      tags:
+        - volumes
+  /{project_id}/volumes/{volume_id}/encryption/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/volumes_volume_id'
+      - $ref: '#/components/parameters/volumes_encryption_id'
+    get:
+      description: |-
+        Return a single encryption item.
+      operationId: project_id/volumes/volume_id/encryption/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumesEncryptionShowResponse'
+      tags:
+        - volumes
+  /{project_id}/os-volume-manage/detail:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |-
+        Returns a detailed list of volumes available to manage.
+      operationId: project_id/os-volume-manage/detail:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Volume_ManageDetailResponse'
+      tags:
+        - os-volume-manage
+  /{project_id}/os-volume-manage:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |-
+        Returns a summary list of volumes available to manage.
+      operationId: project_id/os-volume-manage:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Volume_ManageListResponse'
+      tags:
+        - os-volume-manage
+    post:
+      description: |+
+        Creates a Block Storage volume by using existing storage rather than allocating
+        new storage.
+
+        The caller must specify a reference to an existing storage volume
+        in the ref parameter in the request. Although each storage driver
+        might interpret this reference differently, the driver should
+        accept a reference structure that contains either a source-id
+        or source-name element, if possible.
+
+        The API chooses the size of the volume by rounding up the size of
+        the existing storage volume to the next gibibyte (GiB).
+
+        You cannot manage a volume to an encrypted volume type.
+
+      operationId: project_id/os-volume-manage:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Os_Volume_ManageCreateRequest'
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Volume_ManageCreateResponse'
+      tags:
+        - os-volume-manage
+      summary: Manage existing volume
+  /{project_id}/os-volume-transfer/detail:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists volume transfers, with details.
+
+      operationId: project_id/os-volume-transfer/detail:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Volume_TransferDetailResponse'
+      tags:
+        - os-volume-transfer
+      summary: List volume transfers, with details
+  /{project_id}/os-volume-transfer:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+    get:
+      description: |+
+        Lists volume transfers.
+
+      operationId: project_id/os-volume-transfer:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Volume_TransferListResponse'
+      tags:
+        - os-volume-transfer
+      summary: List volume transfers
+    post:
+      description: |+
+        Creates a volume transfer.
+
+        **Preconditions**
+
+      operationId: project_id/os-volume-transfer:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Os_Volume_TransferCreate'
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Volume_TransferCreateResponse'
+      tags:
+        - os-volume-transfer
+      summary: Create volume transfer
+  /{project_id}/os-volume-transfer/{id}/accept:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/os_volume_transfer_id'
+    post:
+      description: |+
+        Accepts a volume transfer.
+
+      operationId: project_id/os-volume-transfer/id/accept:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Os_Volume_TransferAcceptAccept'
+      responses:
+        '404':
+          description: Error
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Volume_TransferAcceptResponse'
+      tags:
+        - os-volume-transfer
+      summary: Accept volume transfer
+  /{project_id}/os-volume-transfer/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/os_volume_transfer_id'
+    get:
+      description: |+
+        Shows details for a volume transfer.
+
+      operationId: project_id/os-volume-transfer/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Os_Volume_TransferShowResponse'
+      tags:
+        - os-volume-transfer
+      summary: Show volume transfer details
+    delete:
+      description: |+
+        Deletes a volume transfer.
+
+      operationId: project_id/os-volume-transfer/id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - os-volume-transfer
+      summary: Delete volume transfer
+  /{project_id}/types/{type_id}/os-volume-type-access:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/types_type_id'
+    get:
+      description: |+
+        Lists project IDs that have access to private volume type.
+
+      operationId: project_id/types/type_id/os-volume-type-access:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypesOs_Volume_Type_AccessListResponse'
+      tags:
+        - types
+      summary: List private volume type access details
+  /{project_id}/types/{type_id}/encryption:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/types_type_id'
+    get:
+      description: |+
+        Show an encryption type.
+
+        To show an encryption type for an existing volume type.
+
+      operationId: project_id/types/type_id/encryption:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypesEncryptionListResponse'
+      tags:
+        - types
+      summary: Show an encryption type for v2
+    post:
+      description: |+
+        Creates an encryption type.
+
+        To create an encryption type for an existing volume type.
+
+      operationId: project_id/types/type_id/encryption:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TypesEncryptionCreate'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypesEncryptionCreateResponse'
+      tags:
+        - types
+      summary: Create an encryption type for v2
+  /{project_id}/types/{type_id}/encryption/{id}:
+    parameters:
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/types_type_id'
+      - $ref: '#/components/parameters/types_encryption_id'
+    get:
+      description: |+
+        Delete an encryption type.
+
+        To delete an encryption type for an existing volume type.
+
+      operationId: project_id/types/type_id/encryption/id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypesEncryptionShowResponse'
+      tags:
+        - types
+      summary: Delete an encryption type for v2
+    delete:
+      description: |-
+        Delete encryption specs for a given volume type.
+      operationId: project_id/types/type_id/encryption/id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - types
+    put:
+      description: |+
+        Update an encryption type.
+
+        To update an encryption type for an existing volume type.
+
+      operationId: project_id/types/type_id/encryption/id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TypesEncryptionUpdate'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypesEncryptionUpdateResponse'
+      tags:
+        - types
+      summary: Update an encryption type for v2
+components:
+  schemas:
+    RootListResponse:
+      type: object
+      description: Response of the :get operation
+    VolumesDetailResponse:
+      type: object
+      description: Response of the project_id/volumes/detail:get operation
+    VolumesCreate_20:
+      type: object
+      properties:
+        volume:
+          type: object
+          properties:
+            name:
+              type:
+                - string
+                - 'null'
+              format: name_non_mandatory_remove_white_spaces
+            description:
+              type:
+                - string
+                - 'null'
+              format: description_non_mandatory_remove_white_spaces
+            display_name:
+              type:
+                - string
+                - 'null'
+              format: name_non_mandatory_remove_white_spaces
+            display_description:
+              type:
+                - string
+                - 'null'
+              format: description_non_mandatory_remove_white_spaces
+            volume_type:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            metadata:
+              type:
+                - object
+                - 'null'
+              patternProperties:
+                ^[a-zA-Z0-9-_:. /]{1,255}$:
+                  type: string
+                  maxLength: 255
+              additionalProperties: false
+            snapshot_id:
+              oneOf:
+                - type: 'null'
+                - type: string
+                  format: uuid
+            source_volid:
+              oneOf:
+                - type: 'null'
+                - type: string
+                  format: uuid
+            consistencygroup_id:
+              oneOf:
+                - type: 'null'
+                - type: string
+                  format: uuid
+            size:
+              type:
+                - integer
+                - string
+                - 'null'
+              pattern: ^[0-9]+$
+              minimum: 1
+              maximum: 2147483647
+            availability_zone:
+              type:
+                - string
+                - 'null'
+              minLength: 1
+              maxLength: 255
+            multiattach:
+              oneOf:
+                - type: 'null'
+                - type:
+                    - boolean
+                    - string
+                  enum:
+                    - true
+                    - 'True'
+                    - 'TRUE'
+                    - 'true'
+                    - '1'
+                    - ON
+                    - On
+                    - on
+                    - YES
+                    - Yes
+                    - yes
+                    - y
+                    - t
+                    - false
+                    - 'False'
+                    - 'FALSE'
+                    - 'false'
+                    - '0'
+                    - OFF
+                    - Off
+                    - off
+                    - NO
+                    - No
+                    - no
+                    - n
+                    - f
+            image_id:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            imageRef:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+          additionalProperties: true
+        OS-SCH-HNT:scheduler_hints:
+          type:
+            - object
+            - 'null'
+      additionalProperties: false
+      x-openstack:
+        min_ver: '2.0'
+      required:
+        - volume
+    VolumesCreateResponse:
+      type: object
+      description: Response of the project_id/volumes:post operation
+    VolumesListResponse:
+      type: object
+      description: Response of the project_id/volumes:get operation
+    VolumesActionOs-Reset_StatusRequest:
+      type: object
+      description: Empty body for os-reset_status action
+      properties:
+        os-reset_status:
+          type: 'null'
+      x-openstack:
+        action-name: os-reset_status
+    VolumesActionOs-Reset_StatusResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-reset_status
+        action
+      x-openstack:
+        action-name: os-reset_status
+    VolumesActionOs-Force_DeleteRequest:
+      type: object
+      description: Empty body for os-force_delete action
+      properties:
+        os-force_delete:
+          type: 'null'
+      x-openstack:
+        action-name: os-force_delete
+    VolumesActionOs-Force_DeleteResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-force_delete
+        action
+      x-openstack:
+        action-name: os-force_delete
+    VolumesAction_Force_Detach:
+      type: object
+      properties:
+        os-force_detach:
+          type: object
+          properties:
+            connector:
+              type:
+                - string
+                - object
+                - 'null'
+            attachment_id:
+              type:
+                - string
+                - 'null'
+          additionalProperties: false
+      additionalProperties: false
+      required:
+        - os-force_detach
+    VolumesActionOs-Force_DetachResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-force_detach
+        action
+      x-openstack:
+        action-name: os-force_detach
+    VolumesAction_Migrate_Volume_20:
+      type: object
+      properties:
+        os-migrate_volume:
+          type: object
+          properties:
+            host:
+              type: string
+              maxLength: 255
+            force_host_copy:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            lock_volume:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+          additionalProperties: false
+          required:
+            - host
+      additionalProperties: false
+      x-openstack:
+        min_ver: '2.0'
+        max_ver: '3.15'
+      required:
+        - os-migrate_volume
+    VolumesAction_Migrate_Volume_316:
+      type: object
+      properties:
+        os-migrate_volume:
+          type: object
+          properties:
+            host:
+              type:
+                - string
+                - 'null'
+              maxLength: 255
+            force_host_copy:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            lock_volume:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            cluster:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+          additionalProperties: false
+      additionalProperties: false
+      x-openstack:
+        min_ver: '3.16'
+      required:
+        - os-migrate_volume
+    VolumesActionOs-Migrate_VolumeRequest:
+      oneOf:
+        - $ref: '#/components/schemas/VolumesAction_Migrate_Volume_20'
+        - $ref: '#/components/schemas/VolumesAction_Migrate_Volume_316'
+      x-openstack:
+        discriminator: microversion
+        action-name: os-migrate_volume
+    VolumesActionOs-Migrate_VolumeResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-migrate_volume
+        action
+      x-openstack:
+        action-name: os-migrate_volume
+    VolumesAction_Migrate_Volume_Completion:
+      type: object
+      properties:
+        os-migrate_volume_completion:
+          type: object
+          properties:
+            new_volume:
+              type: string
+              format: uuid
+            error:
+              type:
+                - string
+                - 'null'
+                - boolean
+          additionalProperties: false
+          required:
+            - new_volume
+      additionalProperties: false
+      required:
+        - os-migrate_volume_completion
+    VolumesActionOs-Migrate_Volume_CompletionResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-migrate_volume_completion
+        action
+      x-openstack:
+        action-name: os-migrate_volume_completion
+    VolumesAction_Attach:
+      type: object
+      properties:
+        os-attach:
+          type: object
+          properties:
+            instance_uuid:
+              type: string
+              format: uuid
+            mountpoint:
+              type: string
+              minLength: 1
+              maxLength: 255
+            host_name:
+              type: string
+              maxLength: 255
+            mode:
+              type: string
+              enum:
+                - rw
+                - ro
+          additionalProperties: false
+          anyOf:
+            - required:
+                - instance_uuid
+            - required:
+                - host_name
+          required:
+            - mountpoint
+      additionalProperties: false
+      required:
+        - os-attach
+    VolumesActionOs-AttachResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-attach action
+      x-openstack:
+        action-name: os-attach
+    VolumesAction_Detach:
+      type: object
+      properties:
+        os-detach:
+          type:
+            - object
+            - 'null'
+          properties:
+            attachment_id:
+              oneOf:
+                - type: string
+                  format: uuid
+                - type: 'null'
+          additionalProperties: false
+      additionalProperties: false
+      required:
+        - os-detach
+    VolumesActionOs-DetachResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-detach action
+      x-openstack:
+        action-name: os-detach
+    VolumesActionOs-ReserveRequest:
+      type: object
+      description: Empty body for os-reserve action
+      properties:
+        os-reserve:
+          type: 'null'
+      x-openstack:
+        action-name: os-reserve
+    VolumesActionOs-ReserveResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-reserve action
+      x-openstack:
+        action-name: os-reserve
+    VolumesActionOs-UnreserveRequest:
+      type: object
+      description: Empty body for os-unreserve action
+      properties:
+        os-unreserve:
+          type: 'null'
+      x-openstack:
+        action-name: os-unreserve
+    VolumesActionOs-UnreserveResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-unreserve
+        action
+      x-openstack:
+        action-name: os-unreserve
+    VolumesActionOs-Begin_DetachingRequest:
+      type: object
+      description: Empty body for os-begin_detaching action
+      properties:
+        os-begin_detaching:
+          type: 'null'
+      x-openstack:
+        action-name: os-begin_detaching
+    VolumesActionOs-Begin_DetachingResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-begin_detaching
+        action
+      x-openstack:
+        action-name: os-begin_detaching
+    VolumesActionOs-Roll_DetachingRequest:
+      type: object
+      description: Empty body for os-roll_detaching action
+      properties:
+        os-roll_detaching:
+          type: 'null'
+      x-openstack:
+        action-name: os-roll_detaching
+    VolumesActionOs-Roll_DetachingResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-roll_detaching
+        action
+      x-openstack:
+        action-name: os-roll_detaching
+    VolumesAction_Initialize_Connection:
+      type: object
+      properties:
+        os-initialize_connection:
+          type: object
+          properties:
+            connector:
+              type:
+                - object
+                - string
+          additionalProperties: false
+          required:
+            - connector
+      additionalProperties: false
+      required:
+        - os-initialize_connection
+    VolumesActionOs-Initialize_ConnectionResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-initialize_connection
+        action
+      x-openstack:
+        action-name: os-initialize_connection
+    VolumesAction_Terminate_Connection:
+      type: object
+      properties:
+        os-terminate_connection:
+          type: object
+          properties:
+            connector:
+              type:
+                - string
+                - object
+                - 'null'
+          additionalProperties: false
+          required:
+            - connector
+      additionalProperties: false
+      required:
+        - os-terminate_connection
+    VolumesActionOs-Terminate_ConnectionResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-terminate_connection
+        action
+      x-openstack:
+        action-name: os-terminate_connection
+    VolumesAction_Volume_Upload_Image_20:
+      type: object
+      properties:
+        os-volume_upload_image:
+          type: object
+          properties:
+            image_name:
+              type: string
+              minLength: 1
+              maxLength: 255
+            force:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            disk_format:
+              type: string
+              enum:
+                - raw
+                - vmdk
+                - vdi
+                - qcow2
+                - vhd
+                - vhdx
+                - ploop
+            container_format:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+          additionalProperties: false
+          required:
+            - image_name
+      additionalProperties: false
+      x-openstack:
+        min_ver: '2.0'
+        max_ver: '3.0'
+      required:
+        - os-volume_upload_image
+    VolumesAction_Volume_Upload_Image_31:
+      type: object
+      properties:
+        os-volume_upload_image:
+          type: object
+          properties:
+            image_name:
+              type: string
+              minLength: 1
+              maxLength: 255
+            force:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            disk_format:
+              type: string
+              enum:
+                - raw
+                - vmdk
+                - vdi
+                - qcow2
+                - vhd
+                - vhdx
+                - ploop
+            container_format:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+            visibility:
+              type: string
+              enum:
+                - community
+                - public
+                - private
+                - shared
+            protected:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+          additionalProperties: false
+          required:
+            - image_name
+      additionalProperties: false
+      x-openstack:
+        min_ver: '3.1'
+      required:
+        - os-volume_upload_image
+    VolumesActionOs-Volume_Upload_ImageRequest:
+      oneOf:
+        - $ref: '#/components/schemas/VolumesAction_Volume_Upload_Image_20'
+        - $ref: '#/components/schemas/VolumesAction_Volume_Upload_Image_31'
+      x-openstack:
+        discriminator: microversion
+        action-name: os-volume_upload_image
+    VolumesActionOs-Volume_Upload_ImageResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-volume_upload_image
+        action
+      x-openstack:
+        action-name: os-volume_upload_image
+    VolumesAction_Extend:
+      type: object
+      properties:
+        os-extend:
+          type: object
+          properties:
+            new_size:
+              type:
+                - integer
+                - string
+              pattern: ^[0-9]+$
+              minimum: 1
+              maximum: 2147483647
+          additionalProperties: false
+          required:
+            - new_size
+      additionalProperties: false
+      required:
+        - os-extend
+    VolumesActionOs-ExtendResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-extend action
+      x-openstack:
+        action-name: os-extend
+    VolumesAction_Volume_Readonly_Update:
+      type: object
+      properties:
+        os-update_readonly_flag:
+          type: object
+          properties:
+            readonly:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+          additionalProperties: false
+          required:
+            - readonly
+      additionalProperties: false
+      required:
+        - os-update_readonly_flag
+    VolumesActionOs-Update_Readonly_FlagResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-update_readonly_flag
+        action
+      x-openstack:
+        action-name: os-update_readonly_flag
+    VolumesAction_Retype:
+      type: object
+      properties:
+        os-retype:
+          type: object
+          properties:
+            new_type:
+              type: string
+            migration_policy:
+              type:
+                - string
+                - 'null'
+              enum:
+                - on-demand
+                - never
+          additionalProperties: false
+          required:
+            - new_type
+      additionalProperties: false
+      required:
+        - os-retype
+    VolumesActionOs-RetypeResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-retype action
+      x-openstack:
+        action-name: os-retype
+    VolumesAction_Set_Bootable:
+      type: object
+      properties:
+        os-set_bootable:
+          type: object
+          properties:
+            bootable:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+          additionalProperties: false
+          required:
+            - bootable
+      additionalProperties: false
+      required:
+        - os-set_bootable
+    VolumesActionOs-Set_BootableResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-set_bootable
+        action
+      x-openstack:
+        action-name: os-set_bootable
+    VolumesActionCreate:
+      type: object
+      properties:
+        os-set_image_metadata:
+          type: object
+          properties:
+            metadata:
+              type: object
+              additionalProperties: false
+              patternProperties:
+                ^[a-zA-Z0-9-_:. /]{1,255}$:
+                  type: string
+                  maxLength: 255
+          additionalProperties: false
+          required:
+            - metadata
+      additionalProperties: false
+      required:
+        - os-set_image_metadata
+    VolumesActionOs-Set_Image_MetadataResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-set_image_metadata
+        action
+      x-openstack:
+        action-name: os-set_image_metadata
+    VolumesActionOs-Show_Image_MetadataRequest:
+      type: object
+      description: Empty body for os-show_image_metadata action
+      properties:
+        os-show_image_metadata:
+          type: 'null'
+      x-openstack:
+        action-name: os-show_image_metadata
+    VolumesActionOs-Show_Image_MetadataResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-show_image_metadata
+        action
+      x-openstack:
+        action-name: os-show_image_metadata
+    VolumesActionDelete:
+      type: object
+      properties:
+        os-unset_image_metadata:
+          type: object
+          properties:
+            key:
+              type: string
+              minLength: 1
+              maxLength: 255
+          additionalProperties: false
+          required:
+            - key
+      additionalProperties: false
+      required:
+        - os-unset_image_metadata
+    VolumesActionOs-Unset_Image_MetadataResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-unset_image_metadata
+        action
+      x-openstack:
+        action-name: os-unset_image_metadata
+    VolumesActionOs-UnmanageRequest:
+      type: object
+      description: Empty body for os-unmanage action
+      properties:
+        os-unmanage:
+          type: 'null'
+      x-openstack:
+        action-name: os-unmanage
+    VolumesActionOs-UnmanageResponse:
+      type: object
+      description: Response of the project_id/volumes/id/action:post:os-unmanage action
+      x-openstack:
+        action-name: os-unmanage
+    VolumeUpdate_20:
+      type: object
+      properties:
+        volume:
+          type: object
+          properties:
+            name:
+              type:
+                - string
+                - 'null'
+              format: name_non_mandatory_remove_white_spaces
+            description:
+              type:
+                - string
+                - 'null'
+              format: description_non_mandatory_remove_white_spaces
+            display_name:
+              type:
+                - string
+                - 'null'
+              format: name_non_mandatory_remove_white_spaces
+            display_description:
+              type:
+                - string
+                - 'null'
+              format: description_non_mandatory_remove_white_spaces
+            metadata:
+              type: object
+              additionalProperties: false
+              patternProperties:
+                ^[a-zA-Z0-9-_:. /]{1,255}$:
+                  type: string
+                  maxLength: 255
+          additionalProperties: false
+      additionalProperties: false
+      x-openstack:
+        min_ver: '2.0'
+        max_ver: '3.52'
+      required:
+        - volume
+    VolumeUpdate_353:
+      type: object
+      properties:
+        volume:
+          type: object
+          properties:
+            name:
+              type:
+                - string
+                - 'null'
+              format: name_non_mandatory_remove_white_spaces
+            description:
+              type:
+                - string
+                - 'null'
+              format: description_non_mandatory_remove_white_spaces
+            display_name:
+              type:
+                - string
+                - 'null'
+              format: name_non_mandatory_remove_white_spaces
+            display_description:
+              type:
+                - string
+                - 'null'
+              format: description_non_mandatory_remove_white_spaces
+            metadata:
+              type: object
+              additionalProperties: false
+              patternProperties:
+                ^[a-zA-Z0-9-_:. /]{1,255}$:
+                  type: string
+                  maxLength: 255
+          additionalProperties: false
+          anyOf:
+            - required:
+                - name
+            - required:
+                - description
+            - required:
+                - display_name
+            - required:
+                - display_description
+            - required:
+                - metadata
+      additionalProperties: false
+      x-openstack:
+        min_ver: '3.53'
+      required:
+        - volume
+    VolumeUpdateRequest:
+      oneOf:
+        - $ref: '#/components/schemas/VolumeUpdate_20'
+        - $ref: '#/components/schemas/VolumeUpdate_353'
+      x-openstack:
+        discriminator: microversion
+    VolumeUpdateResponse:
+      type: object
+      description: Response of the project_id/volumes/id:put operation
+    VolumeShowResponse:
+      type: object
+      description: Response of the project_id/volumes/id:get operation
+    Types_Create:
+      type: object
+      properties:
+        volume_type:
+          type: object
+          properties:
+            name:
+              type: string
+              minLength: 1
+              maxLength: 255
+              format: name
+            description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+            extra_specs:
+              type: object
+              additionalProperties: false
+              patternProperties:
+                ^[a-zA-Z0-9-_:. /]{1,255}$:
+                  type:
+                    - string
+                    - 'null'
+                  maxLength: 255
+            os-volume-type-access:is_public:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+          additionalProperties: false
+          required:
+            - name
+      additionalProperties: false
+      required:
+        - volume_type
+    TypesCreateResponse:
+      type: object
+      description: Response of the project_id/types:post:create action
+      x-openstack:
+        action-name: create
+    TypesListResponse:
+      type: object
+      description: Response of the project_id/types:get operation
+    TypesAction_Create:
+      type: object
+      properties:
+        volume_type:
+          type: object
+          properties:
+            name:
+              type: string
+              minLength: 1
+              maxLength: 255
+              format: name
+            description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+            extra_specs:
+              type: object
+              additionalProperties: false
+              patternProperties:
+                ^[a-zA-Z0-9-_:. /]{1,255}$:
+                  type:
+                    - string
+                    - 'null'
+                  maxLength: 255
+            os-volume-type-access:is_public:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+          additionalProperties: false
+          required:
+            - name
+      additionalProperties: false
+      required:
+        - volume_type
+    TypesActionCreateResponse:
+      type: object
+      description: Response of the project_id/types/id/action:post:create action
+      x-openstack:
+        action-name: create
+    TypesAction_Update:
+      type: object
+      properties:
+        volume_type:
+          type: object
+          properties:
+            name:
+              type:
+                - string
+                - 'null'
+              minLength: 1
+              maxLength: 255
+            description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+            is_public:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+          additionalProperties: false
+      additionalProperties: false
+      required:
+        - volume_type
+    TypesActionUpdateResponse:
+      type: object
+      description: Response of the project_id/types/id/action:post:update action
+      x-openstack:
+        action-name: update
+    TypesActionDeleteRequest:
+      type: object
+      description: Empty body for delete action
+      properties:
+        delete:
+          type: 'null'
+      x-openstack:
+        action-name: delete
+    TypesActionDeleteResponse:
+      type: object
+      description: Response of the project_id/types/id/action:post:delete action
+      x-openstack:
+        action-name: delete
+    TypesAction_Addprojectaccess:
+      type: object
+      properties:
+        addProjectAccess:
+          type: object
+          properties:
+            project:
+              type: string
+              format: uuid
+          additionalProperties: false
+          required:
+            - project
+      additionalProperties: false
+      required:
+        - addProjectAccess
+    TypesActionAddprojectaccessResponse:
+      type: object
+      description: Response of the project_id/types/id/action:post:addProjectAccess
+        action
+      x-openstack:
+        action-name: addProjectAccess
+    TypesAction_Removeprojectaccess:
+      type: object
+      properties:
+        removeProjectAccess:
+          type: object
+          properties:
+            project:
+              type: string
+              format: uuid
+          additionalProperties: false
+          required:
+            - project
+      additionalProperties: false
+      required:
+        - removeProjectAccess
+    TypesActionRemoveprojectaccessResponse:
+      type: object
+      description: Response of the project_id/types/id/action:post:removeProjectAccess
+        action
+      x-openstack:
+        action-name: removeProjectAccess
+    Type_Update:
+      type: object
+      properties:
+        volume_type:
+          type: object
+          properties:
+            name:
+              type:
+                - string
+                - 'null'
+              minLength: 1
+              maxLength: 255
+            description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+            is_public:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+          additionalProperties: false
+      additionalProperties: false
+      required:
+        - volume_type
+    TypeUpdateResponse:
+      type: object
+      description: Response of the project_id/types/id:put:update action
+      x-openstack:
+        action-name: update
+    TypeShowResponse:
+      type: object
+      description: Response of the project_id/types/id:get operation
+    SnapshotsDetailResponse:
+      type: object
+      description: Response of the project_id/snapshots/detail:get operation
+    SnapshotsCreate:
+      type: object
+      properties:
+        snapshot:
+          type: object
+          properties:
+            name:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            display_name:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+            volume_id:
+              oneOf:
+                - type: string
+                  format: uuid
+                - type: 'null'
+            force:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            metadata:
+              type:
+                - object
+                - 'null'
+              patternProperties:
+                ^[a-zA-Z0-9-_:. /]{1,255}$:
+                  type: string
+                  maxLength: 255
+              additionalProperties: false
+          additionalProperties: false
+          required:
+            - volume_id
+      additionalProperties: false
+      required:
+        - snapshot
+    SnapshotsCreateResponse:
+      type: object
+      description: Response of the project_id/snapshots:post operation
+    SnapshotsListResponse:
+      type: object
+      description: Response of the project_id/snapshots:get operation
+    SnapshotsActionOs-Reset_StatusRequest:
+      type: object
+      description: Empty body for os-reset_status action
+      properties:
+        os-reset_status:
+          type: 'null'
+      x-openstack:
+        action-name: os-reset_status
+    SnapshotsActionOs-Reset_StatusResponse:
+      type: object
+      description: Response of the project_id/snapshots/id/action:post:os-reset_status
+        action
+      x-openstack:
+        action-name: os-reset_status
+    SnapshotsActionOs-Force_DeleteRequest:
+      type: object
+      description: Empty body for os-force_delete action
+      properties:
+        os-force_delete:
+          type: 'null'
+      x-openstack:
+        action-name: os-force_delete
+    SnapshotsActionOs-Force_DeleteResponse:
+      type: object
+      description: Response of the project_id/snapshots/id/action:post:os-force_delete
+        action
+      x-openstack:
+        action-name: os-force_delete
+    SnapshotsAction_Update_Snapshot_Status:
+      type: object
+      properties:
+        os-update_snapshot_status:
+          type: object
+          properties:
+            status:
+              type: string
+            progress:
+              format: progress
+          additionalProperties: false
+          required:
+            - status
+      additionalProperties: false
+      required:
+        - os-update_snapshot_status
+    SnapshotsActionOs-Update_Snapshot_StatusResponse:
+      type: object
+      description: Response of the project_id/snapshots/id/action:post:os-update_snapshot_status
+        action
+      x-openstack:
+        action-name: os-update_snapshot_status
+    SnapshotsActionOs-UnmanageRequest:
+      type: object
+      description: Empty body for os-unmanage action
+      properties:
+        os-unmanage:
+          type: 'null'
+      x-openstack:
+        action-name: os-unmanage
+    SnapshotsActionOs-UnmanageResponse:
+      type: object
+      description: Response of the project_id/snapshots/id/action:post:os-unmanage
+        action
+      x-openstack:
+        action-name: os-unmanage
+    SnapshotUpdate:
+      type: object
+      properties:
+        snapshot:
+          type: object
+          properties:
+            name:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+            display_name:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            display_description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+          additionalProperties: false
+          anyOf:
+            - required:
+                - name
+            - required:
+                - description
+            - required:
+                - display_name
+            - required:
+                - display_description
+      additionalProperties: false
+      required:
+        - snapshot
+    SnapshotUpdateResponse:
+      type: object
+      description: Response of the project_id/snapshots/id:put operation
+    SnapshotShowResponse:
+      type: object
+      description: Response of the project_id/snapshots/id:get operation
+    LimitsListResponse:
+      type: object
+      description: Response of the project_id/limits:get operation
+    SnapshotsMetadataCreateRequest:
+      type: object
+      description: Request of the project_id/snapshots/snapshot_id/metadata:post operation
+      x-openstack:
+        action-name: create
+    SnapshotsMetadataCreateResponse:
+      type: object
+      description: Response of the project_id/snapshots/snapshot_id/metadata:post
+        operation
+    SnapshotsMetadataListResponse:
+      type: object
+      description: Response of the project_id/snapshots/snapshot_id/metadata:get operation
+    SnapshotsMetadataUpdateRequest:
+      type: object
+      description: Request of the project_id/snapshots/snapshot_id/metadata/id:put
+        operation
+      x-openstack:
+        action-name: update
+    SnapshotsMetadataUpdateResponse:
+      type: object
+      description: Response of the project_id/snapshots/snapshot_id/metadata/id:put
+        operation
+    SnapshotsMetadataShowResponse:
+      type: object
+      description: Response of the project_id/snapshots/snapshot_id/metadata/id:get
+        operation
+    SnapshotsMetadataUpdate_AllRequest:
+      type: object
+      description: Request of the project_id/snapshots/snapshot_id/metadata:put operation
+      x-openstack:
+        action-name: update_all
+    SnapshotsMetadataUpdate_AllResponse:
+      type: object
+      description: Response of the project_id/snapshots/snapshot_id/metadata:put operation
+    VolumesMetadataCreate:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: false
+          patternProperties:
+            ^[a-zA-Z0-9-_:. /]{1,255}$:
+              type: string
+              maxLength: 255
+      additionalProperties: false
+      required:
+        - metadata
+    VolumesMetadataCreateResponse:
+      type: object
+      description: Response of the project_id/volumes/volume_id/metadata:post operation
+    VolumesMetadataListResponse:
+      type: object
+      description: Response of the project_id/volumes/volume_id/metadata:get operation
+    VolumesMetadataUpdate:
+      type: object
+      properties:
+        meta:
+          type: object
+          additionalProperties: false
+          patternProperties:
+            ^[a-zA-Z0-9-_:. /]{1,255}$:
+              type: string
+              maxLength: 255
+          minProperties: 1
+          maxProperties: 1
+      additionalProperties: false
+      required:
+        - meta
+    VolumesMetadataUpdateResponse:
+      type: object
+      description: Response of the project_id/volumes/volume_id/metadata/id:put operation
+    VolumesMetadataShowResponse:
+      type: object
+      description: Response of the project_id/volumes/volume_id/metadata/id:get operation
+    VolumesMetadataUpdate_All:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: false
+          patternProperties:
+            ^[a-zA-Z0-9-_:. /]{1,255}$:
+              type: string
+              maxLength: 255
+      additionalProperties: false
+      required:
+        - metadata
+    VolumesMetadataUpdate_AllResponse:
+      type: object
+      description: Response of the project_id/volumes/volume_id/metadata:put operation
+    ExtensionsCreateRequest:
+      type: object
+      description: Request of the project_id/extensions:post operation
+      x-openstack:
+        action-name: create
+    ExtensionsCreateResponse:
+      type: object
+      description: Response of the project_id/extensions:post operation
+    ExtensionsListResponse:
+      type: object
+      description: Response of the project_id/extensions:get operation
+    ExtensionShowResponse:
+      type: object
+      description: Response of the project_id/extensions/id:get operation
+    Os_Availability_ZoneListResponse:
+      type: object
+      description: Response of the project_id/os-availability-zone:get operation
+    BackupsDetailResponse:
+      type: object
+      description: Response of the project_id/backups/detail:get operation
+    BackupsImport_RecordImport_Record:
+      type: object
+      properties:
+        backup-record:
+          type: object
+          properties:
+            backup_service:
+              type: string
+              minLength: 0
+              maxLength: 255
+            backup_url:
+              type: string
+              minLength: 1
+              format: base64
+          additionalProperties: false
+          required:
+            - backup_service
+            - backup_url
+      additionalProperties: false
+      required:
+        - backup-record
+    BackupsImport_RecordResponse:
+      type: object
+      description: Response of the project_id/backups/import_record:post operation
+    BackupsCreate_20:
+      type: object
+      properties:
+        backup:
+          type: object
+          properties:
+            volume_id:
+              type: string
+              format: uuid
+            container:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+            incremental:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            force:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            name:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            snapshot_id:
+              oneOf:
+                - type: string
+                  format: uuid
+                - type: 'null'
+          additionalProperties: false
+          required:
+            - volume_id
+      additionalProperties: false
+      x-openstack:
+        min_ver: '2.0'
+        max_ver: '3.42'
+      required:
+        - backup
+    BackupsCreate_343:
+      type: object
+      properties:
+        backup:
+          type: object
+          properties:
+            volume_id:
+              type: string
+              format: uuid
+            container:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+            incremental:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            force:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            name:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            snapshot_id:
+              oneOf:
+                - type: string
+                  format: uuid
+                - type: 'null'
+            metadata:
+              type:
+                - object
+                - 'null'
+              patternProperties:
+                ^[a-zA-Z0-9-_:. /]{1,255}$:
+                  type: string
+                  maxLength: 255
+              additionalProperties: false
+          additionalProperties: false
+          required:
+            - volume_id
+      additionalProperties: false
+      x-openstack:
+        min_ver: '3.43'
+        max_ver: '3.50'
+      required:
+        - backup
+    BackupsCreate_351:
+      type: object
+      properties:
+        backup:
+          type: object
+          properties:
+            volume_id:
+              type: string
+              format: uuid
+            container:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+            incremental:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            force:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            name:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            snapshot_id:
+              oneOf:
+                - type: string
+                  format: uuid
+                - type: 'null'
+            metadata:
+              type:
+                - object
+                - 'null'
+              patternProperties:
+                ^[a-zA-Z0-9-_:. /]{1,255}$:
+                  type: string
+                  maxLength: 255
+              additionalProperties: false
+            availability_zone:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+          additionalProperties: false
+          required:
+            - volume_id
+      additionalProperties: false
+      x-openstack:
+        min_ver: '3.51'
+      required:
+        - backup
+    BackupsCreateRequest:
+      oneOf:
+        - $ref: '#/components/schemas/BackupsCreate_20'
+        - $ref: '#/components/schemas/BackupsCreate_343'
+        - $ref: '#/components/schemas/BackupsCreate_351'
+      x-openstack:
+        discriminator: microversion
+    BackupsCreateResponse:
+      type: object
+      description: Response of the project_id/backups:post operation
+    BackupsListResponse:
+      type: object
+      description: Response of the project_id/backups:get operation
+    BackupsRestoreRestore:
+      type: object
+      properties:
+        restore:
+          type:
+            - object
+            - 'null'
+          properties:
+            name:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            volume_id:
+              oneOf:
+                - type: string
+                  format: uuid
+                - type: 'null'
+          additionalProperties: false
+      additionalProperties: false
+      required:
+        - restore
+    BackupsRestoreResponse:
+      type: object
+      description: Response of the project_id/backups/id/restore:post operation
+    BackupsAction_Reset_Status:
+      type: object
+      properties:
+        os-reset_status:
+          type: object
+          properties:
+            status:
+              type: string
+              format: backup_status
+          additionalProperties: false
+          required:
+            - status
+      additionalProperties: false
+      required:
+        - os-reset_status
+    BackupsActionOs-Reset_StatusResponse:
+      type: object
+      description: Response of the project_id/backups/id/action:post:os-reset_status
+        action
+      x-openstack:
+        action-name: os-reset_status
+    BackupsActionOs-Force_DeleteRequest:
+      type: object
+      description: Empty body for os-force_delete action
+      properties:
+        os-force_delete:
+          type: 'null'
+      x-openstack:
+        action-name: os-force_delete
+    BackupsActionOs-Force_DeleteResponse:
+      type: object
+      description: Response of the project_id/backups/id/action:post:os-force_delete
+        action
+      x-openstack:
+        action-name: os-force_delete
+    BackupsExport_RecordResponse:
+      type: object
+      description: Response of the project_id/backups/id/export_record:get operation
+    BackupShowResponse:
+      type: object
+      description: Response of the project_id/backups/id:get operation
+    CapabilityShowResponse:
+      type: object
+      description: Response of the project_id/capabilities/id:get operation
+    CgsnapshotsDetailResponse:
+      type: object
+      description: Response of the project_id/cgsnapshots/detail:get operation
+    CgsnapshotsCreateRequest:
+      type: object
+      description: Request of the project_id/cgsnapshots:post operation
+      x-openstack:
+        action-name: create
+    CgsnapshotsCreateResponse:
+      type: object
+      description: Response of the project_id/cgsnapshots:post operation
+    CgsnapshotsListResponse:
+      type: object
+      description: Response of the project_id/cgsnapshots:get operation
+    CgsnapshotShowResponse:
+      type: object
+      description: Response of the project_id/cgsnapshots/id:get operation
+    ConsistencygroupsDetailResponse:
+      type: object
+      description: Response of the project_id/consistencygroups/detail:get operation
+    ConsistencygroupsCreate_From_SrcCreate_From_SrcRequest:
+      type: object
+      description: Request of the project_id/consistencygroups/create_from_src:post
+        operation
+      x-openstack:
+        action-name: create_from_src
+    ConsistencygroupsCreate_From_SrcResponse:
+      type: object
+      description: Response of the project_id/consistencygroups/create_from_src:post
+        operation
+    ConsistencygroupsCreateRequest:
+      type: object
+      description: Request of the project_id/consistencygroups:post operation
+      x-openstack:
+        action-name: create
+    ConsistencygroupsCreateResponse:
+      type: object
+      description: Response of the project_id/consistencygroups:post operation
+    ConsistencygroupsListResponse:
+      type: object
+      description: Response of the project_id/consistencygroups:get operation
+    ConsistencygroupsDeleteDeleteRequest:
+      type: object
+      description: Request of the project_id/consistencygroups/id/delete:post operation
+      x-openstack:
+        action-name: delete
+    ConsistencygroupsDeleteResponse:
+      type: object
+      description: Response of the project_id/consistencygroups/id/delete:post operation
+    ConsistencygroupsUpdateUpdateRequest:
+      type: object
+      description: Request of the project_id/consistencygroups/id/update:put operation
+      x-openstack:
+        action-name: update
+    ConsistencygroupsUpdateResponse:
+      type: object
+      description: Response of the project_id/consistencygroups/id/update:put operation
+    ConsistencygroupUpdateRequest:
+      type: object
+      description: Request of the project_id/consistencygroups/id:put operation
+      x-openstack:
+        action-name: update
+    ConsistencygroupUpdateResponse:
+      type: object
+      description: Response of the project_id/consistencygroups/id:put operation
+    ConsistencygroupShowResponse:
+      type: object
+      description: Response of the project_id/consistencygroups/id:get operation
+    Os_HostsUpdateRequest:
+      type: object
+      description: Request of the project_id/os-hosts:put operation
+      x-openstack:
+        action-name: update
+    Os_HostsUpdateResponse:
+      type: object
+      description: Response of the project_id/os-hosts:put operation
+    Os_HostsListResponse:
+      type: object
+      description: Response of the project_id/os-hosts:get operation
+    Os_HostUpdateRequest:
+      type: object
+      description: Request of the project_id/os-hosts/id:put operation
+      x-openstack:
+        action-name: update
+    Os_HostUpdateResponse:
+      type: object
+      description: Response of the project_id/os-hosts/id:put operation
+    Os_HostShowResponse:
+      type: object
+      description: Response of the project_id/os-hosts/id:get operation
+    Qos_SpecsCreate:
+      type: object
+      properties:
+        qos_specs:
+          type: object
+          properties:
+            name:
+              type: string
+              format: name_skip_leading_trailing_spaces
+          additionalProperties: true
+          required:
+            - name
+      additionalProperties: false
+      required:
+        - qos_specs
+    Qos_SpecsCreateResponse:
+      type: object
+      description: Response of the project_id/qos-specs:post operation
+    Qos_SpecsListResponse:
+      type: object
+      description: Response of the project_id/qos-specs:get operation
+    Qos_SpecsAssociationsResponse:
+      type: object
+      description: Response of the project_id/qos-specs/id/associations:get operation
+    Qos_SpecsAssociateResponse:
+      type: object
+      description: Response of the project_id/qos-specs/id/associate:get operation
+    Qos_SpecsDisassociateResponse:
+      type: object
+      description: Response of the project_id/qos-specs/id/disassociate:get operation
+    Qos_SpecsDisassociate_AllResponse:
+      type: object
+      description: Response of the project_id/qos-specs/id/disassociate_all:get operation
+    Qos_SpecsDelete_KeysDelete_Keys:
+      type: object
+      properties:
+        keys:
+          type: array
+          items:
+            type: string
+            minLength: 1
+            maxLength: 255
+          uniqueItems: true
+      additionalProperties: false
+      required:
+        - keys
+    Qos_SpecsDelete_KeysResponse:
+      type: object
+      description: Response of the project_id/qos-specs/id/delete_keys:put operation
+    Qos_SpecUpdate:
+      type: object
+      properties:
+        qos_specs:
+          type: object
+          additionalProperties: false
+          patternProperties:
+            ^[a-zA-Z0-9-_:. /]{1,255}$:
+              type:
+                - string
+                - 'null'
+              maxLength: 255
+      additionalProperties: false
+      required:
+        - qos_specs
+    Qos_SpecUpdateResponse:
+      type: object
+      description: Response of the project_id/qos-specs/id:put operation
+    Qos_SpecShowResponse:
+      type: object
+      description: Response of the project_id/qos-specs/id:get operation
+    Os_Quota_Class_SetUpdate:
+      type: object
+      properties:
+        quota_class_set:
+          type: object
+          format: quota_class_set
+          additionalProperties: false
+          patternProperties:
+            ^[a-zA-Z0-9-_:. ]{1,255}$:
+              type:
+                - integer
+                - string
+              pattern: ^[0-9]*$
+              minimum: -1
+              minLength: 1
+              maximum: 2147483647
+      additionalProperties: false
+      required:
+        - quota_class_set
+    Os_Quota_Class_SetUpdateResponse:
+      type: object
+      description: Response of the project_id/os-quota-class-sets/id:put operation
+    Os_Quota_Class_SetShowResponse:
+      type: object
+      description: Response of the project_id/os-quota-class-sets/id:get operation
+    Os_Quota_SetsDefaultsResponse:
+      type: object
+      description: Response of the project_id/os-quota-sets/id/defaults:get operation
+    Os_Quota_SetUpdate:
+      type: object
+      properties:
+        quota_set:
+          type: object
+          format: quota_set
+          minProperties: 1
+      additionalProperties: false
+      required:
+        - quota_set
+    Os_Quota_SetUpdateResponse:
+      type: object
+      description: Response of the project_id/os-quota-sets/id:put operation
+    Os_Quota_SetShowResponse:
+      type: object
+      description: Response of the project_id/os-quota-sets/id:get operation
+    Scheduler_StatsGet_PoolsResponse:
+      type: object
+      description: Response of the project_id/scheduler-stats/get_pools:get operation
+    Os_ServicesListResponse:
+      type: object
+      description: Response of the project_id/os-services:get operation
+    Os_ServiceUpdateRequest:
+      type: object
+      description: Request of the project_id/os-services/id:put operation
+      x-openstack:
+        action-name: update
+    Os_ServiceUpdateResponse:
+      type: object
+      description: Response of the project_id/os-services/id:put operation
+    Os_Snapshot_ManageDetailResponse:
+      type: object
+      description: Response of the project_id/os-snapshot-manage/detail:get operation
+    Os_Snapshot_ManageCreate:
+      type: object
+      properties:
+        snapshot:
+          type: object
+          properties:
+            description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+            metadata:
+              type:
+                - object
+                - 'null'
+              patternProperties:
+                ^[a-zA-Z0-9-_:. /]{1,255}$:
+                  type: string
+                  maxLength: 255
+              additionalProperties: false
+            name:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            volume_id:
+              type: string
+              format: uuid
+            ref:
+              type:
+                - object
+                - 'null'
+                - string
+          additionalProperties: false
+          required:
+            - ref
+            - volume_id
+      additionalProperties: false
+      required:
+        - snapshot
+    Os_Snapshot_ManageCreateResponse:
+      type: object
+      description: Response of the project_id/os-snapshot-manage:post operation
+    Os_Snapshot_ManageListResponse:
+      type: object
+      description: Response of the project_id/os-snapshot-manage:get operation
+    TypesExtra_SpecsCreate:
+      type: object
+      properties:
+        extra_specs:
+          type: object
+          additionalProperties: false
+          patternProperties:
+            ^[a-zA-Z0-9-_:.]{1,255}$:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+      additionalProperties: false
+      required:
+        - extra_specs
+    TypesExtra_SpecsCreateResponse:
+      type: object
+      description: Response of the project_id/types/type_id/extra_specs:post operation
+    TypesExtra_SpecsListResponse:
+      type: object
+      description: Response of the project_id/types/type_id/extra_specs:get operation
+    TypesExtra_SpecUpdate:
+      type: object
+      additionalProperties: false
+      patternProperties:
+        ^[a-zA-Z0-9-_:.]{1,255}$:
+          type:
+            - string
+            - 'null'
+          minLength: 0
+          maxLength: 255
+      minProperties: 1
+      maxProperties: 1
+    TypesExtra_SpecUpdateResponse:
+      type: object
+      description: Response of the project_id/types/type_id/extra_specs/id:put operation
+    TypesExtra_SpecShowResponse:
+      type: object
+      description: Response of the project_id/types/type_id/extra_specs/id:get operation
+    VolumesEncryptionListResponse:
+      type: object
+      description: Response of the project_id/volumes/volume_id/encryption:get operation
+    VolumesEncryptionShowResponse:
+      type: object
+      description: Response of the project_id/volumes/volume_id/encryption/id:get
+        operation
+    Os_Volume_ManageDetailResponse:
+      type: object
+      description: Response of the project_id/os-volume-manage/detail:get operation
+    Os_Volume_ManageCreate_20:
+      type: object
+      properties:
+        volume:
+          type: object
+          properties:
+            description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+            availability_zone:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            bootable:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            volume_type:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            name:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            host:
+              type:
+                - string
+                - 'null'
+              minLength: 1
+              maxLength: 255
+              pattern: ^[a-zA-Z0-9-._#@:/+\[\]]*$
+            ref:
+              type:
+                - object
+                - string
+            metadata:
+              type:
+                - object
+                - 'null'
+              patternProperties:
+                ^[a-zA-Z0-9-_:. /]{1,255}$:
+                  type: string
+                  maxLength: 255
+              additionalProperties: false
+          additionalProperties: false
+          required:
+            - ref
+      additionalProperties: false
+      x-openstack:
+        min_ver: '2.0'
+        max_ver: '3.15'
+      required:
+        - volume
+    Os_Volume_ManageCreate_316:
+      type: object
+      properties:
+        volume:
+          type: object
+          properties:
+            description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+            availability_zone:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            bootable:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            volume_type:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            name:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            host:
+              type:
+                - string
+                - 'null'
+              minLength: 1
+              maxLength: 255
+              pattern: ^[a-zA-Z0-9-._#@:/+\[\]]*$
+            ref:
+              type:
+                - object
+                - string
+            metadata:
+              type:
+                - object
+                - 'null'
+              patternProperties:
+                ^[a-zA-Z0-9-_:. /]{1,255}$:
+                  type: string
+                  maxLength: 255
+              additionalProperties: false
+            cluster:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+          additionalProperties: false
+          required:
+            - ref
+      additionalProperties: false
+      x-openstack:
+        min_ver: '3.16'
+      required:
+        - volume
+    Os_Volume_ManageCreateRequest:
+      oneOf:
+        - $ref: '#/components/schemas/Os_Volume_ManageCreate_20'
+        - $ref: '#/components/schemas/Os_Volume_ManageCreate_316'
+      x-openstack:
+        discriminator: microversion
+    Os_Volume_ManageCreateResponse:
+      type: object
+      description: Response of the project_id/os-volume-manage:post operation
+    Os_Volume_ManageListResponse:
+      type: object
+      description: Response of the project_id/os-volume-manage:get operation
+    Os_Volume_TransferDetailResponse:
+      type: object
+      description: Response of the project_id/os-volume-transfer/detail:get operation
+    Os_Volume_TransferCreate:
+      type: object
+      properties:
+        transfer:
+          type: object
+          properties:
+            volume_id:
+              type: string
+              format: uuid
+            name:
+              oneOf:
+                - type: string
+                  format: name_skip_leading_trailing_spaces
+                - type: 'null'
+          additionalProperties: false
+          required:
+            - volume_id
+      additionalProperties: false
+      required:
+        - transfer
+    Os_Volume_TransferCreateResponse:
+      type: object
+      description: Response of the project_id/os-volume-transfer:post operation
+    Os_Volume_TransferListResponse:
+      type: object
+      description: Response of the project_id/os-volume-transfer:get operation
+    Os_Volume_TransferAcceptAccept:
+      type: object
+      properties:
+        accept:
+          type: object
+          properties:
+            auth_key:
+              type:
+                - string
+                - integer
+          additionalProperties: false
+          required:
+            - auth_key
+      additionalProperties: false
+      required:
+        - accept
+    Os_Volume_TransferAcceptResponse:
+      type: object
+      description: Response of the project_id/os-volume-transfer/id/accept:post operation
+    Os_Volume_TransferShowResponse:
+      type: object
+      description: Response of the project_id/os-volume-transfer/id:get operation
+    TypesOs_Volume_Type_AccessListResponse:
+      type: object
+      description: Response of the project_id/types/type_id/os-volume-type-access:get
+        operation
+    TypesEncryptionCreate:
+      type: object
+      properties:
+        encryption:
+          type: object
+          properties:
+            key_size:
+              type:
+                - string
+                - integer
+                - 'null'
+              minimum: 0
+              maximum: 2147483647
+              format: key_size
+            provider:
+              type: string
+              minLength: 0
+              maxLength: 255
+            control_location:
+              enum:
+                - front-end
+                - back-end
+            cipher:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+          additionalProperties: true
+          required:
+            - provider
+            - control_location
+      additionalProperties: false
+      required:
+        - encryption
+    TypesEncryptionCreateResponse:
+      type: object
+      description: Response of the project_id/types/type_id/encryption:post operation
+    TypesEncryptionListResponse:
+      type: object
+      description: Response of the project_id/types/type_id/encryption:get operation
+    TypesEncryptionUpdate:
+      type: object
+      properties:
+        encryption:
+          type: object
+          properties:
+            key_size:
+              type:
+                - string
+                - integer
+                - 'null'
+              minimum: 0
+              maximum: 2147483647
+              format: key_size
+            provider:
+              type: string
+              minLength: 0
+              maxLength: 255
+            control_location:
+              enum:
+                - front-end
+                - back-end
+            cipher:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+          additionalProperties: true
+          required: []
+      additionalProperties: false
+      required:
+        - encryption
+    TypesEncryptionUpdateResponse:
+      type: object
+      description: Response of the project_id/types/type_id/encryption/id:put operation
+    TypesEncryptionShowResponse:
+      type: object
+      description: Response of the project_id/types/type_id/encryption/id:get operation
+  parameters:
+    project_id:
+      in: path
+      name: project_id
+      description: project_id parameter for /{project_id}/types/{type_id}/encryption/{id}
+        API
+      schema:
+        type: string
+      required: true
+    volumes_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/volumes/{id} API
+      schema:
+        type: string
+      required: true
+    types_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/types/{id} API
+      schema:
+        type: string
+      required: true
+    snapshots_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/snapshots/{id} API
+      schema:
+        type: string
+      required: true
+    limits_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/limits/{id} API
+      schema:
+        type: string
+      required: true
+    snapshots_snapshot_id:
+      in: path
+      name: snapshot_id
+      description: snapshot_id parameter for /{project_id}/snapshots/{snapshot_id}/metadata
+        API
+      schema:
+        type: string
+      required: true
+    snapshots_metadata_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/snapshots/{snapshot_id}/metadata/{id}
+        API
+      schema:
+        type: string
+      required: true
+    volumes_volume_id:
+      in: path
+      name: volume_id
+      description: volume_id parameter for /{project_id}/volumes/{volume_id}/encryption/{id}
+        API
+      schema:
+        type: string
+      required: true
+    volumes_metadata_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/volumes/{volume_id}/metadata/{id}
+        API
+      schema:
+        type: string
+      required: true
+    extensions_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/extensions/{id} API
+      schema:
+        type: string
+      required: true
+    os_availability_zone_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/os-availability-zone/{id} API
+      schema:
+        type: string
+      required: true
+    backups_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/backups/{id} API
+      schema:
+        type: string
+      required: true
+    capabilities_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/capabilities/{id} API
+      schema:
+        type: string
+      required: true
+    cgsnapshots_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/cgsnapshots/{id} API
+      schema:
+        type: string
+      required: true
+    consistencygroups_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/consistencygroups/{id} API
+      schema:
+        type: string
+      required: true
+    os_hosts_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/os-hosts/{id} API
+      schema:
+        type: string
+      required: true
+    qos_specs_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/qos-specs/{id} API
+      schema:
+        type: string
+      required: true
+    os_quota_class_sets_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/os-quota-class-sets/{id} API
+      schema:
+        type: string
+      required: true
+    os_quota_sets_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/os-quota-sets/{id} API
+      schema:
+        type: string
+      required: true
+    scheduler_stats_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/scheduler-stats/{id} API
+      schema:
+        type: string
+      required: true
+    os_services_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/os-services/{id} API
+      schema:
+        type: string
+      required: true
+    os_snapshot_manage_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/os-snapshot-manage/{id} API
+      schema:
+        type: string
+      required: true
+    types_type_id:
+      in: path
+      name: type_id
+      description: type_id parameter for /{project_id}/types/{type_id}/encryption/{id}
+        API
+      schema:
+        type: string
+      required: true
+    types_extra_specs_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/types/{type_id}/extra_specs/{id}
+        API
+      schema:
+        type: string
+      required: true
+    volumes_encryption_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/volumes/{volume_id}/encryption/{id}
+        API
+      schema:
+        type: string
+      required: true
+    os_volume_manage_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/os-volume-manage/{id} API
+      schema:
+        type: string
+      required: true
+    os_volume_transfer_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/os-volume-transfer/{id} API
+      schema:
+        type: string
+      required: true
+    types_os_volume_type_access_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/types/{type_id}/os-volume-type-access/{id}
+        API
+      schema:
+        type: string
+      required: true
+    types_encryption_id:
+      in: path
+      name: id
+      description: id parameter for /{project_id}/types/{type_id}/encryption/{id}
+        API
+      schema:
+        type: string
+      required: true
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+tags:
+  - name: version
+  - name: volumes
+  - name: types
+  - name: snapshots
+  - name: limits
+  - name: extensions
+  - name: os-availability-zone
+  - name: backups
+  - name: capabilities
+  - name: cgsnapshots
+  - name: consistencygroups
+  - name: os-hosts
+  - name: qos-specs
+  - name: os-quota-class-sets
+  - name: os-quota-sets
+  - name: scheduler-stats
+  - name: os-services
+  - name: os-snapshot-manage
+  - name: os-volume-manage
+  - name: os-volume-transfer
+security:
+  - ApiKeyAuth: []

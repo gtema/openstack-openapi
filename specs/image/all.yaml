@@ -1,0 +1,5432 @@
+openapi: 3.1.0
+info:
+  title: OpenStack Image API
+  description: |-
+    Image API provided by Glance service
+  version: '2.16'
+paths:
+  /schemas/image:
+    get:
+      description: |+
+        *(Since Images v2.0)*
+
+        Shows a JSON schema document that represents an *image* entity.
+
+        The following schema is solely an example. Consider only the
+        response to the API call as authoritative.
+
+        Normal response codes: 200
+
+        Error response codes: 400, 401
+
+      operationId: schemas/image:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasImageResponse'
+      tags:
+        - schemas
+      summary: Show image schema
+  /schemas/images:
+    get:
+      description: |+
+        *(Since Images v2.0)*
+
+        Shows a JSON schema document that represents an *images* entity.
+
+        An images entity is a container of image entities.
+
+        The following schema is solely an example. Consider only the
+        response to the API call as authoritative.
+
+        Normal response codes: 200
+
+        Error response codes: 400, 401
+
+      operationId: schemas/images:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasImagesResponse'
+      tags:
+        - schemas
+      summary: Show images schema
+  /schemas/member:
+    get:
+      description: |+
+        *(Since Images v2.1)*
+
+        Shows a JSON schema document that represents an *image member* entity.
+
+        The following schema is solely an example. Consider only the
+        response to the API call as authoritative.
+
+        Normal response codes: 200
+
+        Error response codes: 400, 401
+
+      operationId: schemas/member:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasMemberResponse'
+      tags:
+        - schemas
+      summary: Show image member schema
+  /schemas/members:
+    get:
+      description: |+
+        *(Since Images v2.1)*
+
+        Shows a JSON schema document that represents an *image members* entity.
+
+        An image members entity is a container of image member entities.
+
+        The following schema is solely an example. Consider only the
+        response to the API call as authoritative.
+
+        Normal response codes: 200
+
+        Error response codes: 400, 401
+
+      operationId: schemas/members:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasMembersResponse'
+      tags:
+        - schemas
+      summary: Show image members schema
+  /schemas/task:
+    get:
+      description: |+
+        *(Since Images v2.2)*
+
+        Shows a JSON schema document that represents an *task* entity.
+
+        The following schema is solely an example. Consider only the
+        response to the API call as authoritative.
+
+        Normal response codes: 200
+
+        Error response codes: 401
+
+      operationId: schemas/task:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasTaskResponse'
+      tags:
+        - schemas
+      summary: Show task schema
+  /schemas/tasks:
+    get:
+      description: |+
+        *(Since Images v2.2)*
+
+        Shows a JSON schema document that represents a list of *tasks*.
+
+        An tasks list entity is a container of entities containing abbreviated
+        information about individual tasks.
+
+        The following schema is solely an example. Consider only the
+        response to the API call as authoritative.
+
+        Normal response codes: 200
+
+        Error response codes: 401
+
+      operationId: schemas/tasks:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasTasksResponse'
+      tags:
+        - schemas
+      summary: Show tasks schema
+  /schemas/metadefs/namespace:
+    get:
+      operationId: schemas/metadefs/namespace:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasMetadefsNamespaceMetadef_NamespaceResponse'
+      tags:
+        - schemas
+  /schemas/metadefs/namespaces:
+    get:
+      operationId: schemas/metadefs/namespaces:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasMetadefsNamespacesMetadef_NamespacesResponse'
+      tags:
+        - schemas
+  /schemas/metadefs/resource_type:
+    get:
+      operationId: schemas/metadefs/resource_type:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasMetadefsResource_TypeMetadef_Resource_TypeResponse'
+      tags:
+        - schemas
+  /schemas/metadefs/resource_types:
+    get:
+      operationId: schemas/metadefs/resource_types:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasMetadefsResource_TypesMetadef_Resource_TypesResponse'
+      tags:
+        - schemas
+  /schemas/metadefs/property:
+    get:
+      operationId: schemas/metadefs/property:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasMetadefsPropertyMetadef_PropertyResponse'
+      tags:
+        - schemas
+  /schemas/metadefs/properties:
+    get:
+      operationId: schemas/metadefs/properties:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasMetadefsPropertiesMetadef_PropertiesResponse'
+      tags:
+        - schemas
+  /schemas/metadefs/object:
+    get:
+      operationId: schemas/metadefs/object:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasMetadefsObjectMetadef_ObjectResponse'
+      tags:
+        - schemas
+  /schemas/metadefs/objects:
+    get:
+      operationId: schemas/metadefs/objects:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasMetadefsObjectsMetadef_ObjectsResponse'
+      tags:
+        - schemas
+  /schemas/metadefs/tag:
+    get:
+      operationId: schemas/metadefs/tag:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasMetadefsTagMetadef_TagResponse'
+      tags:
+        - schemas
+  /schemas/metadefs/tags:
+    get:
+      operationId: schemas/metadefs/tags:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemasMetadefsTagsMetadef_TagsResponse'
+      tags:
+        - schemas
+  /metadefs/resource_types:
+    get:
+      operationId: metadefs/resource_types:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsResource_TypesListResponse'
+      tags:
+        - metadefs
+  /metadefs/namespaces/{namespace}/resource_types:
+    parameters:
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+    get:
+      operationId: metadefs/namespaces/namespace/resource_types:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesResource_TypesShowResponse'
+      tags:
+        - metadefs
+    post:
+      operationId: metadefs/namespaces/namespace/resource_types:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadefsNamespacesResource_TypesCreateRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesResource_TypesCreateResponse'
+      tags:
+        - metadefs
+  /metadefs/namespaces/{namespace}/resource_types/{resource_type}:
+    parameters:
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/metadefs_namespaces_resource_types_resource_type'
+    delete:
+      operationId: metadefs/namespaces/namespace/resource_types/resource_type:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - metadefs
+  /metadefs/namespaces:
+    get:
+      operationId: metadefs/namespaces:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesListResponse'
+      tags:
+        - metadefs
+    post:
+      operationId: metadefs/namespaces:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadefsNamespacesCreateRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesCreateResponse'
+      tags:
+        - metadefs
+  /metadefs/namespaces/{namespace}:
+    parameters:
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+    get:
+      operationId: metadefs/namespaces/namespace:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespaceShowResponse'
+      tags:
+        - metadefs
+    delete:
+      operationId: metadefs/namespaces/namespace:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - metadefs
+    put:
+      operationId: metadefs/namespaces/namespace:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadefsNamespaceUpdateRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespaceUpdateResponse'
+      tags:
+        - metadefs
+  /metadefs/namespaces/{namespace}/properties:
+    parameters:
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+    get:
+      operationId: metadefs/namespaces/namespace/properties:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesPropertiesListResponse'
+      tags:
+        - metadefs
+    post:
+      operationId: metadefs/namespaces/namespace/properties:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadefsNamespacesPropertiesCreateRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesPropertiesCreateResponse'
+      tags:
+        - metadefs
+    delete:
+      operationId: metadefs/namespaces/namespace/properties:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - metadefs
+  /metadefs/namespaces/{namespace}/properties/{property_name}:
+    parameters:
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/metadefs_namespaces_properties_property_name'
+    get:
+      operationId: metadefs/namespaces/namespace/properties/property_name:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesPropertyShowResponse'
+      tags:
+        - metadefs
+    delete:
+      operationId: metadefs/namespaces/namespace/properties/property_name:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - metadefs
+    put:
+      operationId: metadefs/namespaces/namespace/properties/property_name:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadefsNamespacesPropertyUpdateRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesPropertyUpdateResponse'
+      tags:
+        - metadefs
+  /metadefs/namespaces/{namespace}/objects:
+    parameters:
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+    get:
+      operationId: metadefs/namespaces/namespace/objects:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesObjectsListResponse'
+      tags:
+        - metadefs
+    post:
+      operationId: metadefs/namespaces/namespace/objects:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadefsNamespacesObjectsCreateRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesObjectsCreateResponse'
+      tags:
+        - metadefs
+    delete:
+      operationId: metadefs/namespaces/namespace/objects:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - metadefs
+  /metadefs/namespaces/{namespace}/objects/{object_name}:
+    parameters:
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/metadefs_namespaces_objects_object_name'
+    get:
+      operationId: metadefs/namespaces/namespace/objects/object_name:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesObjectShowResponse'
+      tags:
+        - metadefs
+    delete:
+      operationId: metadefs/namespaces/namespace/objects/object_name:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - metadefs
+    put:
+      operationId: metadefs/namespaces/namespace/objects/object_name:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadefsNamespacesObjectUpdateRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesObjectUpdateResponse'
+      tags:
+        - metadefs
+  /metadefs/namespaces/{namespace}/tags:
+    parameters:
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+    get:
+      operationId: metadefs/namespaces/namespace/tags:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesTagsListResponse'
+      tags:
+        - metadefs
+    post:
+      operationId: metadefs/namespaces/namespace/tags:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadefsNamespacesTagsCreate_TagsRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesTagsCreate_TagsResponse'
+      tags:
+        - metadefs
+    delete:
+      operationId: metadefs/namespaces/namespace/tags:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - metadefs
+  /metadefs/namespaces/{namespace}/tags/{tag_name}:
+    parameters:
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/metadefs_namespaces_tags_tag_name'
+    get:
+      operationId: metadefs/namespaces/namespace/tags/tag_name:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesTagShowResponse'
+      tags:
+        - metadefs
+    post:
+      operationId: metadefs/namespaces/namespace/tags/tag_name:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadefsNamespacesTagCreateRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesTagCreateResponse'
+      tags:
+        - metadefs
+    delete:
+      operationId: metadefs/namespaces/namespace/tags/tag_name:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - metadefs
+    put:
+      operationId: metadefs/namespaces/namespace/tags/tag_name:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadefsNamespacesTagUpdateRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadefsNamespacesTagUpdateResponse'
+      tags:
+        - metadefs
+  /images:
+    get:
+      description: |+
+        Lists public virtual machine (VM) images.
+        *(Since Image API v2.0)*
+
+        **Pagination**
+
+        Returns a subset of the larger collection of images and a link that you can use
+        to get the next set of images. You should always check for the presence of a
+        `next` link and use it as the URI in a subsequent HTTP GET request. You
+        should follow this pattern until a `next` link is no longer provided.
+
+        The `next` link preserves any query parameters that you send in your initial
+        request. You can use the `first` link to jump back to the first page of the
+        collection. If you prefer to paginate through images manually, use the
+        `limit` and `marker` parameters.
+
+        **Query Filters**
+
+        The list operation accepts query parameters to filter the response.
+
+        A client can provide direct comparison filters by using most image attributes,
+        such as `name=Ubuntu`, `visibility=public`, and so on.
+
+        To filter using image tags, use the filter `tag` (note the singular). To
+        filter on multiple tags, include each tag separately in the query. For
+        example, to find images with the tag **ready**, include `tag=ready` in your
+        query string. To find images tagged with **ready** and **approved**, include
+        `tag=ready&tag=approved` in your query string. (Note that only images
+        containing *both* tags will be included in the response.)
+
+        A client cannot use any `link` in the json-schema, such as self, file, or
+        schema, to filter the response.
+
+        You can list VM images that have a status of `active`, `queued`, or
+        `saving`.
+
+        **The** `in` **Operator**
+
+        As a convenience, you may specify several values for any of the following
+        fields by using the `in` operator:
+
+        For most of these, usage is straight forward. For example, to list images
+        in queued or saving status, use:
+
+        `GET /v2/images?status=in:saving,queued`
+
+        To find images in a particular list of image IDs, use:
+
+        `GET /v2/images?id=in:3afb79c1-131a-4c38-a87c-bc4b801d14e6,2e011209-660f-44b5-baf2-2eb4babae53d`
+
+        Using the `in` operator with the `name` property of images can be a bit
+        trickier, depending upon how creatively you have named your images. The
+        general rule is that if an image name contains a comma (`,`), you must
+        enclose the entire name in quotation marks (`"`). As usual, you must URL
+        encode any characters that require it.
+
+        For example, to find images named `glass, darkly` or `share me`, you would
+        use the following filter specification:
+
+        `GET v2/images?name=in:"glass,%20darkly",share%20me`
+
+        As with regular filtering by name, you must specify the complete name you are
+        looking for. Thus, for example, the query string `name=in:glass,share` will
+        only match images with the exact name `glass` or the exact name `share`.
+        It will not find an image named `glass, darkly` or an image named `share
+        me`.
+
+        **Size Comparison Filters**
+
+        You can use the `size\_min` and `size\_max` query parameters to filter images
+        that are greater than or less than the image size. The size, in bytes, is the
+        size of an image on disk.
+
+        For example, to filter the container to include only images that are from 1 to
+        4 MB, set the `size\_min` query parameter to `1048576` and the `size\_max`
+        query parameter to `4194304`.
+
+        **Time Comparison Filters**
+
+        You can use a *comparison operator* along with the `created\_at` or
+        `updated\_at` fields to filter your results. Specify the operator first, a
+        colon (`:`) as a separator, and then the time in [ISO 8601 Format](https://en.wikipedia.org/wiki/ISO_8601). Available comparison operators
+        are:
+
+        For example:
+
+        **Sorting**
+
+        You can use query parameters to sort the results of this operation.
+
+        To sort the response, use the `sort\_key` and `sort\_dir` query
+        parameters:
+
+        Alternatively, specify the `sort` query parameter:
+
+        Normal response codes: 200
+
+        Error response codes: 400, 401, 403
+
+      operationId: images:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesListResponse'
+      tags:
+        - images
+      summary: List images
+    post:
+      description: |+
+        Creates a catalog record for an operating system disk image.
+        *(Since Image API v2.0)*
+
+        The `Location` response header contains the URI for the image.
+
+        A multiple store backend support is introduced in the Rocky release
+        as a part of the EXPERIMENTAL Image API v2.8. Since Image API v2.8 a
+        new header `OpenStack-image-store-ids` which contains the list of
+        available stores will be included in response. This header is only
+        included if multiple backend stores are supported.
+
+        The response body contains the new image entity.
+
+        Synchronous Postconditions
+
+        Normal response codes: 201
+
+        Error response codes: 400, 401, 403, 409, 413, 415
+
+      operationId: images:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImagesCreateRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesCreateResponse'
+      tags:
+        - images
+      summary: Create image
+  /images/{image_id}:
+    parameters:
+      - $ref: '#/components/parameters/images_image_id'
+    get:
+      description: |+
+        Shows details for an image.
+        *(Since Image API v2.0)*
+
+        The response body contains a single image entity.
+
+        Preconditions
+
+        Normal response codes: 200
+
+        Error response codes: 400, 401, 403, 404
+
+      operationId: images/image_id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageShowResponse'
+      tags:
+        - images
+      summary: Show image
+    delete:
+      description: |+
+        (Since Image API v2.0) Deletes an image.
+
+        You cannot delete images with the `protected` attribute set to
+        `true` (boolean).
+
+        Preconditions
+
+        Synchronous Postconditions
+
+        Normal response codes: 204
+
+        Error response codes: 400, 401, 403, 404, 409
+
+      operationId: images/image_id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - images
+      summary: Delete image
+    patch:
+      description: |+
+        Updates an image.
+        *(Since Image API v2.0)*
+
+        Conceptually, you update an image record by patching the JSON representation of
+        the image, passing a request body conforming to one of the following media
+        types:
+
+        Attempting to make a PATCH call using some other media type will provoke a
+        response code of 415 (Unsupported media type).
+
+        The `application/openstack-images-v2.1-json-patch` media type provides a
+        useful and compatible subset of the functionality defined in JavaScript Object
+        Notation (JSON) Patch [RFC6902](http://tools.ietf.org/html/rfc6902), which
+        defines the `application/json-patch+json` media type.
+
+        For information about the PATCH method and the available media types, see
+        [Image API v2 HTTP PATCH media types](http://specs.openstack.org/openstack/glance-specs/specs/api/v2/http-patch-image-api-v2.html).
+
+        Attempting to modify some image properties will cause the entire request to
+        fail with a 403 (Forbidden) response code:
+
+        Attempting to add a location path to an image that is not in `queued` or
+        `active` state will result in a 409 (Conflict) response code
+        *(since Image API v2.4)*.
+
+        Normal response codes: 200
+
+        Error response codes: 400, 401, 403, 404, 409, 413, 415
+
+      operationId: images/image_id:patch
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageUpdateResponse'
+      tags:
+        - images
+      summary: Update image
+  /images/{image_id}/tasks:
+    parameters:
+      - $ref: '#/components/parameters/images_image_id'
+    get:
+      description: |+
+        Shows tasks associated with an image.
+        *(Since Image API v2.12)*
+
+        The response body contains list of tasks, possibly empty, associated
+        with the specified image.
+
+        Preconditions
+
+        Normal response codes: 200
+
+        Error response codes: 404
+
+      operationId: images/image_id/tasks:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesTasksGet_Task_InfoResponse'
+      tags:
+        - images
+      summary: Show tasks associated with image
+  /images/{image_id}/import:
+    parameters:
+      - $ref: '#/components/parameters/images_image_id'
+    post:
+      description: |+
+        Signals the Image Service to complete the image import workflow
+        by processing data that has been made available to the OpenStack
+        image service.
+        *(Since Image API v2.6)*
+
+        In the `glance-direct` workflow, the data has been made available to the
+        Image service via the [Stage binary image data](#image-stage-call) API
+        call.
+
+        In the `web-download` workflow, the data is made available to the Image
+        service by being posted to an accessible location with a URL that you know.
+
+        In the `copy-image` workflow, the data is made available to the Image
+        service by copying existing image data to the staging area.
+
+        In the `glance-download` workflow, the data is made available to the Image
+        service by fetching an image accessible from another glance service specified
+        by a region name and an image id that you know.
+
+        Beginning with API version 2.8, an optional `stores` parameter may be added
+        to the body request. When present, it contains the list of backing store
+        identifiers to import the image binary data to. If at least one store
+        identifier specified is not recognized, a 409 (Conflict) response is returned.
+        When the parameter is not present, the image data is placed into the default
+        backing store.
+
+        For backwards compatibility, if the `stores` parameter is not specified, the
+        header ‘X-Image-Meta-Store’ is evaluated.
+
+        To import the data into the entire set of stores you may consume from this
+        particular deployment of Glance without specifying each one of them, you can
+        use the optional boolean body parameter `all\_stores`.
+        Note that this can’t be used simultaneously with the `stores` parameter.
+
+        To set the behavior of the import workflow in case of error, you can use the
+        optional boolean body parameter `all\_stores\_must\_succeed`.
+        When set to True (default), if an error occurs during the upload in at least one store,
+        the worfklow fails, the data is deleted from stores where copying is done and
+        the state of the image remains unchanged.
+        When set to False, the workflow will fail only if the upload fails
+        on all stores specified. In case of a partial success, the locations added to
+        the image will be the stores where the data has been correctly uploaded.
+
+        The JSON request body specifies what import method you wish to use
+        for this image request.
+
+        **Preconditions**
+
+        Before you can complete the interoperable image import workflow, you must meet
+        the following preconditions:
+
+        **Additional Preconditions**
+
+        If you are using the `glance-direct` import method:
+
+        If you are using the `web-download` import method:
+
+        If you are using the `copy-image` import method:
+
+        If you are using the `glance-download` import method:
+
+        **Synchronous Postconditions**
+
+        Normal response codes: 202
+
+        Error response codes: 400, 401, 403, 404, 405, 409, 410, 413, 415, 503
+
+        If the image import process is not enabled in your cloud, this request
+        will result in a 404 response code with an appropriate message.
+
+      operationId: images/image_id/import:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImagesImportImport_ImageRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesImportImport_ImageResponse'
+      tags:
+        - images
+      summary: Import an image
+  /stores/{store_id}/{image_id}:
+    parameters:
+      - $ref: '#/components/parameters/stores_store_id'
+      - $ref: '#/components/parameters/stores_image_id'
+    delete:
+      description: |+
+        This API allows you to delete a copy of the image from a specific store.
+        *(Since Image API v2.10)*
+
+        Normal response codes: 204
+
+        Error response codes: 400, 401, 403, 404, 409
+
+      operationId: stores/store_id/image_id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - stores
+      summary: Delete image from store
+  /images/{image_id}/actions/deactivate:
+    parameters:
+      - $ref: '#/components/parameters/images_image_id'
+    post:
+      description: |+
+        Deactivates an image.
+        *(Since Image API v2.3)*
+
+        By default, this operation is restricted to administrators only.
+
+        If you try to download a deactivated image, you will receive a 403 (Forbidden)
+        response code. Additionally, only administrative users can view image
+        locations for deactivated images.
+
+        The deactivate operation returns an error if the image status is
+        not `active` or `deactivated`.
+
+        Preconditions
+
+        Normal response codes: 204
+
+        Error response codes: 400, 403, 404
+
+      operationId: images/image_id/actions/deactivate:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImagesActionsDeactivateDeactivateRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesActionsDeactivateResponse'
+      tags:
+        - images
+      summary: Deactivate image
+  /images/{image_id}/actions/reactivate:
+    parameters:
+      - $ref: '#/components/parameters/images_image_id'
+    post:
+      description: |+
+        Reactivates an image.
+        *(Since Image API v2.3)*
+
+        By default, this operation is restricted to administrators only.
+
+        The reactivate operation returns an error if the image status is
+        not `active` or `deactivated`.
+
+        Preconditions
+
+        Normal response codes: 204
+
+        Error response codes: 400, 403, 404
+
+      operationId: images/image_id/actions/reactivate:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImagesActionsReactivateReactivateRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesActionsReactivateResponse'
+      tags:
+        - images
+      summary: Reactivate image
+  /images/{image_id}/file:
+    parameters:
+      - $ref: '#/components/parameters/images_image_id'
+    get:
+      description: |+
+        Downloads binary image data.
+        *(Since Image API v2.0)*
+
+        Example call: `curl -i -X GET -H "X-Auth-Token: $token"
+        $image\_url/v2/images/{image\_id}/file`
+
+        The response body contains the raw binary data that represents the
+        actual virtual disk. The `Content-Type` header contains the
+        `application/octet-stream` value. The `Content-MD5` header
+        contains an MD5 checksum of the image data. Use this checksum to
+        verify the integrity of the image data.
+
+        **Preconditions**
+
+        **Synchronous Postconditions**
+
+        Normal response codes: 200, 204, 206
+
+        Error response codes: 400, 403, 404, 416
+
+      operationId: images/image_id/file:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesFileDownloadResponse'
+      tags:
+        - images
+      summary: Download binary image data
+    put:
+      description: |+
+        Uploads binary image data.
+        *(Since Image API v2.0)*
+
+        Set the `Content-Type` request header to `application/octet-stream`.
+
+        A multiple store backend support is introduced in the Rocky release
+        as a part of the EXPERIMENTAL Image API v2.8.
+
+        Beginning with API version 2.8, an optional `X-Image-Meta-Store`
+        header may be added to the request. When present, the image data will be
+        placed into the backing store whose identifier is the value of this
+        header. If the store identifier specified is not recognized, a 400 (Bad
+        Request) response is returned. When the header is not present, the image
+        data is placed into the default backing store.
+
+        Example call:
+
+        **Preconditions**
+
+        Before you can store binary image data, you must meet the following
+        preconditions:
+
+        **Synchronous Postconditions**
+
+        **Troubleshooting**
+
+        Normal response codes: 204
+
+        Error response codes: 400, 401, 403, 404, 409, 410, 413, 415, 503
+
+      operationId: images/image_id/file:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImagesFileUploadRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesFileUploadResponse'
+      tags:
+        - images
+      summary: Upload binary image data
+  /images/{image_id}/stage:
+    parameters:
+      - $ref: '#/components/parameters/images_image_id'
+    put:
+      description: |+
+        Places the binary image data in a staging area. It is not stored in
+        the storage backend and is not accessible for download until after
+        the [Image Import](#image-import-call) call is made.
+        *(Since Image API v2.6)*
+
+        Set the `Content-Type` request header to `application/octet-stream`.
+
+        Example call:
+
+        **Preconditions**
+
+        Before you can stage binary image data, you must meet the following
+        preconditions:
+
+        **Synchronous Postconditions**
+
+        **Troubleshooting**
+
+        Normal response codes: 204
+
+        Error response codes: 400, 401, 403, 404, 405, 409, 410, 413, 415, 503
+
+        If the image import process is not enabled in your cloud, this request
+        will result in a 404 response code with an appropriate message.
+
+      operationId: images/image_id/stage:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImagesStageStageRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesStageResponse'
+      tags:
+        - images
+      summary: Stage binary image data
+  /images/{image_id}/tags/{tag_value}:
+    parameters:
+      - $ref: '#/components/parameters/images_image_id'
+      - $ref: '#/components/parameters/images_tags_tag_value'
+    delete:
+      description: |+
+        Deletes a tag from an image.
+        *(Since Image API v2.0)*
+
+        Normal response codes: 204
+
+        Error response codes: 400, 401, 403, 404
+
+      operationId: images/image_id/tags/tag_value:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - images
+      summary: Delete image tag
+    put:
+      description: |+
+        Adds a tag to an image.
+        *(Since Image API v2.0)*
+
+        Normal response codes: 204
+
+        Error response codes: 400, 401, 403, 404, 413
+
+      operationId: images/image_id/tags/tag_value:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImagesTagUpdateRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesTagUpdateResponse'
+      tags:
+        - images
+      summary: Add image tag
+  /images/{image_id}/members:
+    parameters:
+      - $ref: '#/components/parameters/images_image_id'
+    get:
+      description: |+
+        Lists the tenants that share this image.
+        *(Since Image API v2.1)*
+
+        If the image owner makes this call, the complete member list is
+        returned.
+
+        If a user who is an image member makes this call, the member list
+        contains only information for that user.
+
+        If a user who is not an image member makes this call, the call
+        returns the HTTP `404` response code.
+
+        Preconditions
+
+        Normal response codes: 200
+
+        Error response codes: 400, 401, 403, 404
+
+      operationId: images/image_id/members:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesMembersListResponse'
+      tags:
+        - images
+      summary: List image members
+    post:
+      description: |+
+        Adds a tenant ID as an image member.
+        *(Since Image API v2.1)*
+
+        Preconditions
+
+        Synchronous Postconditions
+
+        Troubleshooting
+
+        Normal response codes: 200
+
+        Error response codes: 400, 401, 403, 404, 409, 413
+
+      operationId: images/image_id/members:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImagesMembersCreateRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesMembersCreateResponse'
+      tags:
+        - images
+      summary: Create image member
+  /images/{image_id}/members/{member_id}:
+    parameters:
+      - $ref: '#/components/parameters/images_image_id'
+      - $ref: '#/components/parameters/images_members_member_id'
+    get:
+      description: |+
+        Shows image member details.
+        *(Since Image API v2.1)*
+
+        Response body is a single image member entity.
+
+        Preconditions
+
+        Normal response codes: 200
+
+        Error response codes: 400, 401, 404
+
+      operationId: images/image_id/members/member_id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesMemberShowResponse'
+      tags:
+        - images
+      summary: Show image member details
+    delete:
+      description: |+
+        Deletes a tenant ID from the member list of an image.
+        *(Since Image API v2.1)*
+
+        Preconditions
+
+        Synchronous Postconditions
+
+        Troubleshooting
+
+        Normal response codes: 204
+
+        Error response codes: 400, 401, 403, 404
+
+      operationId: images/image_id/members/member_id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - images
+      summary: Delete image member
+    put:
+      description: |+
+        Sets the status for an image member.
+        *(Since Image API v2.1)*
+
+        This call allows an image member to change his or her *member status*.
+
+        When an image is shared with you, you have immediate access to the image. What
+        updating your member status on the image does for you is that it affects
+        whether the image will appear in your image list response.
+
+        For a more detailed discussion of image sharing, please consult [Image API v2
+        Sharing](http://specs.openstack.org/openstack/glance-specs/specs/api/v2/sharing-image-api-v2.html).
+
+        Preconditions
+
+        Synchronous Postconditions
+
+        Normal response codes: 200
+
+        Error response codes: 400, 401, 404, 403
+
+      operationId: images/image_id/members/member_id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImagesMemberUpdateRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesMemberUpdateResponse'
+      tags:
+        - images
+      summary: Update image member
+  /tasks:
+    get:
+      description: |+
+        Lists tasks.
+
+        Normal response codes: 200
+
+        Error response codes: 403, 404, 413
+
+      operationId: tasks:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TasksListResponse'
+      tags:
+        - tasks
+      summary: List tasks
+    post:
+      description: |+
+        Creates a task.
+
+        Normal response codes: 201
+
+        Error response codes: 401, 413, 415
+
+      operationId: tasks:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TasksCreateRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TasksCreateResponse'
+      tags:
+        - tasks
+      summary: Create task
+  /tasks/{task_id}:
+    parameters:
+      - $ref: '#/components/parameters/tasks_task_id'
+    get:
+      description: |+
+        Shows details for a task.
+
+        Normal response codes: 200
+
+        Error response codes: 404
+
+      operationId: tasks/task_id:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskGetResponse'
+      tags:
+        - tasks
+      summary: Show task details
+    delete:
+      operationId: tasks/task_id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - tasks
+  /info/import:
+    get:
+      description: |+
+        Returns information concerning the constraints around image import in
+        the cloud in which the call is made, for example, supported container
+        formats, supported disk formats, maximum image size, etc. This call
+        contains a `import-methods` field consisting of an array of string
+        identifiers indicating what import methods are supported in the cloud
+        in which the call is made.
+        *(Since Image API v2.6)*
+
+        Normal response codes: 200
+
+        Error response codes: 400, 401, 403
+
+      operationId: info/import:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoImportGet_Image_ImportResponse'
+      tags:
+        - info
+      summary: Import methods and values discovery
+  /info/stores:
+    get:
+      description: |+
+        A multiple store backend support is introduced in the Rocky release
+        as a part of the EXPERIMENTAL Image API v2.8.
+
+        In version 2.7 of the API, this call will return a 404 (Not Found).
+        Use the [API versions call](../versions/index.html#versions-call) to determine
+        what API versions are available in your cloud.
+
+        Normal response codes: 200
+
+        Error response codes: 404
+
+      operationId: info/stores:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoStoresGet_StoresResponse'
+      tags:
+        - info
+      summary: List stores
+  /info/usage:
+    get:
+      description: |+
+        The user’s quota and current usage are displayed, if enabled by
+        server-side configuration.
+
+        Normal response codes: 200
+
+      operationId: info/usage:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoUsageGet_UsageResponse'
+      tags:
+        - info
+      summary: Quota usage
+  /info/stores/detail:
+    get:
+      description: |+
+        Lists all the backend stores, with detail, accessible to admins,
+        for non-admin user API will return bad request.
+
+        Normal response codes: 200
+
+        Error response codes: 403, 404
+
+      operationId: info/stores/detail:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoStoresDetailGet_Stores_DetailResponse'
+      tags:
+        - info
+      summary: List stores detail
+  /cache:
+    get:
+      description: |+
+        Lists all images in cache or queue.
+        *(Since Image API v2.14)*
+
+        Normal response codes: 200
+
+        Error response codes: 400, 401, 403
+
+      operationId: cache:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CacheGet_Cache_StateResponse'
+      tags:
+        - cache
+      summary: Query cache status
+    delete:
+      description: |+
+        Clears the cache and its queue.
+        *(Since Image API v2.14)*
+
+        Normal response codes: 204
+
+        Error response codes: 400, 401, 403
+
+      operationId: cache:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - cache
+      summary: Clear images from cache
+  /cache/{image_id}:
+    parameters:
+      - $ref: '#/components/parameters/cache_image_id'
+    delete:
+      description: |+
+        Deletes a image from cache.
+        *(Since Image API v2.14)*
+
+        Normal response codes: 204
+
+        Error response codes: 400, 401, 403, 404
+
+      operationId: cache/image_id:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - cache
+      summary: Delete image from cache
+    put:
+      description: |+
+        Queues image for caching.
+        *(Since Image API v2.14)*
+
+        Normal response codes: 202
+
+        Error response codes: 400, 401, 403, 404
+
+      operationId: cache/image_id:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CacheQueue_Image_From_ApiRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CacheQueue_Image_From_ApiResponse'
+      tags:
+        - cache
+      summary: Queue image
+components:
+  schemas:
+    SchemasImageResponse:
+      type: string
+    SchemasImagesResponse:
+      type: string
+    SchemasMemberResponse:
+      type: string
+    SchemasMembersResponse:
+      type: string
+    SchemasTaskResponse:
+      type: string
+    SchemasTasksResponse:
+      type: string
+    SchemasMetadefsNamespaceMetadef_NamespaceResponse:
+      type: string
+    SchemasMetadefsNamespacesMetadef_NamespacesResponse:
+      type: string
+    SchemasMetadefsResource_TypeMetadef_Resource_TypeResponse:
+      type: string
+    SchemasMetadefsResource_TypesMetadef_Resource_TypesResponse:
+      type: string
+    SchemasMetadefsPropertyMetadef_PropertyResponse:
+      type: string
+    SchemasMetadefsPropertiesMetadef_PropertiesResponse:
+      type: string
+    SchemasMetadefsObjectMetadef_ObjectResponse:
+      type: string
+    SchemasMetadefsObjectsMetadef_ObjectsResponse:
+      type: string
+    SchemasMetadefsTagMetadef_TagResponse:
+      type: string
+    SchemasMetadefsTagsMetadef_TagsResponse:
+      type: string
+    MetadefsResource_TypesListResponse:
+      properties:
+        resource_type_associations:
+          type: array
+          items:
+            name: resource_type_association
+            properties:
+              name:
+                type: string
+                description: 'Resource type names should be aligned with Heat resource
+                  types whenever possible: https://docs.openstack.org/heat/latest/template_guide/openstack.html'
+                maxLength: 80
+              prefix:
+                type: string
+                description: Specifies the prefix to use for the given resource type.
+                  Any properties in the namespace should be prefixed with this prefix
+                  when being applied to the specified resource type. Must include
+                  prefix separator (e.g. a colon :).
+                maxLength: 80
+              properties_target:
+                type: string
+                description: Some resource types allow more than one key / value pair
+                  per instance.  For example, Cinder allows user and image metadata
+                  on volumes. Only the image properties metadata is evaluated by Nova
+                  (scheduling or drivers). This property allows a namespace target
+                  to remove the ambiguity.
+                maxLength: 80
+              created_at:
+                type: string
+                readOnly: true
+                description: Date and time of resource type association
+                format: date-time
+              updated_at:
+                type: string
+                readOnly: true
+                description: Date and time of the last resource type association modification
+                format: date-time
+            additionalProperties: false
+            required:
+              - name
+        first:
+          type: string
+        next:
+          type: string
+        schema:
+          type: string
+      name: resource_type_associations
+      links:
+        - rel: first
+          href: '{first}'
+        - rel: next
+          href: '{next}'
+        - rel: describedby
+          href: '{schema}'
+    MetadefsNamespacesResource_TypesShowResponse:
+      properties:
+        name:
+          type: string
+          description: 'Resource type names should be aligned with Heat resource types
+            whenever possible: https://docs.openstack.org/heat/latest/template_guide/openstack.html'
+          maxLength: 80
+        prefix:
+          type: string
+          description: Specifies the prefix to use for the given resource type. Any
+            properties in the namespace should be prefixed with this prefix when being
+            applied to the specified resource type. Must include prefix separator
+            (e.g. a colon :).
+          maxLength: 80
+        properties_target:
+          type: string
+          description: Some resource types allow more than one key / value pair per
+            instance.  For example, Cinder allows user and image metadata on volumes.
+            Only the image properties metadata is evaluated by Nova (scheduling or
+            drivers). This property allows a namespace target to remove the ambiguity.
+          maxLength: 80
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of resource type association
+          format: date-time
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last resource type association modification
+          format: date-time
+      additionalProperties: false
+      required:
+        - name
+      name: resource_type_association
+    MetadefsNamespacesResource_TypesCreateRequest:
+      type: object
+      description: Request of the metadefs/namespaces/namespace/resource_types:post
+        operation
+    MetadefsNamespacesResource_TypesCreateResponse:
+      properties:
+        name:
+          type: string
+          description: 'Resource type names should be aligned with Heat resource types
+            whenever possible: https://docs.openstack.org/heat/latest/template_guide/openstack.html'
+          maxLength: 80
+        prefix:
+          type: string
+          description: Specifies the prefix to use for the given resource type. Any
+            properties in the namespace should be prefixed with this prefix when being
+            applied to the specified resource type. Must include prefix separator
+            (e.g. a colon :).
+          maxLength: 80
+        properties_target:
+          type: string
+          description: Some resource types allow more than one key / value pair per
+            instance.  For example, Cinder allows user and image metadata on volumes.
+            Only the image properties metadata is evaluated by Nova (scheduling or
+            drivers). This property allows a namespace target to remove the ambiguity.
+          maxLength: 80
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of resource type association
+          format: date-time
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last resource type association modification
+          format: date-time
+      additionalProperties: false
+      required:
+        - name
+      name: resource_type_association
+    MetadefsNamespacesListResponse:
+      properties:
+        namespaces:
+          type: array
+          items:
+            name: namespace
+            properties:
+              namespace:
+                type: string
+                description: The unique namespace text.
+                maxLength: 80
+              display_name:
+                type: string
+                description: The user friendly name for the namespace. Used by UI
+                  if available.
+                maxLength: 80
+              description:
+                type: string
+                description: Provides a user friendly description of the namespace.
+                maxLength: 500
+              visibility:
+                type: string
+                description: Scope of namespace accessibility.
+                enum:
+                  - public
+                  - private
+              protected:
+                type: boolean
+                description: If true, namespace will not be deletable.
+              owner:
+                type: string
+                description: Owner of the namespace.
+                maxLength: 255
+              created_at:
+                type: string
+                readOnly: true
+                description: Date and time of namespace creation
+                format: date-time
+              updated_at:
+                type: string
+                readOnly: true
+                description: Date and time of the last namespace modification
+                format: date-time
+              schema:
+                readOnly: true
+                type: string
+              self:
+                readOnly: true
+                type: string
+              resource_type_associations:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    prefix:
+                      type: string
+                    properties_target:
+                      type: string
+              properties:
+                type: object
+                additionalProperties:
+                  type: object
+                  required:
+                    - title
+                    - type
+                  properties:
+                    name:
+                      type: string
+                      maxLength: 80
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    operators:
+                      type: array
+                      items:
+                        type: string
+                    type:
+                      type: string
+                      enum:
+                        - array
+                        - boolean
+                        - integer
+                        - number
+                        - object
+                        - string
+                        - 
+                    required:
+                      type: array
+                      items:
+                        type: string
+                      uniqueItems: true
+                    minimum:
+                      type: number
+                    maximum:
+                      type: number
+                    maxLength:
+                      type: integer
+                      minimum: 0
+                    minLength:
+                      allOf:
+                        - type: integer
+                          minimum: 0
+                        - default: 0
+                    pattern:
+                      type: string
+                      format: regex
+                    enum:
+                      type: array
+                    readonly:
+                      type: boolean
+                    default: {}
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                            - array
+                            - boolean
+                            - integer
+                            - number
+                            - object
+                            - string
+                            - 
+                        enum:
+                          type: array
+                    maxItems:
+                      type: integer
+                      minimum: 0
+                    minItems:
+                      allOf:
+                        - type: integer
+                          minimum: 0
+                        - default: 0
+                    uniqueItems:
+                      type: boolean
+                      default: false
+                    additionalItems:
+                      type: boolean
+              objects:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    required:
+                      type: array
+                      items:
+                        type: string
+                      uniqueItems: true
+                    properties:
+                      type: object
+                      additionalProperties:
+                        type: object
+                        required:
+                          - title
+                          - type
+                        properties:
+                          name:
+                            type: string
+                            maxLength: 80
+                          title:
+                            type: string
+                          description:
+                            type: string
+                          operators:
+                            type: array
+                            items:
+                              type: string
+                          type:
+                            type: string
+                            enum:
+                              - array
+                              - boolean
+                              - integer
+                              - number
+                              - object
+                              - string
+                              - 
+                          required:
+                            type: array
+                            items:
+                              type: string
+                            uniqueItems: true
+                          minimum:
+                            type: number
+                          maximum:
+                            type: number
+                          maxLength:
+                            type: integer
+                            minimum: 0
+                          minLength:
+                            allOf:
+                              - type: integer
+                                minimum: 0
+                              - default: 0
+                          pattern:
+                            type: string
+                            format: regex
+                          enum:
+                            type: array
+                          readonly:
+                            type: boolean
+                          default: {}
+                          items:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                enum:
+                                  - array
+                                  - boolean
+                                  - integer
+                                  - number
+                                  - object
+                                  - string
+                                  - 
+                              enum:
+                                type: array
+                          maxItems:
+                            type: integer
+                            minimum: 0
+                          minItems:
+                            allOf:
+                              - type: integer
+                                minimum: 0
+                              - default: 0
+                          uniqueItems:
+                            type: boolean
+                            default: false
+                          additionalItems:
+                            type: boolean
+              tags:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+            additionalProperties: false
+            required:
+              - namespace
+        first:
+          type: string
+        next:
+          type: string
+        schema:
+          type: string
+      name: namespaces
+      links:
+        - rel: first
+          href: '{first}'
+        - rel: next
+          href: '{next}'
+        - rel: describedby
+          href: '{schema}'
+    MetadefsNamespacesCreateRequest:
+      type: object
+      description: Request of the metadefs/namespaces:post operation
+    MetadefsNamespacesCreateResponse:
+      properties:
+        namespace:
+          type: string
+          description: The unique namespace text.
+          maxLength: 80
+        display_name:
+          type: string
+          description: The user friendly name for the namespace. Used by UI if available.
+          maxLength: 80
+        description:
+          type: string
+          description: Provides a user friendly description of the namespace.
+          maxLength: 500
+        visibility:
+          type: string
+          description: Scope of namespace accessibility.
+          enum:
+            - public
+            - private
+        protected:
+          type: boolean
+          description: If true, namespace will not be deletable.
+        owner:
+          type: string
+          description: Owner of the namespace.
+          maxLength: 255
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of namespace creation
+          format: date-time
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last namespace modification
+          format: date-time
+        schema:
+          readOnly: true
+          type: string
+        self:
+          readOnly: true
+          type: string
+        resource_type_associations:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              prefix:
+                type: string
+              properties_target:
+                type: string
+        properties:
+          type: object
+          additionalProperties:
+            type: object
+            required:
+              - title
+              - type
+            properties:
+              name:
+                type: string
+                maxLength: 80
+              title:
+                type: string
+              description:
+                type: string
+              operators:
+                type: array
+                items:
+                  type: string
+              type:
+                type: string
+                enum:
+                  - array
+                  - boolean
+                  - integer
+                  - number
+                  - object
+                  - string
+                  - 
+              required:
+                type: array
+                items:
+                  type: string
+                uniqueItems: true
+              minimum:
+                type: number
+              maximum:
+                type: number
+              maxLength:
+                type: integer
+                minimum: 0
+              minLength:
+                allOf:
+                  - type: integer
+                    minimum: 0
+                  - default: 0
+              pattern:
+                type: string
+                format: regex
+              enum:
+                type: array
+              readonly:
+                type: boolean
+              default: {}
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                      - array
+                      - boolean
+                      - integer
+                      - number
+                      - object
+                      - string
+                      - 
+                  enum:
+                    type: array
+              maxItems:
+                type: integer
+                minimum: 0
+              minItems:
+                allOf:
+                  - type: integer
+                    minimum: 0
+                  - default: 0
+              uniqueItems:
+                type: boolean
+                default: false
+              additionalItems:
+                type: boolean
+        objects:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              required:
+                type: array
+                items:
+                  type: string
+                uniqueItems: true
+              properties:
+                type: object
+                additionalProperties:
+                  type: object
+                  required:
+                    - title
+                    - type
+                  properties:
+                    name:
+                      type: string
+                      maxLength: 80
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    operators:
+                      type: array
+                      items:
+                        type: string
+                    type:
+                      type: string
+                      enum:
+                        - array
+                        - boolean
+                        - integer
+                        - number
+                        - object
+                        - string
+                        - 
+                    required:
+                      type: array
+                      items:
+                        type: string
+                      uniqueItems: true
+                    minimum:
+                      type: number
+                    maximum:
+                      type: number
+                    maxLength:
+                      type: integer
+                      minimum: 0
+                    minLength:
+                      allOf:
+                        - type: integer
+                          minimum: 0
+                        - default: 0
+                    pattern:
+                      type: string
+                      format: regex
+                    enum:
+                      type: array
+                    readonly:
+                      type: boolean
+                    default: {}
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                            - array
+                            - boolean
+                            - integer
+                            - number
+                            - object
+                            - string
+                            - 
+                        enum:
+                          type: array
+                    maxItems:
+                      type: integer
+                      minimum: 0
+                    minItems:
+                      allOf:
+                        - type: integer
+                          minimum: 0
+                        - default: 0
+                    uniqueItems:
+                      type: boolean
+                      default: false
+                    additionalItems:
+                      type: boolean
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+      additionalProperties: false
+      required:
+        - namespace
+      name: namespace
+    MetadefsNamespaceShowResponse:
+      properties:
+        namespace:
+          type: string
+          description: The unique namespace text.
+          maxLength: 80
+        display_name:
+          type: string
+          description: The user friendly name for the namespace. Used by UI if available.
+          maxLength: 80
+        description:
+          type: string
+          description: Provides a user friendly description of the namespace.
+          maxLength: 500
+        visibility:
+          type: string
+          description: Scope of namespace accessibility.
+          enum:
+            - public
+            - private
+        protected:
+          type: boolean
+          description: If true, namespace will not be deletable.
+        owner:
+          type: string
+          description: Owner of the namespace.
+          maxLength: 255
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of namespace creation
+          format: date-time
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last namespace modification
+          format: date-time
+        schema:
+          readOnly: true
+          type: string
+        self:
+          readOnly: true
+          type: string
+        resource_type_associations:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              prefix:
+                type: string
+              properties_target:
+                type: string
+        properties:
+          type: object
+          additionalProperties:
+            type: object
+            required:
+              - title
+              - type
+            properties:
+              name:
+                type: string
+                maxLength: 80
+              title:
+                type: string
+              description:
+                type: string
+              operators:
+                type: array
+                items:
+                  type: string
+              type:
+                type: string
+                enum:
+                  - array
+                  - boolean
+                  - integer
+                  - number
+                  - object
+                  - string
+                  - 
+              required:
+                type: array
+                items:
+                  type: string
+                uniqueItems: true
+              minimum:
+                type: number
+              maximum:
+                type: number
+              maxLength:
+                type: integer
+                minimum: 0
+              minLength:
+                allOf:
+                  - type: integer
+                    minimum: 0
+                  - default: 0
+              pattern:
+                type: string
+                format: regex
+              enum:
+                type: array
+              readonly:
+                type: boolean
+              default: {}
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                      - array
+                      - boolean
+                      - integer
+                      - number
+                      - object
+                      - string
+                      - 
+                  enum:
+                    type: array
+              maxItems:
+                type: integer
+                minimum: 0
+              minItems:
+                allOf:
+                  - type: integer
+                    minimum: 0
+                  - default: 0
+              uniqueItems:
+                type: boolean
+                default: false
+              additionalItems:
+                type: boolean
+        objects:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              required:
+                type: array
+                items:
+                  type: string
+                uniqueItems: true
+              properties:
+                type: object
+                additionalProperties:
+                  type: object
+                  required:
+                    - title
+                    - type
+                  properties:
+                    name:
+                      type: string
+                      maxLength: 80
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    operators:
+                      type: array
+                      items:
+                        type: string
+                    type:
+                      type: string
+                      enum:
+                        - array
+                        - boolean
+                        - integer
+                        - number
+                        - object
+                        - string
+                        - 
+                    required:
+                      type: array
+                      items:
+                        type: string
+                      uniqueItems: true
+                    minimum:
+                      type: number
+                    maximum:
+                      type: number
+                    maxLength:
+                      type: integer
+                      minimum: 0
+                    minLength:
+                      allOf:
+                        - type: integer
+                          minimum: 0
+                        - default: 0
+                    pattern:
+                      type: string
+                      format: regex
+                    enum:
+                      type: array
+                    readonly:
+                      type: boolean
+                    default: {}
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                            - array
+                            - boolean
+                            - integer
+                            - number
+                            - object
+                            - string
+                            - 
+                        enum:
+                          type: array
+                    maxItems:
+                      type: integer
+                      minimum: 0
+                    minItems:
+                      allOf:
+                        - type: integer
+                          minimum: 0
+                        - default: 0
+                    uniqueItems:
+                      type: boolean
+                      default: false
+                    additionalItems:
+                      type: boolean
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+      additionalProperties: false
+      required:
+        - namespace
+      name: namespace
+    MetadefsNamespaceUpdateRequest:
+      type: object
+      description: Request of the metadefs/namespaces/namespace:put operation
+    MetadefsNamespaceUpdateResponse:
+      properties:
+        namespace:
+          type: string
+          description: The unique namespace text.
+          maxLength: 80
+        display_name:
+          type: string
+          description: The user friendly name for the namespace. Used by UI if available.
+          maxLength: 80
+        description:
+          type: string
+          description: Provides a user friendly description of the namespace.
+          maxLength: 500
+        visibility:
+          type: string
+          description: Scope of namespace accessibility.
+          enum:
+            - public
+            - private
+        protected:
+          type: boolean
+          description: If true, namespace will not be deletable.
+        owner:
+          type: string
+          description: Owner of the namespace.
+          maxLength: 255
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of namespace creation
+          format: date-time
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last namespace modification
+          format: date-time
+        schema:
+          readOnly: true
+          type: string
+        self:
+          readOnly: true
+          type: string
+        resource_type_associations:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              prefix:
+                type: string
+              properties_target:
+                type: string
+        properties:
+          type: object
+          additionalProperties:
+            type: object
+            required:
+              - title
+              - type
+            properties:
+              name:
+                type: string
+                maxLength: 80
+              title:
+                type: string
+              description:
+                type: string
+              operators:
+                type: array
+                items:
+                  type: string
+              type:
+                type: string
+                enum:
+                  - array
+                  - boolean
+                  - integer
+                  - number
+                  - object
+                  - string
+                  - 
+              required:
+                type: array
+                items:
+                  type: string
+                uniqueItems: true
+              minimum:
+                type: number
+              maximum:
+                type: number
+              maxLength:
+                type: integer
+                minimum: 0
+              minLength:
+                allOf:
+                  - type: integer
+                    minimum: 0
+                  - default: 0
+              pattern:
+                type: string
+                format: regex
+              enum:
+                type: array
+              readonly:
+                type: boolean
+              default: {}
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                      - array
+                      - boolean
+                      - integer
+                      - number
+                      - object
+                      - string
+                      - 
+                  enum:
+                    type: array
+              maxItems:
+                type: integer
+                minimum: 0
+              minItems:
+                allOf:
+                  - type: integer
+                    minimum: 0
+                  - default: 0
+              uniqueItems:
+                type: boolean
+                default: false
+              additionalItems:
+                type: boolean
+        objects:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              required:
+                type: array
+                items:
+                  type: string
+                uniqueItems: true
+              properties:
+                type: object
+                additionalProperties:
+                  type: object
+                  required:
+                    - title
+                    - type
+                  properties:
+                    name:
+                      type: string
+                      maxLength: 80
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    operators:
+                      type: array
+                      items:
+                        type: string
+                    type:
+                      type: string
+                      enum:
+                        - array
+                        - boolean
+                        - integer
+                        - number
+                        - object
+                        - string
+                        - 
+                    required:
+                      type: array
+                      items:
+                        type: string
+                      uniqueItems: true
+                    minimum:
+                      type: number
+                    maximum:
+                      type: number
+                    maxLength:
+                      type: integer
+                      minimum: 0
+                    minLength:
+                      allOf:
+                        - type: integer
+                          minimum: 0
+                        - default: 0
+                    pattern:
+                      type: string
+                      format: regex
+                    enum:
+                      type: array
+                    readonly:
+                      type: boolean
+                    default: {}
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                            - array
+                            - boolean
+                            - integer
+                            - number
+                            - object
+                            - string
+                            - 
+                        enum:
+                          type: array
+                    maxItems:
+                      type: integer
+                      minimum: 0
+                    minItems:
+                      allOf:
+                        - type: integer
+                          minimum: 0
+                        - default: 0
+                    uniqueItems:
+                      type: boolean
+                      default: false
+                    additionalItems:
+                      type: boolean
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+      additionalProperties: false
+      required:
+        - namespace
+      name: namespace
+    MetadefsNamespacesPropertiesListResponse:
+      properties:
+        properties:
+          type: object
+          additionalProperties:
+            name: property
+            properties:
+              name:
+                type: string
+                maxLength: 80
+              title:
+                type: string
+              description:
+                type: string
+              operators:
+                type: array
+                items:
+                  type: string
+              type:
+                type: string
+                enum:
+                  - array
+                  - boolean
+                  - integer
+                  - number
+                  - object
+                  - string
+                  - 
+              required:
+                type: array
+                items:
+                  type: string
+                minItems: 1
+                uniqueItems: true
+              minimum:
+                type: number
+              maximum:
+                type: number
+              maxLength:
+                type: integer
+                minimum: 0
+              minLength:
+                allOf:
+                  - type: integer
+                    minimum: 0
+                  - default: 0
+              pattern:
+                type: string
+                format: regex
+              enum:
+                type: array
+              readonly:
+                type: boolean
+              default: {}
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                      - array
+                      - boolean
+                      - integer
+                      - number
+                      - object
+                      - string
+                      - 
+                  enum:
+                    type: array
+              maxItems:
+                type: integer
+                minimum: 0
+              minItems:
+                allOf:
+                  - type: integer
+                    minimum: 0
+                  - default: 0
+              uniqueItems:
+                type: boolean
+                default: false
+              additionalItems:
+                type: boolean
+            additionalProperties: false
+            required:
+              - type
+              - title
+        first:
+          type: string
+        next:
+          type: string
+        schema:
+          type: string
+      name: properties
+      links:
+        - rel: first
+          href: '{first}'
+        - rel: next
+          href: '{next}'
+        - rel: describedby
+          href: '{schema}'
+    MetadefsNamespacesPropertiesCreateRequest:
+      type: object
+      description: Request of the metadefs/namespaces/namespace/properties:post operation
+    MetadefsNamespacesPropertiesCreateResponse:
+      properties:
+        name:
+          type: string
+          maxLength: 80
+        title:
+          type: string
+        description:
+          type: string
+        operators:
+          type: array
+          items:
+            type: string
+        type:
+          type: string
+          enum:
+            - array
+            - boolean
+            - integer
+            - number
+            - object
+            - string
+            - 
+        required:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          uniqueItems: true
+        minimum:
+          type: number
+        maximum:
+          type: number
+        maxLength:
+          type: integer
+          minimum: 0
+        minLength:
+          allOf:
+            - type: integer
+              minimum: 0
+            - default: 0
+        pattern:
+          type: string
+          format: regex
+        enum:
+          type: array
+        readonly:
+          type: boolean
+        default: {}
+        items:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - array
+                - boolean
+                - integer
+                - number
+                - object
+                - string
+                - 
+            enum:
+              type: array
+        maxItems:
+          type: integer
+          minimum: 0
+        minItems:
+          allOf:
+            - type: integer
+              minimum: 0
+            - default: 0
+        uniqueItems:
+          type: boolean
+          default: false
+        additionalItems:
+          type: boolean
+      additionalProperties: false
+      required:
+        - type
+        - title
+        - name
+      name: property
+    MetadefsNamespacesPropertyShowResponse:
+      properties:
+        name:
+          type: string
+          maxLength: 80
+        title:
+          type: string
+        description:
+          type: string
+        operators:
+          type: array
+          items:
+            type: string
+        type:
+          type: string
+          enum:
+            - array
+            - boolean
+            - integer
+            - number
+            - object
+            - string
+            - 
+        required:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          uniqueItems: true
+        minimum:
+          type: number
+        maximum:
+          type: number
+        maxLength:
+          type: integer
+          minimum: 0
+        minLength:
+          allOf:
+            - type: integer
+              minimum: 0
+            - default: 0
+        pattern:
+          type: string
+          format: regex
+        enum:
+          type: array
+        readonly:
+          type: boolean
+        default: {}
+        items:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - array
+                - boolean
+                - integer
+                - number
+                - object
+                - string
+                - 
+            enum:
+              type: array
+        maxItems:
+          type: integer
+          minimum: 0
+        minItems:
+          allOf:
+            - type: integer
+              minimum: 0
+            - default: 0
+        uniqueItems:
+          type: boolean
+          default: false
+        additionalItems:
+          type: boolean
+      additionalProperties: false
+      required:
+        - type
+        - title
+        - name
+      name: property
+    MetadefsNamespacesPropertyUpdateRequest:
+      type: object
+      description: Request of the metadefs/namespaces/namespace/properties/property_name:put
+        operation
+    MetadefsNamespacesPropertyUpdateResponse:
+      properties:
+        name:
+          type: string
+          maxLength: 80
+        title:
+          type: string
+        description:
+          type: string
+        operators:
+          type: array
+          items:
+            type: string
+        type:
+          type: string
+          enum:
+            - array
+            - boolean
+            - integer
+            - number
+            - object
+            - string
+            - 
+        required:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          uniqueItems: true
+        minimum:
+          type: number
+        maximum:
+          type: number
+        maxLength:
+          type: integer
+          minimum: 0
+        minLength:
+          allOf:
+            - type: integer
+              minimum: 0
+            - default: 0
+        pattern:
+          type: string
+          format: regex
+        enum:
+          type: array
+        readonly:
+          type: boolean
+        default: {}
+        items:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - array
+                - boolean
+                - integer
+                - number
+                - object
+                - string
+                - 
+            enum:
+              type: array
+        maxItems:
+          type: integer
+          minimum: 0
+        minItems:
+          allOf:
+            - type: integer
+              minimum: 0
+            - default: 0
+        uniqueItems:
+          type: boolean
+          default: false
+        additionalItems:
+          type: boolean
+      additionalProperties: false
+      required:
+        - type
+        - title
+        - name
+      name: property
+    MetadefsNamespacesObjectsListResponse:
+      properties:
+        objects:
+          type: array
+          items:
+            name: object
+            properties:
+              name:
+                type: string
+                maxLength: 80
+              description:
+                type: string
+              required:
+                type: array
+                items:
+                  type: string
+                uniqueItems: true
+              properties:
+                type: object
+                additionalProperties:
+                  type: object
+                  required:
+                    - title
+                    - type
+                  properties:
+                    name:
+                      type: string
+                      maxLength: 80
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    operators:
+                      type: array
+                      items:
+                        type: string
+                    type:
+                      type: string
+                      enum:
+                        - array
+                        - boolean
+                        - integer
+                        - number
+                        - object
+                        - string
+                        - 
+                    required:
+                      type: array
+                      items:
+                        type: string
+                      uniqueItems: true
+                    minimum:
+                      type: number
+                    maximum:
+                      type: number
+                    maxLength:
+                      type: integer
+                      minimum: 0
+                    minLength:
+                      allOf:
+                        - type: integer
+                          minimum: 0
+                        - default: 0
+                    pattern:
+                      type: string
+                      format: regex
+                    enum:
+                      type: array
+                    readonly:
+                      type: boolean
+                    default: {}
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                            - array
+                            - boolean
+                            - integer
+                            - number
+                            - object
+                            - string
+                            - 
+                        enum:
+                          type: array
+                    maxItems:
+                      type: integer
+                      minimum: 0
+                    minItems:
+                      allOf:
+                        - type: integer
+                          minimum: 0
+                        - default: 0
+                    uniqueItems:
+                      type: boolean
+                      default: false
+                    additionalItems:
+                      type: boolean
+              schema:
+                readOnly: true
+                type: string
+              self:
+                readOnly: true
+                type: string
+              created_at:
+                type: string
+                readOnly: true
+                description: Date and time of object creation
+                format: date-time
+              updated_at:
+                type: string
+                readOnly: true
+                description: Date and time of the last object modification
+                format: date-time
+            additionalProperties: false
+            required:
+              - name
+        first:
+          type: string
+        next:
+          type: string
+        schema:
+          type: string
+      name: objects
+      links:
+        - rel: first
+          href: '{first}'
+        - rel: next
+          href: '{next}'
+        - rel: describedby
+          href: '{schema}'
+    MetadefsNamespacesObjectsCreateRequest:
+      type: object
+      description: Request of the metadefs/namespaces/namespace/objects:post operation
+    MetadefsNamespacesObjectsCreateResponse:
+      properties:
+        name:
+          type: string
+          maxLength: 80
+        description:
+          type: string
+        required:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        properties:
+          type: object
+          additionalProperties:
+            type: object
+            required:
+              - title
+              - type
+            properties:
+              name:
+                type: string
+                maxLength: 80
+              title:
+                type: string
+              description:
+                type: string
+              operators:
+                type: array
+                items:
+                  type: string
+              type:
+                type: string
+                enum:
+                  - array
+                  - boolean
+                  - integer
+                  - number
+                  - object
+                  - string
+                  - 
+              required:
+                type: array
+                items:
+                  type: string
+                uniqueItems: true
+              minimum:
+                type: number
+              maximum:
+                type: number
+              maxLength:
+                type: integer
+                minimum: 0
+              minLength:
+                allOf:
+                  - type: integer
+                    minimum: 0
+                  - default: 0
+              pattern:
+                type: string
+                format: regex
+              enum:
+                type: array
+              readonly:
+                type: boolean
+              default: {}
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                      - array
+                      - boolean
+                      - integer
+                      - number
+                      - object
+                      - string
+                      - 
+                  enum:
+                    type: array
+              maxItems:
+                type: integer
+                minimum: 0
+              minItems:
+                allOf:
+                  - type: integer
+                    minimum: 0
+                  - default: 0
+              uniqueItems:
+                type: boolean
+                default: false
+              additionalItems:
+                type: boolean
+        schema:
+          readOnly: true
+          type: string
+        self:
+          readOnly: true
+          type: string
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of object creation
+          format: date-time
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last object modification
+          format: date-time
+      additionalProperties: false
+      required:
+        - name
+      name: object
+    MetadefsNamespacesObjectShowResponse:
+      properties:
+        name:
+          type: string
+          maxLength: 80
+        description:
+          type: string
+        required:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        properties:
+          type: object
+          additionalProperties:
+            type: object
+            required:
+              - title
+              - type
+            properties:
+              name:
+                type: string
+                maxLength: 80
+              title:
+                type: string
+              description:
+                type: string
+              operators:
+                type: array
+                items:
+                  type: string
+              type:
+                type: string
+                enum:
+                  - array
+                  - boolean
+                  - integer
+                  - number
+                  - object
+                  - string
+                  - 
+              required:
+                type: array
+                items:
+                  type: string
+                uniqueItems: true
+              minimum:
+                type: number
+              maximum:
+                type: number
+              maxLength:
+                type: integer
+                minimum: 0
+              minLength:
+                allOf:
+                  - type: integer
+                    minimum: 0
+                  - default: 0
+              pattern:
+                type: string
+                format: regex
+              enum:
+                type: array
+              readonly:
+                type: boolean
+              default: {}
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                      - array
+                      - boolean
+                      - integer
+                      - number
+                      - object
+                      - string
+                      - 
+                  enum:
+                    type: array
+              maxItems:
+                type: integer
+                minimum: 0
+              minItems:
+                allOf:
+                  - type: integer
+                    minimum: 0
+                  - default: 0
+              uniqueItems:
+                type: boolean
+                default: false
+              additionalItems:
+                type: boolean
+        schema:
+          readOnly: true
+          type: string
+        self:
+          readOnly: true
+          type: string
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of object creation
+          format: date-time
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last object modification
+          format: date-time
+      additionalProperties: false
+      required:
+        - name
+      name: object
+    MetadefsNamespacesObjectUpdateRequest:
+      type: object
+      description: Request of the metadefs/namespaces/namespace/objects/object_name:put
+        operation
+    MetadefsNamespacesObjectUpdateResponse:
+      properties:
+        name:
+          type: string
+          maxLength: 80
+        description:
+          type: string
+        required:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        properties:
+          type: object
+          additionalProperties:
+            type: object
+            required:
+              - title
+              - type
+            properties:
+              name:
+                type: string
+                maxLength: 80
+              title:
+                type: string
+              description:
+                type: string
+              operators:
+                type: array
+                items:
+                  type: string
+              type:
+                type: string
+                enum:
+                  - array
+                  - boolean
+                  - integer
+                  - number
+                  - object
+                  - string
+                  - 
+              required:
+                type: array
+                items:
+                  type: string
+                uniqueItems: true
+              minimum:
+                type: number
+              maximum:
+                type: number
+              maxLength:
+                type: integer
+                minimum: 0
+              minLength:
+                allOf:
+                  - type: integer
+                    minimum: 0
+                  - default: 0
+              pattern:
+                type: string
+                format: regex
+              enum:
+                type: array
+              readonly:
+                type: boolean
+              default: {}
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                      - array
+                      - boolean
+                      - integer
+                      - number
+                      - object
+                      - string
+                      - 
+                  enum:
+                    type: array
+              maxItems:
+                type: integer
+                minimum: 0
+              minItems:
+                allOf:
+                  - type: integer
+                    minimum: 0
+                  - default: 0
+              uniqueItems:
+                type: boolean
+                default: false
+              additionalItems:
+                type: boolean
+        schema:
+          readOnly: true
+          type: string
+        self:
+          readOnly: true
+          type: string
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of object creation
+          format: date-time
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last object modification
+          format: date-time
+      additionalProperties: false
+      required:
+        - name
+      name: object
+    MetadefsNamespacesTagsListResponse:
+      properties:
+        tags:
+          type: array
+          items:
+            name: tag
+            properties:
+              name:
+                type: string
+                maxLength: 80
+              created_at:
+                type: string
+                readOnly: true
+                description: Date and time of tag creation
+                format: date-time
+              updated_at:
+                type: string
+                readOnly: true
+                description: Date and time of the last tag modification
+                format: date-time
+            additionalProperties: false
+            required:
+              - name
+        first:
+          type: string
+        next:
+          type: string
+        schema:
+          type: string
+      name: tags
+      links:
+        - rel: first
+          href: '{first}'
+        - rel: next
+          href: '{next}'
+        - rel: describedby
+          href: '{schema}'
+    MetadefsNamespacesTagsCreate_TagsRequest:
+      type: object
+      description: Request of the metadefs/namespaces/namespace/tags:post operation
+    MetadefsNamespacesTagsCreate_TagsResponse:
+      properties:
+        name:
+          type: string
+          maxLength: 80
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of tag creation
+          format: date-time
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last tag modification
+          format: date-time
+      additionalProperties: false
+      required:
+        - name
+      name: tag
+    MetadefsNamespacesTagShowResponse:
+      properties:
+        name:
+          type: string
+          maxLength: 80
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of tag creation
+          format: date-time
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last tag modification
+          format: date-time
+      additionalProperties: false
+      required:
+        - name
+      name: tag
+    MetadefsNamespacesTagCreateRequest:
+      type: object
+      description: Request of the metadefs/namespaces/namespace/tags/tag_name:post
+        operation
+    MetadefsNamespacesTagCreateResponse:
+      properties:
+        name:
+          type: string
+          maxLength: 80
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of tag creation
+          format: date-time
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last tag modification
+          format: date-time
+      additionalProperties: false
+      required:
+        - name
+      name: tag
+    MetadefsNamespacesTagUpdateRequest:
+      type: object
+      description: Request of the metadefs/namespaces/namespace/tags/tag_name:put
+        operation
+    MetadefsNamespacesTagUpdateResponse:
+      properties:
+        name:
+          type: string
+          maxLength: 80
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of tag creation
+          format: date-time
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last tag modification
+          format: date-time
+      additionalProperties: false
+      required:
+        - name
+      name: tag
+    ImagesListResponse:
+      properties:
+        images:
+          type: array
+          items:
+            name: image
+            properties:
+              id:
+                type: string
+                description: An identifier for the image
+                pattern: 
+                  ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
+              name:
+                type:
+                  - 'null'
+                  - string
+                description: Descriptive name for the image
+                maxLength: 255
+              status:
+                type: string
+                readOnly: true
+                description: Status of the image
+                enum:
+                  - queued
+                  - saving
+                  - active
+                  - killed
+                  - deleted
+                  - uploading
+                  - importing
+                  - pending_delete
+                  - deactivated
+              visibility:
+                type: string
+                description: Scope of image accessibility
+                enum:
+                  - community
+                  - public
+                  - private
+                  - shared
+              protected:
+                type: boolean
+                description: If true, image will not be deletable.
+              os_hidden:
+                type: boolean
+                description: If true, image will not appear in default image list
+                  response.
+              checksum:
+                type:
+                  - 'null'
+                  - string
+                readOnly: true
+                description: md5 hash of image contents.
+                maxLength: 32
+              os_hash_algo:
+                type:
+                  - 'null'
+                  - string
+                readOnly: true
+                description: Algorithm to calculate the os_hash_value
+                maxLength: 64
+              os_hash_value:
+                type:
+                  - 'null'
+                  - string
+                readOnly: true
+                description: Hexdigest of the image contents using the algorithm specified
+                  by the os_hash_algo
+                maxLength: 128
+              owner:
+                type:
+                  - 'null'
+                  - string
+                description: Owner of the image
+                maxLength: 255
+              size:
+                type:
+                  - 'null'
+                  - integer
+                readOnly: true
+                description: Size of image file in bytes
+              virtual_size:
+                type:
+                  - 'null'
+                  - integer
+                readOnly: true
+                description: Virtual size of image in bytes
+              container_format:
+                type:
+                  - 'null'
+                  - string
+                description: Format of the container
+                enum:
+                  - 
+                  - ami
+                  - ari
+                  - aki
+                  - bare
+                  - ovf
+                  - ova
+                  - docker
+                  - compressed
+              disk_format:
+                type:
+                  - 'null'
+                  - string
+                description: Format of the disk
+                enum:
+                  - 
+                  - ami
+                  - ari
+                  - aki
+                  - vhd
+                  - vhdx
+                  - vmdk
+                  - raw
+                  - qcow2
+                  - vdi
+                  - iso
+                  - ploop
+              created_at:
+                type: string
+                readOnly: true
+                description: Date and time of image registration
+              updated_at:
+                type: string
+                readOnly: true
+                description: Date and time of the last image modification
+              tags:
+                type: array
+                description: List of strings related to the image
+                items:
+                  type: string
+                  maxLength: 255
+              direct_url:
+                type: string
+                readOnly: true
+                description: URL to access the image file kept in external store
+              min_ram:
+                type: integer
+                description: Amount of ram (in MB) required to boot image.
+              min_disk:
+                type: integer
+                description: Amount of disk space (in GB) required to boot image.
+              self:
+                type: string
+                readOnly: true
+                description: An image self url
+              file:
+                type: string
+                readOnly: true
+                description: An image file url
+              stores:
+                type: string
+                readOnly: true
+                description: Store in which image data resides.  Only present when
+                  the operator has enabled multiple stores.  May be a comma-separated
+                  list of store identifiers.
+              schema:
+                type: string
+                readOnly: true
+                description: An image schema url
+              locations:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                      maxLength: 255
+                    metadata:
+                      type: object
+                    validation_data:
+                      description: Values to be used to populate the corresponding
+                        image properties. If the image status is not 'queued', values
+                        must exactly match those already contained in the image properties.
+                      type: object
+                      writeOnly: true
+                      additionalProperties: false
+                      properties:
+                        checksum:
+                          type: string
+                          minLength: 32
+                          maxLength: 32
+                        os_hash_algo:
+                          type: string
+                          maxLength: 64
+                        os_hash_value:
+                          type: string
+                          maxLength: 128
+                      required:
+                        - os_hash_algo
+                        - os_hash_value
+                  required:
+                    - url
+                    - metadata
+                description: A set of URLs to access the image file kept in external
+                  store
+            additionalProperties:
+              type: string
+            links:
+              - rel: self
+                href: '{self}'
+              - rel: enclosure
+                href: '{file}'
+              - rel: describedby
+                href: '{schema}'
+        first:
+          type: string
+        next:
+          type: string
+        schema:
+          type: string
+      name: images
+      links:
+        - rel: first
+          href: '{first}'
+        - rel: next
+          href: '{next}'
+        - rel: describedby
+          href: '{schema}'
+    ImagesCreateRequest:
+      type: object
+      description: Request of the images:post operation
+    ImagesCreateResponse:
+      properties:
+        id:
+          type: string
+          description: An identifier for the image
+          pattern: 
+            ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
+        name:
+          type:
+            - 'null'
+            - string
+          description: Descriptive name for the image
+          maxLength: 255
+        status:
+          type: string
+          readOnly: true
+          description: Status of the image
+          enum:
+            - queued
+            - saving
+            - active
+            - killed
+            - deleted
+            - uploading
+            - importing
+            - pending_delete
+            - deactivated
+        visibility:
+          type: string
+          description: Scope of image accessibility
+          enum:
+            - community
+            - public
+            - private
+            - shared
+        protected:
+          type: boolean
+          description: If true, image will not be deletable.
+        os_hidden:
+          type: boolean
+          description: If true, image will not appear in default image list response.
+        checksum:
+          type:
+            - 'null'
+            - string
+          readOnly: true
+          description: md5 hash of image contents.
+          maxLength: 32
+        os_hash_algo:
+          type:
+            - 'null'
+            - string
+          readOnly: true
+          description: Algorithm to calculate the os_hash_value
+          maxLength: 64
+        os_hash_value:
+          type:
+            - 'null'
+            - string
+          readOnly: true
+          description: Hexdigest of the image contents using the algorithm specified
+            by the os_hash_algo
+          maxLength: 128
+        owner:
+          type:
+            - 'null'
+            - string
+          description: Owner of the image
+          maxLength: 255
+        size:
+          type:
+            - 'null'
+            - integer
+          readOnly: true
+          description: Size of image file in bytes
+        virtual_size:
+          type:
+            - 'null'
+            - integer
+          readOnly: true
+          description: Virtual size of image in bytes
+        container_format:
+          type:
+            - 'null'
+            - string
+          description: Format of the container
+          enum:
+            - 
+            - ami
+            - ari
+            - aki
+            - bare
+            - ovf
+            - ova
+            - docker
+            - compressed
+        disk_format:
+          type:
+            - 'null'
+            - string
+          description: Format of the disk
+          enum:
+            - 
+            - ami
+            - ari
+            - aki
+            - vhd
+            - vhdx
+            - vmdk
+            - raw
+            - qcow2
+            - vdi
+            - iso
+            - ploop
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of image registration
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last image modification
+        tags:
+          type: array
+          description: List of strings related to the image
+          items:
+            type: string
+            maxLength: 255
+        direct_url:
+          type: string
+          readOnly: true
+          description: URL to access the image file kept in external store
+        min_ram:
+          type: integer
+          description: Amount of ram (in MB) required to boot image.
+        min_disk:
+          type: integer
+          description: Amount of disk space (in GB) required to boot image.
+        self:
+          type: string
+          readOnly: true
+          description: An image self url
+        file:
+          type: string
+          readOnly: true
+          description: An image file url
+        stores:
+          type: string
+          readOnly: true
+          description: Store in which image data resides.  Only present when the operator
+            has enabled multiple stores.  May be a comma-separated list of store identifiers.
+        schema:
+          type: string
+          readOnly: true
+          description: An image schema url
+        locations:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                maxLength: 255
+              metadata:
+                type: object
+              validation_data:
+                description: Values to be used to populate the corresponding image
+                  properties. If the image status is not 'queued', values must exactly
+                  match those already contained in the image properties.
+                type: object
+                writeOnly: true
+                additionalProperties: false
+                properties:
+                  checksum:
+                    type: string
+                    minLength: 32
+                    maxLength: 32
+                  os_hash_algo:
+                    type: string
+                    maxLength: 64
+                  os_hash_value:
+                    type: string
+                    maxLength: 128
+                required:
+                  - os_hash_algo
+                  - os_hash_value
+            required:
+              - url
+              - metadata
+          description: A set of URLs to access the image file kept in external store
+      additionalProperties:
+        type: string
+      name: image
+      links:
+        - rel: self
+          href: '{self}'
+        - rel: enclosure
+          href: '{file}'
+        - rel: describedby
+          href: '{schema}'
+    ImageUpdateResponse:
+      properties:
+        id:
+          type: string
+          description: An identifier for the image
+          pattern: 
+            ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
+        name:
+          type:
+            - 'null'
+            - string
+          description: Descriptive name for the image
+          maxLength: 255
+        status:
+          type: string
+          readOnly: true
+          description: Status of the image
+          enum:
+            - queued
+            - saving
+            - active
+            - killed
+            - deleted
+            - uploading
+            - importing
+            - pending_delete
+            - deactivated
+        visibility:
+          type: string
+          description: Scope of image accessibility
+          enum:
+            - community
+            - public
+            - private
+            - shared
+        protected:
+          type: boolean
+          description: If true, image will not be deletable.
+        os_hidden:
+          type: boolean
+          description: If true, image will not appear in default image list response.
+        checksum:
+          type:
+            - 'null'
+            - string
+          readOnly: true
+          description: md5 hash of image contents.
+          maxLength: 32
+        os_hash_algo:
+          type:
+            - 'null'
+            - string
+          readOnly: true
+          description: Algorithm to calculate the os_hash_value
+          maxLength: 64
+        os_hash_value:
+          type:
+            - 'null'
+            - string
+          readOnly: true
+          description: Hexdigest of the image contents using the algorithm specified
+            by the os_hash_algo
+          maxLength: 128
+        owner:
+          type:
+            - 'null'
+            - string
+          description: Owner of the image
+          maxLength: 255
+        size:
+          type:
+            - 'null'
+            - integer
+          readOnly: true
+          description: Size of image file in bytes
+        virtual_size:
+          type:
+            - 'null'
+            - integer
+          readOnly: true
+          description: Virtual size of image in bytes
+        container_format:
+          type:
+            - 'null'
+            - string
+          description: Format of the container
+          enum:
+            - 
+            - ami
+            - ari
+            - aki
+            - bare
+            - ovf
+            - ova
+            - docker
+            - compressed
+        disk_format:
+          type:
+            - 'null'
+            - string
+          description: Format of the disk
+          enum:
+            - 
+            - ami
+            - ari
+            - aki
+            - vhd
+            - vhdx
+            - vmdk
+            - raw
+            - qcow2
+            - vdi
+            - iso
+            - ploop
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of image registration
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last image modification
+        tags:
+          type: array
+          description: List of strings related to the image
+          items:
+            type: string
+            maxLength: 255
+        direct_url:
+          type: string
+          readOnly: true
+          description: URL to access the image file kept in external store
+        min_ram:
+          type: integer
+          description: Amount of ram (in MB) required to boot image.
+        min_disk:
+          type: integer
+          description: Amount of disk space (in GB) required to boot image.
+        self:
+          type: string
+          readOnly: true
+          description: An image self url
+        file:
+          type: string
+          readOnly: true
+          description: An image file url
+        stores:
+          type: string
+          readOnly: true
+          description: Store in which image data resides.  Only present when the operator
+            has enabled multiple stores.  May be a comma-separated list of store identifiers.
+        schema:
+          type: string
+          readOnly: true
+          description: An image schema url
+        locations:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                maxLength: 255
+              metadata:
+                type: object
+              validation_data:
+                description: Values to be used to populate the corresponding image
+                  properties. If the image status is not 'queued', values must exactly
+                  match those already contained in the image properties.
+                type: object
+                writeOnly: true
+                additionalProperties: false
+                properties:
+                  checksum:
+                    type: string
+                    minLength: 32
+                    maxLength: 32
+                  os_hash_algo:
+                    type: string
+                    maxLength: 64
+                  os_hash_value:
+                    type: string
+                    maxLength: 128
+                required:
+                  - os_hash_algo
+                  - os_hash_value
+            required:
+              - url
+              - metadata
+          description: A set of URLs to access the image file kept in external store
+      additionalProperties:
+        type: string
+      name: image
+      links:
+        - rel: self
+          href: '{self}'
+        - rel: enclosure
+          href: '{file}'
+        - rel: describedby
+          href: '{schema}'
+    ImageShowResponse:
+      properties:
+        id:
+          type: string
+          description: An identifier for the image
+          pattern: 
+            ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
+        name:
+          type:
+            - 'null'
+            - string
+          description: Descriptive name for the image
+          maxLength: 255
+        status:
+          type: string
+          readOnly: true
+          description: Status of the image
+          enum:
+            - queued
+            - saving
+            - active
+            - killed
+            - deleted
+            - uploading
+            - importing
+            - pending_delete
+            - deactivated
+        visibility:
+          type: string
+          description: Scope of image accessibility
+          enum:
+            - community
+            - public
+            - private
+            - shared
+        protected:
+          type: boolean
+          description: If true, image will not be deletable.
+        os_hidden:
+          type: boolean
+          description: If true, image will not appear in default image list response.
+        checksum:
+          type:
+            - 'null'
+            - string
+          readOnly: true
+          description: md5 hash of image contents.
+          maxLength: 32
+        os_hash_algo:
+          type:
+            - 'null'
+            - string
+          readOnly: true
+          description: Algorithm to calculate the os_hash_value
+          maxLength: 64
+        os_hash_value:
+          type:
+            - 'null'
+            - string
+          readOnly: true
+          description: Hexdigest of the image contents using the algorithm specified
+            by the os_hash_algo
+          maxLength: 128
+        owner:
+          type:
+            - 'null'
+            - string
+          description: Owner of the image
+          maxLength: 255
+        size:
+          type:
+            - 'null'
+            - integer
+          readOnly: true
+          description: Size of image file in bytes
+        virtual_size:
+          type:
+            - 'null'
+            - integer
+          readOnly: true
+          description: Virtual size of image in bytes
+        container_format:
+          type:
+            - 'null'
+            - string
+          description: Format of the container
+          enum:
+            - 
+            - ami
+            - ari
+            - aki
+            - bare
+            - ovf
+            - ova
+            - docker
+            - compressed
+        disk_format:
+          type:
+            - 'null'
+            - string
+          description: Format of the disk
+          enum:
+            - 
+            - ami
+            - ari
+            - aki
+            - vhd
+            - vhdx
+            - vmdk
+            - raw
+            - qcow2
+            - vdi
+            - iso
+            - ploop
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of image registration
+        updated_at:
+          type: string
+          readOnly: true
+          description: Date and time of the last image modification
+        tags:
+          type: array
+          description: List of strings related to the image
+          items:
+            type: string
+            maxLength: 255
+        direct_url:
+          type: string
+          readOnly: true
+          description: URL to access the image file kept in external store
+        min_ram:
+          type: integer
+          description: Amount of ram (in MB) required to boot image.
+        min_disk:
+          type: integer
+          description: Amount of disk space (in GB) required to boot image.
+        self:
+          type: string
+          readOnly: true
+          description: An image self url
+        file:
+          type: string
+          readOnly: true
+          description: An image file url
+        stores:
+          type: string
+          readOnly: true
+          description: Store in which image data resides.  Only present when the operator
+            has enabled multiple stores.  May be a comma-separated list of store identifiers.
+        schema:
+          type: string
+          readOnly: true
+          description: An image schema url
+        locations:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                maxLength: 255
+              metadata:
+                type: object
+              validation_data:
+                description: Values to be used to populate the corresponding image
+                  properties. If the image status is not 'queued', values must exactly
+                  match those already contained in the image properties.
+                type: object
+                writeOnly: true
+                additionalProperties: false
+                properties:
+                  checksum:
+                    type: string
+                    minLength: 32
+                    maxLength: 32
+                  os_hash_algo:
+                    type: string
+                    maxLength: 64
+                  os_hash_value:
+                    type: string
+                    maxLength: 128
+                required:
+                  - os_hash_algo
+                  - os_hash_value
+            required:
+              - url
+              - metadata
+          description: A set of URLs to access the image file kept in external store
+      additionalProperties:
+        type: string
+      name: image
+      links:
+        - rel: self
+          href: '{self}'
+        - rel: enclosure
+          href: '{file}'
+        - rel: describedby
+          href: '{schema}'
+    ImagesTasksGet_Task_InfoResponse:
+      properties:
+        tasks:
+          type: array
+          items:
+            name: task
+            properties:
+              id:
+                description: An identifier for the task
+                pattern: 
+                  ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
+                type: string
+              type:
+                description: The type of task represented by this content
+                enum:
+                  - import
+                  - api_image_import
+                type: string
+              status:
+                description: The current status of this task
+                enum:
+                  - pending
+                  - processing
+                  - success
+                  - failure
+                type: string
+              input:
+                description: The parameters required by task, JSON blob
+                type:
+                  - 'null'
+                  - object
+              result:
+                description: The result of current task, JSON blob
+                type:
+                  - 'null'
+                  - object
+              owner:
+                description: An identifier for the owner of this task
+                type: string
+              message:
+                description: Human-readable informative message only included when
+                  appropriate (usually on failure)
+                type: string
+              image_id:
+                description: Image associated with the task
+                type: string
+              request_id:
+                description: Human-readable informative request-id
+                type: string
+              user_id:
+                description: User associated with the task
+                type: string
+              expires_at:
+                description: Datetime when this resource would be subject to removal
+                type:
+                  - 'null'
+                  - string
+              created_at:
+                description: Datetime when this resource was created
+                type: string
+              updated_at:
+                description: Datetime when this resource was updated
+                type: string
+              self:
+                readOnly: true
+                type: string
+              schema:
+                readOnly: true
+                type: string
+            additionalProperties: false
+        first:
+          type: string
+        next:
+          type: string
+        schema:
+          type: string
+      name: tasks
+      links:
+        - rel: first
+          href: '{first}'
+        - rel: next
+          href: '{next}'
+        - rel: describedby
+          href: '{schema}'
+    ImagesImportImport_ImageRequest:
+      type: object
+      properties:
+        method:
+          type: object
+          properties:
+            name:
+              type: string
+            uri:
+              type: string
+            glance_image_id:
+              type: string
+            glance_region:
+              type: string
+            glance_service_interface:
+              type: string
+        stores:
+          type: array
+          items:
+            type: string
+        all_stores:
+          type: boolean
+        all_stores_must_success:
+          type: boolean
+    ImagesImportImport_ImageResponse: {}
+    ImagesActionsDeactivateDeactivateRequest:
+      type: object
+      description: Request of the images/image_id/actions/deactivate:post operation
+    ImagesActionsDeactivateResponse:
+      type: object
+      description: Response of the images/image_id/actions/deactivate:post operation
+    ImagesActionsReactivateReactivateRequest:
+      type: object
+      description: Request of the images/image_id/actions/reactivate:post operation
+    ImagesActionsReactivateResponse:
+      type: object
+      description: Response of the images/image_id/actions/reactivate:post operation
+    ImagesFileDownloadResponse:
+      type: object
+      description: Response of the images/image_id/file:get operation
+    ImagesFileUploadRequest:
+      type: object
+      description: Request of the images/image_id/file:put operation
+    ImagesFileUploadResponse:
+      type: object
+      description: Response of the images/image_id/file:put operation
+    ImagesStageStageRequest:
+      type: object
+      description: Request of the images/image_id/stage:put operation
+    ImagesStageResponse:
+      type: object
+      description: Response of the images/image_id/stage:put operation
+    ImagesTagUpdateRequest:
+      type: object
+      description: Request of the images/image_id/tags/tag_value:put operation
+    ImagesTagUpdateResponse:
+      type: object
+      description: Response of the images/image_id/tags/tag_value:put operation
+    ImagesMembersListResponse:
+      properties:
+        members:
+          type: array
+          items:
+            name: member
+            properties:
+              member_id:
+                type: string
+                description: An identifier for the image member (tenantId)
+              image_id:
+                type: string
+                description: An identifier for the image
+                pattern: 
+                  ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
+              created_at:
+                type: string
+                description: Date and time of image member creation
+              updated_at:
+                type: string
+                description: Date and time of last modification of image member
+              status:
+                type: string
+                description: The status of this image member
+                enum:
+                  - pending
+                  - accepted
+                  - rejected
+              schema:
+                readOnly: true
+                type: string
+            additionalProperties: false
+        first:
+          type: string
+        next:
+          type: string
+        schema:
+          type: string
+      name: members
+      links:
+        - rel: first
+          href: '{first}'
+        - rel: next
+          href: '{next}'
+        - rel: describedby
+          href: '{schema}'
+    ImagesMembersCreateRequest:
+      type: object
+      description: Request of the images/image_id/members:post operation
+    ImagesMembersCreateResponse:
+      properties:
+        member_id:
+          type: string
+          description: An identifier for the image member (tenantId)
+        image_id:
+          type: string
+          description: An identifier for the image
+          pattern: 
+            ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
+        created_at:
+          type: string
+          description: Date and time of image member creation
+        updated_at:
+          type: string
+          description: Date and time of last modification of image member
+        status:
+          type: string
+          description: The status of this image member
+          enum:
+            - pending
+            - accepted
+            - rejected
+        schema:
+          readOnly: true
+          type: string
+      additionalProperties: false
+      name: member
+    ImagesMemberShowResponse:
+      properties:
+        member_id:
+          type: string
+          description: An identifier for the image member (tenantId)
+        image_id:
+          type: string
+          description: An identifier for the image
+          pattern: 
+            ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
+        created_at:
+          type: string
+          description: Date and time of image member creation
+        updated_at:
+          type: string
+          description: Date and time of last modification of image member
+        status:
+          type: string
+          description: The status of this image member
+          enum:
+            - pending
+            - accepted
+            - rejected
+        schema:
+          readOnly: true
+          type: string
+      additionalProperties: false
+      name: member
+    ImagesMemberUpdateRequest:
+      type: object
+      description: Request of the images/image_id/members/member_id:put operation
+    ImagesMemberUpdateResponse:
+      properties:
+        member_id:
+          type: string
+          description: An identifier for the image member (tenantId)
+        image_id:
+          type: string
+          description: An identifier for the image
+          pattern: 
+            ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
+        created_at:
+          type: string
+          description: Date and time of image member creation
+        updated_at:
+          type: string
+          description: Date and time of last modification of image member
+        status:
+          type: string
+          description: The status of this image member
+          enum:
+            - pending
+            - accepted
+            - rejected
+        schema:
+          readOnly: true
+          type: string
+      additionalProperties: false
+      name: member
+    TasksCreateRequest:
+      type: object
+      description: Request of the tasks:post operation
+    TasksCreateResponse:
+      properties:
+        id:
+          description: An identifier for the task
+          pattern: 
+            ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
+          type: string
+        type:
+          description: The type of task represented by this content
+          enum:
+            - import
+            - api_image_import
+          type: string
+        status:
+          description: The current status of this task
+          enum:
+            - pending
+            - processing
+            - success
+            - failure
+          type: string
+        input:
+          description: The parameters required by task, JSON blob
+          type:
+            - 'null'
+            - object
+        result:
+          description: The result of current task, JSON blob
+          type:
+            - 'null'
+            - object
+        owner:
+          description: An identifier for the owner of this task
+          type: string
+        message:
+          description: Human-readable informative message only included when appropriate
+            (usually on failure)
+          type: string
+        image_id:
+          description: Image associated with the task
+          type: string
+        request_id:
+          description: Human-readable informative request-id
+          type: string
+        user_id:
+          description: User associated with the task
+          type: string
+        expires_at:
+          description: Datetime when this resource would be subject to removal
+          type:
+            - 'null'
+            - string
+        created_at:
+          description: Datetime when this resource was created
+          type: string
+        updated_at:
+          description: Datetime when this resource was updated
+          type: string
+        self:
+          readOnly: true
+          type: string
+        schema:
+          readOnly: true
+          type: string
+      additionalProperties: false
+      name: task
+    TasksListResponse:
+      type: object
+      properties:
+        schema:
+          type: string
+        tasks:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: An identifier for the task
+                pattern: 
+                  ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
+                type: string
+              type:
+                description: The type of task represented by this content
+                enum:
+                  - import
+                  - api_image_import
+                type: string
+              status:
+                description: The current status of this task
+                enum:
+                  - pending
+                  - processing
+                  - success
+                  - failure
+                type: string
+              input:
+                description: The parameters required by task, JSON blob
+                type:
+                  - 'null'
+                  - object
+              result:
+                description: The result of current task, JSON blob
+                type:
+                  - 'null'
+                  - object
+              owner:
+                description: An identifier for the owner of this task
+                type: string
+              message:
+                description: Human-readable informative message only included when
+                  appropriate (usually on failure)
+                type: string
+              image_id:
+                description: Image associated with the task
+                type: string
+              request_id:
+                description: Human-readable informative request-id
+                type: string
+              user_id:
+                description: User associated with the task
+                type: string
+              expires_at:
+                description: Datetime when this resource would be subject to removal
+                type:
+                  - 'null'
+                  - string
+              created_at:
+                description: Datetime when this resource was created
+                type: string
+              updated_at:
+                description: Datetime when this resource was updated
+                type: string
+              self:
+                readOnly: true
+                type: string
+              schema:
+                readOnly: true
+                type: string
+      name: tasks
+    TaskGetResponse:
+      properties:
+        id:
+          description: An identifier for the task
+          pattern: 
+            ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
+          type: string
+        type:
+          description: The type of task represented by this content
+          enum:
+            - import
+            - api_image_import
+          type: string
+        status:
+          description: The current status of this task
+          enum:
+            - pending
+            - processing
+            - success
+            - failure
+          type: string
+        input:
+          description: The parameters required by task, JSON blob
+          type:
+            - 'null'
+            - object
+        result:
+          description: The result of current task, JSON blob
+          type:
+            - 'null'
+            - object
+        owner:
+          description: An identifier for the owner of this task
+          type: string
+        message:
+          description: Human-readable informative message only included when appropriate
+            (usually on failure)
+          type: string
+        image_id:
+          description: Image associated with the task
+          type: string
+        request_id:
+          description: Human-readable informative request-id
+          type: string
+        user_id:
+          description: User associated with the task
+          type: string
+        expires_at:
+          description: Datetime when this resource would be subject to removal
+          type:
+            - 'null'
+            - string
+        created_at:
+          description: Datetime when this resource was created
+          type: string
+        updated_at:
+          description: Datetime when this resource was updated
+          type: string
+        self:
+          readOnly: true
+          type: string
+        schema:
+          readOnly: true
+          type: string
+      additionalProperties: false
+      name: task
+    InfoImportGet_Image_ImportResponse:
+      type: object
+      properties:
+        import-methods:
+          type: object
+          properties:
+            description:
+              type: string
+            type:
+              type: string
+            value:
+              type: array
+              items:
+                type: string
+    InfoStoresGet_StoresResponse:
+      type: object
+      properties:
+        stores:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              description:
+                type: string
+              default:
+                type: bool
+    InfoUsageGet_UsageResponse:
+      properties:
+        usage:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+            validation_data:
+              type: object
+              additonalProperties: false
+              properties:
+                usage:
+                  type: integer
+                limit:
+                  type: integer
+      additionalProperties: false
+      name: usage
+    InfoStoresDetailGet_Stores_DetailResponse:
+      type: object
+      properties:
+        stores:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              description:
+                type: string
+              default:
+                type: bool
+              type:
+                type: string
+              weight:
+                type: number
+              properties:
+                type: object
+                additionalProperties: true
+    CacheGet_Cache_StateResponse:
+      type: object
+      description: Response of the cache:get operation
+    CacheQueue_Image_From_ApiRequest:
+      type: object
+      description: Request of the cache/image_id:put operation
+    CacheQueue_Image_From_ApiResponse:
+      type: object
+      description: Response of the cache/image_id:put operation
+  parameters:
+    metadefs_namespaces_namespace:
+      in: path
+      name: namespace
+      description: namespace parameter for /metadefs/namespaces/{namespace}/tags/{tag_name}
+        API
+      schema:
+        type: string
+      required: true
+    metadefs_namespaces_resource_types_resource_type:
+      in: path
+      name: resource_type
+      description: resource_type parameter for /metadefs/namespaces/{namespace}/resource_types/{resource_type}
+        API
+      schema:
+        type: string
+      required: true
+    metadefs_namespaces_properties_property_name:
+      in: path
+      name: property_name
+      description: property_name parameter for /metadefs/namespaces/{namespace}/properties/{property_name}
+        API
+      schema:
+        type: string
+      required: true
+    metadefs_namespaces_objects_object_name:
+      in: path
+      name: object_name
+      description: object_name parameter for /metadefs/namespaces/{namespace}/objects/{object_name}
+        API
+      schema:
+        type: string
+      required: true
+    metadefs_namespaces_tags_tag_name:
+      in: path
+      name: tag_name
+      description: tag_name parameter for /metadefs/namespaces/{namespace}/tags/{tag_name}
+        API
+      schema:
+        type: string
+      required: true
+    images_image_id:
+      in: path
+      name: image_id
+      description: image_id parameter for /images/{image_id}/members/{member_id} API
+      schema:
+        type: string
+      required: true
+    stores_store_id:
+      in: path
+      name: store_id
+      description: store_id parameter for /stores/{store_id}/{image_id} API
+      schema:
+        type: string
+      required: true
+    stores_image_id:
+      in: path
+      name: image_id
+      description: image_id parameter for /stores/{store_id}/{image_id} API
+      schema:
+        type: string
+      required: true
+    images_tags_tag_value:
+      in: path
+      name: tag_value
+      description: tag_value parameter for /images/{image_id}/tags/{tag_value} API
+      schema:
+        type: string
+      required: true
+    images_members_member_id:
+      in: path
+      name: member_id
+      description: member_id parameter for /images/{image_id}/members/{member_id}
+        API
+      schema:
+        type: string
+      required: true
+    tasks_task_id:
+      in: path
+      name: task_id
+      description: task_id parameter for /tasks/{task_id} API
+      schema:
+        type: string
+      required: true
+    cache_image_id:
+      in: path
+      name: image_id
+      description: image_id parameter for /cache/{image_id} API
+      schema:
+        type: string
+      required: true
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+tags:
+  - name: schemas
+  - name: metadefs
+  - name: images
+  - name: stores
+  - name: tasks
+  - name: info
+  - name: cache
+security:
+  - ApiKeyAuth: []
