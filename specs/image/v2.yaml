@@ -5,7 +5,7 @@ info:
     Image API provided by Glance service
   version: '2.16'
 paths:
-  /schemas/image:
+  /v2/schemas/image:
     get:
       description: |+
         *(Since Images v2.0)*
@@ -32,7 +32,7 @@ paths:
       tags:
         - schemas
       summary: Show image schema
-  /schemas/images:
+  /v2/schemas/images:
     get:
       description: |+
         *(Since Images v2.0)*
@@ -61,7 +61,7 @@ paths:
       tags:
         - schemas
       summary: Show images schema
-  /schemas/member:
+  /v2/schemas/member:
     get:
       description: |+
         *(Since Images v2.1)*
@@ -88,7 +88,7 @@ paths:
       tags:
         - schemas
       summary: Show image member schema
-  /schemas/members:
+  /v2/schemas/members:
     get:
       description: |+
         *(Since Images v2.1)*
@@ -117,7 +117,7 @@ paths:
       tags:
         - schemas
       summary: Show image members schema
-  /schemas/task:
+  /v2/schemas/task:
     get:
       description: |+
         *(Since Images v2.2)*
@@ -144,7 +144,7 @@ paths:
       tags:
         - schemas
       summary: Show task schema
-  /schemas/tasks:
+  /v2/schemas/tasks:
     get:
       description: |+
         *(Since Images v2.2)*
@@ -174,7 +174,7 @@ paths:
       tags:
         - schemas
       summary: Show tasks schema
-  /schemas/metadefs/namespace:
+  /v2/schemas/metadefs/namespace:
     get:
       operationId: schemas/metadefs/namespace:get
       responses:
@@ -188,7 +188,7 @@ paths:
                 $ref: '#/components/schemas/SchemasMetadefsNamespaceMetadef_NamespaceResponse'
       tags:
         - schemas
-  /schemas/metadefs/namespaces:
+  /v2/schemas/metadefs/namespaces:
     get:
       operationId: schemas/metadefs/namespaces:get
       responses:
@@ -202,7 +202,7 @@ paths:
                 $ref: '#/components/schemas/SchemasMetadefsNamespacesMetadef_NamespacesResponse'
       tags:
         - schemas
-  /schemas/metadefs/resource_type:
+  /v2/schemas/metadefs/resource_type:
     get:
       operationId: schemas/metadefs/resource_type:get
       responses:
@@ -216,7 +216,7 @@ paths:
                 $ref: '#/components/schemas/SchemasMetadefsResource_TypeMetadef_Resource_TypeResponse'
       tags:
         - schemas
-  /schemas/metadefs/resource_types:
+  /v2/schemas/metadefs/resource_types:
     get:
       operationId: schemas/metadefs/resource_types:get
       responses:
@@ -230,7 +230,7 @@ paths:
                 $ref: '#/components/schemas/SchemasMetadefsResource_TypesMetadef_Resource_TypesResponse'
       tags:
         - schemas
-  /schemas/metadefs/property:
+  /v2/schemas/metadefs/property:
     get:
       operationId: schemas/metadefs/property:get
       responses:
@@ -244,7 +244,7 @@ paths:
                 $ref: '#/components/schemas/SchemasMetadefsPropertyMetadef_PropertyResponse'
       tags:
         - schemas
-  /schemas/metadefs/properties:
+  /v2/schemas/metadefs/properties:
     get:
       operationId: schemas/metadefs/properties:get
       responses:
@@ -258,7 +258,7 @@ paths:
                 $ref: '#/components/schemas/SchemasMetadefsPropertiesMetadef_PropertiesResponse'
       tags:
         - schemas
-  /schemas/metadefs/object:
+  /v2/schemas/metadefs/object:
     get:
       operationId: schemas/metadefs/object:get
       responses:
@@ -272,7 +272,7 @@ paths:
                 $ref: '#/components/schemas/SchemasMetadefsObjectMetadef_ObjectResponse'
       tags:
         - schemas
-  /schemas/metadefs/objects:
+  /v2/schemas/metadefs/objects:
     get:
       operationId: schemas/metadefs/objects:get
       responses:
@@ -286,7 +286,7 @@ paths:
                 $ref: '#/components/schemas/SchemasMetadefsObjectsMetadef_ObjectsResponse'
       tags:
         - schemas
-  /schemas/metadefs/tag:
+  /v2/schemas/metadefs/tag:
     get:
       operationId: schemas/metadefs/tag:get
       responses:
@@ -300,7 +300,7 @@ paths:
                 $ref: '#/components/schemas/SchemasMetadefsTagMetadef_TagResponse'
       tags:
         - schemas
-  /schemas/metadefs/tags:
+  /v2/schemas/metadefs/tags:
     get:
       operationId: schemas/metadefs/tags:get
       responses:
@@ -314,7 +314,7 @@ paths:
                 $ref: '#/components/schemas/SchemasMetadefsTagsMetadef_TagsResponse'
       tags:
         - schemas
-  /metadefs/resource_types:
+  /v2/metadefs/resource_types:
     get:
       operationId: metadefs/resource_types:get
       responses:
@@ -328,9 +328,9 @@ paths:
                 $ref: '#/components/schemas/MetadefsResource_TypesListResponse'
       tags:
         - metadefs
-  /metadefs/namespaces/{namespace}/resource_types:
+  /v2/metadefs/namespaces/{namespace}/resource_types:
     parameters:
-      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
     get:
       operationId: metadefs/namespaces/namespace/resource_types:get
       responses:
@@ -362,10 +362,10 @@ paths:
                 $ref: '#/components/schemas/MetadefsNamespacesResource_TypesCreateResponse'
       tags:
         - metadefs
-  /metadefs/namespaces/{namespace}/resource_types/{resource_type}:
+  /v2/metadefs/namespaces/{namespace}/resource_types/{resource_type}:
     parameters:
-      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
-      - $ref: '#/components/parameters/metadefs_namespaces_resource_types_resource_type'
+      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/v2_metadefs_namespaces_resource_types_resource_type'
     delete:
       operationId: metadefs/namespaces/namespace/resource_types/resource_type:delete
       responses:
@@ -375,7 +375,7 @@ paths:
           description: Ok
       tags:
         - metadefs
-  /metadefs/namespaces:
+  /v2/metadefs/namespaces:
     get:
       operationId: metadefs/namespaces:get
       responses:
@@ -407,9 +407,9 @@ paths:
                 $ref: '#/components/schemas/MetadefsNamespacesCreateResponse'
       tags:
         - metadefs
-  /metadefs/namespaces/{namespace}:
+  /v2/metadefs/namespaces/{namespace}:
     parameters:
-      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
     get:
       operationId: metadefs/namespaces/namespace:get
       responses:
@@ -450,9 +450,9 @@ paths:
                 $ref: '#/components/schemas/MetadefsNamespaceUpdateResponse'
       tags:
         - metadefs
-  /metadefs/namespaces/{namespace}/properties:
+  /v2/metadefs/namespaces/{namespace}/properties:
     parameters:
-      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
     get:
       operationId: metadefs/namespaces/namespace/properties:get
       responses:
@@ -493,10 +493,10 @@ paths:
           description: Ok
       tags:
         - metadefs
-  /metadefs/namespaces/{namespace}/properties/{property_name}:
+  /v2/metadefs/namespaces/{namespace}/properties/{property_name}:
     parameters:
-      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
-      - $ref: '#/components/parameters/metadefs_namespaces_properties_property_name'
+      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/v2_metadefs_namespaces_properties_property_name'
     get:
       operationId: metadefs/namespaces/namespace/properties/property_name:get
       responses:
@@ -537,9 +537,9 @@ paths:
                 $ref: '#/components/schemas/MetadefsNamespacesPropertyUpdateResponse'
       tags:
         - metadefs
-  /metadefs/namespaces/{namespace}/objects:
+  /v2/metadefs/namespaces/{namespace}/objects:
     parameters:
-      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
     get:
       operationId: metadefs/namespaces/namespace/objects:get
       responses:
@@ -580,10 +580,10 @@ paths:
           description: Ok
       tags:
         - metadefs
-  /metadefs/namespaces/{namespace}/objects/{object_name}:
+  /v2/metadefs/namespaces/{namespace}/objects/{object_name}:
     parameters:
-      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
-      - $ref: '#/components/parameters/metadefs_namespaces_objects_object_name'
+      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/v2_metadefs_namespaces_objects_object_name'
     get:
       operationId: metadefs/namespaces/namespace/objects/object_name:get
       responses:
@@ -624,9 +624,9 @@ paths:
                 $ref: '#/components/schemas/MetadefsNamespacesObjectUpdateResponse'
       tags:
         - metadefs
-  /metadefs/namespaces/{namespace}/tags:
+  /v2/metadefs/namespaces/{namespace}/tags:
     parameters:
-      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
     get:
       operationId: metadefs/namespaces/namespace/tags:get
       responses:
@@ -667,10 +667,10 @@ paths:
           description: Ok
       tags:
         - metadefs
-  /metadefs/namespaces/{namespace}/tags/{tag_name}:
+  /v2/metadefs/namespaces/{namespace}/tags/{tag_name}:
     parameters:
-      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
-      - $ref: '#/components/parameters/metadefs_namespaces_tags_tag_name'
+      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/v2_metadefs_namespaces_tags_tag_name'
     get:
       operationId: metadefs/namespaces/namespace/tags/tag_name:get
       responses:
@@ -729,7 +729,7 @@ paths:
                 $ref: '#/components/schemas/MetadefsNamespacesTagUpdateResponse'
       tags:
         - metadefs
-  /images:
+  /v2/images:
     get:
       description: |+
         Lists public virtual machine (VM) images.
@@ -882,9 +882,9 @@ paths:
       tags:
         - images
       summary: Create image
-  /images/{image_id}:
+  /v2/images/{image_id}:
     parameters:
-      - $ref: '#/components/parameters/images_image_id'
+      - $ref: '#/components/parameters/v2_images_image_id'
     get:
       description: |+
         Shows details for an image.
@@ -979,9 +979,9 @@ paths:
       tags:
         - images
       summary: Update image
-  /images/{image_id}/tasks:
+  /v2/images/{image_id}/tasks:
     parameters:
-      - $ref: '#/components/parameters/images_image_id'
+      - $ref: '#/components/parameters/v2_images_image_id'
     get:
       description: |+
         Shows tasks associated with an image.
@@ -1009,9 +1009,9 @@ paths:
       tags:
         - images
       summary: Show tasks associated with image
-  /images/{image_id}/import:
+  /v2/images/{image_id}/import:
     parameters:
-      - $ref: '#/components/parameters/images_image_id'
+      - $ref: '#/components/parameters/v2_images_image_id'
     post:
       description: |+
         Signals the Image Service to complete the image import workflow
@@ -1102,10 +1102,10 @@ paths:
       tags:
         - images
       summary: Import an image
-  /stores/{store_id}/{image_id}:
+  /v2/stores/{store_id}/{image_id}:
     parameters:
-      - $ref: '#/components/parameters/stores_store_id'
-      - $ref: '#/components/parameters/stores_image_id'
+      - $ref: '#/components/parameters/v2_stores_store_id'
+      - $ref: '#/components/parameters/v2_stores_image_id'
     delete:
       description: |+
         This API allows you to delete a copy of the image from a specific store.
@@ -1124,9 +1124,9 @@ paths:
       tags:
         - stores
       summary: Delete image from store
-  /images/{image_id}/actions/deactivate:
+  /v2/images/{image_id}/actions/deactivate:
     parameters:
-      - $ref: '#/components/parameters/images_image_id'
+      - $ref: '#/components/parameters/v2_images_image_id'
     post:
       description: |+
         Deactivates an image.
@@ -1165,9 +1165,9 @@ paths:
       tags:
         - images
       summary: Deactivate image
-  /images/{image_id}/actions/reactivate:
+  /v2/images/{image_id}/actions/reactivate:
     parameters:
-      - $ref: '#/components/parameters/images_image_id'
+      - $ref: '#/components/parameters/v2_images_image_id'
     post:
       description: |+
         Reactivates an image.
@@ -1202,9 +1202,9 @@ paths:
       tags:
         - images
       summary: Reactivate image
-  /images/{image_id}/file:
+  /v2/images/{image_id}/file:
     parameters:
-      - $ref: '#/components/parameters/images_image_id'
+      - $ref: '#/components/parameters/v2_images_image_id'
     get:
       description: |+
         Downloads binary image data.
@@ -1290,9 +1290,9 @@ paths:
       tags:
         - images
       summary: Upload binary image data
-  /images/{image_id}/stage:
+  /v2/images/{image_id}/stage:
     parameters:
-      - $ref: '#/components/parameters/images_image_id'
+      - $ref: '#/components/parameters/v2_images_image_id'
     put:
       description: |+
         Places the binary image data in a staging area. It is not stored in
@@ -1338,19 +1338,11 @@ paths:
       tags:
         - images
       summary: Stage binary image data
-  /images/{image_id}/tags/{tag_value}:
+  /v2/images/{image_id}/tags/{tag_value}:
     parameters:
-      - $ref: '#/components/parameters/images_image_id'
-      - $ref: '#/components/parameters/images_tags_tag_value'
+      - $ref: '#/components/parameters/v2_images_image_id'
+      - $ref: '#/components/parameters/v2_images_tags_tag_value'
     delete:
-      description: |+
-        Deletes a tag from an image.
-        *(Since Image API v2.0)*
-
-        Normal response codes: 204
-
-        Error response codes: 400, 401, 403, 404
-
       operationId: images/image_id/tags/tag_value:delete
       responses:
         '404':
@@ -1359,16 +1351,7 @@ paths:
           description: Ok
       tags:
         - images
-      summary: Delete image tag
     put:
-      description: |+
-        Adds a tag to an image.
-        *(Since Image API v2.0)*
-
-        Normal response codes: 204
-
-        Error response codes: 400, 401, 403, 404, 413
-
       operationId: images/image_id/tags/tag_value:put
       requestBody:
         content:
@@ -1386,10 +1369,9 @@ paths:
                 $ref: '#/components/schemas/ImagesTagUpdateResponse'
       tags:
         - images
-      summary: Add image tag
-  /images/{image_id}/members:
+  /v2/images/{image_id}/members:
     parameters:
-      - $ref: '#/components/parameters/images_image_id'
+      - $ref: '#/components/parameters/v2_images_image_id'
     get:
       description: |+
         Lists the tenants that share this image.
@@ -1456,10 +1438,10 @@ paths:
       tags:
         - images
       summary: Create image member
-  /images/{image_id}/members/{member_id}:
+  /v2/images/{image_id}/members/{member_id}:
     parameters:
-      - $ref: '#/components/parameters/images_image_id'
-      - $ref: '#/components/parameters/images_members_member_id'
+      - $ref: '#/components/parameters/v2_images_image_id'
+      - $ref: '#/components/parameters/v2_images_members_member_id'
     get:
       description: |+
         Shows image member details.
@@ -1550,7 +1532,7 @@ paths:
       tags:
         - images
       summary: Update image member
-  /tasks:
+  /v2/tasks:
     get:
       description: |+
         Lists tasks.
@@ -1598,9 +1580,9 @@ paths:
       tags:
         - tasks
       summary: Create task
-  /tasks/{task_id}:
+  /v2/tasks/{task_id}:
     parameters:
-      - $ref: '#/components/parameters/tasks_task_id'
+      - $ref: '#/components/parameters/v2_tasks_task_id'
     get:
       description: |+
         Shows details for a task.
@@ -1631,7 +1613,7 @@ paths:
           description: Ok
       tags:
         - tasks
-  /info/import:
+  /v2/info/import:
     get:
       description: |+
         Returns information concerning the constraints around image import in
@@ -1659,7 +1641,7 @@ paths:
       tags:
         - info
       summary: Import methods and values discovery
-  /info/stores:
+  /v2/info/stores:
     get:
       description: |+
         A multiple store backend support is introduced in the Rocky release
@@ -1686,7 +1668,7 @@ paths:
       tags:
         - info
       summary: List stores
-  /info/usage:
+  /v2/info/usage:
     get:
       description: |+
         The user’s quota and current usage are displayed, if enabled by
@@ -1707,7 +1689,7 @@ paths:
       tags:
         - info
       summary: Quota usage
-  /info/stores/detail:
+  /v2/info/stores/detail:
     get:
       description: |+
         Lists all the backend stores, with detail, accessible to admins,
@@ -1730,7 +1712,7 @@ paths:
       tags:
         - info
       summary: List stores detail
-  /cache:
+  /v2/cache:
     get:
       description: |+
         Lists all images in cache or queue.
@@ -1771,9 +1753,9 @@ paths:
       tags:
         - cache
       summary: Clear images from cache
-  /cache/{image_id}:
+  /v2/cache/{image_id}:
     parameters:
-      - $ref: '#/components/parameters/cache_image_id'
+      - $ref: '#/components/parameters/v2_cache_image_id'
     delete:
       description: |+
         Deletes a image from cache.
@@ -5276,7 +5258,7 @@ components:
               description:
                 type: string
               default:
-                type: bool
+                type: boolean
     InfoUsageGet_UsageResponse:
       properties:
         usage:
@@ -5307,7 +5289,7 @@ components:
               description:
                 type: string
               default:
-                type: bool
+                type: boolean
               type:
                 type: string
               weight:
@@ -5325,93 +5307,95 @@ components:
       type: object
       description: Response of the cache/image_id:put operation
   parameters:
-    metadefs_namespaces_namespace:
+    v2_metadefs_namespaces_namespace:
       in: path
       name: namespace
-      description: namespace parameter for /metadefs/namespaces/{namespace}/tags/{tag_name}
+      description: namespace parameter for /v2/metadefs/namespaces/{namespace}/tags/{tag_name}
         API
       schema:
         type: string
       required: true
-    metadefs_namespaces_resource_types_resource_type:
+    v2_metadefs_namespaces_resource_types_resource_type:
       in: path
       name: resource_type
-      description: resource_type parameter for /metadefs/namespaces/{namespace}/resource_types/{resource_type}
+      description: resource_type parameter for /v2/metadefs/namespaces/{namespace}/resource_types/{resource_type}
         API
       schema:
         type: string
       required: true
-    metadefs_namespaces_properties_property_name:
+    v2_metadefs_namespaces_properties_property_name:
       in: path
       name: property_name
-      description: property_name parameter for /metadefs/namespaces/{namespace}/properties/{property_name}
+      description: property_name parameter for /v2/metadefs/namespaces/{namespace}/properties/{property_name}
         API
       schema:
         type: string
       required: true
-    metadefs_namespaces_objects_object_name:
+    v2_metadefs_namespaces_objects_object_name:
       in: path
       name: object_name
-      description: object_name parameter for /metadefs/namespaces/{namespace}/objects/{object_name}
+      description: object_name parameter for /v2/metadefs/namespaces/{namespace}/objects/{object_name}
         API
       schema:
         type: string
       required: true
-    metadefs_namespaces_tags_tag_name:
+    v2_metadefs_namespaces_tags_tag_name:
       in: path
       name: tag_name
-      description: tag_name parameter for /metadefs/namespaces/{namespace}/tags/{tag_name}
+      description: tag_name parameter for /v2/metadefs/namespaces/{namespace}/tags/{tag_name}
         API
       schema:
         type: string
       required: true
-    images_image_id:
+    v2_images_image_id:
       in: path
       name: image_id
-      description: image_id parameter for /images/{image_id}/members/{member_id} API
+      description: image_id parameter for /v2/images/{image_id}/members/{member_id}
+        API
       schema:
         type: string
       required: true
-    stores_store_id:
+    v2_stores_store_id:
       in: path
       name: store_id
-      description: store_id parameter for /stores/{store_id}/{image_id} API
+      description: store_id parameter for /v2/stores/{store_id}/{image_id} API
       schema:
         type: string
       required: true
-    stores_image_id:
+    v2_stores_image_id:
       in: path
       name: image_id
-      description: image_id parameter for /stores/{store_id}/{image_id} API
+      description: image_id parameter for /v2/stores/{store_id}/{image_id} API
       schema:
         type: string
       required: true
-    images_tags_tag_value:
+    v2_images_tags_tag_value:
       in: path
       name: tag_value
-      description: tag_value parameter for /images/{image_id}/tags/{tag_value} API
-      schema:
-        type: string
-      required: true
-    images_members_member_id:
-      in: path
-      name: member_id
-      description: member_id parameter for /images/{image_id}/members/{member_id}
+      description: tag_value parameter for /v2/images/{image_id}/tags/{tag_value}
         API
       schema:
         type: string
       required: true
-    tasks_task_id:
+    v2_images_members_member_id:
       in: path
-      name: task_id
-      description: task_id parameter for /tasks/{task_id} API
+      name: member_id
+      description: member_id parameter for /v2/images/{image_id}/members/{member_id}
+        API
       schema:
         type: string
       required: true
-    cache_image_id:
+    v2_tasks_task_id:
+      in: path
+      name: task_id
+      description: task_id parameter for /v2/tasks/{task_id} API
+      schema:
+        type: string
+      required: true
+    v2_cache_image_id:
       in: path
       name: image_id
-      description: image_id parameter for /cache/{image_id} API
+      description: image_id parameter for /v2/cache/{image_id} API
       schema:
         type: string
       required: true
