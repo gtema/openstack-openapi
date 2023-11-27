@@ -1,0 +1,5 @@
+pbr
+PyYAML>=3.12
+jsonschema
+markdown
+sphinx-mdinclude

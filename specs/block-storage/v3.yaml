@@ -11,7 +11,7 @@ paths:
       description: |+
         Shows details for Block Storage API v3.
 
-      operationId: v3:get
+      operationId: :get
       responses:
         '404':
           description: Error
@@ -24,11 +24,11 @@ paths:
       tags:
         - version
       x-openstack:
-        min_ver: '3.0'
+        min-ver: '3.0'
       summary: Show API v3 details
   /v3/{project_id}/volumes/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists all Block Storage volumes, with details, that the project can access,
@@ -50,7 +50,7 @@ paths:
       summary: List accessible volumes with details
   /v3/{project_id}/volumes/summary:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Display volumes summary with total number of volumes and total size in GB.
@@ -69,11 +69,11 @@ paths:
       tags:
         - volumes
       x-openstack:
-        min_ver: '3.12'
+        min-ver: '3.12'
       summary: Get volumes summary
   /v3/{project_id}/volumes:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists summary information for all Block Storage volumes that the
@@ -127,8 +127,8 @@ paths:
       summary: Create a volume
   /v3/{project_id}/volumes/{id}/action:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_volumes_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/volumes_id'
     post:
       operationId: project_id/volumes/id/action:post
       requestBody:
@@ -165,25 +165,13 @@ paths:
       responses:
         '404':
           description: Error
-        '201':
-          description: Ok
-          content:
-            application/json:
-              schema:
-                oneOf:
-                  - $ref: '#/components/schemas/VolumesActionRevertResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Migrate_Volume_CompletionResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Initialize_ConnectionResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-ReimageResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Set_Image_MetadataResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Show_Image_MetadataResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Unset_Image_MetadataResponse'
         '202':
           description: Ok
           content:
             application/json:
               schema:
                 oneOf:
+                  - $ref: '#/components/schemas/VolumesActionRevertResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Reset_StatusResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Force_DeleteResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Force_DetachResponse'
@@ -200,6 +188,18 @@ paths:
                   - $ref: '#/components/schemas/VolumesActionOs-Update_Readonly_FlagResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-RetypeResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-UnmanageResponse'
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/VolumesActionOs-Migrate_Volume_CompletionResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Initialize_ConnectionResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-ReimageResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Set_Image_MetadataResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Show_Image_MetadataResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Unset_Image_MetadataResponse'
         '200':
           description: Ok
           content:
@@ -210,8 +210,8 @@ paths:
         - volumes
   /v3/{project_id}/volumes/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_volumes_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/volumes_id'
     get:
       description: |-
         Return data about the given volume.
@@ -291,7 +291,7 @@ paths:
       tags:
         - volumes
       x-openstack:
-        min_ver: '3.12'
+        min-ver: '3.12'
   /v3/volumes:
     get:
       description: |-
@@ -335,7 +335,7 @@ paths:
         - volumes
   /v3/volumes/{id}/action:
     parameters:
-      - $ref: '#/components/parameters/v3_volumes_id'
+      - $ref: '#/components/parameters/volumes_id'
     post:
       operationId: volumes/id/action:post
       requestBody:
@@ -372,25 +372,13 @@ paths:
       responses:
         '404':
           description: Error
-        '201':
-          description: Ok
-          content:
-            application/json:
-              schema:
-                oneOf:
-                  - $ref: '#/components/schemas/VolumesActionRevertResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Migrate_Volume_CompletionResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Initialize_ConnectionResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-ReimageResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Set_Image_MetadataResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Show_Image_MetadataResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Unset_Image_MetadataResponse'
         '202':
           description: Ok
           content:
             application/json:
               schema:
                 oneOf:
+                  - $ref: '#/components/schemas/VolumesActionRevertResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Reset_StatusResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Force_DeleteResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Force_DetachResponse'
@@ -407,6 +395,18 @@ paths:
                   - $ref: '#/components/schemas/VolumesActionOs-Update_Readonly_FlagResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-RetypeResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-UnmanageResponse'
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/VolumesActionOs-Migrate_Volume_CompletionResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Initialize_ConnectionResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-ReimageResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Set_Image_MetadataResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Show_Image_MetadataResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-Unset_Image_MetadataResponse'
         '200':
           description: Ok
           content:
@@ -417,7 +417,7 @@ paths:
         - volumes
   /v3/volumes/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_volumes_id'
+      - $ref: '#/components/parameters/volumes_id'
     get:
       description: |-
         Return data about the given volume.
@@ -466,7 +466,7 @@ paths:
         - volumes
   /v3/{project_id}/messages:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists all messages, since v3.31 if non-admin users
@@ -485,12 +485,12 @@ paths:
       tags:
         - messages
       x-openstack:
-        min_ver: '3.3'
+        min-ver: '3.3'
       summary: List messages
   /v3/{project_id}/messages/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_messages_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/messages_id'
     get:
       description: |-
         Return the given message.
@@ -507,7 +507,7 @@ paths:
       tags:
         - messages
       x-openstack:
-        min_ver: '3.3'
+        min-ver: '3.3'
     delete:
       description: |-
         Delete a message.
@@ -520,7 +520,7 @@ paths:
       tags:
         - messages
       x-openstack:
-        min_ver: '3.3'
+        min-ver: '3.3'
   /v3/messages:
     get:
       description: |-
@@ -538,10 +538,10 @@ paths:
       tags:
         - messages
       x-openstack:
-        min_ver: '3.3'
+        min-ver: '3.3'
   /v3/messages/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_messages_id'
+      - $ref: '#/components/parameters/messages_id'
     get:
       description: |-
         Return the given message.
@@ -558,7 +558,7 @@ paths:
       tags:
         - messages
       x-openstack:
-        min_ver: '3.3'
+        min-ver: '3.3'
     delete:
       description: |-
         Delete a message.
@@ -571,10 +571,10 @@ paths:
       tags:
         - messages
       x-openstack:
-        min_ver: '3.3'
+        min-ver: '3.3'
   /v3/{project_id}/clusters/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |-
         Return a detailed list of all existing clusters.
@@ -593,10 +593,10 @@ paths:
       tags:
         - clusters
       x-openstack:
-        min_ver: '3.7'
+        min-ver: '3.7'
   /v3/{project_id}/clusters:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |-
         Return a non detailed list of all existing clusters.
@@ -615,11 +615,11 @@ paths:
       tags:
         - clusters
       x-openstack:
-        min_ver: '3.7'
+        min-ver: '3.7'
   /v3/{project_id}/clusters/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_clusters_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/clusters_id'
     get:
       description: |-
         Return data for a given cluster name with optional binary.
@@ -636,7 +636,7 @@ paths:
       tags:
         - clusters
       x-openstack:
-        min_ver: '3.7'
+        min-ver: '3.7'
     put:
       description: |-
         Enable/Disable scheduling for a cluster.
@@ -658,7 +658,7 @@ paths:
       tags:
         - clusters
       x-openstack:
-        min_ver: '3.7'
+        min-ver: '3.7'
   /v3/clusters/detail:
     get:
       description: |-
@@ -678,7 +678,7 @@ paths:
       tags:
         - clusters
       x-openstack:
-        min_ver: '3.7'
+        min-ver: '3.7'
   /v3/clusters:
     get:
       description: |-
@@ -698,10 +698,10 @@ paths:
       tags:
         - clusters
       x-openstack:
-        min_ver: '3.7'
+        min-ver: '3.7'
   /v3/clusters/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_clusters_id'
+      - $ref: '#/components/parameters/clusters_id'
     get:
       description: |-
         Return data for a given cluster name with optional binary.
@@ -718,7 +718,7 @@ paths:
       tags:
         - clusters
       x-openstack:
-        min_ver: '3.7'
+        min-ver: '3.7'
     put:
       description: |-
         Enable/Disable scheduling for a cluster.
@@ -740,10 +740,10 @@ paths:
       tags:
         - clusters
       x-openstack:
-        min_ver: '3.7'
+        min-ver: '3.7'
   /v3/{project_id}/types:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists volume types.
@@ -785,8 +785,8 @@ paths:
       summary: Create a volume type
   /v3/{project_id}/types/{id}/action:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_types_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/types_id'
     post:
       operationId: project_id/types/id/action:post
       requestBody:
@@ -819,8 +819,8 @@ paths:
         - types
   /v3/{project_id}/types/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_types_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/types_id'
     get:
       description: |-
         Return a single volume type item.
@@ -903,7 +903,7 @@ paths:
         - types
   /v3/types/{id}/action:
     parameters:
-      - $ref: '#/components/parameters/v3_types_id'
+      - $ref: '#/components/parameters/types_id'
     post:
       operationId: types/id/action:post
       requestBody:
@@ -936,7 +936,7 @@ paths:
         - types
   /v3/types/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_types_id'
+      - $ref: '#/components/parameters/types_id'
     get:
       description: |-
         Return a single volume type item.
@@ -983,7 +983,7 @@ paths:
         - types
   /v3/{project_id}/group_types:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists group types.
@@ -1001,7 +1001,7 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
       summary: List group types
     post:
       description: |+
@@ -1025,12 +1025,12 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
       summary: Create group type
   /v3/{project_id}/group_types/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_group_types_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/group_types_id'
     get:
       description: |-
         Return a single group type item.
@@ -1047,7 +1047,7 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
     delete:
       description: |-
         Deletes an existing group type.
@@ -1060,7 +1060,7 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
     put:
       operationId: project_id/group_types/id:put
       requestBody:
@@ -1080,7 +1080,7 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
   /v3/group_types:
     get:
       description: |-
@@ -1098,7 +1098,7 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
     post:
       description: |-
         Creates a new group type.
@@ -1120,10 +1120,10 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
   /v3/group_types/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_group_types_id'
+      - $ref: '#/components/parameters/group_types_id'
     get:
       description: |-
         Return a single group type item.
@@ -1140,7 +1140,7 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
     delete:
       description: |-
         Deletes an existing group type.
@@ -1153,7 +1153,7 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
     put:
       operationId: group_types/id:put
       requestBody:
@@ -1173,11 +1173,11 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
   /v3/{project_id}/group_types/{group_type_id}/group_specs:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_group_types_group_type_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/group_types_group_type_id'
     get:
       description: |+
         List all the group specs for a group type,
@@ -1195,7 +1195,7 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
       summary: List group specs for a group type
     post:
       description: |+
@@ -1220,13 +1220,13 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
       summary: Create or update group specs for a group type
   /v3/{project_id}/group_types/{group_type_id}/group_specs/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_group_types_group_type_id'
-      - $ref: '#/components/parameters/v3_group_types_group_specs_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/group_types_group_type_id'
+      - $ref: '#/components/parameters/group_types_group_specs_id'
     get:
       description: |-
         Return a single extra spec item.
@@ -1243,7 +1243,7 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
     delete:
       description: |-
         Deletes an existing group spec.
@@ -1256,7 +1256,7 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
     put:
       operationId: project_id/group_types/group_type_id/group_specs/id:put
       requestBody:
@@ -1276,10 +1276,10 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
   /v3/group_types/{group_type_id}/group_specs:
     parameters:
-      - $ref: '#/components/parameters/v3_group_types_group_type_id'
+      - $ref: '#/components/parameters/group_types_group_type_id'
     get:
       description: |-
         Returns the list of group specs for a given group type.
@@ -1296,7 +1296,7 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
     post:
       operationId: group_types/group_type_id/group_specs:post
       requestBody:
@@ -1316,11 +1316,11 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
   /v3/group_types/{group_type_id}/group_specs/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_group_types_group_type_id'
-      - $ref: '#/components/parameters/v3_group_types_group_specs_id'
+      - $ref: '#/components/parameters/group_types_group_type_id'
+      - $ref: '#/components/parameters/group_types_group_specs_id'
     get:
       description: |-
         Return a single extra spec item.
@@ -1337,7 +1337,7 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
     delete:
       description: |-
         Deletes an existing group spec.
@@ -1350,7 +1350,7 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
     put:
       operationId: group_types/group_type_id/group_specs/id:put
       requestBody:
@@ -1370,10 +1370,10 @@ paths:
       tags:
         - group_types
       x-openstack:
-        min_ver: '3.11'
+        min-ver: '3.11'
   /v3/{project_id}/groups/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists groups with details, since v3.31 if non-admin
@@ -1392,11 +1392,11 @@ paths:
       tags:
         - groups
       x-openstack:
-        min_ver: '3.13'
+        min-ver: '3.13'
       summary: List groups with details
   /v3/{project_id}/groups:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists groups. Since v3.31 if non-admin users specify
@@ -1415,7 +1415,7 @@ paths:
       tags:
         - groups
       x-openstack:
-        min_ver: '3.13'
+        min-ver: '3.13'
       summary: List groups
     post:
       description: |+
@@ -1439,12 +1439,12 @@ paths:
       tags:
         - groups
       x-openstack:
-        min_ver: '3.13'
+        min-ver: '3.13'
       summary: Create group
   /v3/{project_id}/groups/{id}/action:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_groups_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/groups_id'
     post:
       operationId: project_id/groups/id/action:post
       requestBody:
@@ -1452,13 +1452,13 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/GroupsActionReset_StatusRequest'
-                - $ref: '#/components/schemas/GroupsActionDeleteRequest'
-                - $ref: '#/components/schemas/GroupsActionCreate-From-SrcRequest'
-                - $ref: '#/components/schemas/GroupsActionEnable_ReplicationRequest'
-                - $ref: '#/components/schemas/GroupsActionDisable_ReplicationRequest'
-                - $ref: '#/components/schemas/GroupsActionFailover_ReplicationRequest'
-                - $ref: '#/components/schemas/GroupsActionList_Replication_TargetsRequest'
+                - $ref: '#/components/schemas/GroupsActionReset_Status'
+                - $ref: '#/components/schemas/GroupsActionDelete_Group'
+                - $ref: '#/components/schemas/GroupsActionCreate_From_Src'
+                - $ref: '#/components/schemas/GroupsActionEnable_Replication'
+                - $ref: '#/components/schemas/GroupsActionDisable_Replication'
+                - $ref: '#/components/schemas/GroupsActionFailover_Replication'
+                - $ref: '#/components/schemas/GroupsActionList_Replication_Targets'
               x-openstack:
                 discriminator: action
       responses:
@@ -1472,17 +1472,22 @@ paths:
                 oneOf:
                   - $ref: '#/components/schemas/GroupsActionReset_StatusResponse'
                   - $ref: '#/components/schemas/GroupsActionDeleteResponse'
-                  - $ref: '#/components/schemas/GroupsActionCreate-From-SrcResponse'
                   - $ref: '#/components/schemas/GroupsActionEnable_ReplicationResponse'
                   - $ref: '#/components/schemas/GroupsActionDisable_ReplicationResponse'
                   - $ref: '#/components/schemas/GroupsActionFailover_ReplicationResponse'
                   - $ref: '#/components/schemas/GroupsActionList_Replication_TargetsResponse'
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupsActionCreate-From-SrcResponse'
       tags:
         - groups
   /v3/{project_id}/groups/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_groups_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/groups_id'
     get:
       description: |-
         Return data about the given group.
@@ -1499,7 +1504,7 @@ paths:
       tags:
         - groups
       x-openstack:
-        min_ver: '3.13'
+        min-ver: '3.13'
     delete:
       description: |-
         Select and call the matching version of the specified method.
@@ -1553,7 +1558,7 @@ paths:
       tags:
         - groups
       x-openstack:
-        min_ver: '3.13'
+        min-ver: '3.13'
   /v3/groups/detail:
     get:
       description: |-
@@ -1571,7 +1576,7 @@ paths:
       tags:
         - groups
       x-openstack:
-        min_ver: '3.13'
+        min-ver: '3.13'
   /v3/groups:
     get:
       description: |-
@@ -1589,7 +1594,7 @@ paths:
       tags:
         - groups
       x-openstack:
-        min_ver: '3.13'
+        min-ver: '3.13'
     post:
       description: |-
         Create a new group.
@@ -1611,10 +1616,10 @@ paths:
       tags:
         - groups
       x-openstack:
-        min_ver: '3.13'
+        min-ver: '3.13'
   /v3/groups/{id}/action:
     parameters:
-      - $ref: '#/components/parameters/v3_groups_id'
+      - $ref: '#/components/parameters/groups_id'
     post:
       operationId: groups/id/action:post
       requestBody:
@@ -1622,13 +1627,13 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/GroupsActionReset_StatusRequest'
-                - $ref: '#/components/schemas/GroupsActionDeleteRequest'
-                - $ref: '#/components/schemas/GroupsActionCreate-From-SrcRequest'
-                - $ref: '#/components/schemas/GroupsActionEnable_ReplicationRequest'
-                - $ref: '#/components/schemas/GroupsActionDisable_ReplicationRequest'
-                - $ref: '#/components/schemas/GroupsActionFailover_ReplicationRequest'
-                - $ref: '#/components/schemas/GroupsActionList_Replication_TargetsRequest'
+                - $ref: '#/components/schemas/GroupsActionReset_Status'
+                - $ref: '#/components/schemas/GroupsActionDelete_Group'
+                - $ref: '#/components/schemas/GroupsActionCreate_From_Src'
+                - $ref: '#/components/schemas/GroupsActionEnable_Replication'
+                - $ref: '#/components/schemas/GroupsActionDisable_Replication'
+                - $ref: '#/components/schemas/GroupsActionFailover_Replication'
+                - $ref: '#/components/schemas/GroupsActionList_Replication_Targets'
               x-openstack:
                 discriminator: action
       responses:
@@ -1642,16 +1647,21 @@ paths:
                 oneOf:
                   - $ref: '#/components/schemas/GroupsActionReset_StatusResponse'
                   - $ref: '#/components/schemas/GroupsActionDeleteResponse'
-                  - $ref: '#/components/schemas/GroupsActionCreate-From-SrcResponse'
                   - $ref: '#/components/schemas/GroupsActionEnable_ReplicationResponse'
                   - $ref: '#/components/schemas/GroupsActionDisable_ReplicationResponse'
                   - $ref: '#/components/schemas/GroupsActionFailover_ReplicationResponse'
                   - $ref: '#/components/schemas/GroupsActionList_Replication_TargetsResponse'
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupsActionCreate-From-SrcResponse'
       tags:
         - groups
   /v3/groups/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_groups_id'
+      - $ref: '#/components/parameters/groups_id'
     get:
       description: |-
         Return data about the given group.
@@ -1668,7 +1678,7 @@ paths:
       tags:
         - groups
       x-openstack:
-        min_ver: '3.13'
+        min-ver: '3.13'
     delete:
       description: |-
         Select and call the matching version of the specified method.
@@ -1722,10 +1732,10 @@ paths:
       tags:
         - groups
       x-openstack:
-        min_ver: '3.13'
+        min-ver: '3.13'
   /v3/{project_id}/groups/action:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     post:
       operationId: project_id/groups/action:post
       requestBody:
@@ -1733,13 +1743,13 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/GroupsActionReset_StatusRequest'
-                - $ref: '#/components/schemas/GroupsActionDeleteRequest'
-                - $ref: '#/components/schemas/GroupsActionCreate-From-SrcRequest'
-                - $ref: '#/components/schemas/GroupsActionEnable_ReplicationRequest'
-                - $ref: '#/components/schemas/GroupsActionDisable_ReplicationRequest'
-                - $ref: '#/components/schemas/GroupsActionFailover_ReplicationRequest'
-                - $ref: '#/components/schemas/GroupsActionList_Replication_TargetsRequest'
+                - $ref: '#/components/schemas/GroupsActionReset_Status'
+                - $ref: '#/components/schemas/GroupsActionDelete_Group'
+                - $ref: '#/components/schemas/GroupsActionCreate_From_Src'
+                - $ref: '#/components/schemas/GroupsActionEnable_Replication'
+                - $ref: '#/components/schemas/GroupsActionDisable_Replication'
+                - $ref: '#/components/schemas/GroupsActionFailover_Replication'
+                - $ref: '#/components/schemas/GroupsActionList_Replication_Targets'
               x-openstack:
                 discriminator: action
       responses:
@@ -1753,11 +1763,16 @@ paths:
                 oneOf:
                   - $ref: '#/components/schemas/GroupsActionReset_StatusResponse'
                   - $ref: '#/components/schemas/GroupsActionDeleteResponse'
-                  - $ref: '#/components/schemas/GroupsActionCreate-From-SrcResponse'
                   - $ref: '#/components/schemas/GroupsActionEnable_ReplicationResponse'
                   - $ref: '#/components/schemas/GroupsActionDisable_ReplicationResponse'
                   - $ref: '#/components/schemas/GroupsActionFailover_ReplicationResponse'
                   - $ref: '#/components/schemas/GroupsActionList_Replication_TargetsResponse'
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupsActionCreate-From-SrcResponse'
       tags:
         - groups
   /v3/groups/action:
@@ -1768,13 +1783,13 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/GroupsActionReset_StatusRequest'
-                - $ref: '#/components/schemas/GroupsActionDeleteRequest'
-                - $ref: '#/components/schemas/GroupsActionCreate-From-SrcRequest'
-                - $ref: '#/components/schemas/GroupsActionEnable_ReplicationRequest'
-                - $ref: '#/components/schemas/GroupsActionDisable_ReplicationRequest'
-                - $ref: '#/components/schemas/GroupsActionFailover_ReplicationRequest'
-                - $ref: '#/components/schemas/GroupsActionList_Replication_TargetsRequest'
+                - $ref: '#/components/schemas/GroupsActionReset_Status'
+                - $ref: '#/components/schemas/GroupsActionDelete_Group'
+                - $ref: '#/components/schemas/GroupsActionCreate_From_Src'
+                - $ref: '#/components/schemas/GroupsActionEnable_Replication'
+                - $ref: '#/components/schemas/GroupsActionDisable_Replication'
+                - $ref: '#/components/schemas/GroupsActionFailover_Replication'
+                - $ref: '#/components/schemas/GroupsActionList_Replication_Targets'
               x-openstack:
                 discriminator: action
       responses:
@@ -1788,16 +1803,21 @@ paths:
                 oneOf:
                   - $ref: '#/components/schemas/GroupsActionReset_StatusResponse'
                   - $ref: '#/components/schemas/GroupsActionDeleteResponse'
-                  - $ref: '#/components/schemas/GroupsActionCreate-From-SrcResponse'
                   - $ref: '#/components/schemas/GroupsActionEnable_ReplicationResponse'
                   - $ref: '#/components/schemas/GroupsActionDisable_ReplicationResponse'
                   - $ref: '#/components/schemas/GroupsActionFailover_ReplicationResponse'
                   - $ref: '#/components/schemas/GroupsActionList_Replication_TargetsResponse'
+        '202':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupsActionCreate-From-SrcResponse'
       tags:
         - groups
   /v3/{project_id}/group_snapshots/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists all group snapshots with details. Since v3.31 if non-admin
@@ -1816,11 +1836,11 @@ paths:
       tags:
         - group_snapshots
       x-openstack:
-        min_ver: '3.14'
+        min-ver: '3.14'
       summary: List group snapshots with details
   /v3/{project_id}/group_snapshots:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists all group snapshots, since v3.31 if non-admin users
@@ -1839,7 +1859,7 @@ paths:
       tags:
         - group_snapshots
       x-openstack:
-        min_ver: '3.14'
+        min-ver: '3.14'
       summary: List group snapshots
     post:
       description: |+
@@ -1863,12 +1883,12 @@ paths:
       tags:
         - group_snapshots
       x-openstack:
-        min_ver: '3.14'
+        min-ver: '3.14'
       summary: Create group snapshot
   /v3/{project_id}/group_snapshots/{id}/action:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_group_snapshots_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/group_snapshots_id'
     post:
       operationId: project_id/group_snapshots/id/action:post
       requestBody:
@@ -1876,7 +1896,7 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/Group_SnapshotsActionReset_StatusRequest'
+                - $ref: '#/components/schemas/Group_SnapshotsActionReset_Status'
               x-openstack:
                 discriminator: action
       responses:
@@ -1892,8 +1912,8 @@ paths:
         - group_snapshots
   /v3/{project_id}/group_snapshots/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_group_snapshots_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/group_snapshots_id'
     get:
       description: |-
         Return data about the given group_snapshot.
@@ -1910,7 +1930,7 @@ paths:
       tags:
         - group_snapshots
       x-openstack:
-        min_ver: '3.14'
+        min-ver: '3.14'
     delete:
       description: |-
         Delete a group_snapshot.
@@ -1923,7 +1943,7 @@ paths:
       tags:
         - group_snapshots
       x-openstack:
-        min_ver: '3.14'
+        min-ver: '3.14'
   /v3/group_snapshots/detail:
     get:
       description: |-
@@ -1941,7 +1961,7 @@ paths:
       tags:
         - group_snapshots
       x-openstack:
-        min_ver: '3.14'
+        min-ver: '3.14'
   /v3/group_snapshots:
     get:
       description: |-
@@ -1959,7 +1979,7 @@ paths:
       tags:
         - group_snapshots
       x-openstack:
-        min_ver: '3.14'
+        min-ver: '3.14'
     post:
       description: |-
         Create a new group_snapshot.
@@ -1981,10 +2001,10 @@ paths:
       tags:
         - group_snapshots
       x-openstack:
-        min_ver: '3.14'
+        min-ver: '3.14'
   /v3/group_snapshots/{id}/action:
     parameters:
-      - $ref: '#/components/parameters/v3_group_snapshots_id'
+      - $ref: '#/components/parameters/group_snapshots_id'
     post:
       operationId: group_snapshots/id/action:post
       requestBody:
@@ -1992,7 +2012,7 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/Group_SnapshotsActionReset_StatusRequest'
+                - $ref: '#/components/schemas/Group_SnapshotsActionReset_Status'
               x-openstack:
                 discriminator: action
       responses:
@@ -2008,7 +2028,7 @@ paths:
         - group_snapshots
   /v3/group_snapshots/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_group_snapshots_id'
+      - $ref: '#/components/parameters/group_snapshots_id'
     get:
       description: |-
         Return data about the given group_snapshot.
@@ -2025,7 +2045,7 @@ paths:
       tags:
         - group_snapshots
       x-openstack:
-        min_ver: '3.14'
+        min-ver: '3.14'
     delete:
       description: |-
         Delete a group_snapshot.
@@ -2038,10 +2058,10 @@ paths:
       tags:
         - group_snapshots
       x-openstack:
-        min_ver: '3.14'
+        min-ver: '3.14'
   /v3/{project_id}/snapshots/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists all Block Storage snapshots, with details, that the project can access,
@@ -2063,7 +2083,7 @@ paths:
       summary: List snapshots and details
   /v3/{project_id}/snapshots:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists all Block Storage snapshots, with summary information,
@@ -2108,8 +2128,8 @@ paths:
       summary: Create a snapshot
   /v3/{project_id}/snapshots/{id}/action:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_snapshots_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/snapshots_id'
     post:
       operationId: project_id/snapshots/id/action:post
       requestBody:
@@ -2145,8 +2165,8 @@ paths:
         - snapshots
   /v3/{project_id}/snapshots/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_snapshots_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/snapshots_id'
     get:
       description: |-
         Return data about the given snapshot.
@@ -2247,7 +2267,7 @@ paths:
         - snapshots
   /v3/snapshots/{id}/action:
     parameters:
-      - $ref: '#/components/parameters/v3_snapshots_id'
+      - $ref: '#/components/parameters/snapshots_id'
     post:
       operationId: snapshots/id/action:post
       requestBody:
@@ -2283,7 +2303,7 @@ paths:
         - snapshots
   /v3/snapshots/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_snapshots_id'
+      - $ref: '#/components/parameters/snapshots_id'
     get:
       description: |-
         Return data about the given snapshot.
@@ -2332,7 +2352,7 @@ paths:
         - snapshots
   /v3/{project_id}/limits:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Shows absolute limits for a project.
@@ -2371,8 +2391,8 @@ paths:
         - limits
   /v3/{project_id}/snapshots/{snapshot_id}/metadata:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_snapshots_snapshot_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/snapshots_snapshot_id'
     get:
       description: |+
         Shows metadata for a snapshot.
@@ -2439,9 +2459,9 @@ paths:
       summary: Update a snapshot’s metadata
   /v3/{project_id}/snapshots/{snapshot_id}/metadata/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_snapshots_snapshot_id'
-      - $ref: '#/components/parameters/v3_snapshots_metadata_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/snapshots_snapshot_id'
+      - $ref: '#/components/parameters/snapshots_metadata_id'
     get:
       description: |-
         Return a single metadata item.
@@ -2488,7 +2508,7 @@ paths:
         - snapshots
   /v3/snapshots/{snapshot_id}/metadata:
     parameters:
-      - $ref: '#/components/parameters/v3_snapshots_snapshot_id'
+      - $ref: '#/components/parameters/snapshots_snapshot_id'
     get:
       description: |-
         Returns the list of metadata for a given snapshot.
@@ -2542,8 +2562,8 @@ paths:
         - snapshots
   /v3/snapshots/{snapshot_id}/metadata/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_snapshots_snapshot_id'
-      - $ref: '#/components/parameters/v3_snapshots_metadata_id'
+      - $ref: '#/components/parameters/snapshots_snapshot_id'
+      - $ref: '#/components/parameters/snapshots_metadata_id'
     get:
       description: |-
         Return a single metadata item.
@@ -2590,8 +2610,8 @@ paths:
         - snapshots
   /v3/{project_id}/volumes/{volume_id}/metadata:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_volumes_volume_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/volumes_volume_id'
     get:
       description: |+
         Shows metadata for a volume.
@@ -2656,9 +2676,9 @@ paths:
       summary: Update a volume’s metadata
   /v3/{project_id}/volumes/{volume_id}/metadata/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_volumes_volume_id'
-      - $ref: '#/components/parameters/v3_volumes_metadata_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/volumes_volume_id'
+      - $ref: '#/components/parameters/volumes_metadata_id'
     get:
       description: |-
         Return a single metadata item.
@@ -2705,7 +2725,7 @@ paths:
         - volumes
   /v3/volumes/{volume_id}/metadata:
     parameters:
-      - $ref: '#/components/parameters/v3_volumes_volume_id'
+      - $ref: '#/components/parameters/volumes_volume_id'
     get:
       description: |-
         Returns the list of metadata for a given volume.
@@ -2759,8 +2779,8 @@ paths:
         - volumes
   /v3/volumes/{volume_id}/metadata/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_volumes_volume_id'
-      - $ref: '#/components/parameters/v3_volumes_metadata_id'
+      - $ref: '#/components/parameters/volumes_volume_id'
+      - $ref: '#/components/parameters/volumes_metadata_id'
     get:
       description: |-
         Return a single metadata item.
@@ -2807,7 +2827,7 @@ paths:
         - volumes
   /v3/{project_id}/consistencygroups/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists consistency groups with details.
@@ -2827,7 +2847,7 @@ paths:
       summary: List consistency groups and details
   /v3/{project_id}/consistencygroups:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists consistency groups.
@@ -2869,8 +2889,8 @@ paths:
       summary: Create a consistency group
   /v3/{project_id}/consistencygroups/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_consistencygroups_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/consistencygroups_id'
     get:
       description: |-
         Return data about the given consistency group.
@@ -2985,7 +3005,7 @@ paths:
         - consistencygroups
   /v3/consistencygroups/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_consistencygroups_id'
+      - $ref: '#/components/parameters/consistencygroups_id'
     get:
       description: |-
         Return data about the given consistency group.
@@ -3048,7 +3068,7 @@ paths:
         - consistencygroups
   /v3/{project_id}/manageable_volumes/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Search a volume backend and list detail of volumes which are available to
@@ -3069,7 +3089,7 @@ paths:
       summary: List detail of volumes available to manage
   /v3/{project_id}/manageable_volumes:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Search a volume backend and list summary of volumes which are available to
@@ -3229,7 +3249,7 @@ paths:
         - manageable_volumes
   /v3/{project_id}/manageable_snapshots/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Search a volume backend and list detail of snapshots which are available to
@@ -3250,7 +3270,7 @@ paths:
       summary: List detail of snapshots available to manage
   /v3/{project_id}/manageable_snapshots:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Search a volume backend and list summary of snapshots which are available to
@@ -3394,7 +3414,7 @@ paths:
         - manageable_snapshots
   /v3/{project_id}/backups/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists Block Storage backups, with details, to which the project has access,
@@ -3416,7 +3436,7 @@ paths:
       summary: List backups with detail
   /v3/{project_id}/backups:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists Block Storage backups to which the project has access,
@@ -3463,8 +3483,8 @@ paths:
       summary: Create a backup
   /v3/{project_id}/backups/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_backups_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/backups_id'
     get:
       description: |-
         Return data about the given backup.
@@ -3512,7 +3532,7 @@ paths:
       tags:
         - backups
       x-openstack:
-        min_ver: '3.9'
+        min-ver: '3.9'
   /v3/backups/detail:
     get:
       description: |-
@@ -3567,7 +3587,7 @@ paths:
         - backups
   /v3/backups/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_backups_id'
+      - $ref: '#/components/parameters/backups_id'
     get:
       description: |-
         Return data about the given backup.
@@ -3615,10 +3635,10 @@ paths:
       tags:
         - backups
       x-openstack:
-        min_ver: '3.9'
+        min-ver: '3.9'
   /v3/{project_id}/attachments/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists all attachments with details. Since v3.31 if non-admin
@@ -3639,11 +3659,11 @@ paths:
       tags:
         - attachments
       x-openstack:
-        min_ver: '3.27'
+        min-ver: '3.27'
       summary: List attachments with details
   /v3/{project_id}/attachments:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists all attachments, since v3.31 if non-admin users
@@ -3664,7 +3684,7 @@ paths:
       tags:
         - attachments
       x-openstack:
-        min_ver: '3.27'
+        min-ver: '3.27'
       summary: List attachments
     post:
       description: |+
@@ -3690,12 +3710,12 @@ paths:
       tags:
         - attachments
       x-openstack:
-        min_ver: '3.27'
+        min-ver: '3.27'
       summary: Create attachment
   /v3/{project_id}/attachments/{id}/action:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_attachments_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/attachments_id'
     post:
       operationId: project_id/attachments/id/action:post
       requestBody:
@@ -3709,18 +3729,14 @@ paths:
       responses:
         '404':
           description: Error
-        '201':
+        '204':
           description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AttachmentsActionOs-CompleteResponse'
       tags:
         - attachments
   /v3/{project_id}/attachments/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_attachments_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/attachments_id'
     get:
       description: |-
         Return data about the given attachment.
@@ -3737,7 +3753,7 @@ paths:
       tags:
         - attachments
       x-openstack:
-        min_ver: '3.27'
+        min-ver: '3.27'
     delete:
       description: |-
         Delete an attachment.
@@ -3755,7 +3771,7 @@ paths:
       tags:
         - attachments
       x-openstack:
-        min_ver: '3.27'
+        min-ver: '3.27'
     put:
       description: |-
         Update an attachment record.
@@ -3801,7 +3817,7 @@ paths:
       tags:
         - attachments
       x-openstack:
-        min_ver: '3.27'
+        min-ver: '3.27'
   /v3/attachments/detail:
     get:
       description: |-
@@ -3819,7 +3835,7 @@ paths:
       tags:
         - attachments
       x-openstack:
-        min_ver: '3.27'
+        min-ver: '3.27'
   /v3/attachments:
     get:
       description: |-
@@ -3837,7 +3853,7 @@ paths:
       tags:
         - attachments
       x-openstack:
-        min_ver: '3.27'
+        min-ver: '3.27'
     post:
       description: |-
         Create an attachment.
@@ -3918,10 +3934,10 @@ paths:
       tags:
         - attachments
       x-openstack:
-        min_ver: '3.27'
+        min-ver: '3.27'
   /v3/attachments/{id}/action:
     parameters:
-      - $ref: '#/components/parameters/v3_attachments_id'
+      - $ref: '#/components/parameters/attachments_id'
     post:
       operationId: attachments/id/action:post
       requestBody:
@@ -3935,17 +3951,13 @@ paths:
       responses:
         '404':
           description: Error
-        '201':
+        '204':
           description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AttachmentsActionOs-CompleteResponse'
       tags:
         - attachments
   /v3/attachments/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_attachments_id'
+      - $ref: '#/components/parameters/attachments_id'
     get:
       description: |-
         Return data about the given attachment.
@@ -3962,7 +3974,7 @@ paths:
       tags:
         - attachments
       x-openstack:
-        min_ver: '3.27'
+        min-ver: '3.27'
     delete:
       description: |-
         Delete an attachment.
@@ -3980,7 +3992,7 @@ paths:
       tags:
         - attachments
       x-openstack:
-        min_ver: '3.27'
+        min-ver: '3.27'
     put:
       description: |-
         Update an attachment record.
@@ -4026,10 +4038,10 @@ paths:
       tags:
         - attachments
       x-openstack:
-        min_ver: '3.27'
+        min-ver: '3.27'
   /v3/{project_id}/workers/cleanup:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     post:
       description: |-
         Do the cleanup on resources from a specific service/host/node.
@@ -4051,7 +4063,7 @@ paths:
       tags:
         - workers
       x-openstack:
-        min_ver: '3.24'
+        min-ver: '3.24'
   /v3/workers/cleanup:
     post:
       description: |-
@@ -4074,10 +4086,10 @@ paths:
       tags:
         - workers
       x-openstack:
-        min_ver: '3.24'
+        min-ver: '3.24'
   /v3/{project_id}/resource_filters:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         List filters.
@@ -4095,7 +4107,7 @@ paths:
       tags:
         - resource_filters
       x-openstack:
-        min_ver: '3.33'
+        min-ver: '3.33'
       summary: List resource filters
   /v3/resource_filters:
     get:
@@ -4114,10 +4126,10 @@ paths:
       tags:
         - resource_filters
       x-openstack:
-        min_ver: '3.33'
+        min-ver: '3.33'
   /v3/{project_id}/volume-transfers/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists volume transfers, with details.
@@ -4137,7 +4149,7 @@ paths:
       summary: List volume transfers and details
   /v3/{project_id}/volume-transfers:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists volume transfers.
@@ -4181,8 +4193,8 @@ paths:
       summary: Create a volume transfer
   /v3/{project_id}/volume-transfers/{id}/accept:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_volume_transfers_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/volume_transfers_id'
     post:
       description: |-
         Accept a new volume transfer.
@@ -4205,8 +4217,8 @@ paths:
         - volume-transfers
   /v3/{project_id}/volume-transfers/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_volume_transfers_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/volume_transfers_id'
     get:
       description: |-
         Return data about active transfers.
@@ -4287,7 +4299,7 @@ paths:
         - volume-transfers
   /v3/volume-transfers/{id}/accept:
     parameters:
-      - $ref: '#/components/parameters/v3_volume_transfers_id'
+      - $ref: '#/components/parameters/volume_transfers_id'
     post:
       description: |-
         Accept a new volume transfer.
@@ -4310,7 +4322,7 @@ paths:
         - volume-transfers
   /v3/volume-transfers/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_volume_transfers_id'
+      - $ref: '#/components/parameters/volume_transfers_id'
     get:
       description: |-
         Return data about active transfers.
@@ -4339,7 +4351,7 @@ paths:
         - volume-transfers
   /v3/default-types/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_default_types_id'
+      - $ref: '#/components/parameters/default_types_id'
     get:
       description: |-
         Return detail of a default type.
@@ -4356,7 +4368,7 @@ paths:
       tags:
         - default-types
       x-openstack:
-        min_ver: '3.62'
+        min-ver: '3.62'
     delete:
       description: |-
         Unset a default volume type for a project.
@@ -4369,7 +4381,7 @@ paths:
       tags:
         - default-types
       x-openstack:
-        min_ver: '3.62'
+        min-ver: '3.62'
     put:
       description: |-
         Set a default volume type for the specified project.
@@ -4391,7 +4403,7 @@ paths:
       tags:
         - default-types
       x-openstack:
-        min_ver: '3.62'
+        min-ver: '3.62'
   /v3/default-types:
     get:
       description: |-
@@ -4409,10 +4421,10 @@ paths:
       tags:
         - default-types
       x-openstack:
-        min_ver: '3.62'
+        min-ver: '3.62'
   /v3/{project_id}/extensions:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists Block Storage API extensions.
@@ -4450,8 +4462,8 @@ paths:
         - extensions
   /v3/{project_id}/extensions/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_extensions_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/extensions_id'
     get:
       operationId: project_id/extensions/id:get
       responses:
@@ -4508,7 +4520,7 @@ paths:
         - extensions
   /v3/extensions/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_extensions_id'
+      - $ref: '#/components/parameters/extensions_id'
     get:
       operationId: extensions/id:get
       responses:
@@ -4533,7 +4545,7 @@ paths:
         - extensions
   /v3/{project_id}/os-availability-zone:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |-
         Describe all known availability zones.
@@ -4567,7 +4579,7 @@ paths:
         - os-availability-zone
   /v3/{project_id}/backups/import_record:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     post:
       description: |-
         Import a backup.
@@ -4590,8 +4602,8 @@ paths:
         - backups
   /v3/{project_id}/backups/{id}/restore:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_backups_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/backups_id'
     post:
       description: |-
         Restore an existing backup to a volume.
@@ -4614,8 +4626,8 @@ paths:
         - backups
   /v3/{project_id}/backups/{id}/action:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_backups_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/backups_id'
     post:
       operationId: project_id/backups/id/action:post
       requestBody:
@@ -4642,8 +4654,8 @@ paths:
         - backups
   /v3/{project_id}/backups/{id}/export_record:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_backups_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/backups_id'
     get:
       description: |-
         Export a backup.
@@ -4682,7 +4694,7 @@ paths:
         - backups
   /v3/backups/{id}/restore:
     parameters:
-      - $ref: '#/components/parameters/v3_backups_id'
+      - $ref: '#/components/parameters/backups_id'
     post:
       description: |-
         Restore an existing backup to a volume.
@@ -4705,7 +4717,7 @@ paths:
         - backups
   /v3/backups/{id}/action:
     parameters:
-      - $ref: '#/components/parameters/v3_backups_id'
+      - $ref: '#/components/parameters/backups_id'
     post:
       operationId: backups/id/action:post
       requestBody:
@@ -4732,7 +4744,7 @@ paths:
         - backups
   /v3/backups/{id}/export_record:
     parameters:
-      - $ref: '#/components/parameters/v3_backups_id'
+      - $ref: '#/components/parameters/backups_id'
     get:
       description: |-
         Export a backup.
@@ -4750,8 +4762,8 @@ paths:
         - backups
   /v3/{project_id}/capabilities/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_capabilities_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/capabilities_id'
     get:
       description: |-
         Return capabilities list of given backend.
@@ -4769,7 +4781,7 @@ paths:
         - capabilities
   /v3/capabilities/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_capabilities_id'
+      - $ref: '#/components/parameters/capabilities_id'
     get:
       description: |-
         Return capabilities list of given backend.
@@ -4787,7 +4799,7 @@ paths:
         - capabilities
   /v3/{project_id}/cgsnapshots/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists all consistency group snapshots with details.
@@ -4807,7 +4819,7 @@ paths:
       summary: List all consistency group snapshots with details
   /v3/{project_id}/cgsnapshots:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists all consistency group snapshots.
@@ -4849,8 +4861,8 @@ paths:
       summary: Create a consistency group snapshot
   /v3/{project_id}/cgsnapshots/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_cgsnapshots_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/cgsnapshots_id'
     get:
       description: |-
         Return data about the given cgsnapshot.
@@ -4931,7 +4943,7 @@ paths:
         - cgsnapshots
   /v3/cgsnapshots/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_cgsnapshots_id'
+      - $ref: '#/components/parameters/cgsnapshots_id'
     get:
       description: |-
         Return data about the given cgsnapshot.
@@ -4960,7 +4972,7 @@ paths:
         - cgsnapshots
   /v3/{project_id}/consistencygroups/create_from_src:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     post:
       description: |+
         Creates a consistency group from source.
@@ -4985,8 +4997,8 @@ paths:
       summary: Create a consistency group from source
   /v3/{project_id}/consistencygroups/{id}/delete:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_consistencygroups_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/consistencygroups_id'
     post:
       description: |-
         Delete a consistency group.
@@ -5009,8 +5021,8 @@ paths:
         - consistencygroups
   /v3/{project_id}/consistencygroups/{id}/update:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_consistencygroups_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/consistencygroups_id'
     put:
       description: |-
         Update the consistency group.
@@ -5072,7 +5084,7 @@ paths:
         - consistencygroups
   /v3/consistencygroups/{id}/delete:
     parameters:
-      - $ref: '#/components/parameters/v3_consistencygroups_id'
+      - $ref: '#/components/parameters/consistencygroups_id'
     post:
       description: |-
         Delete a consistency group.
@@ -5095,7 +5107,7 @@ paths:
         - consistencygroups
   /v3/consistencygroups/{id}/update:
     parameters:
-      - $ref: '#/components/parameters/v3_consistencygroups_id'
+      - $ref: '#/components/parameters/consistencygroups_id'
     put:
       description: |-
         Update the consistency group.
@@ -5132,7 +5144,7 @@ paths:
         - consistencygroups
   /v3/{project_id}/os-hosts:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       operationId: project_id/os-hosts:get
       responses:
@@ -5166,8 +5178,8 @@ paths:
         - os-hosts
   /v3/{project_id}/os-hosts/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_os_hosts_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/os_hosts_id'
     get:
       description: |-
         Shows the volume usage info given by hosts.
@@ -5244,7 +5256,7 @@ paths:
         - os-hosts
   /v3/os-hosts/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_os_hosts_id'
+      - $ref: '#/components/parameters/os_hosts_id'
     get:
       description: |-
         Shows the volume usage info given by hosts.
@@ -5289,7 +5301,7 @@ paths:
         - os-hosts
   /v3/{project_id}/qos-specs:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists quality of service (QoS) specifications.
@@ -5333,8 +5345,8 @@ paths:
       summary: Create a QoS specification
   /v3/{project_id}/qos-specs/{id}/associations:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_qos_specs_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/qos_specs_id'
     get:
       description: |-
         List all associations of given qos specs.
@@ -5352,8 +5364,8 @@ paths:
         - qos-specs
   /v3/{project_id}/qos-specs/{id}/associate:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_qos_specs_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/qos_specs_id'
     get:
       description: |-
         Associate a qos specs with a volume type.
@@ -5371,8 +5383,8 @@ paths:
         - qos-specs
   /v3/{project_id}/qos-specs/{id}/disassociate:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_qos_specs_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/qos_specs_id'
     get:
       description: |-
         Disassociate a qos specs from a volume type.
@@ -5390,8 +5402,8 @@ paths:
         - qos-specs
   /v3/{project_id}/qos-specs/{id}/disassociate_all:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_qos_specs_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/qos_specs_id'
     get:
       description: |-
         Disassociate a qos specs from all volume types.
@@ -5409,8 +5421,8 @@ paths:
         - qos-specs
   /v3/{project_id}/qos-specs/{id}/delete_keys:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_qos_specs_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/qos_specs_id'
     put:
       description: |-
         Deletes specified keys in qos specs.
@@ -5433,8 +5445,8 @@ paths:
         - qos-specs
   /v3/{project_id}/qos-specs/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_qos_specs_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/qos_specs_id'
     get:
       description: |-
         Return a single qos spec item.
@@ -5515,7 +5527,7 @@ paths:
         - qos-specs
   /v3/qos-specs/{id}/associations:
     parameters:
-      - $ref: '#/components/parameters/v3_qos_specs_id'
+      - $ref: '#/components/parameters/qos_specs_id'
     get:
       description: |-
         List all associations of given qos specs.
@@ -5533,7 +5545,7 @@ paths:
         - qos-specs
   /v3/qos-specs/{id}/associate:
     parameters:
-      - $ref: '#/components/parameters/v3_qos_specs_id'
+      - $ref: '#/components/parameters/qos_specs_id'
     get:
       description: |-
         Associate a qos specs with a volume type.
@@ -5551,7 +5563,7 @@ paths:
         - qos-specs
   /v3/qos-specs/{id}/disassociate:
     parameters:
-      - $ref: '#/components/parameters/v3_qos_specs_id'
+      - $ref: '#/components/parameters/qos_specs_id'
     get:
       description: |-
         Disassociate a qos specs from a volume type.
@@ -5569,7 +5581,7 @@ paths:
         - qos-specs
   /v3/qos-specs/{id}/disassociate_all:
     parameters:
-      - $ref: '#/components/parameters/v3_qos_specs_id'
+      - $ref: '#/components/parameters/qos_specs_id'
     get:
       description: |-
         Disassociate a qos specs from all volume types.
@@ -5587,7 +5599,7 @@ paths:
         - qos-specs
   /v3/qos-specs/{id}/delete_keys:
     parameters:
-      - $ref: '#/components/parameters/v3_qos_specs_id'
+      - $ref: '#/components/parameters/qos_specs_id'
     put:
       description: |-
         Deletes specified keys in qos specs.
@@ -5610,7 +5622,7 @@ paths:
         - qos-specs
   /v3/qos-specs/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_qos_specs_id'
+      - $ref: '#/components/parameters/qos_specs_id'
     get:
       description: |-
         Return a single qos spec item.
@@ -5657,8 +5669,8 @@ paths:
         - qos-specs
   /v3/{project_id}/os-quota-class-sets/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_os_quota_class_sets_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/os_quota_class_sets_id'
     get:
       operationId: project_id/os-quota-class-sets/id:get
       responses:
@@ -5692,7 +5704,7 @@ paths:
         - os-quota-class-sets
   /v3/os-quota-class-sets/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_os_quota_class_sets_id'
+      - $ref: '#/components/parameters/os_quota_class_sets_id'
     get:
       operationId: os-quota-class-sets/id:get
       responses:
@@ -5726,8 +5738,8 @@ paths:
         - os-quota-class-sets
   /v3/{project_id}/os-quota-sets/{id}/defaults:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_os_quota_sets_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/os_quota_sets_id'
     get:
       operationId: project_id/os-quota-sets/id/defaults:get
       responses:
@@ -5743,8 +5755,8 @@ paths:
         - os-quota-sets
   /v3/{project_id}/os-quota-sets/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_os_quota_sets_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/os_quota_sets_id'
     get:
       description: |-
         Show quota for a particular tenant
@@ -5804,7 +5816,7 @@ paths:
         - os-quota-sets
   /v3/os-quota-sets/{id}/defaults:
     parameters:
-      - $ref: '#/components/parameters/v3_os_quota_sets_id'
+      - $ref: '#/components/parameters/os_quota_sets_id'
     get:
       operationId: os-quota-sets/id/defaults:get
       responses:
@@ -5820,7 +5832,7 @@ paths:
         - os-quota-sets
   /v3/os-quota-sets/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_os_quota_sets_id'
+      - $ref: '#/components/parameters/os_quota_sets_id'
     get:
       description: |-
         Show quota for a particular tenant
@@ -5880,7 +5892,7 @@ paths:
         - os-quota-sets
   /v3/{project_id}/scheduler-stats/get_pools:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists all back-end storage pools. Since v3.31 if non-admin users
@@ -5917,7 +5929,7 @@ paths:
         - scheduler-stats
   /v3/{project_id}/os-services:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists all Cinder services. Provides details why any services
@@ -5938,8 +5950,8 @@ paths:
       summary: List All Cinder Services
   /v3/{project_id}/os-services/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_os_services_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/os_services_id'
     put:
       description: |-
         Enable/Disable scheduling for a service.
@@ -5985,7 +5997,7 @@ paths:
         - os-services
   /v3/os-services/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_os_services_id'
+      - $ref: '#/components/parameters/os_services_id'
     put:
       description: |-
         Enable/Disable scheduling for a service.
@@ -6013,7 +6025,7 @@ paths:
         - os-services
   /v3/{project_id}/os-snapshot-manage/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |-
         Returns a detailed list of snapshots available to manage.
@@ -6031,7 +6043,7 @@ paths:
         - os-snapshot-manage
   /v3/{project_id}/os-snapshot-manage:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |-
         Returns a summary list of snapshots available to manage.
@@ -6199,8 +6211,8 @@ paths:
         - os-snapshot-manage
   /v3/{project_id}/types/{type_id}/extra_specs:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_types_type_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/types_type_id'
     get:
       description: |-
         Returns the list of extra specs for a given volume type.
@@ -6236,9 +6248,9 @@ paths:
         - types
   /v3/{project_id}/types/{type_id}/extra_specs/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_types_type_id'
-      - $ref: '#/components/parameters/v3_types_extra_specs_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/types_type_id'
+      - $ref: '#/components/parameters/types_extra_specs_id'
     get:
       description: |-
         Return a single extra spec item.
@@ -6285,7 +6297,7 @@ paths:
         - types
   /v3/types/{type_id}/extra_specs:
     parameters:
-      - $ref: '#/components/parameters/v3_types_type_id'
+      - $ref: '#/components/parameters/types_type_id'
     get:
       description: |-
         Returns the list of extra specs for a given volume type.
@@ -6321,8 +6333,8 @@ paths:
         - types
   /v3/types/{type_id}/extra_specs/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_types_type_id'
-      - $ref: '#/components/parameters/v3_types_extra_specs_id'
+      - $ref: '#/components/parameters/types_type_id'
+      - $ref: '#/components/parameters/types_extra_specs_id'
     get:
       description: |-
         Return a single extra spec item.
@@ -6369,8 +6381,8 @@ paths:
         - types
   /v3/{project_id}/volumes/{volume_id}/encryption:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_volumes_volume_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/volumes_volume_id'
     get:
       description: |-
         Returns the encryption metadata for a given volume.
@@ -6388,9 +6400,9 @@ paths:
         - volumes
   /v3/{project_id}/volumes/{volume_id}/encryption/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_volumes_volume_id'
-      - $ref: '#/components/parameters/v3_volumes_encryption_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/volumes_volume_id'
+      - $ref: '#/components/parameters/volumes_encryption_id'
     get:
       description: |-
         Return a single encryption item.
@@ -6408,7 +6420,7 @@ paths:
         - volumes
   /v3/volumes/{volume_id}/encryption:
     parameters:
-      - $ref: '#/components/parameters/v3_volumes_volume_id'
+      - $ref: '#/components/parameters/volumes_volume_id'
     get:
       description: |-
         Returns the encryption metadata for a given volume.
@@ -6426,8 +6438,8 @@ paths:
         - volumes
   /v3/volumes/{volume_id}/encryption/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_volumes_volume_id'
-      - $ref: '#/components/parameters/v3_volumes_encryption_id'
+      - $ref: '#/components/parameters/volumes_volume_id'
+      - $ref: '#/components/parameters/volumes_encryption_id'
     get:
       description: |-
         Return a single encryption item.
@@ -6445,7 +6457,7 @@ paths:
         - volumes
   /v3/{project_id}/os-volume-manage/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |-
         Returns a detailed list of volumes available to manage.
@@ -6463,7 +6475,7 @@ paths:
         - os-volume-manage
   /v3/{project_id}/os-volume-manage:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |-
         Returns a summary list of volumes available to manage.
@@ -6651,7 +6663,7 @@ paths:
         - os-volume-manage
   /v3/{project_id}/os-volume-transfer/detail:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists volume transfers, with details.
@@ -6671,7 +6683,7 @@ paths:
       summary: List volume transfers and details
   /v3/{project_id}/os-volume-transfer:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
+      - $ref: '#/components/parameters/project_id'
     get:
       description: |+
         Lists volume transfers.
@@ -6715,8 +6727,8 @@ paths:
       summary: Create a volume transfer
   /v3/{project_id}/os-volume-transfer/{id}/accept:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_os_volume_transfer_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/os_volume_transfer_id'
     post:
       description: |-
         Accept a new volume transfer.
@@ -6739,8 +6751,8 @@ paths:
         - os-volume-transfer
   /v3/{project_id}/os-volume-transfer/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_os_volume_transfer_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/os_volume_transfer_id'
     get:
       description: |-
         Return data about active transfers.
@@ -6821,7 +6833,7 @@ paths:
         - os-volume-transfer
   /v3/os-volume-transfer/{id}/accept:
     parameters:
-      - $ref: '#/components/parameters/v3_os_volume_transfer_id'
+      - $ref: '#/components/parameters/os_volume_transfer_id'
     post:
       description: |-
         Accept a new volume transfer.
@@ -6844,7 +6856,7 @@ paths:
         - os-volume-transfer
   /v3/os-volume-transfer/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_os_volume_transfer_id'
+      - $ref: '#/components/parameters/os_volume_transfer_id'
     get:
       description: |-
         Return data about active transfers.
@@ -6873,8 +6885,8 @@ paths:
         - os-volume-transfer
   /v3/{project_id}/types/{type_id}/os-volume-type-access:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_types_type_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/types_type_id'
     get:
       operationId: project_id/types/type_id/os-volume-type-access:get
       responses:
@@ -6890,7 +6902,7 @@ paths:
         - types
   /v3/types/{type_id}/os-volume-type-access:
     parameters:
-      - $ref: '#/components/parameters/v3_types_type_id'
+      - $ref: '#/components/parameters/types_type_id'
     get:
       operationId: types/type_id/os-volume-type-access:get
       responses:
@@ -6906,8 +6918,8 @@ paths:
         - types
   /v3/{project_id}/types/{type_id}/encryption:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_types_type_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/types_type_id'
     get:
       description: |-
         Returns the encryption specs for a given volume type.
@@ -6945,9 +6957,9 @@ paths:
         - types
   /v3/{project_id}/types/{type_id}/encryption/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_project_id'
-      - $ref: '#/components/parameters/v3_types_type_id'
-      - $ref: '#/components/parameters/v3_types_encryption_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/types_type_id'
+      - $ref: '#/components/parameters/types_encryption_id'
     get:
       description: |-
         Return a single encryption item.
@@ -6996,7 +7008,7 @@ paths:
         - types
   /v3/types/{type_id}/encryption:
     parameters:
-      - $ref: '#/components/parameters/v3_types_type_id'
+      - $ref: '#/components/parameters/types_type_id'
     get:
       description: |-
         Returns the encryption specs for a given volume type.
@@ -7034,8 +7046,8 @@ paths:
         - types
   /v3/types/{type_id}/encryption/{id}:
     parameters:
-      - $ref: '#/components/parameters/v3_types_type_id'
-      - $ref: '#/components/parameters/v3_types_encryption_id'
+      - $ref: '#/components/parameters/types_type_id'
+      - $ref: '#/components/parameters/types_encryption_id'
     get:
       description: |-
         Return a single encryption item.
@@ -7086,7 +7098,7 @@ components:
   schemas:
     RootListResponse:
       type: object
-      description: Response of the v3:get operation
+      description: Response of the :get operation
     VolumesDetailResponse:
       type: object
       description: Response of the project_id/volumes/detail:get operation
@@ -7215,8 +7227,8 @@ components:
             - 'null'
       additionalProperties: false
       x-openstack:
-        min_ver: '3.0'
-        max_ver: '3.12'
+        min-ver: '3.0'
+        max-ver: '3.12'
       required:
         - volume
     VolumesCreate_313:
@@ -7347,8 +7359,8 @@ components:
             - 'null'
       additionalProperties: false
       x-openstack:
-        min_ver: '3.13'
-        max_ver: '3.46'
+        min-ver: '3.13'
+        max-ver: '3.46'
       required:
         - volume
     VolumesCreate_347:
@@ -7484,8 +7496,8 @@ components:
             - 'null'
       additionalProperties: false
       x-openstack:
-        min_ver: '3.47'
-        max_ver: '3.52'
+        min-ver: '3.47'
+        max-ver: '3.52'
       required:
         - volume
     VolumesCreate_353:
@@ -7621,7 +7633,7 @@ components:
             - 'null'
       additionalProperties: false
       x-openstack:
-        min_ver: '3.53'
+        min-ver: '3.53'
       required:
         - volume
     VolumesCreateRequest:
@@ -7648,7 +7660,9 @@ components:
         action-name: revert
     VolumesActionRevertResponse:
       type: object
-      description: Response of the project_id/volumes/id/action:post operation
+      description: Response of the project_id/volumes/id/action:post:revert action
+      x-openstack:
+        action-name: revert
     VolumesActionOs-Reset_StatusRequest:
       type: object
       description: Empty body for os-reset_status action
@@ -7694,6 +7708,8 @@ components:
                 - 'null'
           additionalProperties: false
       additionalProperties: false
+      x-openstack:
+        action-name: os-force_detach
       required:
         - os-force_detach
     VolumesActionOs-Force_DetachResponse:
@@ -7778,8 +7794,9 @@ components:
             - host
       additionalProperties: false
       x-openstack:
-        min_ver: '3.0'
-        max_ver: '3.15'
+        min-ver: '3.0'
+        max-ver: '3.15'
+        action-name: os-migrate_volume
       required:
         - os-migrate_volume
     VolumesAction_Migrate_Volume_316:
@@ -7864,7 +7881,8 @@ components:
           additionalProperties: false
       additionalProperties: false
       x-openstack:
-        min_ver: '3.16'
+        min-ver: '3.16'
+        action-name: os-migrate_volume
       required:
         - os-migrate_volume
     VolumesActionOs-Migrate_VolumeRequest:
@@ -7898,6 +7916,8 @@ components:
           required:
             - new_volume
       additionalProperties: false
+      x-openstack:
+        action-name: os-migrate_volume_completion
       required:
         - os-migrate_volume_completion
     VolumesActionOs-Migrate_Volume_CompletionResponse:
@@ -7936,6 +7956,8 @@ components:
           required:
             - mountpoint
       additionalProperties: false
+      x-openstack:
+        action-name: os-attach
       required:
         - os-attach
     VolumesActionOs-AttachResponse:
@@ -7958,6 +7980,8 @@ components:
                 - type: 'null'
           additionalProperties: false
       additionalProperties: false
+      x-openstack:
+        action-name: os-detach
       required:
         - os-detach
     VolumesActionOs-DetachResponse:
@@ -8034,6 +8058,8 @@ components:
           required:
             - connector
       additionalProperties: false
+      x-openstack:
+        action-name: os-initialize_connection
       required:
         - os-initialize_connection
     VolumesActionOs-Initialize_ConnectionResponse:
@@ -8057,6 +8083,8 @@ components:
           required:
             - connector
       additionalProperties: false
+      x-openstack:
+        action-name: os-terminate_connection
       required:
         - os-terminate_connection
     VolumesActionOs-Terminate_ConnectionResponse:
@@ -8129,8 +8157,9 @@ components:
             - image_name
       additionalProperties: false
       x-openstack:
-        min_ver: '3.0'
-        max_ver: '3.0'
+        min-ver: '3.0'
+        max-ver: '3.0'
+        action-name: os-volume_upload_image
       required:
         - os-volume_upload_image
     VolumesAction_Volume_Upload_Image_31:
@@ -8235,7 +8264,8 @@ components:
             - image_name
       additionalProperties: false
       x-openstack:
-        min_ver: '3.1'
+        min-ver: '3.1'
+        action-name: os-volume_upload_image
       required:
         - os-volume_upload_image
     VolumesActionOs-Volume_Upload_ImageRequest:
@@ -8268,6 +8298,8 @@ components:
           required:
             - new_size
       additionalProperties: false
+      x-openstack:
+        action-name: os-extend
       required:
         - os-extend
     VolumesActionOs-ExtendResponse:
@@ -8316,6 +8348,8 @@ components:
           required:
             - readonly
       additionalProperties: false
+      x-openstack:
+        action-name: os-update_readonly_flag
       required:
         - os-update_readonly_flag
     VolumesActionOs-Update_Readonly_FlagResponse:
@@ -8343,6 +8377,8 @@ components:
           required:
             - new_type
       additionalProperties: false
+      x-openstack:
+        action-name: os-retype
       required:
         - os-retype
     VolumesActionOs-RetypeResponse:
@@ -8391,6 +8427,8 @@ components:
           required:
             - bootable
       additionalProperties: false
+      x-openstack:
+        action-name: os-set_bootable
       required:
         - os-set_bootable
     VolumesActionOs-Set_BootableResponse:
@@ -8427,6 +8465,8 @@ components:
           required:
             - metadata
       additionalProperties: false
+      x-openstack:
+        action-name: os-set_image_metadata
       required:
         - os-set_image_metadata
     VolumesActionOs-Set_Image_MetadataResponse:
@@ -8463,6 +8503,8 @@ components:
           required:
             - key
       additionalProperties: false
+      x-openstack:
+        action-name: os-unset_image_metadata
       required:
         - os-unset_image_metadata
     VolumesActionOs-Unset_Image_MetadataResponse:
@@ -8520,8 +8562,8 @@ components:
           additionalProperties: false
       additionalProperties: false
       x-openstack:
-        min_ver: '3.0'
-        max_ver: '3.52'
+        min-ver: '3.0'
+        max-ver: '3.52'
       required:
         - volume
     VolumeUpdate_353:
@@ -8571,7 +8613,7 @@ components:
                 - metadata
       additionalProperties: false
       x-openstack:
-        min_ver: '3.53'
+        min-ver: '3.53'
       required:
         - volume
     VolumeUpdateRequest:
@@ -8745,6 +8787,8 @@ components:
           required:
             - name
       additionalProperties: false
+      x-openstack:
+        action-name: create
       required:
         - volume_type
     TypesActionCreateResponse:
@@ -8805,6 +8849,8 @@ components:
                 - f
           additionalProperties: false
       additionalProperties: false
+      x-openstack:
+        action-name: update
       required:
         - volume_type
     TypesActionUpdateResponse:
@@ -8839,6 +8885,8 @@ components:
           required:
             - project
       additionalProperties: false
+      x-openstack:
+        action-name: addProjectAccess
       required:
         - addProjectAccess
     TypesActionAddprojectaccessResponse:
@@ -8861,6 +8909,8 @@ components:
           required:
             - project
       additionalProperties: false
+      x-openstack:
+        action-name: removeProjectAccess
       required:
         - removeProjectAccess
     TypesActionRemoveprojectaccessResponse:
@@ -8995,6 +9045,8 @@ components:
           required:
             - name
       additionalProperties: false
+      x-openstack:
+        min-ver: '3.11'
       required:
         - group_type
     Group_TypesCreateResponse:
@@ -9056,6 +9108,8 @@ components:
                 - f
           additionalProperties: false
       additionalProperties: false
+      x-openstack:
+        min-ver: '3.11'
       required:
         - group_type
     Group_TypeUpdateResponse:
@@ -9077,6 +9131,8 @@ components:
                 - 'null'
               maxLength: 255
       additionalProperties: false
+      x-openstack:
+        min-ver: '3.11'
       required:
         - group_specs
     Group_TypesGroup_SpecsCreateResponse:
@@ -9090,6 +9146,8 @@ components:
     Group_TypesGroup_SpecUpdate:
       type: object
       additionalProperties: false
+      x-openstack:
+        min-ver: '3.11'
       patternProperties:
         ^[a-zA-Z0-9-_:.]{1,255}$:
           type:
@@ -9149,6 +9207,8 @@ components:
             - group_type
             - volume_types
       additionalProperties: false
+      x-openstack:
+        min-ver: '3.13'
       required:
         - group
     GroupsCreateResponse:
@@ -9157,83 +9217,229 @@ components:
     GroupsListResponse:
       type: object
       description: Response of the project_id/groups:get operation
-    GroupsActionReset_StatusRequest:
+    GroupsActionReset_Status:
       type: object
-      description: Empty body for reset_status action
       properties:
         reset_status:
-          type: 'null'
+          type: object
+          properties:
+            status:
+              type: string
+              format: group_status
+          additionalProperties: false
+          required:
+            - status
+      additionalProperties: false
       x-openstack:
+        min-ver: '3.20'
         action-name: reset_status
+      required:
+        - reset_status
     GroupsActionReset_StatusResponse:
       type: object
-      description: Response of the project_id/groups/id/action:post operation
-    GroupsActionDeleteRequest:
+      description: Response of the project_id/groups/id/action:post:reset_status action
+      x-openstack:
+        action-name: reset_status
+    GroupsActionDelete_Group:
       type: object
-      description: Empty body for delete action
       properties:
         delete:
-          type: 'null'
+          type: object
+          properties:
+            delete-volumes:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+          additionalProperties: false
+      additionalProperties: false
       x-openstack:
+        min-ver: '3.13'
         action-name: delete
+      required:
+        - delete
     GroupsActionDeleteResponse:
       type: object
-      description: Response of the project_id/groups/id/action:post operation
-    GroupsActionCreate-From-SrcRequest:
+      description: Response of the project_id/groups/id/action:post:delete action
+      x-openstack:
+        action-name: delete
+    GroupsActionCreate_From_Src:
       type: object
-      description: Empty body for create-from-src action
       properties:
         create-from-src:
-          type: 'null'
+          type: object
+          properties:
+            description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+            name:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+            source_group_id:
+              type: string
+              format: uuid
+            group_snapshot_id:
+              type: string
+              format: uuid
+          additionalProperties: false
+          oneOf:
+            - required:
+                - group_snapshot_id
+            - required:
+                - source_group_id
+      additionalProperties: false
       x-openstack:
+        min-ver: '3.14'
         action-name: create-from-src
+      required:
+        - create-from-src
     GroupsActionCreate-From-SrcResponse:
       type: object
-      description: Response of the project_id/groups/id/action:post operation
-    GroupsActionEnable_ReplicationRequest:
+      description: Response of the project_id/groups/id/action:post:create-from-src
+        action
+      x-openstack:
+        action-name: create-from-src
+    GroupsActionEnable_Replication:
       type: object
-      description: Empty body for enable_replication action
       properties:
         enable_replication:
-          type: 'null'
+          type: object
+      additionalProperties: false
       x-openstack:
+        min-ver: '3.38'
         action-name: enable_replication
+      required:
+        - enable_replication
     GroupsActionEnable_ReplicationResponse:
       type: object
-      description: Response of the project_id/groups/id/action:post operation
-    GroupsActionDisable_ReplicationRequest:
+      description: Response of the project_id/groups/id/action:post:enable_replication
+        action
+      x-openstack:
+        action-name: enable_replication
+    GroupsActionDisable_Replication:
       type: object
-      description: Empty body for disable_replication action
       properties:
         disable_replication:
-          type: 'null'
+          type: object
+      additionalProperties: false
       x-openstack:
+        min-ver: '3.38'
         action-name: disable_replication
+      required:
+        - disable_replication
     GroupsActionDisable_ReplicationResponse:
       type: object
-      description: Response of the project_id/groups/id/action:post operation
-    GroupsActionFailover_ReplicationRequest:
+      description: Response of the project_id/groups/id/action:post:disable_replication
+        action
+      x-openstack:
+        action-name: disable_replication
+    GroupsActionFailover_Replication:
       type: object
-      description: Empty body for failover_replication action
       properties:
         failover_replication:
-          type: 'null'
+          type: object
+          properties:
+            allow_attached_volume:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+            secondary_backend_id:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+          additionalProperties: false
+      additionalProperties: false
       x-openstack:
+        min-ver: '3.38'
         action-name: failover_replication
+      required:
+        - failover_replication
     GroupsActionFailover_ReplicationResponse:
       type: object
-      description: Response of the project_id/groups/id/action:post operation
-    GroupsActionList_Replication_TargetsRequest:
+      description: Response of the project_id/groups/id/action:post:failover_replication
+        action
+      x-openstack:
+        action-name: failover_replication
+    GroupsActionList_Replication_Targets:
       type: object
-      description: Empty body for list_replication_targets action
       properties:
         list_replication_targets:
-          type: 'null'
+          type: object
+      additionalProperties: false
       x-openstack:
+        min-ver: '3.38'
         action-name: list_replication_targets
+      required:
+        - list_replication_targets
     GroupsActionList_Replication_TargetsResponse:
       type: object
-      description: Response of the project_id/groups/id/action:post operation
+      description: Response of the project_id/groups/id/action:post:list_replication_targets
+        action
+      x-openstack:
+        action-name: list_replication_targets
     GroupUpdate:
       type: object
       properties:
@@ -9281,6 +9487,8 @@ components:
             - required:
                 - remove_volumes
       additionalProperties: false
+      x-openstack:
+        min-ver: '3.13'
       required:
         - group
     GroupUpdateResponse:
@@ -9319,6 +9527,8 @@ components:
           required:
             - group_id
       additionalProperties: false
+      x-openstack:
+        min-ver: '3.14'
       required:
         - group_snapshot
     Group_SnapshotsCreateResponse:
@@ -9327,17 +9537,30 @@ components:
     Group_SnapshotsListResponse:
       type: object
       description: Response of the project_id/group_snapshots:get operation
-    Group_SnapshotsActionReset_StatusRequest:
+    Group_SnapshotsActionReset_Status:
       type: object
-      description: Empty body for reset_status action
       properties:
         reset_status:
-          type: 'null'
+          type: object
+          properties:
+            status:
+              type: string
+              format: group_snapshot_status
+          additionalProperties: false
+          required:
+            - status
+      additionalProperties: false
       x-openstack:
+        min-ver: '3.19'
         action-name: reset_status
+      required:
+        - reset_status
     Group_SnapshotsActionReset_StatusResponse:
       type: object
-      description: Response of the project_id/group_snapshots/id/action:post operation
+      description: Response of the project_id/group_snapshots/id/action:post:reset_status
+        action
+      x-openstack:
+        action-name: reset_status
     Group_SnapshotShowResponse:
       type: object
       description: Response of the project_id/group_snapshots/id:get operation
@@ -9469,6 +9692,8 @@ components:
           required:
             - status
       additionalProperties: false
+      x-openstack:
+        action-name: os-update_snapshot_status
       required:
         - os-update_snapshot_status
     SnapshotsActionOs-Update_Snapshot_StatusResponse:
@@ -9794,8 +10019,8 @@ components:
             - volume_id
       additionalProperties: false
       x-openstack:
-        min_ver: '3.0'
-        max_ver: '3.42'
+        min-ver: '3.0'
+        max-ver: '3.42'
       required:
         - backup
     BackupsCreate_343:
@@ -9908,8 +10133,8 @@ components:
             - volume_id
       additionalProperties: false
       x-openstack:
-        min_ver: '3.43'
-        max_ver: '3.50'
+        min-ver: '3.43'
+        max-ver: '3.50'
       required:
         - backup
     BackupsCreate_351:
@@ -10028,7 +10253,7 @@ components:
             - volume_id
       additionalProperties: false
       x-openstack:
-        min_ver: '3.51'
+        min-ver: '3.51'
       required:
         - backup
     BackupsCreateRequest:
@@ -10069,8 +10294,8 @@ components:
           additionalProperties: false
       additionalProperties: false
       x-openstack:
-        min_ver: '3.9'
-        max_ver: '3.42'
+        min-ver: '3.9'
+        max-ver: '3.42'
       required:
         - backup
     BackupUpdate_343:
@@ -10105,7 +10330,7 @@ components:
           additionalProperties: false
       additionalProperties: false
       x-openstack:
-        min_ver: '3.43'
+        min-ver: '3.43'
       required:
         - backup
     BackupUpdateRequest:
@@ -10144,8 +10369,8 @@ components:
             - volume_uuid
       additionalProperties: false
       x-openstack:
-        min_ver: '3.27'
-        max_ver: '3.53'
+        min-ver: '3.27'
+        max-ver: '3.53'
       required:
         - attachment
     AttachmentsCreate_354:
@@ -10174,7 +10399,7 @@ components:
             - volume_uuid
       additionalProperties: false
       x-openstack:
-        min_ver: '3.54'
+        min-ver: '3.54'
       required:
         - attachment
     AttachmentsCreateRequest:
@@ -10197,9 +10422,6 @@ components:
           type: 'null'
       x-openstack:
         action-name: os-complete
-    AttachmentsActionOs-CompleteResponse:
-      type: object
-      description: Response of the project_id/attachments/id/action:post operation
     AttachmentUpdate:
       type: object
       properties:
@@ -10213,6 +10435,8 @@ components:
           required:
             - connector
       additionalProperties: false
+      x-openstack:
+        min-ver: '3.27'
       required:
         - attachment
     AttachmentUpdateResponse:
@@ -10323,6 +10547,8 @@ components:
           pattern: ^[0-9]*$
           maxLength: 11
       additionalProperties: false
+      x-openstack:
+        min-ver: '3.24'
     WorkersCleanupResponse:
       type: object
       description: Response of the project_id/workers/cleanup:post operation
@@ -10351,8 +10577,8 @@ components:
             - volume_id
       additionalProperties: false
       x-openstack:
-        min_ver: '3.0'
-        max_ver: '3.54'
+        min-ver: '3.0'
+        max-ver: '3.54'
       required:
         - transfer
     Volume_TransfersCreate_355:
@@ -10405,7 +10631,7 @@ components:
             - volume_id
       additionalProperties: false
       x-openstack:
-        min_ver: '3.55'
+        min-ver: '3.55'
       required:
         - transfer
     Volume_TransfersCreateRequest:
@@ -10456,6 +10682,8 @@ components:
           additionalProperties: false
           required:
             - volume_type
+      x-openstack:
+        min-ver: '3.62'
     Default_TypeCreate_UpdateResponse:
       type: object
       description: Response of the default-types/id:put operation
@@ -10545,6 +10773,8 @@ components:
           required:
             - status
       additionalProperties: false
+      x-openstack:
+        action-name: os-reset_status
       required:
         - os-reset_status
     BackupsActionOs-Reset_StatusResponse:
@@ -10957,8 +11187,8 @@ components:
             - ref
       additionalProperties: false
       x-openstack:
-        min_ver: '3.0'
-        max_ver: '3.15'
+        min-ver: '3.0'
+        max-ver: '3.15'
       required:
         - volume
     Os_Volume_ManageCreate_316:
@@ -11055,7 +11285,7 @@ components:
             - ref
       additionalProperties: false
       x-openstack:
-        min_ver: '3.16'
+        min-ver: '3.16'
       required:
         - volume
     Os_Volume_ManageCreateRequest:
@@ -11206,7 +11436,7 @@ components:
       type: object
       description: Response of the project_id/types/type_id/encryption/id:get operation
   parameters:
-    v3_project_id:
+    project_id:
       in: path
       name: project_id
       description: project_id parameter for /v3/{project_id}/types/{type_id}/encryption/{id}
@@ -11214,42 +11444,42 @@ components:
       schema:
         type: string
       required: true
-    v3_volumes_id:
+    volumes_id:
       in: path
       name: id
       description: id parameter for /v3/volumes/{id} API
       schema:
         type: string
       required: true
-    v3_messages_id:
+    messages_id:
       in: path
       name: id
       description: id parameter for /v3/messages/{id} API
       schema:
         type: string
       required: true
-    v3_clusters_id:
+    clusters_id:
       in: path
       name: id
       description: id parameter for /v3/clusters/{id} API
       schema:
         type: string
       required: true
-    v3_types_id:
+    types_id:
       in: path
       name: id
       description: id parameter for /v3/types/{id} API
       schema:
         type: string
       required: true
-    v3_group_types_id:
+    group_types_id:
       in: path
       name: id
       description: id parameter for /v3/group_types/{id} API
       schema:
         type: string
       required: true
-    v3_group_types_group_type_id:
+    group_types_group_type_id:
       in: path
       name: group_type_id
       description: group_type_id parameter for /v3/group_types/{group_type_id}/group_specs/{id}
@@ -11257,7 +11487,7 @@ components:
       schema:
         type: string
       required: true
-    v3_group_types_group_specs_id:
+    group_types_group_specs_id:
       in: path
       name: id
       description: id parameter for /v3/group_types/{group_type_id}/group_specs/{id}
@@ -11265,35 +11495,35 @@ components:
       schema:
         type: string
       required: true
-    v3_groups_id:
+    groups_id:
       in: path
       name: id
       description: id parameter for /v3/groups/{id}/action API
       schema:
         type: string
       required: true
-    v3_group_snapshots_id:
+    group_snapshots_id:
       in: path
       name: id
       description: id parameter for /v3/group_snapshots/{id}/action API
       schema:
         type: string
       required: true
-    v3_snapshots_id:
+    snapshots_id:
       in: path
       name: id
       description: id parameter for /v3/snapshots/{id} API
       schema:
         type: string
       required: true
-    v3_limits_id:
+    limits_id:
       in: path
       name: id
       description: id parameter for /v3/limits/{id} API
       schema:
         type: string
       required: true
-    v3_snapshots_snapshot_id:
+    snapshots_snapshot_id:
       in: path
       name: snapshot_id
       description: snapshot_id parameter for /v3/snapshots/{snapshot_id}/metadata
@@ -11301,14 +11531,14 @@ components:
       schema:
         type: string
       required: true
-    v3_snapshots_metadata_id:
+    snapshots_metadata_id:
       in: path
       name: id
       description: id parameter for /v3/snapshots/{snapshot_id}/metadata/{id} API
       schema:
         type: string
       required: true
-    v3_volumes_volume_id:
+    volumes_volume_id:
       in: path
       name: volume_id
       description: volume_id parameter for /v3/volumes/{volume_id}/encryption/{id}
@@ -11316,189 +11546,189 @@ components:
       schema:
         type: string
       required: true
-    v3_volumes_metadata_id:
+    volumes_metadata_id:
       in: path
       name: id
       description: id parameter for /v3/volumes/{volume_id}/metadata/{id} API
       schema:
         type: string
       required: true
-    v3_consistencygroups_id:
+    consistencygroups_id:
       in: path
       name: id
       description: id parameter for /v3/consistencygroups/{id} API
       schema:
         type: string
       required: true
-    v3_manageable_volumes_id:
+    manageable_volumes_id:
       in: path
       name: id
       description: id parameter for /v3/manageable_volumes/{id} API
       schema:
         type: string
       required: true
-    v3_manageable_snapshots_id:
+    manageable_snapshots_id:
       in: path
       name: id
       description: id parameter for /v3/manageable_snapshots/{id} API
       schema:
         type: string
       required: true
-    v3_backups_id:
+    backups_id:
       in: path
       name: id
       description: id parameter for /v3/backups/{id} API
       schema:
         type: string
       required: true
-    v3_attachments_id:
+    attachments_id:
       in: path
       name: id
       description: id parameter for /v3/attachments/{id} API
       schema:
         type: string
       required: true
-    v3_workers_id:
+    workers_id:
       in: path
       name: id
       description: id parameter for /v3/workers/{id} API
       schema:
         type: string
       required: true
-    v3_resource_filters_id:
+    resource_filters_id:
       in: path
       name: id
       description: id parameter for /v3/resource_filters/{id} API
       schema:
         type: string
       required: true
-    v3_volume_transfers_id:
+    volume_transfers_id:
       in: path
       name: id
       description: id parameter for /v3/volume-transfers/{id} API
       schema:
         type: string
       required: true
-    v3_default_types_id:
+    default_types_id:
       in: path
       name: id
       description: id parameter for /v3/default-types/{id} API
       schema:
         type: string
       required: true
-    v3_extensions_id:
+    extensions_id:
       in: path
       name: id
       description: id parameter for /v3/extensions/{id} API
       schema:
         type: string
       required: true
-    v3_os_availability_zone_id:
+    os_availability_zone_id:
       in: path
       name: id
       description: id parameter for /v3/os-availability-zone/{id} API
       schema:
         type: string
       required: true
-    v3_capabilities_id:
+    capabilities_id:
       in: path
       name: id
       description: id parameter for /v3/capabilities/{id} API
       schema:
         type: string
       required: true
-    v3_cgsnapshots_id:
+    cgsnapshots_id:
       in: path
       name: id
       description: id parameter for /v3/cgsnapshots/{id} API
       schema:
         type: string
       required: true
-    v3_os_hosts_id:
+    os_hosts_id:
       in: path
       name: id
       description: id parameter for /v3/os-hosts/{id} API
       schema:
         type: string
       required: true
-    v3_qos_specs_id:
+    qos_specs_id:
       in: path
       name: id
       description: id parameter for /v3/qos-specs/{id} API
       schema:
         type: string
       required: true
-    v3_os_quota_class_sets_id:
+    os_quota_class_sets_id:
       in: path
       name: id
       description: id parameter for /v3/os-quota-class-sets/{id} API
       schema:
         type: string
       required: true
-    v3_os_quota_sets_id:
+    os_quota_sets_id:
       in: path
       name: id
       description: id parameter for /v3/os-quota-sets/{id} API
       schema:
         type: string
       required: true
-    v3_scheduler_stats_id:
+    scheduler_stats_id:
       in: path
       name: id
       description: id parameter for /v3/scheduler-stats/{id} API
       schema:
         type: string
       required: true
-    v3_os_services_id:
+    os_services_id:
       in: path
       name: id
       description: id parameter for /v3/os-services/{id} API
       schema:
         type: string
       required: true
-    v3_os_snapshot_manage_id:
+    os_snapshot_manage_id:
       in: path
       name: id
       description: id parameter for /v3/os-snapshot-manage/{id} API
       schema:
         type: string
       required: true
-    v3_types_type_id:
+    types_type_id:
       in: path
       name: type_id
       description: type_id parameter for /v3/types/{type_id}/encryption/{id} API
       schema:
         type: string
       required: true
-    v3_types_extra_specs_id:
+    types_extra_specs_id:
       in: path
       name: id
       description: id parameter for /v3/types/{type_id}/extra_specs/{id} API
       schema:
         type: string
       required: true
-    v3_volumes_encryption_id:
+    volumes_encryption_id:
       in: path
       name: id
       description: id parameter for /v3/volumes/{volume_id}/encryption/{id} API
       schema:
         type: string
       required: true
-    v3_os_volume_manage_id:
+    os_volume_manage_id:
       in: path
       name: id
       description: id parameter for /v3/os-volume-manage/{id} API
       schema:
         type: string
       required: true
-    v3_os_volume_transfer_id:
+    os_volume_transfer_id:
       in: path
       name: id
       description: id parameter for /v3/os-volume-transfer/{id} API
       schema:
         type: string
       required: true
-    v3_types_os_volume_type_access_id:
+    types_os_volume_type_access_id:
       in: path
       name: id
       description: id parameter for /v3/types/{type_id}/os-volume-type-access/{id}
@@ -11506,7 +11736,7 @@ components:
       schema:
         type: string
       required: true
-    v3_types_encryption_id:
+    types_encryption_id:
       in: path
       name: id
       description: id parameter for /v3/types/{type_id}/encryption/{id} API

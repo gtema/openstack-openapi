@@ -1,0 +1,62 @@
+:root {
+
+.accordion, .operation {
+  /* Unset default bg color for accordion items */
+  --bs-accordion-active-bg: unset;
+}
+
+.api-group table.docutils {
+  width: 100%;
+  text-align: left;
+}
+
+.operation {
+}
+.operation-get {
+  border:1px solid #61affe;
+  background: #61affe1a;
+}
+.label-get {
+  background-color: #61affe !important;
+}
+.label-head {
+  background-color: #f3ad4e !important;
+}
+.operation-put {
+  background: #fca1301a;
+  border-color: #fca130;
+}
+.label-put {
+  background-color: #fca130;
+}
+.operation-post {
+  background: #49cc901a;
+  border-color: #49cc90;
+}
+.label-post {
+  background-color: #49cc90;
+}
+.operation-delete {
+  background: #f93e3e1a;
+  border-color: #f93e3e;
+}
+.label-delete {
+  background-color: #f93e3e;
+}
+
+.operation-path {
+  align-items: center;
+  color: #3b4151;
+  display: flex;
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.operation-summary {
+  color: #3b4151;
+  font-family: sans-serif;
+  font-size: 13px;
+  word-break: break-word;
+}

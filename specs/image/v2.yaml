@@ -330,7 +330,7 @@ paths:
         - metadefs
   /v2/metadefs/namespaces/{namespace}/resource_types:
     parameters:
-      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
     get:
       operationId: metadefs/namespaces/namespace/resource_types:get
       responses:
@@ -364,8 +364,8 @@ paths:
         - metadefs
   /v2/metadefs/namespaces/{namespace}/resource_types/{resource_type}:
     parameters:
-      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
-      - $ref: '#/components/parameters/v2_metadefs_namespaces_resource_types_resource_type'
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/metadefs_namespaces_resource_types_resource_type'
     delete:
       operationId: metadefs/namespaces/namespace/resource_types/resource_type:delete
       responses:
@@ -409,7 +409,7 @@ paths:
         - metadefs
   /v2/metadefs/namespaces/{namespace}:
     parameters:
-      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
     get:
       operationId: metadefs/namespaces/namespace:get
       responses:
@@ -452,7 +452,7 @@ paths:
         - metadefs
   /v2/metadefs/namespaces/{namespace}/properties:
     parameters:
-      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
     get:
       operationId: metadefs/namespaces/namespace/properties:get
       responses:
@@ -495,8 +495,8 @@ paths:
         - metadefs
   /v2/metadefs/namespaces/{namespace}/properties/{property_name}:
     parameters:
-      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
-      - $ref: '#/components/parameters/v2_metadefs_namespaces_properties_property_name'
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/metadefs_namespaces_properties_property_name'
     get:
       operationId: metadefs/namespaces/namespace/properties/property_name:get
       responses:
@@ -539,7 +539,7 @@ paths:
         - metadefs
   /v2/metadefs/namespaces/{namespace}/objects:
     parameters:
-      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
     get:
       operationId: metadefs/namespaces/namespace/objects:get
       responses:
@@ -582,8 +582,8 @@ paths:
         - metadefs
   /v2/metadefs/namespaces/{namespace}/objects/{object_name}:
     parameters:
-      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
-      - $ref: '#/components/parameters/v2_metadefs_namespaces_objects_object_name'
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/metadefs_namespaces_objects_object_name'
     get:
       operationId: metadefs/namespaces/namespace/objects/object_name:get
       responses:
@@ -626,7 +626,7 @@ paths:
         - metadefs
   /v2/metadefs/namespaces/{namespace}/tags:
     parameters:
-      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
     get:
       operationId: metadefs/namespaces/namespace/tags:get
       responses:
@@ -669,8 +669,8 @@ paths:
         - metadefs
   /v2/metadefs/namespaces/{namespace}/tags/{tag_name}:
     parameters:
-      - $ref: '#/components/parameters/v2_metadefs_namespaces_namespace'
-      - $ref: '#/components/parameters/v2_metadefs_namespaces_tags_tag_name'
+      - $ref: '#/components/parameters/metadefs_namespaces_namespace'
+      - $ref: '#/components/parameters/metadefs_namespaces_tags_tag_name'
     get:
       operationId: metadefs/namespaces/namespace/tags/tag_name:get
       responses:
@@ -884,7 +884,7 @@ paths:
       summary: Create image
   /v2/images/{image_id}:
     parameters:
-      - $ref: '#/components/parameters/v2_images_image_id'
+      - $ref: '#/components/parameters/images_image_id'
     get:
       description: |+
         Shows details for an image.
@@ -981,7 +981,7 @@ paths:
       summary: Update image
   /v2/images/{image_id}/tasks:
     parameters:
-      - $ref: '#/components/parameters/v2_images_image_id'
+      - $ref: '#/components/parameters/images_image_id'
     get:
       description: |+
         Shows tasks associated with an image.
@@ -1011,7 +1011,7 @@ paths:
       summary: Show tasks associated with image
   /v2/images/{image_id}/import:
     parameters:
-      - $ref: '#/components/parameters/v2_images_image_id'
+      - $ref: '#/components/parameters/images_image_id'
     post:
       description: |+
         Signals the Image Service to complete the image import workflow
@@ -1104,8 +1104,8 @@ paths:
       summary: Import an image
   /v2/stores/{store_id}/{image_id}:
     parameters:
-      - $ref: '#/components/parameters/v2_stores_store_id'
-      - $ref: '#/components/parameters/v2_stores_image_id'
+      - $ref: '#/components/parameters/stores_store_id'
+      - $ref: '#/components/parameters/stores_image_id'
     delete:
       description: |+
         This API allows you to delete a copy of the image from a specific store.
@@ -1126,7 +1126,7 @@ paths:
       summary: Delete image from store
   /v2/images/{image_id}/actions/deactivate:
     parameters:
-      - $ref: '#/components/parameters/v2_images_image_id'
+      - $ref: '#/components/parameters/images_image_id'
     post:
       description: |+
         Deactivates an image.
@@ -1167,7 +1167,7 @@ paths:
       summary: Deactivate image
   /v2/images/{image_id}/actions/reactivate:
     parameters:
-      - $ref: '#/components/parameters/v2_images_image_id'
+      - $ref: '#/components/parameters/images_image_id'
     post:
       description: |+
         Reactivates an image.
@@ -1204,7 +1204,7 @@ paths:
       summary: Reactivate image
   /v2/images/{image_id}/file:
     parameters:
-      - $ref: '#/components/parameters/v2_images_image_id'
+      - $ref: '#/components/parameters/images_image_id'
     get:
       description: |+
         Downloads binary image data.
@@ -1292,7 +1292,7 @@ paths:
       summary: Upload binary image data
   /v2/images/{image_id}/stage:
     parameters:
-      - $ref: '#/components/parameters/v2_images_image_id'
+      - $ref: '#/components/parameters/images_image_id'
     put:
       description: |+
         Places the binary image data in a staging area. It is not stored in
@@ -1340,8 +1340,8 @@ paths:
       summary: Stage binary image data
   /v2/images/{image_id}/tags/{tag_value}:
     parameters:
-      - $ref: '#/components/parameters/v2_images_image_id'
-      - $ref: '#/components/parameters/v2_images_tags_tag_value'
+      - $ref: '#/components/parameters/images_image_id'
+      - $ref: '#/components/parameters/images_tags_tag_value'
     delete:
       operationId: images/image_id/tags/tag_value:delete
       responses:
@@ -1371,7 +1371,7 @@ paths:
         - images
   /v2/images/{image_id}/members:
     parameters:
-      - $ref: '#/components/parameters/v2_images_image_id'
+      - $ref: '#/components/parameters/images_image_id'
     get:
       description: |+
         Lists the tenants that share this image.
@@ -1440,8 +1440,8 @@ paths:
       summary: Create image member
   /v2/images/{image_id}/members/{member_id}:
     parameters:
-      - $ref: '#/components/parameters/v2_images_image_id'
-      - $ref: '#/components/parameters/v2_images_members_member_id'
+      - $ref: '#/components/parameters/images_image_id'
+      - $ref: '#/components/parameters/images_members_member_id'
     get:
       description: |+
         Shows image member details.
@@ -1582,7 +1582,7 @@ paths:
       summary: Create task
   /v2/tasks/{task_id}:
     parameters:
-      - $ref: '#/components/parameters/v2_tasks_task_id'
+      - $ref: '#/components/parameters/tasks_task_id'
     get:
       description: |+
         Shows details for a task.
@@ -1755,7 +1755,7 @@ paths:
       summary: Clear images from cache
   /v2/cache/{image_id}:
     parameters:
-      - $ref: '#/components/parameters/v2_cache_image_id'
+      - $ref: '#/components/parameters/cache_image_id'
     delete:
       description: |+
         Deletes a image from cache.
@@ -5307,7 +5307,7 @@ components:
       type: object
       description: Response of the cache/image_id:put operation
   parameters:
-    v2_metadefs_namespaces_namespace:
+    metadefs_namespaces_namespace:
       in: path
       name: namespace
       description: namespace parameter for /v2/metadefs/namespaces/{namespace}/tags/{tag_name}
@@ -5315,7 +5315,7 @@ components:
       schema:
         type: string
       required: true
-    v2_metadefs_namespaces_resource_types_resource_type:
+    metadefs_namespaces_resource_types_resource_type:
       in: path
       name: resource_type
       description: resource_type parameter for /v2/metadefs/namespaces/{namespace}/resource_types/{resource_type}
@@ -5323,7 +5323,7 @@ components:
       schema:
         type: string
       required: true
-    v2_metadefs_namespaces_properties_property_name:
+    metadefs_namespaces_properties_property_name:
       in: path
       name: property_name
       description: property_name parameter for /v2/metadefs/namespaces/{namespace}/properties/{property_name}
@@ -5331,7 +5331,7 @@ components:
       schema:
         type: string
       required: true
-    v2_metadefs_namespaces_objects_object_name:
+    metadefs_namespaces_objects_object_name:
       in: path
       name: object_name
       description: object_name parameter for /v2/metadefs/namespaces/{namespace}/objects/{object_name}
@@ -5339,7 +5339,7 @@ components:
       schema:
         type: string
       required: true
-    v2_metadefs_namespaces_tags_tag_name:
+    metadefs_namespaces_tags_tag_name:
       in: path
       name: tag_name
       description: tag_name parameter for /v2/metadefs/namespaces/{namespace}/tags/{tag_name}
@@ -5347,7 +5347,7 @@ components:
       schema:
         type: string
       required: true
-    v2_images_image_id:
+    images_image_id:
       in: path
       name: image_id
       description: image_id parameter for /v2/images/{image_id}/members/{member_id}
@@ -5355,21 +5355,21 @@ components:
       schema:
         type: string
       required: true
-    v2_stores_store_id:
+    stores_store_id:
       in: path
       name: store_id
       description: store_id parameter for /v2/stores/{store_id}/{image_id} API
       schema:
         type: string
       required: true
-    v2_stores_image_id:
+    stores_image_id:
       in: path
       name: image_id
       description: image_id parameter for /v2/stores/{store_id}/{image_id} API
       schema:
         type: string
       required: true
-    v2_images_tags_tag_value:
+    images_tags_tag_value:
       in: path
       name: tag_value
       description: tag_value parameter for /v2/images/{image_id}/tags/{tag_value}
@@ -5377,7 +5377,7 @@ components:
       schema:
         type: string
       required: true
-    v2_images_members_member_id:
+    images_members_member_id:
       in: path
       name: member_id
       description: member_id parameter for /v2/images/{image_id}/members/{member_id}
@@ -5385,14 +5385,14 @@ components:
       schema:
         type: string
       required: true
-    v2_tasks_task_id:
+    tasks_task_id:
       in: path
       name: task_id
       description: task_id parameter for /v2/tasks/{task_id} API
       schema:
         type: string
       required: true
-    v2_cache_image_id:
+    cache_image_id:
       in: path
       name: image_id
       description: image_id parameter for /v2/cache/{image_id} API

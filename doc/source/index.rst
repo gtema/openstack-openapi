@@ -1,0 +1,7 @@
+==============
+OpenStack APIs
+==============
+
+.. toctree::
+
+   compute
