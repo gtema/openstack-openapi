@@ -2302,13 +2302,13 @@ components:
                   protocol:
                     type: string
                     enum:
-                      - SCTP
-                      - TCP
-                      - HTTP
-                      - HTTPS
-                      - TERMINATED_HTTPS
                       - UDP
+                      - HTTPS
+                      - HTTP
+                      - TCP
                       - PROMETHEUS
+                      - TERMINATED_HTTPS
+                      - SCTP
                   protocol_port:
                     type: integer
                     minimum: 1
@@ -2341,28 +2341,28 @@ components:
                       protocol:
                         type: string
                         enum:
+                          - UDP
+                          - HTTPS
+                          - HTTP
                           - PROXY
                           - SCTP
                           - TCP
-                          - HTTP
-                          - HTTPS
-                          - UDP
                           - PROXYV2
                       lb_algorithm:
                         type: string
                         enum:
-                          - SOURCE_IP_PORT
-                          - SOURCE_IP
-                          - LEAST_CONNECTIONS
                           - ROUND_ROBIN
+                          - LEAST_CONNECTIONS
+                          - SOURCE_IP
+                          - SOURCE_IP_PORT
                       session_persistence:
                         type: object
                         properties:
                           type:
                             type: string
                             enum:
-                              - SOURCE_IP
                               - HTTP_COOKIE
+                              - SOURCE_IP
                               - APP_COOKIE
                           cookie_name:
                             type: string
@@ -2385,13 +2385,13 @@ components:
                           type:
                             type: string
                             enum:
-                              - UDP-CONNECT
-                              - TLS-HELLO
-                              - SCTP
-                              - TCP
                               - PING
-                              - HTTP
+                              - UDP-CONNECT
                               - HTTPS
+                              - TLS-HELLO
+                              - HTTP
+                              - TCP
+                              - SCTP
                           delay:
                             type: integer
                           timeout:
@@ -2407,15 +2407,15 @@ components:
                           http_method:
                             type: string
                             enum:
+                              - GET
+                              - OPTIONS
+                              - PUT
+                              - DELETE
+                              - TRACE
+                              - CONNECT
                               - POST
                               - HEAD
                               - PATCH
-                              - OPTIONS
-                              - PUT
-                              - GET
-                              - CONNECT
-                              - TRACE
-                              - DELETE
                           url_path:
                             type: string
                             format: url_path
@@ -2440,10 +2440,10 @@ components:
                         description: |-
                           Defines mandatory and optional attributes of a POST request.
                         required:
-                          - delay
-                          - type
                           - max_retries
+                          - type
                           - timeout
+                          - delay
                       members:
                         type: array
                         items:
@@ -2533,10 +2533,10 @@ components:
                         action:
                           type: string
                           enum:
-                            - REDIRECT_TO_URL
-                            - REJECT
-                            - REDIRECT_PREFIX
                             - REDIRECT_TO_POOL
+                            - REDIRECT_TO_URL
+                            - REDIRECT_PREFIX
+                            - REJECT
                         redirect_pool:
                           type: object
                           properties:
@@ -2551,28 +2551,28 @@ components:
                             protocol:
                               type: string
                               enum:
+                                - UDP
+                                - HTTPS
+                                - HTTP
                                 - PROXY
                                 - SCTP
                                 - TCP
-                                - HTTP
-                                - HTTPS
-                                - UDP
                                 - PROXYV2
                             lb_algorithm:
                               type: string
                               enum:
-                                - SOURCE_IP_PORT
-                                - SOURCE_IP
-                                - LEAST_CONNECTIONS
                                 - ROUND_ROBIN
+                                - LEAST_CONNECTIONS
+                                - SOURCE_IP
+                                - SOURCE_IP_PORT
                             session_persistence:
                               type: object
                               properties:
                                 type:
                                   type: string
                                   enum:
-                                    - SOURCE_IP
                                     - HTTP_COOKIE
+                                    - SOURCE_IP
                                     - APP_COOKIE
                                 cookie_name:
                                   type: string
@@ -2595,13 +2595,13 @@ components:
                                 type:
                                   type: string
                                   enum:
-                                    - UDP-CONNECT
-                                    - TLS-HELLO
-                                    - SCTP
-                                    - TCP
                                     - PING
-                                    - HTTP
+                                    - UDP-CONNECT
                                     - HTTPS
+                                    - TLS-HELLO
+                                    - HTTP
+                                    - TCP
+                                    - SCTP
                                 delay:
                                   type: integer
                                 timeout:
@@ -2617,15 +2617,15 @@ components:
                                 http_method:
                                   type: string
                                   enum:
+                                    - GET
+                                    - OPTIONS
+                                    - PUT
+                                    - DELETE
+                                    - TRACE
+                                    - CONNECT
                                     - POST
                                     - HEAD
                                     - PATCH
-                                    - OPTIONS
-                                    - PUT
-                                    - GET
-                                    - CONNECT
-                                    - TRACE
-                                    - DELETE
                                 url_path:
                                   type: string
                                   format: url_path
@@ -2650,10 +2650,10 @@ components:
                               description: |-
                                 Defines mandatory and optional attributes of a POST request.
                               required:
-                                - delay
-                                - type
                                 - max_retries
+                                - type
                                 - timeout
+                                - delay
                             members:
                               type: array
                               items:
@@ -2745,22 +2745,22 @@ components:
                               type:
                                 type: string
                                 enum:
+                                  - SSL_DN_FIELD
+                                  - HEADER
+                                  - FILE_TYPE
+                                  - SSL_CONN_HAS_CERT
+                                  - PATH
                                   - COOKIE
                                   - HOST_NAME
                                   - SSL_VERIFY_RESULT
-                                  - FILE_TYPE
-                                  - HEADER
-                                  - SSL_CONN_HAS_CERT
-                                  - PATH
-                                  - SSL_DN_FIELD
                               compare_type:
                                 type: string
                                 enum:
                                   - ENDS_WITH
-                                  - STARTS_WITH
                                   - CONTAINS
-                                  - EQUAL_TO
                                   - REGEX
+                                  - STARTS_WITH
+                                  - EQUAL_TO
                               key:
                                 type: string
                                 maxLength: 255
@@ -2779,9 +2779,9 @@ components:
                             description: |-
                               Defines mandatory and optional attributes of a POST request.
                             required:
-                              - value
-                              - type
                               - compare_type
+                              - type
+                              - value
                         tags:
                           type: array
                           items:
@@ -2861,8 +2861,8 @@ components:
                 description: |-
                   Defines mandatory and optional attributes of a POST request.
                 required:
-                  - protocol_port
                   - protocol
+                  - protocol_port
             pools:
               type: array
               items:
@@ -2879,28 +2879,28 @@ components:
                   protocol:
                     type: string
                     enum:
+                      - UDP
+                      - HTTPS
+                      - HTTP
                       - PROXY
                       - SCTP
                       - TCP
-                      - HTTP
-                      - HTTPS
-                      - UDP
                       - PROXYV2
                   lb_algorithm:
                     type: string
                     enum:
-                      - SOURCE_IP_PORT
-                      - SOURCE_IP
-                      - LEAST_CONNECTIONS
                       - ROUND_ROBIN
+                      - LEAST_CONNECTIONS
+                      - SOURCE_IP
+                      - SOURCE_IP_PORT
                   session_persistence:
                     type: object
                     properties:
                       type:
                         type: string
                         enum:
-                          - SOURCE_IP
                           - HTTP_COOKIE
+                          - SOURCE_IP
                           - APP_COOKIE
                       cookie_name:
                         type: string
@@ -2923,13 +2923,13 @@ components:
                       type:
                         type: string
                         enum:
-                          - UDP-CONNECT
-                          - TLS-HELLO
-                          - SCTP
-                          - TCP
                           - PING
-                          - HTTP
+                          - UDP-CONNECT
                           - HTTPS
+                          - TLS-HELLO
+                          - HTTP
+                          - TCP
+                          - SCTP
                       delay:
                         type: integer
                       timeout:
@@ -2945,15 +2945,15 @@ components:
                       http_method:
                         type: string
                         enum:
+                          - GET
+                          - OPTIONS
+                          - PUT
+                          - DELETE
+                          - TRACE
+                          - CONNECT
                           - POST
                           - HEAD
                           - PATCH
-                          - OPTIONS
-                          - PUT
-                          - GET
-                          - CONNECT
-                          - TRACE
-                          - DELETE
                       url_path:
                         type: string
                         format: url_path
@@ -2978,10 +2978,10 @@ components:
                     description: |-
                       Defines mandatory and optional attributes of a POST request.
                     required:
-                      - delay
-                      - type
                       - max_retries
+                      - type
                       - timeout
+                      - delay
                   members:
                     type: array
                     items:
@@ -3944,13 +3944,13 @@ components:
             protocol:
               type: string
               enum:
-                - SCTP
-                - TCP
-                - HTTP
-                - HTTPS
-                - TERMINATED_HTTPS
                 - UDP
+                - HTTPS
+                - HTTP
+                - TCP
                 - PROMETHEUS
+                - TERMINATED_HTTPS
+                - SCTP
             protocol_port:
               type: integer
               minimum: 1
@@ -3986,28 +3986,28 @@ components:
                 protocol:
                   type: string
                   enum:
+                    - UDP
+                    - HTTPS
+                    - HTTP
                     - PROXY
                     - SCTP
                     - TCP
-                    - HTTP
-                    - HTTPS
-                    - UDP
                     - PROXYV2
                 lb_algorithm:
                   type: string
                   enum:
-                    - SOURCE_IP_PORT
-                    - SOURCE_IP
-                    - LEAST_CONNECTIONS
                     - ROUND_ROBIN
+                    - LEAST_CONNECTIONS
+                    - SOURCE_IP
+                    - SOURCE_IP_PORT
                 session_persistence:
                   type: object
                   properties:
                     type:
                       type: string
                       enum:
-                        - SOURCE_IP
                         - HTTP_COOKIE
+                        - SOURCE_IP
                         - APP_COOKIE
                     cookie_name:
                       type: string
@@ -4030,13 +4030,13 @@ components:
                     type:
                       type: string
                       enum:
-                        - UDP-CONNECT
-                        - TLS-HELLO
-                        - SCTP
-                        - TCP
                         - PING
-                        - HTTP
+                        - UDP-CONNECT
                         - HTTPS
+                        - TLS-HELLO
+                        - HTTP
+                        - TCP
+                        - SCTP
                     delay:
                       type: integer
                     timeout:
@@ -4052,15 +4052,15 @@ components:
                     http_method:
                       type: string
                       enum:
+                        - GET
+                        - OPTIONS
+                        - PUT
+                        - DELETE
+                        - TRACE
+                        - CONNECT
                         - POST
                         - HEAD
                         - PATCH
-                        - OPTIONS
-                        - PUT
-                        - GET
-                        - CONNECT
-                        - TRACE
-                        - DELETE
                     url_path:
                       type: string
                       format: url_path
@@ -4085,10 +4085,10 @@ components:
                   description: |-
                     Defines mandatory and optional attributes of a POST request.
                   required:
-                    - delay
-                    - type
                     - max_retries
+                    - type
                     - timeout
+                    - delay
                 members:
                   type: array
                   items:
@@ -4178,10 +4178,10 @@ components:
                   action:
                     type: string
                     enum:
-                      - REDIRECT_TO_URL
-                      - REJECT
-                      - REDIRECT_PREFIX
                       - REDIRECT_TO_POOL
+                      - REDIRECT_TO_URL
+                      - REDIRECT_PREFIX
+                      - REJECT
                   redirect_pool:
                     type: object
                     properties:
@@ -4196,28 +4196,28 @@ components:
                       protocol:
                         type: string
                         enum:
+                          - UDP
+                          - HTTPS
+                          - HTTP
                           - PROXY
                           - SCTP
                           - TCP
-                          - HTTP
-                          - HTTPS
-                          - UDP
                           - PROXYV2
                       lb_algorithm:
                         type: string
                         enum:
-                          - SOURCE_IP_PORT
-                          - SOURCE_IP
-                          - LEAST_CONNECTIONS
                           - ROUND_ROBIN
+                          - LEAST_CONNECTIONS
+                          - SOURCE_IP
+                          - SOURCE_IP_PORT
                       session_persistence:
                         type: object
                         properties:
                           type:
                             type: string
                             enum:
-                              - SOURCE_IP
                               - HTTP_COOKIE
+                              - SOURCE_IP
                               - APP_COOKIE
                           cookie_name:
                             type: string
@@ -4240,13 +4240,13 @@ components:
                           type:
                             type: string
                             enum:
-                              - UDP-CONNECT
-                              - TLS-HELLO
-                              - SCTP
-                              - TCP
                               - PING
-                              - HTTP
+                              - UDP-CONNECT
                               - HTTPS
+                              - TLS-HELLO
+                              - HTTP
+                              - TCP
+                              - SCTP
                           delay:
                             type: integer
                           timeout:
@@ -4262,15 +4262,15 @@ components:
                           http_method:
                             type: string
                             enum:
+                              - GET
+                              - OPTIONS
+                              - PUT
+                              - DELETE
+                              - TRACE
+                              - CONNECT
                               - POST
                               - HEAD
                               - PATCH
-                              - OPTIONS
-                              - PUT
-                              - GET
-                              - CONNECT
-                              - TRACE
-                              - DELETE
                           url_path:
                             type: string
                             format: url_path
@@ -4295,10 +4295,10 @@ components:
                         description: |-
                           Defines mandatory and optional attributes of a POST request.
                         required:
-                          - delay
-                          - type
                           - max_retries
+                          - type
                           - timeout
+                          - delay
                       members:
                         type: array
                         items:
@@ -4390,22 +4390,22 @@ components:
                         type:
                           type: string
                           enum:
+                            - SSL_DN_FIELD
+                            - HEADER
+                            - FILE_TYPE
+                            - SSL_CONN_HAS_CERT
+                            - PATH
                             - COOKIE
                             - HOST_NAME
                             - SSL_VERIFY_RESULT
-                            - FILE_TYPE
-                            - HEADER
-                            - SSL_CONN_HAS_CERT
-                            - PATH
-                            - SSL_DN_FIELD
                         compare_type:
                           type: string
                           enum:
                             - ENDS_WITH
-                            - STARTS_WITH
                             - CONTAINS
-                            - EQUAL_TO
                             - REGEX
+                            - STARTS_WITH
+                            - EQUAL_TO
                         key:
                           type: string
                           maxLength: 255
@@ -4424,9 +4424,9 @@ components:
                       description: |-
                         Defines mandatory and optional attributes of a POST request.
                       required:
-                        - value
-                        - type
                         - compare_type
+                        - type
+                        - value
                   tags:
                     type: array
                     items:
@@ -4512,9 +4512,9 @@ components:
           description: |-
             Defines mandatory and optional attributes of a POST request.
           required:
-            - protocol_port
             - loadbalancer_id
             - protocol
+            - protocol_port
     LbaasListenersCreateResponse:
       type: object
       description: Base type for complex types
@@ -5102,28 +5102,28 @@ components:
             protocol:
               type: string
               enum:
+                - UDP
+                - HTTPS
+                - HTTP
                 - PROXY
                 - SCTP
                 - TCP
-                - HTTP
-                - HTTPS
-                - UDP
                 - PROXYV2
             lb_algorithm:
               type: string
               enum:
-                - SOURCE_IP_PORT
-                - SOURCE_IP
-                - LEAST_CONNECTIONS
                 - ROUND_ROBIN
+                - LEAST_CONNECTIONS
+                - SOURCE_IP
+                - SOURCE_IP_PORT
             session_persistence:
               type: object
               properties:
                 type:
                   type: string
                   enum:
-                    - SOURCE_IP
                     - HTTP_COOKIE
+                    - SOURCE_IP
                     - APP_COOKIE
                 cookie_name:
                   type: string
@@ -5149,13 +5149,13 @@ components:
                 type:
                   type: string
                   enum:
-                    - UDP-CONNECT
-                    - TLS-HELLO
-                    - SCTP
-                    - TCP
                     - PING
-                    - HTTP
+                    - UDP-CONNECT
                     - HTTPS
+                    - TLS-HELLO
+                    - HTTP
+                    - TCP
+                    - SCTP
                 delay:
                   type: integer
                 timeout:
@@ -5171,15 +5171,15 @@ components:
                 http_method:
                   type: string
                   enum:
+                    - GET
+                    - OPTIONS
+                    - PUT
+                    - DELETE
+                    - TRACE
+                    - CONNECT
                     - POST
                     - HEAD
                     - PATCH
-                    - OPTIONS
-                    - PUT
-                    - GET
-                    - CONNECT
-                    - TRACE
-                    - DELETE
                 url_path:
                   type: string
                   format: url_path
@@ -5204,10 +5204,10 @@ components:
               description: |-
                 Defines mandatory and optional attributes of a POST request.
               required:
-                - delay
-                - type
                 - max_retries
+                - type
                 - timeout
+                - delay
             members:
               type: array
               items:
@@ -5418,18 +5418,18 @@ components:
             lb_algorithm:
               type: string
               enum:
-                - SOURCE_IP_PORT
-                - SOURCE_IP
-                - LEAST_CONNECTIONS
                 - ROUND_ROBIN
+                - LEAST_CONNECTIONS
+                - SOURCE_IP
+                - SOURCE_IP_PORT
             session_persistence:
               type: object
               properties:
                 type:
                   type: string
                   enum:
-                    - SOURCE_IP
                     - HTTP_COOKIE
+                    - SOURCE_IP
                     - APP_COOKIE
                 cookie_name:
                   type: string
@@ -5749,10 +5749,10 @@ components:
             action:
               type: string
               enum:
-                - REDIRECT_TO_URL
-                - REJECT
-                - REDIRECT_PREFIX
                 - REDIRECT_TO_POOL
+                - REDIRECT_TO_URL
+                - REDIRECT_PREFIX
+                - REJECT
             redirect_pool_id:
               type: string
               format: uuid
@@ -5777,22 +5777,22 @@ components:
                   type:
                     type: string
                     enum:
+                      - SSL_DN_FIELD
+                      - HEADER
+                      - FILE_TYPE
+                      - SSL_CONN_HAS_CERT
+                      - PATH
                       - COOKIE
                       - HOST_NAME
                       - SSL_VERIFY_RESULT
-                      - FILE_TYPE
-                      - HEADER
-                      - SSL_CONN_HAS_CERT
-                      - PATH
-                      - SSL_DN_FIELD
                   compare_type:
                     type: string
                     enum:
                       - ENDS_WITH
-                      - STARTS_WITH
                       - CONTAINS
-                      - EQUAL_TO
                       - REGEX
+                      - STARTS_WITH
+                      - EQUAL_TO
                   key:
                     type: string
                     maxLength: 255
@@ -5811,9 +5811,9 @@ components:
                 description: |-
                   Defines mandatory and optional attributes of a POST request.
                 required:
-                  - value
-                  - type
                   - compare_type
+                  - type
+                  - value
             tags:
               type: array
               items:
@@ -5833,8 +5833,8 @@ components:
           description: |-
             Defines mandatory and optional attributes of a POST request.
           required:
-            - listener_id
             - action
+            - listener_id
     LbaasL7PoliciesCreateResponse:
       type: object
       description: Base type for complex types
@@ -5918,10 +5918,10 @@ components:
             action:
               type: string
               enum:
-                - REDIRECT_TO_URL
-                - REJECT
-                - REDIRECT_PREFIX
                 - REDIRECT_TO_POOL
+                - REDIRECT_TO_URL
+                - REDIRECT_PREFIX
+                - REJECT
             redirect_pool_id:
               type: string
               format: uuid
@@ -6177,13 +6177,13 @@ components:
             type:
               type: string
               enum:
-                - UDP-CONNECT
-                - TLS-HELLO
-                - SCTP
-                - TCP
                 - PING
-                - HTTP
+                - UDP-CONNECT
                 - HTTPS
+                - TLS-HELLO
+                - HTTP
+                - TCP
+                - SCTP
             delay:
               type: integer
             timeout:
@@ -6199,15 +6199,15 @@ components:
             http_method:
               type: string
               enum:
+                - GET
+                - OPTIONS
+                - PUT
+                - DELETE
+                - TRACE
+                - CONNECT
                 - POST
                 - HEAD
                 - PATCH
-                - OPTIONS
-                - PUT
-                - GET
-                - CONNECT
-                - TRACE
-                - DELETE
             url_path:
               type: string
               format: url_path
@@ -6242,9 +6242,9 @@ components:
             Defines mandatory and optional attributes of a POST request.
           required:
             - delay
-            - timeout
             - max_retries
             - pool_id
+            - timeout
             - type
     LbaasHealthmonitorsCreateResponse:
       type: object
@@ -6339,15 +6339,15 @@ components:
             http_method:
               type: string
               enum:
+                - GET
+                - OPTIONS
+                - PUT
+                - DELETE
+                - TRACE
+                - CONNECT
                 - POST
                 - HEAD
                 - PATCH
-                - OPTIONS
-                - PUT
-                - GET
-                - CONNECT
-                - TRACE
-                - DELETE
             url_path:
               type: string
               format: url_path
@@ -6835,9 +6835,9 @@ components:
           description: |-
             Defines mandatory and optional attributes of a POST request.
           required:
+            - flavor_data
             - name
             - provider_name
-            - flavor_data
     LbaasFlavorprofilesCreateResponse:
       type: object
       description: Base type for complex types
@@ -6960,8 +6960,8 @@ components:
           description: |-
             Defines mandatory and optional attributes of a POST request.
           required:
-            - name
             - availability_zone_profile_id
+            - name
     LbaasAvailabilityzonesCreateResponse:
       type: object
       description: Base type for complex types
@@ -7414,22 +7414,22 @@ components:
             type:
               type: string
               enum:
+                - SSL_DN_FIELD
+                - HEADER
+                - FILE_TYPE
+                - SSL_CONN_HAS_CERT
+                - PATH
                 - COOKIE
                 - HOST_NAME
                 - SSL_VERIFY_RESULT
-                - FILE_TYPE
-                - HEADER
-                - SSL_CONN_HAS_CERT
-                - PATH
-                - SSL_DN_FIELD
             compare_type:
               type: string
               enum:
                 - ENDS_WITH
-                - STARTS_WITH
                 - CONTAINS
-                - EQUAL_TO
                 - REGEX
+                - STARTS_WITH
+                - EQUAL_TO
             key:
               type: string
               maxLength: 255
@@ -7454,9 +7454,9 @@ components:
           description: |-
             Defines mandatory and optional attributes of a POST request.
           required:
-            - value
-            - type
             - compare_type
+            - type
+            - value
     LbaasL7PoliciesRulesCreateResponse:
       type: object
       description: Base type for complex types
@@ -7553,22 +7553,22 @@ components:
             type:
               type: string
               enum:
+                - SSL_DN_FIELD
+                - HEADER
+                - FILE_TYPE
+                - SSL_CONN_HAS_CERT
+                - PATH
                 - COOKIE
                 - HOST_NAME
                 - SSL_VERIFY_RESULT
-                - FILE_TYPE
-                - HEADER
-                - SSL_CONN_HAS_CERT
-                - PATH
-                - SSL_DN_FIELD
             compare_type:
               type: string
               enum:
                 - ENDS_WITH
-                - STARTS_WITH
                 - CONTAINS
-                - EQUAL_TO
                 - REGEX
+                - STARTS_WITH
+                - EQUAL_TO
             key:
               type: string
               maxLength: 255

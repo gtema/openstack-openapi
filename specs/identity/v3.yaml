@@ -7335,9 +7335,6 @@ components:
     AuthTokensOs_PkiRevokedGetResponse:
       type: object
       description: Response of the auth/tokens/OS-PKI/revoked:get operation
-    AuthTokensGetResponse:
-      type: object
-      description: Response of the auth/tokens:get operation
     AuthTokensPostRequest:
       type: object
       properties:
@@ -7421,37 +7418,36 @@ components:
     AuthTokensPostResponse:
       type: object
       description: Response of the auth/tokens:post operation
-    AuthOs_FederationSaml2GetResponse:
+    AuthTokensGetResponse:
       type: object
-      description: Response of the auth/OS-FEDERATION/saml2:get operation
+      description: Response of the auth/tokens:get operation
     AuthOs_FederationSaml2PostRequest:
       type: object
       description: Request of the auth/OS-FEDERATION/saml2:post operation
     AuthOs_FederationSaml2PostResponse:
       type: object
       description: Response of the auth/OS-FEDERATION/saml2:post operation
-    AuthOs_FederationSaml2EcpGetResponse:
+    AuthOs_FederationSaml2GetResponse:
       type: object
-      description: Response of the auth/OS-FEDERATION/saml2/ecp:get operation
+      description: Response of the auth/OS-FEDERATION/saml2:get operation
     AuthOs_FederationSaml2EcpPostRequest:
       type: object
       description: Request of the auth/OS-FEDERATION/saml2/ecp:post operation
     AuthOs_FederationSaml2EcpPostResponse:
       type: object
       description: Response of the auth/OS-FEDERATION/saml2/ecp:post operation
-    AuthOs_FederationWebssoGetResponse:
+    AuthOs_FederationSaml2EcpGetResponse:
       type: object
-      description: Response of the auth/OS-FEDERATION/websso/protocol_id:get operation
+      description: Response of the auth/OS-FEDERATION/saml2/ecp:get operation
     AuthOs_FederationWebssoPostRequest:
       type: object
       description: Request of the auth/OS-FEDERATION/websso/protocol_id:post operation
     AuthOs_FederationWebssoPostResponse:
       type: object
       description: Response of the auth/OS-FEDERATION/websso/protocol_id:post operation
-    AuthOs_FederationIdentity_ProvidersProtocolsWebssoGetResponse:
+    AuthOs_FederationWebssoGetResponse:
       type: object
-      description: Response of the auth/OS-FEDERATION/identity_providers/idp_id/protocols/protocol_id/websso:get
-        operation
+      description: Response of the auth/OS-FEDERATION/websso/protocol_id:get operation
     AuthOs_FederationIdentity_ProvidersProtocolsWebssoPostRequest:
       type: object
       description: Request of the auth/OS-FEDERATION/identity_providers/idp_id/protocols/protocol_id/websso:post
@@ -7459,6 +7455,10 @@ components:
     AuthOs_FederationIdentity_ProvidersProtocolsWebssoPostResponse:
       type: object
       description: Response of the auth/OS-FEDERATION/identity_providers/idp_id/protocols/protocol_id/websso:post
+        operation
+    AuthOs_FederationIdentity_ProvidersProtocolsWebssoGetResponse:
+      type: object
+      description: Response of the auth/OS-FEDERATION/identity_providers/idp_id/protocols/protocol_id/websso:get
         operation
     CredentialPatchRequest:
       type: object
@@ -7469,15 +7469,15 @@ components:
     CredentialGetResponse:
       type: object
       description: Response of the credentials/credential_id:get operation
-    CredentialsGetResponse:
-      type: object
-      description: Response of the credentials:get operation
     CredentialsPostRequest:
       type: object
       description: Request of the credentials:post operation
     CredentialsPostResponse:
       type: object
       description: Response of the credentials:post operation
+    CredentialsGetResponse:
+      type: object
+      description: Response of the credentials:get operation
     DomainPatchRequest:
       type: object
       properties:
@@ -7572,43 +7572,6 @@ components:
           maxItems: 80
           uniqueItems: true
       additionalProperties: true
-    DomainsGetResponse:
-      type: object
-      properties:
-        domains:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-              description:
-                type:
-                  - string
-                  - 'null'
-              enabled:
-                type: boolean
-                enum:
-                  - true
-                  - false
-                  - 
-              name:
-                type: string
-                minLength: 1
-                maxLength: 64
-                pattern: '[\S]+'
-              tags:
-                type: array
-                items:
-                  type: string
-                  minLength: 1
-                  maxLength: 255
-                  pattern: ^[^,/]*$
-                required: []
-                maxItems: 80
-                uniqueItems: true
-            additionalProperties: true
     DomainsPostRequest:
       type: object
       properties:
@@ -7672,6 +7635,43 @@ components:
           maxItems: 80
           uniqueItems: true
       additionalProperties: true
+    DomainsGetResponse:
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              description:
+                type:
+                  - string
+                  - 'null'
+              enabled:
+                type: boolean
+                enum:
+                  - true
+                  - false
+                  - 
+              name:
+                type: string
+                minLength: 1
+                maxLength: 64
+                pattern: '[\S]+'
+              tags:
+                type: array
+                items:
+                  type: string
+                  minLength: 1
+                  maxLength: 255
+                  pattern: ^[^,/]*$
+                required: []
+                maxItems: 80
+                uniqueItems: true
+            additionalProperties: true
     DomainsConfigPatchRequest:
       type: object
       description: Request of the domains/domain_id/config:patch operation
@@ -7925,10 +7925,6 @@ components:
                 additionalProperties: false
         links:
           type: object
-    DomainsUsersRoleGetResponse:
-      type: object
-      description: Response of the domains/domain_id/users/user_id/roles/role_id:get
-        operation
     DomainsUsersRolePutRequest:
       type: object
       description: Request of the domains/domain_id/users/user_id/roles/role_id:put
@@ -7936,6 +7932,10 @@ components:
     DomainsUsersRolePutResponse:
       type: object
       description: Response of the domains/domain_id/users/user_id/roles/role_id:put
+        operation
+    DomainsUsersRoleGetResponse:
+      type: object
+      description: Response of the domains/domain_id/users/user_id/roles/role_id:get
         operation
     DomainsGroupsRolesGetResponse:
       type: object
@@ -7971,10 +7971,6 @@ components:
                 additionalProperties: false
         links:
           type: object
-    DomainsGroupsRoleGetResponse:
-      type: object
-      description: Response of the domains/domain_id/groups/group_id/roles/role_id:get
-        operation
     DomainsGroupsRolePutRequest:
       type: object
       description: Request of the domains/domain_id/groups/group_id/roles/role_id:put
@@ -7983,15 +7979,19 @@ components:
       type: object
       description: Response of the domains/domain_id/groups/group_id/roles/role_id:put
         operation
-    Ec2TokensGetResponse:
+    DomainsGroupsRoleGetResponse:
       type: object
-      description: Response of the ec2tokens:get operation
+      description: Response of the domains/domain_id/groups/group_id/roles/role_id:get
+        operation
     Ec2TokensPostRequest:
       type: object
       description: Request of the ec2tokens:post operation
     Ec2TokensPostResponse:
       type: object
       description: Response of the ec2tokens:post operation
+    Ec2TokensGetResponse:
+      type: object
+      description: Response of the ec2tokens:get operation
     EndpointPatchRequest:
       type: object
       description: Request of the endpoints/endpoint_id:patch operation
@@ -8001,15 +8001,15 @@ components:
     EndpointGetResponse:
       type: object
       description: Response of the endpoints/endpoint_id:get operation
-    EndpointsGetResponse:
-      type: object
-      description: Response of the endpoints:get operation
     EndpointsPostRequest:
       type: object
       description: Request of the endpoints:post operation
     EndpointsPostResponse:
       type: object
       description: Response of the endpoints:post operation
+    EndpointsGetResponse:
+      type: object
+      description: Response of the endpoints:get operation
     EndpointsOs_Endpoint_PolicyPolicyGetResponse:
       type: object
       description: Response of the endpoints/endpoint_id/OS-ENDPOINT-POLICY/policy:get
@@ -8178,31 +8178,6 @@ components:
           minLength: 1
           maxLength: 255
           pattern: '[\S]+'
-    GroupsGetResponse:
-      type: object
-      properties:
-        projects:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-              description:
-                type:
-                  - string
-                  - 'null'
-              domain_id:
-                type: string
-                minLength: 1
-                maxLength: 64
-                pattern: ^[a-zA-Z0-9-]+$
-              name:
-                type: string
-                minLength: 1
-                maxLength: 255
-                pattern: '[\S]+'
     GroupsPostRequest:
       type: object
       properties:
@@ -8331,18 +8306,43 @@ components:
     GroupsPostResponse:
       type: object
       description: Response of the groups:post operation
+    GroupsGetResponse:
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              description:
+                type:
+                  - string
+                  - 'null'
+              domain_id:
+                type: string
+                minLength: 1
+                maxLength: 64
+                pattern: ^[a-zA-Z0-9-]+$
+              name:
+                type: string
+                minLength: 1
+                maxLength: 255
+                pattern: '[\S]+'
     GroupsUsersGetResponse:
       type: object
       description: Response of the groups/group_id/users:get operation
-    GroupsUserGetResponse:
-      type: object
-      description: Response of the groups/group_id/users/user_id:get operation
     GroupsUserPutRequest:
       type: object
       description: Request of the groups/group_id/users/user_id:put operation
     GroupsUserPutResponse:
       type: object
       description: Response of the groups/group_id/users/user_id:put operation
+    GroupsUserGetResponse:
+      type: object
+      description: Response of the groups/group_id/users/user_id:get operation
     LimitPatchRequest:
       type: object
       description: Request of the limits/limit_id:patch operation
@@ -8352,15 +8352,15 @@ components:
     LimitGetResponse:
       type: object
       description: Response of the limits/limit_id:get operation
-    LimitsGetResponse:
-      type: object
-      description: Response of the limits:get operation
     LimitsPostRequest:
       type: object
       description: Request of the limits:post operation
     LimitsPostResponse:
       type: object
       description: Response of the limits:post operation
+    LimitsGetResponse:
+      type: object
+      description: Response of the limits:get operation
     LimitsModelGetResponse:
       type: object
       description: Response of the limits/model:get operation
@@ -8376,22 +8376,18 @@ components:
       type: object
       description: Response of the OS-EP-FILTER/endpoint_groups/endpoint_group_id:get
         operation
-    Os_Ep_FilterEndpoint_GroupsGetResponse:
-      type: object
-      description: Response of the OS-EP-FILTER/endpoint_groups:get operation
     Os_Ep_FilterEndpoint_GroupsPostRequest:
       type: object
       description: Request of the OS-EP-FILTER/endpoint_groups:post operation
     Os_Ep_FilterEndpoint_GroupsPostResponse:
       type: object
       description: Response of the OS-EP-FILTER/endpoint_groups:post operation
+    Os_Ep_FilterEndpoint_GroupsGetResponse:
+      type: object
+      description: Response of the OS-EP-FILTER/endpoint_groups:get operation
     Os_Ep_FilterEndpointsProjectsGetResponse:
       type: object
       description: Response of the OS-EP-FILTER/endpoints/endpoint_id/projects:get
-        operation
-    Os_Ep_FilterProjectsEndpointGetResponse:
-      type: object
-      description: Response of the OS-EP-FILTER/projects/project_id/endpoints/endpoint_id:get
         operation
     Os_Ep_FilterProjectsEndpointPutRequest:
       type: object
@@ -8400,6 +8396,10 @@ components:
     Os_Ep_FilterProjectsEndpointPutResponse:
       type: object
       description: Response of the OS-EP-FILTER/projects/project_id/endpoints/endpoint_id:put
+        operation
+    Os_Ep_FilterProjectsEndpointGetResponse:
+      type: object
+      description: Response of the OS-EP-FILTER/projects/project_id/endpoints/endpoint_id:get
         operation
     Os_Ep_FilterProjectsEndpointsGetResponse:
       type: object
@@ -8417,10 +8417,6 @@ components:
       type: object
       description: Response of the OS-EP-FILTER/endpoint_groups/endpoint_group_id/projects:get
         operation
-    Os_Ep_FilterEndpoint_GroupsProjectGetResponse:
-      type: object
-      description: Response of the OS-EP-FILTER/endpoint_groups/endpoint_group_id/projects/project_id:get
-        operation
     Os_Ep_FilterEndpoint_GroupsProjectPutRequest:
       type: object
       description: Request of the OS-EP-FILTER/endpoint_groups/endpoint_group_id/projects/project_id:put
@@ -8429,13 +8425,13 @@ components:
       type: object
       description: Response of the OS-EP-FILTER/endpoint_groups/endpoint_group_id/projects/project_id:put
         operation
+    Os_Ep_FilterEndpoint_GroupsProjectGetResponse:
+      type: object
+      description: Response of the OS-EP-FILTER/endpoint_groups/endpoint_group_id/projects/project_id:get
+        operation
     Os_FederationSaml2MetadataGetResponse:
       type: object
       description: Response of the OS-FEDERATION/saml2/metadata:get operation
-    Os_FederationIdentity_ProvidersProtocolsAuthGetResponse:
-      type: object
-      description: Response of the OS-FEDERATION/identity_providers/idp_id/protocols/protocol_id/auth:get
-        operation
     Os_FederationIdentity_ProvidersProtocolsAuthPostRequest:
       type: object
       description: Request of the OS-FEDERATION/identity_providers/idp_id/protocols/protocol_id/auth:post
@@ -8443,6 +8439,10 @@ components:
     Os_FederationIdentity_ProvidersProtocolsAuthPostResponse:
       type: object
       description: Response of the OS-FEDERATION/identity_providers/idp_id/protocols/protocol_id/auth:post
+        operation
+    Os_FederationIdentity_ProvidersProtocolsAuthGetResponse:
+      type: object
+      description: Response of the OS-FEDERATION/identity_providers/idp_id/protocols/protocol_id/auth:get
         operation
     Os_FederationIdentity_ProviderPatchRequest:
       type: object
@@ -8522,11 +8522,6 @@ components:
     Os_FederationService_ProvidersGetResponse:
       type: object
       description: Response of the OS-FEDERATION/service_providers:get operation
-    Os_InheritDomainsGroupsRolesInherited_To_ProjectsGetResponse:
-      type: object
-      description: Response of the 
-        OS-INHERIT/domains/domain_id/groups/group_id/roles/role_id/inherited_to_projects:get
-        operation
     Os_InheritDomainsGroupsRolesInherited_To_ProjectsPutRequest:
       type: object
       description: Request of the 
@@ -8537,10 +8532,10 @@ components:
       description: Response of the 
         OS-INHERIT/domains/domain_id/groups/group_id/roles/role_id/inherited_to_projects:put
         operation
-    Os_InheritDomainsUsersRolesInherited_To_ProjectsGetResponse:
+    Os_InheritDomainsGroupsRolesInherited_To_ProjectsGetResponse:
       type: object
       description: Response of the 
-        OS-INHERIT/domains/domain_id/users/user_id/roles/role_id/inherited_to_projects:get
+        OS-INHERIT/domains/domain_id/groups/group_id/roles/role_id/inherited_to_projects:get
         operation
     Os_InheritDomainsUsersRolesInherited_To_ProjectsPutRequest:
       type: object
@@ -8552,10 +8547,10 @@ components:
       description: Response of the 
         OS-INHERIT/domains/domain_id/users/user_id/roles/role_id/inherited_to_projects:put
         operation
-    Os_InheritProjectsUsersRolesInherited_To_ProjectsGetResponse:
+    Os_InheritDomainsUsersRolesInherited_To_ProjectsGetResponse:
       type: object
       description: Response of the 
-        OS-INHERIT/projects/project_id/users/user_id/roles/role_id/inherited_to_projects:get
+        OS-INHERIT/domains/domain_id/users/user_id/roles/role_id/inherited_to_projects:get
         operation
     Os_InheritProjectsUsersRolesInherited_To_ProjectsPutRequest:
       type: object
@@ -8567,10 +8562,10 @@ components:
       description: Response of the 
         OS-INHERIT/projects/project_id/users/user_id/roles/role_id/inherited_to_projects:put
         operation
-    Os_InheritProjectsGroupsRolesInherited_To_ProjectsGetResponse:
+    Os_InheritProjectsUsersRolesInherited_To_ProjectsGetResponse:
       type: object
       description: Response of the 
-        OS-INHERIT/projects/project_id/groups/group_id/roles/role_id/inherited_to_projects:get
+        OS-INHERIT/projects/project_id/users/user_id/roles/role_id/inherited_to_projects:get
         operation
     Os_InheritProjectsGroupsRolesInherited_To_ProjectsPutRequest:
       type: object
@@ -8582,6 +8577,11 @@ components:
       description: Response of the 
         OS-INHERIT/projects/project_id/groups/group_id/roles/role_id/inherited_to_projects:put
         operation
+    Os_InheritProjectsGroupsRolesInherited_To_ProjectsGetResponse:
+      type: object
+      description: Response of the 
+        OS-INHERIT/projects/project_id/groups/group_id/roles/role_id/inherited_to_projects:get
+        operation
     Os_Oauth1ConsumerPatchRequest:
       type: object
       description: Request of the OS-OAUTH1/consumers/consumer_id:patch operation
@@ -8591,33 +8591,33 @@ components:
     Os_Oauth1ConsumerGetResponse:
       type: object
       description: Response of the OS-OAUTH1/consumers/consumer_id:get operation
-    Os_Oauth1ConsumersGetResponse:
-      type: object
-      description: Response of the OS-OAUTH1/consumers:get operation
     Os_Oauth1ConsumersPostRequest:
       type: object
       description: Request of the OS-OAUTH1/consumers:post operation
     Os_Oauth1ConsumersPostResponse:
       type: object
       description: Response of the OS-OAUTH1/consumers:post operation
-    Os_Oauth1Request_TokenGetResponse:
+    Os_Oauth1ConsumersGetResponse:
       type: object
-      description: Response of the OS-OAUTH1/request_token:get operation
+      description: Response of the OS-OAUTH1/consumers:get operation
     Os_Oauth1Request_TokenPostRequest:
       type: object
       description: Request of the OS-OAUTH1/request_token:post operation
     Os_Oauth1Request_TokenPostResponse:
       type: object
       description: Response of the OS-OAUTH1/request_token:post operation
-    Os_Oauth1Access_TokenGetResponse:
+    Os_Oauth1Request_TokenGetResponse:
       type: object
-      description: Response of the OS-OAUTH1/access_token:get operation
+      description: Response of the OS-OAUTH1/request_token:get operation
     Os_Oauth1Access_TokenPostRequest:
       type: object
       description: Request of the OS-OAUTH1/access_token:post operation
     Os_Oauth1Access_TokenPostResponse:
       type: object
       description: Response of the OS-OAUTH1/access_token:post operation
+    Os_Oauth1Access_TokenGetResponse:
+      type: object
+      description: Response of the OS-OAUTH1/access_token:get operation
     Os_Oauth1AuthorizePutRequest:
       type: object
       description: Request of the OS-OAUTH1/authorize/request_token_id:put operation
@@ -8630,9 +8630,6 @@ components:
     Os_Oauth2TokenPatchResponse:
       type: object
       description: Response of the OS-OAUTH2/token:patch operation
-    Os_Oauth2TokenGetResponse:
-      type: object
-      description: Response of the OS-OAUTH2/token:get operation
     Os_Oauth2TokenPostRequest:
       type: object
       description: Request of the OS-OAUTH2/token:post operation
@@ -8645,6 +8642,9 @@ components:
     Os_Oauth2TokenPutResponse:
       type: object
       description: Response of the OS-OAUTH2/token:put operation
+    Os_Oauth2TokenGetResponse:
+      type: object
+      description: Response of the OS-OAUTH2/token:get operation
     Os_RevokeEventsGetResponse:
       type: object
       description: Response of the OS-REVOKE/events:get operation
@@ -8663,22 +8663,18 @@ components:
     PolicyGetResponse:
       type: object
       description: Response of the policies/policy_id:get operation
-    PoliciesGetResponse:
-      type: object
-      description: Response of the policies:get operation
     PoliciesPostRequest:
       type: object
       description: Request of the policies:post operation
     PoliciesPostResponse:
       type: object
       description: Response of the policies:post operation
+    PoliciesGetResponse:
+      type: object
+      description: Response of the policies:get operation
     PoliciesOs_Endpoint_PolicyEndpointsGetResponse:
       type: object
       description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/endpoints:get
-        operation
-    PoliciesOs_Endpoint_PolicyEndpointGetResponse:
-      type: object
-      description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/endpoints/endpoint_id:get
         operation
     PoliciesOs_Endpoint_PolicyEndpointPutRequest:
       type: object
@@ -8688,9 +8684,9 @@ components:
       type: object
       description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/endpoints/endpoint_id:put
         operation
-    PoliciesOs_Endpoint_PolicyServiceGetResponse:
+    PoliciesOs_Endpoint_PolicyEndpointGetResponse:
       type: object
-      description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/services/service_id:get
+      description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/endpoints/endpoint_id:get
         operation
     PoliciesOs_Endpoint_PolicyServicePutRequest:
       type: object
@@ -8700,9 +8696,9 @@ components:
       type: object
       description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/services/service_id:put
         operation
-    PoliciesOs_Endpoint_PolicyServicesRegionGetResponse:
+    PoliciesOs_Endpoint_PolicyServiceGetResponse:
       type: object
-      description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/services/service_id/regions/region_id:get
+      description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/services/service_id:get
         operation
     PoliciesOs_Endpoint_PolicyServicesRegionPutRequest:
       type: object
@@ -8711,6 +8707,10 @@ components:
     PoliciesOs_Endpoint_PolicyServicesRegionPutResponse:
       type: object
       description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/services/service_id/regions/region_id:put
+        operation
+    PoliciesOs_Endpoint_PolicyServicesRegionGetResponse:
+      type: object
+      description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/services/service_id/regions/region_id:get
         operation
     ProjectPatchRequest:
       type: object
@@ -8902,75 +8902,6 @@ components:
                 - 
           additionalProperties: false
       additionalProperties: true
-    ProjectsGetResponse:
-      type: object
-      properties:
-        projects:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-              description:
-                type:
-                  - string
-                  - 'null'
-              domain_id:
-                type:
-                  - string
-                  - 'null'
-                minLength: 1
-                maxLength: 64
-                pattern: ^[a-zA-Z0-9-]+$
-              enabled:
-                type: boolean
-                enum:
-                  - true
-                  - false
-                  - 
-              is_domain:
-                type: boolean
-                enum:
-                  - true
-                  - false
-                  - 
-              parent_id:
-                type:
-                  - string
-                  - 'null'
-                minLength: 1
-                maxLength: 64
-                pattern: ^[a-zA-Z0-9-]+$
-              name:
-                type: string
-                minLength: 1
-                maxLength: 64
-                pattern: '[\S]+'
-              tags:
-                type: array
-                items:
-                  type: string
-                  minLength: 1
-                  maxLength: 255
-                  pattern: ^[^,/]*$
-                required: []
-                maxItems: 80
-                uniqueItems: true
-              options:
-                type: object
-                properties:
-                  immutable:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                additionalProperties: false
-            additionalProperties: true
     ProjectsPostRequest:
       type: object
       properties:
@@ -9098,7 +9029,86 @@ components:
                 - 
           additionalProperties: false
       additionalProperties: true
-    ProjectsTagsGetResponse:
+    ProjectsGetResponse:
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              description:
+                type:
+                  - string
+                  - 'null'
+              domain_id:
+                type:
+                  - string
+                  - 'null'
+                minLength: 1
+                maxLength: 64
+                pattern: ^[a-zA-Z0-9-]+$
+              enabled:
+                type: boolean
+                enum:
+                  - true
+                  - false
+                  - 
+              is_domain:
+                type: boolean
+                enum:
+                  - true
+                  - false
+                  - 
+              parent_id:
+                type:
+                  - string
+                  - 'null'
+                minLength: 1
+                maxLength: 64
+                pattern: ^[a-zA-Z0-9-]+$
+              name:
+                type: string
+                minLength: 1
+                maxLength: 64
+                pattern: '[\S]+'
+              tags:
+                type: array
+                items:
+                  type: string
+                  minLength: 1
+                  maxLength: 255
+                  pattern: ^[^,/]*$
+                required: []
+                maxItems: 80
+                uniqueItems: true
+              options:
+                type: object
+                properties:
+                  immutable:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                additionalProperties: false
+            additionalProperties: true
+    ProjectsTagsPutRequest:
+      type: array
+      items:
+        type: string
+        minLength: 1
+        maxLength: 255
+        pattern: ^[^,/]*$
+      required: []
+      maxItems: 80
+      uniqueItems: true
+    ProjectsTagsPutResponse:
       type: object
       properties:
         tags:
@@ -9111,17 +9121,7 @@ components:
           required: []
           maxItems: 80
           uniqueItems: true
-    ProjectsTagsPutRequest:
-      type: array
-      items:
-        type: string
-        minLength: 1
-        maxLength: 255
-        pattern: ^[^,/]*$
-      required: []
-      maxItems: 80
-      uniqueItems: true
-    ProjectsTagsPutResponse:
+    ProjectsTagsGetResponse:
       type: object
       properties:
         tags:
@@ -9180,10 +9180,6 @@ components:
                 additionalProperties: false
         links:
           type: object
-    ProjectsGroupsRoleGetResponse:
-      type: object
-      description: Response of the projects/project_id/groups/group_id/roles/role_id:get
-        operation
     ProjectsGroupsRolePutRequest:
       type: object
       description: Request of the projects/project_id/groups/group_id/roles/role_id:put
@@ -9191,6 +9187,10 @@ components:
     ProjectsGroupsRolePutResponse:
       type: object
       description: Response of the projects/project_id/groups/group_id/roles/role_id:put
+        operation
+    ProjectsGroupsRoleGetResponse:
+      type: object
+      description: Response of the projects/project_id/groups/group_id/roles/role_id:get
         operation
     ProjectsGroupsRolesGetResponse:
       type: object
@@ -9241,15 +9241,15 @@ components:
     RegionPutResponse:
       type: object
       description: Response of the regions/region_id:put operation
-    RegionsGetResponse:
-      type: object
-      description: Response of the regions:get operation
     RegionsPostRequest:
       type: object
       description: Request of the regions:post operation
     RegionsPostResponse:
       type: object
       description: Response of the regions:post operation
+    RegionsGetResponse:
+      type: object
+      description: Response of the regions:get operation
     Registered_LimitPatchRequest:
       type: object
       description: Request of the registered_limits/registered_limit_id:patch operation
@@ -9259,15 +9259,15 @@ components:
     Registered_LimitGetResponse:
       type: object
       description: Response of the registered_limits/registered_limit_id:get operation
-    Registered_LimitsGetResponse:
-      type: object
-      description: Response of the registered_limits:get operation
     Registered_LimitsPostRequest:
       type: object
       description: Request of the registered_limits:post operation
     Registered_LimitsPostResponse:
       type: object
       description: Response of the registered_limits:post operation
+    Registered_LimitsGetResponse:
+      type: object
+      description: Response of the registered_limits:get operation
     Role_AssignmentsGetResponse:
       type: object
       description: Response of the role_assignments:get operation
@@ -9352,40 +9352,6 @@ components:
                 - false
                 - 
           additionalProperties: false
-    RolesGetResponse:
-      type: object
-      properties:
-        roles:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-              links:
-                type: object
-              name:
-                type: string
-                minLength: 1
-                maxLength: 255
-                pattern: '[\S]+'
-              description:
-                type: string
-              options:
-                type: object
-                properties:
-                  immutable:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                additionalProperties: false
-        links:
-          type: object
     RolesPostRequest:
       type: object
       properties:
@@ -9438,6 +9404,40 @@ components:
                 - false
                 - 
           additionalProperties: false
+    RolesGetResponse:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              links:
+                type: object
+              name:
+                type: string
+                minLength: 1
+                maxLength: 255
+                pattern: '[\S]+'
+              description:
+                type: string
+              options:
+                type: object
+                properties:
+                  immutable:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                additionalProperties: false
+        links:
+          type: object
     RolesImpliesGetResponse:
       type: object
       properties:
@@ -9499,65 +9499,6 @@ components:
                           - false
                           - 
                     additionalProperties: false
-    RolesImplyGetResponse:
-      type: object
-      properties:
-        role_inference:
-          properties:
-            prior_role:
-              type: object
-              properties:
-                id:
-                  type: string
-                  format: uuid
-                links:
-                  type: object
-                name:
-                  type: string
-                  minLength: 1
-                  maxLength: 255
-                  pattern: '[\S]+'
-                description:
-                  type: string
-                options:
-                  type: object
-                  properties:
-                    immutable:
-                      type:
-                        - boolean
-                        - 'null'
-                      enum:
-                        - true
-                        - false
-                        - 
-                  additionalProperties: false
-            implies:
-              type: object
-              properties:
-                id:
-                  type: string
-                  format: uuid
-                links:
-                  type: object
-                name:
-                  type: string
-                  minLength: 1
-                  maxLength: 255
-                  pattern: '[\S]+'
-                description:
-                  type: string
-                options:
-                  type: object
-                  properties:
-                    immutable:
-                      type:
-                        - boolean
-                        - 'null'
-                      enum:
-                        - true
-                        - false
-                        - 
-                  additionalProperties: false
     RolesImplyPutRequest:
       type: object
       description: Request of the roles/prior_role_id/implies/implied_role_id:put
@@ -9621,15 +9562,74 @@ components:
                         - false
                         - 
                   additionalProperties: false
-    S3TokensGetResponse:
+    RolesImplyGetResponse:
       type: object
-      description: Response of the s3tokens:get operation
+      properties:
+        role_inference:
+          properties:
+            prior_role:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                links:
+                  type: object
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 255
+                  pattern: '[\S]+'
+                description:
+                  type: string
+                options:
+                  type: object
+                  properties:
+                    immutable:
+                      type:
+                        - boolean
+                        - 'null'
+                      enum:
+                        - true
+                        - false
+                        - 
+                  additionalProperties: false
+            implies:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                links:
+                  type: object
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 255
+                  pattern: '[\S]+'
+                description:
+                  type: string
+                options:
+                  type: object
+                  properties:
+                    immutable:
+                      type:
+                        - boolean
+                        - 'null'
+                      enum:
+                        - true
+                        - false
+                        - 
+                  additionalProperties: false
     S3TokensPostRequest:
       type: object
       description: Request of the s3tokens:post operation
     S3TokensPostResponse:
       type: object
       description: Response of the s3tokens:post operation
+    S3TokensGetResponse:
+      type: object
+      description: Response of the s3tokens:get operation
     ServicePatchRequest:
       type: object
       description: Request of the services/service_id:patch operation
@@ -9639,51 +9639,51 @@ components:
     ServiceGetResponse:
       type: object
       description: Response of the services/service_id:get operation
-    ServicesGetResponse:
-      type: object
-      description: Response of the services:get operation
     ServicesPostRequest:
       type: object
       description: Request of the services:post operation
     ServicesPostResponse:
       type: object
       description: Response of the services:post operation
+    ServicesGetResponse:
+      type: object
+      description: Response of the services:get operation
     SystemUsersRolesGetResponse:
       type: object
       description: Response of the system/users/user_id/roles:get operation
-    SystemUsersRoleGetResponse:
-      type: object
-      description: Response of the system/users/user_id/roles/role_id:get operation
     SystemUsersRolePutRequest:
       type: object
       description: Request of the system/users/user_id/roles/role_id:put operation
     SystemUsersRolePutResponse:
       type: object
       description: Response of the system/users/user_id/roles/role_id:put operation
+    SystemUsersRoleGetResponse:
+      type: object
+      description: Response of the system/users/user_id/roles/role_id:get operation
     SystemGroupsRolesGetResponse:
       type: object
       description: Response of the system/groups/group_id/roles:get operation
-    SystemGroupsRoleGetResponse:
-      type: object
-      description: Response of the system/groups/group_id/roles/role_id:get operation
     SystemGroupsRolePutRequest:
       type: object
       description: Request of the system/groups/group_id/roles/role_id:put operation
     SystemGroupsRolePutResponse:
       type: object
       description: Response of the system/groups/group_id/roles/role_id:put operation
+    SystemGroupsRoleGetResponse:
+      type: object
+      description: Response of the system/groups/group_id/roles/role_id:get operation
     Os_TrustTrustGetResponse:
       type: object
       description: Response of the OS-TRUST/trusts/trust_id:get operation
-    Os_TrustTrustsGetResponse:
-      type: object
-      description: Response of the OS-TRUST/trusts:get operation
     Os_TrustTrustsPostRequest:
       type: object
       description: Request of the OS-TRUST/trusts:post operation
     Os_TrustTrustsPostResponse:
       type: object
       description: Response of the OS-TRUST/trusts:post operation
+    Os_TrustTrustsGetResponse:
+      type: object
+      description: Response of the OS-TRUST/trusts:get operation
     Os_TrustTrustsRolesGetResponse:
       type: object
       description: Response of the OS-TRUST/trusts/trust_id/roles:get operation
@@ -10060,134 +10060,6 @@ components:
                 - false
                 - 
           additionalProperties: false
-    UsersGetResponse:
-      type: object
-      properties:
-        projects:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-              default_project_id:
-                type:
-                  - string
-                  - 'null'
-                minLength: 1
-                maxLength: 64
-                pattern: ^[a-zA-Z0-9-]+$
-              description:
-                type:
-                  - string
-                  - 'null'
-              domain_id:
-                type: string
-                minLength: 1
-                maxLength: 64
-                pattern: ^[a-zA-Z0-9-]+$
-              enabled:
-                type: boolean
-                enum:
-                  - true
-                  - false
-                  - 
-              federated:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    idp_id:
-                      type: string
-                    protocols:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          protocol_id:
-                            type: string
-                          unique_id:
-                            type: string
-                        required:
-                          - protocol_id
-                          - unique_id
-                      minItems: 1
-                  required:
-                    - idp_id
-                    - protocols
-              name:
-                type: string
-                minLength: 1
-                maxLength: 255
-                pattern: '[\S]+'
-              password:
-                type:
-                  - string
-                  - 'null'
-              options:
-                type: object
-                properties:
-                  ignore_change_password_upon_first_use:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                  ignore_password_expiry:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                  ignore_lockout_failure_attempts:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                  lock_password:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                  ignore_user_inactivity:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                  multi_factor_auth_rules:
-                    type:
-                      - array
-                      - 'null'
-                    items:
-                      type: array
-                      items:
-                        type: string
-                      minItems: 1
-                      uniqueItems: true
-                    uniqueItems: true
-                  multi_factor_auth_enabled:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                additionalProperties: false
     UsersPostRequest:
       type: object
       properties:
@@ -10316,30 +10188,158 @@ components:
     UsersPostResponse:
       type: object
       description: Response of the users:post operation
-    UsersPasswordGetResponse:
+    UsersGetResponse:
       type: object
-      description: Response of the users/user_id/password:get operation
+      properties:
+        projects:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              default_project_id:
+                type:
+                  - string
+                  - 'null'
+                minLength: 1
+                maxLength: 64
+                pattern: ^[a-zA-Z0-9-]+$
+              description:
+                type:
+                  - string
+                  - 'null'
+              domain_id:
+                type: string
+                minLength: 1
+                maxLength: 64
+                pattern: ^[a-zA-Z0-9-]+$
+              enabled:
+                type: boolean
+                enum:
+                  - true
+                  - false
+                  - 
+              federated:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idp_id:
+                      type: string
+                    protocols:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          protocol_id:
+                            type: string
+                          unique_id:
+                            type: string
+                        required:
+                          - protocol_id
+                          - unique_id
+                      minItems: 1
+                  required:
+                    - idp_id
+                    - protocols
+              name:
+                type: string
+                minLength: 1
+                maxLength: 255
+                pattern: '[\S]+'
+              password:
+                type:
+                  - string
+                  - 'null'
+              options:
+                type: object
+                properties:
+                  ignore_change_password_upon_first_use:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  ignore_password_expiry:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  ignore_lockout_failure_attempts:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  lock_password:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  ignore_user_inactivity:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  multi_factor_auth_rules:
+                    type:
+                      - array
+                      - 'null'
+                    items:
+                      type: array
+                      items:
+                        type: string
+                      minItems: 1
+                      uniqueItems: true
+                    uniqueItems: true
+                  multi_factor_auth_enabled:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                additionalProperties: false
     UsersPasswordPostRequest:
       type: object
       description: Request of the users/user_id/password:post operation
     UsersPasswordPostResponse:
       type: object
       description: Response of the users/user_id/password:post operation
+    UsersPasswordGetResponse:
+      type: object
+      description: Response of the users/user_id/password:get operation
     UsersGroupsGetResponse:
       type: object
       description: Response of the users/user_id/groups:get operation
     UsersProjectsGetResponse:
       type: object
       description: Response of the users/user_id/projects:get operation
-    UsersCredentialsOs_Ec2GetResponse:
-      type: object
-      description: Response of the users/user_id/credentials/OS-EC2:get operation
     UsersCredentialsOs_Ec2PostRequest:
       type: object
       description: Request of the users/user_id/credentials/OS-EC2:post operation
     UsersCredentialsOs_Ec2PostResponse:
       type: object
       description: Response of the users/user_id/credentials/OS-EC2:post operation
+    UsersCredentialsOs_Ec2GetResponse:
+      type: object
+      description: Response of the users/user_id/credentials/OS-EC2:get operation
     UsersOs_Oauth1Access_TokensGetResponse:
       type: object
       description: Response of the users/user_id/OS-OAUTH1/access_tokens:get operation
@@ -10355,15 +10355,15 @@ components:
       type: object
       description: Response of the users/user_id/OS-OAUTH1/access_tokens/access_token_id/roles/role_id:get
         operation
-    UsersApplication_CredentialsGetResponse:
-      type: object
-      description: Response of the users/user_id/application_credentials:get operation
     UsersApplication_CredentialsPostRequest:
       type: object
       description: Request of the users/user_id/application_credentials:post operation
     UsersApplication_CredentialsPostResponse:
       type: object
       description: Response of the users/user_id/application_credentials:post operation
+    UsersApplication_CredentialsGetResponse:
+      type: object
+      description: Response of the users/user_id/application_credentials:get operation
     UsersApplication_CredentialGetResponse:
       type: object
       description: Response of the users/user_id/application_credentials/application_credential_id:get

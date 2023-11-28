@@ -188,9 +188,11 @@ class OpenApiDirective(SphinxDirective):
         return results
 
     def _get_spec_header_nodes(self, spec):
-        header = nodes.section(ids=["openapi-info"])
-        header += nodes.title(text=spec["info"]["title"])
-        header += nodes.paragraph(text=spec["info"]["description"])
+        #header = nodes.section(ids=["openapi-info"])
+        #header += nodes.title(text=spec["info"]["title"])
+        descr = spec["info"].get("description")
+        if descr:
+            header = nodes.paragraph(text=descr)
         return header
 
     def _get_api_group_nodes(self, spec, tag):
