@@ -11174,7 +11174,7 @@ components:
       in: query
       name: tag
       description: Filters the response by the specified tag value. May be repeated,
-        but keep in mind that you’re making a conjunctive query, so only images containing
+        but keep in mind that you're making a conjunctive query, so only images containing
         all the tags specified will appear in the response.
       schema:
         type: array

@@ -6020,12 +6020,11 @@ paths:
       summary: List networks
     post:
       description: |+
-        Creates multiple networks in a single request.
+        Creates a network.
 
-        In the request body, specify a list of networks.
-
-        The bulk create operation is always atomic. Either all or no
-        networks in the request body are created.
+        A request body is optional. An administrative user can specify
+        another project ID, which is the project that owns the network, in
+        the request body.
 
         Normal response codes: 201
 
@@ -6046,7 +6045,7 @@ paths:
                 $ref: '#/components/schemas/NetworksCreateResponse'
       tags:
         - networks
-      summary: Bulk create networks
+      summary: Create network
   /v2.0/subnets:
     get:
       parameters:
@@ -6100,10 +6099,43 @@ paths:
       summary: List subnets
     post:
       description: |+
-        Creates multiple subnets in a single request. Specify a list of subnets in the request body.
+        Creates a subnet on a network.
 
-        The bulk create operation is always atomic. Either all or no
-        subnets in the request body are created.
+        OpenStack Networking does not try to derive the correct IP version
+        from the CIDR. If you do not specify the `gateway\_ip` attribute,
+        OpenStack Networking allocates an address from the CIDR for the
+        gateway for the subnet.
+
+        To specify a subnet without a gateway, set the `gateway\_ip`
+        attribute to `null` in the request body. If you do not specify
+        the `allocation\_pools` attribute, OpenStack Networking
+        automatically allocates pools for covering all IP addresses in the
+        CIDR, excluding the address reserved for the subnet gateway.
+        Otherwise, you can explicitly specify allocation pools as shown in
+        the following example.
+
+        When you specify both the `allocation\_pools` and `gateway\_ip`
+        attributes, you must ensure that the gateway IP does not overlap
+        with the allocation pools; otherwise, the call returns the
+        `Conflict (409)` response code.
+
+        A subnet can have one or more name servers and host routes. Hosts
+        in this subnet use the name servers. Devices with IP addresses from
+        this subnet, not including the local subnet route, use the host
+        routes.
+
+        Specify the `ipv6\_ra\_mode` and `ipv6\_address\_mode` attributes
+        to create subnets that support IPv6 configurations, such as
+        stateless address autoconfiguration (SLAAC), DHCPv6 stateful, and
+        DHCPv6 stateless configurations.
+
+        A subnet can optionally be associated with a network segment when
+        it is created by specifying the `segment\_id` of a valid segment
+        on the specified network. A network with subnets associated in this
+        way is called a routed network. On any given network, all of the
+        subnets must be associated with segments or none of them can be.
+        Neutron enforces this invariant. Currently, routed networks are
+        only supported for provider networks.
 
         Normal response codes: 201
 
@@ -6124,7 +6156,7 @@ paths:
                 $ref: '#/components/schemas/SubnetsCreateResponse'
       tags:
         - subnets
-      summary: Bulk create subnet
+      summary: Create subnet
   /v2.0/ports:
     get:
       parameters:
@@ -6182,13 +6214,14 @@ paths:
       summary: List ports
     post:
       description: |+
-        Creates multiple ports in a single request. Specify a list of ports in the request body.
+        Creates a port on a network.
 
-        Guarantees the atomic completion of the bulk operation.
+        To define the network in which to create the port, specify the
+        `network\_id` attribute in the request body.
 
         Normal response codes: 201
 
-        Error response codes: 400, 401, 403, 404, 409
+        Error response codes: 400, 401, 403, 404
 
       operationId: ports:post
       requestBody:
@@ -6205,7 +6238,7 @@ paths:
                 $ref: '#/components/schemas/PortsCreateResponse'
       tags:
         - ports
-      summary: Bulk create ports
+      summary: Create port
   /v2.0/networks/{network_id}:
     parameters:
       - $ref: '#/components/parameters/networks_network_id'
@@ -6345,12 +6378,15 @@ paths:
       - $ref: '#/components/parameters/ports_port_id'
     get:
       description: |+
-        Shows details for a port. The details available in the trunk\_details
-        attribute contain the trunk ID and the array showing information
-        about the subports that belong to the trunk: the port UUID, the
-        segmentation type, the segmentation ID, and the MAC address.
+        Shows details for a port.
+
+        Use the `fields` query parameter to control which fields are
+        returned in the response body. For information, see [Filtering and
+        Column Selection](http://specs.openstack.org/openstack/neutron-specs/specs/api/networking_general_api_information.html#filtering-and-column-selection).
 
         Normal response codes: 200
+
+        Error response codes: 401, 404
 
       operationId: ports/port_id:get
       responses:
@@ -6362,7 +6398,7 @@ paths:
                 $ref: '#/components/schemas/PortShowResponse'
       tags:
         - ports
-      summary: Show trunk details
+      summary: Show port details
     delete:
       description: |+
         Deletes a port.

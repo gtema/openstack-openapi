@@ -272,7 +272,7 @@ paths:
               oneOf:
                 - $ref: '#/components/schemas/FlavorsActionDeleteRequest'
                 - $ref: '#/components/schemas/FlavorsActionCreateRequest'
-                - $ref: '#/components/schemas/FlavorsActionUpdateRequest'
+                - $ref: '#/components/schemas/FlavorsAction_Update_255'
                 - $ref: '#/components/schemas/FlavorsAction_Add_Tenant_Access'
                 - $ref: '#/components/schemas/FlavorsAction_Remove_Tenant_Access'
               x-openstack:
@@ -1059,10 +1059,6 @@ paths:
           description: Error
         '202':
           description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Os_AggregatesImagesResponse'
       tags:
         - os-aggregates
       x-openstack:
@@ -1821,7 +1817,7 @@ paths:
       - $ref: '#/components/parameters/os_floating_ip_dns_entries_id'
     get:
       description: |+
-        Finds a unique DNS entry for a domain and name.
+        Lists DNS entries for a domain and IP.
 
         Normal response codes: 200
 
@@ -1841,7 +1837,7 @@ paths:
       tags:
         - os-floating-ip-dns
       deprecated: true
-      summary: Find Unique DNS Entry
+      summary: List DNS Entries
     delete:
       description: |+
         Deletes a DNS entry.
@@ -4457,20 +4453,20 @@ paths:
                 - $ref: '#/components/schemas/Os_Volumes_BootActionRestoreRequest'
                 - $ref: '#/components/schemas/Os_Volumes_BootActionForcedeleteRequest'
                 - $ref: '#/components/schemas/Os_Volumes_BootActionEvacuateRequest'
-                - $ref: '#/components/schemas/Os_Volumes_BootActionAddfloatingipRequest'
-                - $ref: '#/components/schemas/Os_Volumes_BootActionRemovefloatingipRequest'
+                - $ref: '#/components/schemas/Os_Volumes_BootAction_Add_Floating_Ip'
+                - $ref: '#/components/schemas/Os_Volumes_BootAction_Remove_Floating_Ip'
                 - $ref: '#/components/schemas/Os_Volumes_BootAction_Lock_273'
                 - $ref: '#/components/schemas/Os_Volumes_BootActionUnlockRequest'
                 - $ref: '#/components/schemas/Os_Volumes_BootAction_Migrate_256'
                 - $ref: '#/components/schemas/Os_Volumes_BootActionOs-MigrateliveRequest'
-                - $ref: '#/components/schemas/Os_Volumes_BootActionAddfixedipRequest'
-                - $ref: '#/components/schemas/Os_Volumes_BootActionRemovefixedipRequest'
+                - $ref: '#/components/schemas/Os_Volumes_BootAction_Add_Fixed_Ip'
+                - $ref: '#/components/schemas/Os_Volumes_BootAction_Remove_Fixed_Ip'
                 - $ref: '#/components/schemas/Os_Volumes_BootActionPauseRequest'
                 - $ref: '#/components/schemas/Os_Volumes_BootActionUnpauseRequest'
-                - $ref: '#/components/schemas/Os_Volumes_BootActionOs-GetvncconsoleRequest'
-                - $ref: '#/components/schemas/Os_Volumes_BootActionOs-GetspiceconsoleRequest'
-                - $ref: '#/components/schemas/Os_Volumes_BootActionOs-GetrdpconsoleRequest'
-                - $ref: '#/components/schemas/Os_Volumes_BootActionOs-GetserialconsoleRequest'
+                - $ref: '#/components/schemas/Os_Volumes_BootActionGet_Vnc_Console'
+                - $ref: '#/components/schemas/Os_Volumes_BootActionGet_Spice_Console'
+                - $ref: '#/components/schemas/Os_Volumes_BootActionGet_Rdp_Console'
+                - $ref: '#/components/schemas/Os_Volumes_BootActionGet_Serial_Console'
                 - $ref: '#/components/schemas/Os_Volumes_BootAction_Rescue'
                 - $ref: '#/components/schemas/Os_Volumes_BootActionUnrescueRequest'
                 - $ref: '#/components/schemas/Os_Volumes_BootActionAddsecuritygroupRequest'
@@ -4515,6 +4511,8 @@ paths:
                   - $ref: '#/components/schemas/Os_Volumes_BootActionUnlockResponse'
                   - $ref: '#/components/schemas/Os_Volumes_BootActionMigrateResponse'
                   - $ref: '#/components/schemas/Os_Volumes_BootActionOs-MigrateliveResponse'
+                  - $ref: '#/components/schemas/Os_Volumes_BootActionAddfixedipResponse'
+                  - $ref: '#/components/schemas/Os_Volumes_BootActionRemovefixedipResponse'
                   - $ref: '#/components/schemas/Os_Volumes_BootActionPauseResponse'
                   - $ref: '#/components/schemas/Os_Volumes_BootActionUnpauseResponse'
                   - $ref: '#/components/schemas/Os_Volumes_BootActionUnrescueResponse'
@@ -4542,8 +4540,6 @@ paths:
                   - $ref: '#/components/schemas/Os_Volumes_BootActionEvacuateResponse'
                   - $ref: '#/components/schemas/Os_Volumes_BootActionAddfloatingipResponse'
                   - $ref: '#/components/schemas/Os_Volumes_BootActionRemovefloatingipResponse'
-                  - $ref: '#/components/schemas/Os_Volumes_BootActionAddfixedipResponse'
-                  - $ref: '#/components/schemas/Os_Volumes_BootActionRemovefixedipResponse'
                   - $ref: '#/components/schemas/Os_Volumes_BootActionOs-GetvncconsoleResponse'
                   - $ref: '#/components/schemas/Os_Volumes_BootActionOs-GetspiceconsoleResponse'
                   - $ref: '#/components/schemas/Os_Volumes_BootActionOs-GetrdpconsoleResponse'
@@ -4649,14 +4645,42 @@ paths:
       summary: List Servers
     post:
       description: |+
-        There is a second kind of create call which can build multiple servers
-        at once. This supports all the same parameters as create with a few
-        additional attributes specific to multiple create.
+        Creates a server.
 
-        Error handling for multiple create is not as consistent as for single
-        server create, and there is no guarantee that all the servers will be
-        built. This call should generally be avoided in favor of clients doing
-        direct individual server creates.
+        The progress of this operation depends on the location of the
+        requested image, network I/O, host load, selected flavor, and other
+        factors.
+
+        To check the progress of the request, make a `GET /servers/{id}`
+        request. This call returns a progress attribute, which is a percentage
+        value from 0 to 100.
+
+        The `Location` header returns the full URL to the newly created
+        server and is available as a `self` and `bookmark` link in the
+        server representation.
+
+        When you create a server, the response shows only the server ID, its
+        links, and the admin password. You can get additional attributes
+        through subsequent `GET` requests on the server.
+
+        Include the `block\_device\_mapping\_v2` parameter in the create
+        request body to boot a server from a volume.
+
+        Include the `key\_name` parameter in the create request body to add a
+        keypair to the server when you create it. To create a keypair, make a
+        [create keypair](https://docs.openstack.org/api-ref/compute/#create-or-import-keypair)
+        request.
+
+        **Preconditions**
+
+        **Asynchronous postconditions**
+
+        **Troubleshooting**
+
+        Normal response codes: 202
+
+        Error response codes: badRequest(400), unauthorized(401),
+        forbidden(403), itemNotFound(404), conflict(409)
 
       operationId: servers:post
       requestBody:
@@ -4679,7 +4703,7 @@ paths:
                 $ref: '#/components/schemas/ServersCreateResponse'
       tags:
         - servers
-      summary: Create Multiple Servers
+      summary: Create Server
   /v2.1/servers/detail:
     get:
       parameters:
@@ -4898,20 +4922,20 @@ paths:
                 - $ref: '#/components/schemas/ServersActionRestoreRequest'
                 - $ref: '#/components/schemas/ServersActionForcedeleteRequest'
                 - $ref: '#/components/schemas/ServersActionEvacuateRequest'
-                - $ref: '#/components/schemas/ServersActionAddfloatingipRequest'
-                - $ref: '#/components/schemas/ServersActionRemovefloatingipRequest'
+                - $ref: '#/components/schemas/ServersAction_Add_Floating_Ip'
+                - $ref: '#/components/schemas/ServersAction_Remove_Floating_Ip'
                 - $ref: '#/components/schemas/ServersAction_Lock_273'
                 - $ref: '#/components/schemas/ServersActionUnlockRequest'
                 - $ref: '#/components/schemas/ServersAction_Migrate_256'
                 - $ref: '#/components/schemas/ServersActionOs-MigrateliveRequest'
-                - $ref: '#/components/schemas/ServersActionAddfixedipRequest'
-                - $ref: '#/components/schemas/ServersActionRemovefixedipRequest'
+                - $ref: '#/components/schemas/ServersAction_Add_Fixed_Ip'
+                - $ref: '#/components/schemas/ServersAction_Remove_Fixed_Ip'
                 - $ref: '#/components/schemas/ServersActionPauseRequest'
                 - $ref: '#/components/schemas/ServersActionUnpauseRequest'
-                - $ref: '#/components/schemas/ServersActionOs-GetvncconsoleRequest'
-                - $ref: '#/components/schemas/ServersActionOs-GetspiceconsoleRequest'
-                - $ref: '#/components/schemas/ServersActionOs-GetrdpconsoleRequest'
-                - $ref: '#/components/schemas/ServersActionOs-GetserialconsoleRequest'
+                - $ref: '#/components/schemas/ServersActionGet_Vnc_Console'
+                - $ref: '#/components/schemas/ServersActionGet_Spice_Console'
+                - $ref: '#/components/schemas/ServersActionGet_Rdp_Console'
+                - $ref: '#/components/schemas/ServersActionGet_Serial_Console'
                 - $ref: '#/components/schemas/ServersAction_Rescue'
                 - $ref: '#/components/schemas/ServersActionUnrescueRequest'
                 - $ref: '#/components/schemas/ServersActionAddsecuritygroupRequest'
@@ -6800,79 +6824,69 @@ components:
           properties:
             name:
               type: string
-              minLength: 1
-              maxLength: 255
-              format: name_with_leading_trailing_spaces
               description: |+
                 The display name of a flavor.
 
             id:
-              type:
-                - string
-                - number
-                - 'null'
-              minLength: 1
-              maxLength: 255
-              pattern: ^(?! )[a-zA-Z0-9. _-]+(?<! )$
+              type: string
               description: |+
                 The ID of the flavor. While people often make this look like
                 an int, this is really a string.
 
+              minLength: 1
+              maxLength: 255
+              pattern: ^(?! )[a-zA-Z0-9. _-]+(?<! )$
             ram:
+              description: |+
+                The amount of RAM a flavor has, in MiB.
+
               type:
                 - integer
                 - string
               pattern: ^[0-9]+$
               minimum: 1
               maximum: 2147483647
-              description: |+
-                The number of virtual CPUs that will be allocated to the server.
-
             vcpus:
+              description: |+
+                The number of virtual CPUs that will be allocated to the server.
+
               type:
                 - integer
                 - string
               pattern: ^[0-9]+$
               minimum: 1
               maximum: 2147483647
-              description: |+
-                The number of virtual CPUs that will be allocated to the server.
-
             disk:
+              description: |+
+                The size of the root disk that will be created in GiB. If 0 the
+                root disk will be set to exactly the size of the image used to
+                deploy the instance. However, in this case the scheduler cannot
+                select the compute host based on the virtual image size. Therefore,
+                0 should only be used for volume booted instances or for testing
+                purposes. Volume-backed instances can be enforced for flavors with
+                zero root disk via the `os\_compute\_api:servers:create:zero\_disk\_flavor`
+                policy rule.
+
               type:
                 - integer
                 - string
               pattern: ^[0-9]+$
               minimum: 0
               maximum: 2147483647
-              description: |+
-                The size of a dedicated swap disk that will be allocated, in
-                MiB. If 0 (the default), no dedicated swap disk will be created.
-                Currently, the empty string (‘’) is used to represent 0.
-                As of microversion 2.75 default return value of swap is 0
-                instead of empty string.
-
             OS-FLV-EXT-DATA:ephemeral:
+              description: |+
+                The size of the ephemeral disk that will be created, in
+                GiB. Ephemeral disks may be written over on server state
+                changes. So should only be used as a scratch space for
+                applications that are aware of its limitations. Defaults to 0.
+
               type:
                 - integer
                 - string
               pattern: ^[0-9]+$
               minimum: 0
               maximum: 2147483647
-              description: |+
-                The size of a dedicated swap disk that will be allocated, in
-                MiB. If 0 (the default), no dedicated swap disk will be created.
-                Currently, the empty string (‘’) is used to represent 0.
-                As of microversion 2.75 default return value of swap is 0
-                instead of empty string.
-
             swap:
-              type:
-                - integer
-                - string
-              pattern: ^[0-9]+$
-              minimum: 0
-              maximum: 2147483647
               description: |+
                 The size of a dedicated swap disk that will be allocated, in
                 MiB. If 0 (the default), no dedicated swap disk will be created.
@@ -6880,7 +6894,18 @@ components:
                 As of microversion 2.75 default return value of swap is 0
                 instead of empty string.
 
+              type:
+                - integer
+                - string
+              pattern: ^[0-9]+$
+              minimum: 0
+              maximum: 2147483647
             rxtx_factor:
+              description: |+
+                The receive / transmit factor (as a float) that will be set on
+                ports if the network backend supports the QOS extension.
+                Otherwise it will be ignored. It defaults to 1.0.
+
               type:
                 - number
                 - string
@@ -6888,12 +6913,11 @@ components:
               minimum: 0
               exclusiveMinimum: true
               maximum: 3.40282e+38
-              description: |+
-                The receive / transmit factor (as a float) that will be set on
-                ports if the network backend supports the QOS extension.
-                Otherwise it will be ignored. It defaults to 1.0.
-
             os-flavor-access:is_public:
+              description: |+
+                Whether the flavor is public (available to all projects) or scoped
+                to a set of projects. Default is True if not specified.
+
               type:
                 - boolean
                 - string
@@ -6920,10 +6944,6 @@ components:
                 - NO
                 - No
                 - no
-              description: |+
-                Whether the flavor is public (available to all projects) or scoped
-                to a set of projects. Default is True if not specified.
-
             extra_specs:
               type: object
               patternProperties:
@@ -6960,11 +6980,6 @@ components:
                     format: url
                   rel:
                     type: string
-          required:
-            - name
-            - ram
-            - vcpus
-            - disk
           additionalProperties: false
           description: |+
             The ID and links for the flavor for your server instance. A flavor is a combination
@@ -6983,79 +6998,69 @@ components:
             properties:
               name:
                 type: string
-                minLength: 1
-                maxLength: 255
-                format: name_with_leading_trailing_spaces
                 description: |+
                   The display name of a flavor.
 
               id:
-                type:
-                  - string
-                  - number
-                  - 'null'
-                minLength: 1
-                maxLength: 255
-                pattern: ^(?! )[a-zA-Z0-9. _-]+(?<! )$
+                type: string
                 description: |+
                   The ID of the flavor. While people often make this look like
                   an int, this is really a string.
 
+                minLength: 1
+                maxLength: 255
+                pattern: ^(?! )[a-zA-Z0-9. _-]+(?<! )$
               ram:
+                description: |+
+                  The amount of RAM a flavor has, in MiB.
+
                 type:
                   - integer
                   - string
                 pattern: ^[0-9]+$
                 minimum: 1
                 maximum: 2147483647
-                description: |+
-                  The number of virtual CPUs that will be allocated to the server.
-
               vcpus:
+                description: |+
+                  The number of virtual CPUs that will be allocated to the server.
+
                 type:
                   - integer
                   - string
                 pattern: ^[0-9]+$
                 minimum: 1
                 maximum: 2147483647
-                description: |+
-                  The number of virtual CPUs that will be allocated to the server.
-
               disk:
+                description: |+
+                  The size of the root disk that will be created in GiB. If 0 the
+                  root disk will be set to exactly the size of the image used to
+                  deploy the instance. However, in this case the scheduler cannot
+                  select the compute host based on the virtual image size. Therefore,
+                  0 should only be used for volume booted instances or for testing
+                  purposes. Volume-backed instances can be enforced for flavors with
+                  zero root disk via the `os\_compute\_api:servers:create:zero\_disk\_flavor`
+                  policy rule.
+
                 type:
                   - integer
                   - string
                 pattern: ^[0-9]+$
                 minimum: 0
                 maximum: 2147483647
-                description: |+
-                  The size of a dedicated swap disk that will be allocated, in
-                  MiB. If 0 (the default), no dedicated swap disk will be created.
-                  Currently, the empty string (‘’) is used to represent 0.
-                  As of microversion 2.75 default return value of swap is 0
-                  instead of empty string.
-
               OS-FLV-EXT-DATA:ephemeral:
+                description: |+
+                  The size of the ephemeral disk that will be created, in
+                  GiB. Ephemeral disks may be written over on server state
+                  changes. So should only be used as a scratch space for
+                  applications that are aware of its limitations. Defaults to 0.
+
                 type:
                   - integer
                   - string
                 pattern: ^[0-9]+$
                 minimum: 0
                 maximum: 2147483647
-                description: |+
-                  The size of a dedicated swap disk that will be allocated, in
-                  MiB. If 0 (the default), no dedicated swap disk will be created.
-                  Currently, the empty string (‘’) is used to represent 0.
-                  As of microversion 2.75 default return value of swap is 0
-                  instead of empty string.
-
               swap:
-                type:
-                  - integer
-                  - string
-                pattern: ^[0-9]+$
-                minimum: 0
-                maximum: 2147483647
                 description: |+
                   The size of a dedicated swap disk that will be allocated, in
                   MiB. If 0 (the default), no dedicated swap disk will be created.
@@ -7063,7 +7068,18 @@ components:
                   As of microversion 2.75 default return value of swap is 0
                   instead of empty string.
 
+                type:
+                  - integer
+                  - string
+                pattern: ^[0-9]+$
+                minimum: 0
+                maximum: 2147483647
               rxtx_factor:
+                description: |+
+                  The receive / transmit factor (as a float) that will be set on
+                  ports if the network backend supports the QOS extension.
+                  Otherwise it will be ignored. It defaults to 1.0.
+
                 type:
                   - number
                   - string
@@ -7071,12 +7087,11 @@ components:
                 minimum: 0
                 exclusiveMinimum: true
                 maximum: 3.40282e+38
-                description: |+
-                  The receive / transmit factor (as a float) that will be set on
-                  ports if the network backend supports the QOS extension.
-                  Otherwise it will be ignored. It defaults to 1.0.
-
               os-flavor-access:is_public:
+                description: |+
+                  Whether the flavor is public (available to all projects) or scoped
+                  to a set of projects. Default is True if not specified.
+
                 type:
                   - boolean
                   - string
@@ -7103,10 +7118,6 @@ components:
                   - NO
                   - No
                   - no
-                description: |+
-                  Whether the flavor is public (available to all projects) or scoped
-                  to a set of projects. Default is True if not specified.
-
               extra_specs:
                 type: object
                 patternProperties:
@@ -7143,11 +7154,6 @@ components:
                       format: url
                     rel:
                       type: string
-            required:
-              - name
-              - ram
-              - vcpus
-              - disk
             additionalProperties: false
           description: |+
             An array of flavor objects.
@@ -7161,79 +7167,69 @@ components:
           properties:
             name:
               type: string
-              minLength: 1
-              maxLength: 255
-              format: name_with_leading_trailing_spaces
               description: |+
                 The display name of a flavor.
 
             id:
-              type:
-                - string
-                - number
-                - 'null'
-              minLength: 1
-              maxLength: 255
-              pattern: ^(?! )[a-zA-Z0-9. _-]+(?<! )$
+              type: string
               description: |+
                 The ID of the flavor. While people often make this look like
                 an int, this is really a string.
 
+              minLength: 1
+              maxLength: 255
+              pattern: ^(?! )[a-zA-Z0-9. _-]+(?<! )$
             ram:
+              description: |+
+                The amount of RAM a flavor has, in MiB.
+
               type:
                 - integer
                 - string
               pattern: ^[0-9]+$
               minimum: 1
               maximum: 2147483647
-              description: |+
-                The number of virtual CPUs that will be allocated to the server.
-
             vcpus:
+              description: |+
+                The number of virtual CPUs that will be allocated to the server.
+
               type:
                 - integer
                 - string
               pattern: ^[0-9]+$
               minimum: 1
               maximum: 2147483647
-              description: |+
-                The number of virtual CPUs that will be allocated to the server.
-
             disk:
+              description: |+
+                The size of the root disk that will be created in GiB. If 0 the
+                root disk will be set to exactly the size of the image used to
+                deploy the instance. However, in this case the scheduler cannot
+                select the compute host based on the virtual image size. Therefore,
+                0 should only be used for volume booted instances or for testing
+                purposes. Volume-backed instances can be enforced for flavors with
+                zero root disk via the `os\_compute\_api:servers:create:zero\_disk\_flavor`
+                policy rule.
+
               type:
                 - integer
                 - string
               pattern: ^[0-9]+$
               minimum: 0
               maximum: 2147483647
-              description: |+
-                The size of a dedicated swap disk that will be allocated, in
-                MiB. If 0 (the default), no dedicated swap disk will be created.
-                Currently, the empty string (‘’) is used to represent 0.
-                As of microversion 2.75 default return value of swap is 0
-                instead of empty string.
-
             OS-FLV-EXT-DATA:ephemeral:
+              description: |+
+                The size of the ephemeral disk that will be created, in
+                GiB. Ephemeral disks may be written over on server state
+                changes. So should only be used as a scratch space for
+                applications that are aware of its limitations. Defaults to 0.
+
               type:
                 - integer
                 - string
               pattern: ^[0-9]+$
               minimum: 0
               maximum: 2147483647
-              description: |+
-                The size of a dedicated swap disk that will be allocated, in
-                MiB. If 0 (the default), no dedicated swap disk will be created.
-                Currently, the empty string (‘’) is used to represent 0.
-                As of microversion 2.75 default return value of swap is 0
-                instead of empty string.
-
             swap:
-              type:
-                - integer
-                - string
-              pattern: ^[0-9]+$
-              minimum: 0
-              maximum: 2147483647
               description: |+
                 The size of a dedicated swap disk that will be allocated, in
                 MiB. If 0 (the default), no dedicated swap disk will be created.
@@ -7241,7 +7237,18 @@ components:
                 As of microversion 2.75 default return value of swap is 0
                 instead of empty string.
 
+              type:
+                - integer
+                - string
+              pattern: ^[0-9]+$
+              minimum: 0
+              maximum: 2147483647
             rxtx_factor:
+              description: |+
+                The receive / transmit factor (as a float) that will be set on
+                ports if the network backend supports the QOS extension.
+                Otherwise it will be ignored. It defaults to 1.0.
+
               type:
                 - number
                 - string
@@ -7249,12 +7256,11 @@ components:
               minimum: 0
               exclusiveMinimum: true
               maximum: 3.40282e+38
-              description: |+
-                The receive / transmit factor (as a float) that will be set on
-                ports if the network backend supports the QOS extension.
-                Otherwise it will be ignored. It defaults to 1.0.
-
             os-flavor-access:is_public:
+              description: |+
+                Whether the flavor is public (available to all projects) or scoped
+                to a set of projects. Default is True if not specified.
+
               type:
                 - boolean
                 - string
@@ -7281,10 +7287,6 @@ components:
                 - NO
                 - No
                 - no
-              description: |+
-                Whether the flavor is public (available to all projects) or scoped
-                to a set of projects. Default is True if not specified.
-
             extra_specs:
               type: object
               patternProperties:
@@ -7321,11 +7323,6 @@ components:
                     format: url
                   rel:
                     type: string
-          required:
-            - name
-            - ram
-            - vcpus
-            - disk
           additionalProperties: false
           description: |+
             The ID and links for the flavor for your server instance. A flavor is a combination
@@ -7370,79 +7367,69 @@ components:
           properties:
             name:
               type: string
-              minLength: 1
-              maxLength: 255
-              format: name_with_leading_trailing_spaces
               description: |+
                 The display name of a flavor.
 
             id:
-              type:
-                - string
-                - number
-                - 'null'
-              minLength: 1
-              maxLength: 255
-              pattern: ^(?! )[a-zA-Z0-9. _-]+(?<! )$
+              type: string
               description: |+
                 The ID of the flavor. While people often make this look like
                 an int, this is really a string.
 
+              minLength: 1
+              maxLength: 255
+              pattern: ^(?! )[a-zA-Z0-9. _-]+(?<! )$
             ram:
+              description: |+
+                The amount of RAM a flavor has, in MiB.
+
               type:
                 - integer
                 - string
               pattern: ^[0-9]+$
               minimum: 1
               maximum: 2147483647
-              description: |+
-                The number of virtual CPUs that will be allocated to the server.
-
             vcpus:
+              description: |+
+                The number of virtual CPUs that will be allocated to the server.
+
               type:
                 - integer
                 - string
               pattern: ^[0-9]+$
               minimum: 1
               maximum: 2147483647
-              description: |+
-                The number of virtual CPUs that will be allocated to the server.
-
             disk:
+              description: |+
+                The size of the root disk that will be created in GiB. If 0 the
+                root disk will be set to exactly the size of the image used to
+                deploy the instance. However, in this case the scheduler cannot
+                select the compute host based on the virtual image size. Therefore,
+                0 should only be used for volume booted instances or for testing
+                purposes. Volume-backed instances can be enforced for flavors with
+                zero root disk via the `os\_compute\_api:servers:create:zero\_disk\_flavor`
+                policy rule.
+
               type:
                 - integer
                 - string
               pattern: ^[0-9]+$
               minimum: 0
               maximum: 2147483647
-              description: |+
-                The size of a dedicated swap disk that will be allocated, in
-                MiB. If 0 (the default), no dedicated swap disk will be created.
-                Currently, the empty string (‘’) is used to represent 0.
-                As of microversion 2.75 default return value of swap is 0
-                instead of empty string.
-
             OS-FLV-EXT-DATA:ephemeral:
+              description: |+
+                The size of the ephemeral disk that will be created, in
+                GiB. Ephemeral disks may be written over on server state
+                changes. So should only be used as a scratch space for
+                applications that are aware of its limitations. Defaults to 0.
+
               type:
                 - integer
                 - string
               pattern: ^[0-9]+$
               minimum: 0
               maximum: 2147483647
-              description: |+
-                The size of a dedicated swap disk that will be allocated, in
-                MiB. If 0 (the default), no dedicated swap disk will be created.
-                Currently, the empty string (‘’) is used to represent 0.
-                As of microversion 2.75 default return value of swap is 0
-                instead of empty string.
-
             swap:
-              type:
-                - integer
-                - string
-              pattern: ^[0-9]+$
-              minimum: 0
-              maximum: 2147483647
               description: |+
                 The size of a dedicated swap disk that will be allocated, in
                 MiB. If 0 (the default), no dedicated swap disk will be created.
@@ -7450,7 +7437,18 @@ components:
                 As of microversion 2.75 default return value of swap is 0
                 instead of empty string.
 
+              type:
+                - integer
+                - string
+              pattern: ^[0-9]+$
+              minimum: 0
+              maximum: 2147483647
             rxtx_factor:
+              description: |+
+                The receive / transmit factor (as a float) that will be set on
+                ports if the network backend supports the QOS extension.
+                Otherwise it will be ignored. It defaults to 1.0.
+
               type:
                 - number
                 - string
@@ -7458,12 +7456,11 @@ components:
               minimum: 0
               exclusiveMinimum: true
               maximum: 3.40282e+38
-              description: |+
-                The receive / transmit factor (as a float) that will be set on
-                ports if the network backend supports the QOS extension.
-                Otherwise it will be ignored. It defaults to 1.0.
-
             os-flavor-access:is_public:
+              description: |+
+                Whether the flavor is public (available to all projects) or scoped
+                to a set of projects. Default is True if not specified.
+
               type:
                 - boolean
                 - string
@@ -7490,10 +7487,6 @@ components:
                 - NO
                 - No
                 - no
-              description: |+
-                Whether the flavor is public (available to all projects) or scoped
-                to a set of projects. Default is True if not specified.
-
             extra_specs:
               type: object
               patternProperties:
@@ -7530,11 +7523,6 @@ components:
                     format: url
                   rel:
                     type: string
-          required:
-            - name
-            - ram
-            - vcpus
-            - disk
           additionalProperties: false
           description: |+
             The ID and links for the flavor for your server instance. A flavor is a combination
@@ -7879,17 +7867,34 @@ components:
       description: Response of the flavors/id/action:post:create action
       x-openstack:
         action-name: create
-    FlavorsActionUpdateRequest:
+    FlavorsAction_Update_255:
       type: object
-      description: Empty body for update action
       properties:
-        update:
-          type: 'null'
+        flavor:
+          type: object
+          properties:
+            description:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 65535
+              pattern: ^[\ 
+                -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
+          additionalProperties: false
+          required:
+            - description
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.55'
         action-name: update
+      required:
+        - flavor
     FlavorsActionUpdateResponse:
       type: object
-      description: Response of the flavors/id/action:post operation
+      description: Response of the flavors/id/action:post:update action
+      x-openstack:
+        action-name: update
     FlavorsAction_Add_Tenant_Access:
       type: object
       description: |+
@@ -7902,6 +7907,7 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404), conflict(409)
 
+      summary: Add Flavor Access To Tenant (addTenantAccess Action)
       properties:
         addTenantAccess:
           type: object
@@ -7963,6 +7969,7 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404), conflict(409)
 
+      summary: Remove Flavor Access From Tenant (removeTenantAccess Action)
       properties:
         removeTenantAccess:
           type: object
@@ -8351,6 +8358,12 @@ components:
                   value, if included, is the time zone as an offset from UTC. In
                   the previous example, the offset value is `-05:00`.
 
+              deleted:
+                type: boolean
+                description: |+
+                  A boolean indicates whether this aggregate is deleted or not, if it has
+                  not been deleted, `false` will appear.
+
               deleted_at:
                 type:
                   - string
@@ -8373,6 +8386,28 @@ components:
                   value, if included, is the time zone as an offset from UTC. In
                   the previous example, the offset value is `-05:00`.
 
+              id:
+                type: integer
+                description: |+
+                  The ID of the host aggregate.
+
+              metadata:
+                type: object
+                patternProperties:
+                  ^[a-zA-Z0-9-_:. ]{1,255}$:
+                    type: string
+                    maxLength: 255
+                additionalProperties: false
+                description: |+
+                  Metadata key and value pairs associated with the aggregate.
+
+              hosts:
+                type: array
+                description: |+
+                  A list of host ids in this aggregate.
+
+                items:
+                  type: string
               updated_at:
                 type:
                   - string
@@ -8394,31 +8429,6 @@ components:
                   For example, `2015-08-27T09:49:58-05:00`. The `±hh:mm`
                   value, if included, is the time zone as an offset from UTC. In
                   the previous example, the offset value is `-05:00`.
-
-              deleted:
-                type: boolean
-                description: |+
-                  A boolean indicates whether this aggregate is deleted or not, if it has
-                  not been deleted, `false` will appear.
-
-              hosts:
-                type: array
-                description: |+
-                  A list of host ids in this aggregate.
-
-                items:
-                  type: string
-              metadata:
-                type: object
-                patternProperties:
-                  ^[a-zA-Z0-9-_:. ]{1,255}$:
-                    type:
-                      - string
-                      - 'null'
-                    maxLength: 255
-                additionalProperties: false
-                description: |+
-                  Metadata key and value pairs associated with the aggregate.
 
               uuid:
                 type: string
@@ -8548,6 +8558,12 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
+            deleted:
+              type: boolean
+              description: |+
+                A boolean indicates whether this aggregate is deleted or not, if it has
+                not been deleted, `false` will appear.
+
             deleted_at:
               type:
                 - string
@@ -8570,6 +8586,28 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
+            id:
+              type: integer
+              description: |+
+                The ID of the host aggregate.
+
+            metadata:
+              type: object
+              patternProperties:
+                ^[a-zA-Z0-9-_:. ]{1,255}$:
+                  type: string
+                  maxLength: 255
+              additionalProperties: false
+              description: |+
+                Metadata key and value pairs associated with the aggregate.
+
+            hosts:
+              type: array
+              description: |+
+                An array of host information.
+
+              items:
+                type: string
             updated_at:
               type:
                 - string
@@ -8591,31 +8629,6 @@ components:
                 For example, `2015-08-27T09:49:58-05:00`. The `±hh:mm`
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
-
-            deleted:
-              type: boolean
-              description: |+
-                A boolean indicates whether this aggregate is deleted or not, if it has
-                not been deleted, `false` will appear.
-
-            hosts:
-              type: array
-              description: |+
-                An array of host information.
-
-              items:
-                type: string
-            metadata:
-              type: object
-              patternProperties:
-                ^[a-zA-Z0-9-_:. ]{1,255}$:
-                  type:
-                    - string
-                    - 'null'
-                  maxLength: 255
-              additionalProperties: false
-              description: |+
-                Metadata key and value pairs associated with the aggregate.
 
             uuid:
               type: string
@@ -8662,6 +8675,12 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
+            deleted:
+              type: boolean
+              description: |+
+                A boolean indicates whether this aggregate is deleted or not, if it has
+                not been deleted, `false` will appear.
+
             deleted_at:
               type:
                 - string
@@ -8684,6 +8703,28 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
+            id:
+              type: integer
+              description: |+
+                The ID of the host aggregate.
+
+            metadata:
+              type: object
+              patternProperties:
+                ^[a-zA-Z0-9-_:. ]{1,255}$:
+                  type: string
+                  maxLength: 255
+              additionalProperties: false
+              description: |+
+                Metadata key and value pairs associated with the aggregate.
+
+            hosts:
+              type: array
+              description: |+
+                An array of host information.
+
+              items:
+                type: string
             updated_at:
               type:
                 - string
@@ -8705,31 +8746,6 @@ components:
                 For example, `2015-08-27T09:49:58-05:00`. The `±hh:mm`
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
-
-            deleted:
-              type: boolean
-              description: |+
-                A boolean indicates whether this aggregate is deleted or not, if it has
-                not been deleted, `false` will appear.
-
-            hosts:
-              type: array
-              description: |+
-                An array of host information.
-
-              items:
-                type: string
-            metadata:
-              type: object
-              patternProperties:
-                ^[a-zA-Z0-9-_:. ]{1,255}$:
-                  type:
-                    - string
-                    - 'null'
-                  maxLength: 255
-              additionalProperties: false
-              description: |+
-                Metadata key and value pairs associated with the aggregate.
 
             uuid:
               type: string
@@ -8887,6 +8903,12 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
+            deleted:
+              type: boolean
+              description: |+
+                A boolean indicates whether this aggregate is deleted or not, if it has
+                not been deleted, `false` will appear.
+
             deleted_at:
               type:
                 - string
@@ -8909,6 +8931,28 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
+            id:
+              type: integer
+              description: |+
+                The ID of the host aggregate.
+
+            metadata:
+              type: object
+              patternProperties:
+                ^[a-zA-Z0-9-_:. ]{1,255}$:
+                  type: string
+                  maxLength: 255
+              additionalProperties: false
+              description: |+
+                Metadata key and value pairs associated with the aggregate.
+
+            hosts:
+              type: array
+              description: |+
+                An array of host information.
+
+              items:
+                type: string
             updated_at:
               type:
                 - string
@@ -8931,31 +8975,6 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
-            deleted:
-              type: boolean
-              description: |+
-                A boolean indicates whether this aggregate is deleted or not, if it has
-                not been deleted, `false` will appear.
-
-            hosts:
-              type: array
-              description: |+
-                An array of host information.
-
-              items:
-                type: string
-            metadata:
-              type: object
-              patternProperties:
-                ^[a-zA-Z0-9-_:. ]{1,255}$:
-                  type:
-                    - string
-                    - 'null'
-                  maxLength: 255
-              additionalProperties: false
-              description: |+
-                Metadata key and value pairs associated with the aggregate.
-
             uuid:
               type: string
               format: uuid
@@ -8969,31 +8988,15 @@ components:
                 min-ver: '2.41'
     Os_AggregatesAction_Add_Host:
       type: object
-      description: |+
-        Adds a host to an aggregate.
-
-        Specify the `add\_host` action and host name in the request body.
-
-        Normal response codes: 200
-
-        Error response codes: badRequest(400), unauthorized(401), forbidden(403),
-        itemNotFound(404), conflict(409)
-
       properties:
         add_host:
           type: object
-          description: |+
-            The add\_host object used to add host to aggregate.
-
           properties:
             host:
               type: string
               minLength: 1
               maxLength: 255
               pattern: ^[a-zA-Z0-9-._]*$
-              description: |+
-                The name of the host.
-
           additionalProperties: false
           required:
             - host
@@ -9036,6 +9039,12 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
+            deleted:
+              type: boolean
+              description: |+
+                A boolean indicates whether this aggregate is deleted or not, if it has
+                not been deleted, `false` will appear.
+
             deleted_at:
               type:
                 - string
@@ -9058,6 +9067,28 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
+            id:
+              type: integer
+              description: |+
+                The ID of the host aggregate.
+
+            metadata:
+              type: object
+              patternProperties:
+                ^[a-zA-Z0-9-_:. ]{1,255}$:
+                  type: string
+                  maxLength: 255
+              additionalProperties: false
+              description: |+
+                Metadata key and value pairs associated with the aggregate.
+
+            hosts:
+              type: array
+              description: |+
+                An array of host information.
+
+              items:
+                type: string
             updated_at:
               type:
                 - string
@@ -9080,31 +9111,6 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
-            deleted:
-              type: boolean
-              description: |+
-                A boolean indicates whether this aggregate is deleted or not, if it has
-                not been deleted, `false` will appear.
-
-            hosts:
-              type: array
-              description: |+
-                An array of host information.
-
-              items:
-                type: string
-            metadata:
-              type: object
-              patternProperties:
-                ^[a-zA-Z0-9-_:. ]{1,255}$:
-                  type:
-                    - string
-                    - 'null'
-                  maxLength: 255
-              additionalProperties: false
-              description: |+
-                Metadata key and value pairs associated with the aggregate.
-
             uuid:
               type: string
               format: uuid
@@ -9120,31 +9126,15 @@ components:
         action-name: add_host
     Os_AggregatesAction_Remove_Host:
       type: object
-      description: |+
-        Removes a host from an aggregate.
-
-        Specify the `remove\_host` action and host name in the request body.
-
-        Normal response codes: 200
-
-        Error response codes: badRequest(400), unauthorized(401), forbidden(403),
-        itemNotFound(404), conflict(409)
-
       properties:
         remove_host:
           type: object
-          description: |+
-            The add\_host object used to remove host from aggregate.
-
           properties:
             host:
               type: string
               minLength: 1
               maxLength: 255
               pattern: ^[a-zA-Z0-9-._]*$
-              description: |+
-                The name of the host.
-
           additionalProperties: false
           required:
             - host
@@ -9187,6 +9177,12 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
+            deleted:
+              type: boolean
+              description: |+
+                A boolean indicates whether this aggregate is deleted or not, if it has
+                not been deleted, `false` will appear.
+
             deleted_at:
               type:
                 - string
@@ -9209,6 +9205,28 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
+            id:
+              type: integer
+              description: |+
+                The ID of the host aggregate.
+
+            metadata:
+              type: object
+              patternProperties:
+                ^[a-zA-Z0-9-_:. ]{1,255}$:
+                  type: string
+                  maxLength: 255
+              additionalProperties: false
+              description: |+
+                Metadata key and value pairs associated with the aggregate.
+
+            hosts:
+              type: array
+              description: |+
+                An array of host information.
+
+              items:
+                type: string
             updated_at:
               type:
                 - string
@@ -9231,31 +9249,6 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
-            deleted:
-              type: boolean
-              description: |+
-                A boolean indicates whether this aggregate is deleted or not, if it has
-                not been deleted, `false` will appear.
-
-            hosts:
-              type: array
-              description: |+
-                An array of host information.
-
-              items:
-                type: string
-            metadata:
-              type: object
-              patternProperties:
-                ^[a-zA-Z0-9-_:. ]{1,255}$:
-                  type:
-                    - string
-                    - 'null'
-                  maxLength: 255
-              additionalProperties: false
-              description: |+
-                Metadata key and value pairs associated with the aggregate.
-
             uuid:
               type: string
               format: uuid
@@ -9271,46 +9264,12 @@ components:
         action-name: remove_host
     Os_AggregatesAction_Set_Metadata:
       type: object
-      description: |+
-        Creates or replaces metadata for an aggregate.
-
-        Specify the `set\_metadata` action and metadata info in the request body.
-
-        Normal response codes: 200
-
-        Error response codes: badRequest(400), unauthorized(401), forbidden(403),
-        itemNotFound(404)
-
       properties:
         set_metadata:
           type: object
-          description: |+
-            The set\_metadata object used to set metadata for host aggregate.
-
           properties:
             metadata:
               type: object
-              description: |+
-                Metadata key and value pairs associated with the aggregate.
-                The maximum size for each metadata key and value pair is 255 bytes.
-
-
-                New keys will be added to existing aggregate metadata. For existing
-                keys, if the value is `null` the entry is removed, otherwise the
-                value is updated. Note that the special `availability\_zone` metadata
-                entry cannot be unset to `null`.
-
-
-
-                Warning
-
-
-                You should not change the availability zone of an
-                aggregate when that aggregate has hosts which contain servers in it
-                since that may impact the ability for those servers to move to another
-                host.
-
-
               additionalProperties: false
               patternProperties:
                 ^[a-zA-Z0-9-_:. ]{1,255}$:
@@ -9360,6 +9319,12 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
+            deleted:
+              type: boolean
+              description: |+
+                A boolean indicates whether this aggregate is deleted or not, if it has
+                not been deleted, `false` will appear.
+
             deleted_at:
               type:
                 - string
@@ -9382,6 +9347,28 @@ components:
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
 
+            id:
+              type: integer
+              description: |+
+                The ID of the host aggregate.
+
+            metadata:
+              type: object
+              patternProperties:
+                ^[a-zA-Z0-9-_:. ]{1,255}$:
+                  type: string
+                  maxLength: 255
+              additionalProperties: false
+              description: |+
+                Metadata key and value pairs associated with the aggregate.
+
+            hosts:
+              type: array
+              description: |+
+                An array of host information.
+
+              items:
+                type: string
             updated_at:
               type:
                 - string
@@ -9403,31 +9390,6 @@ components:
                 For example, `2015-08-27T09:49:58-05:00`. The `±hh:mm`
                 value, if included, is the time zone as an offset from UTC. In
                 the previous example, the offset value is `-05:00`.
-
-            deleted:
-              type: boolean
-              description: |+
-                A boolean indicates whether this aggregate is deleted or not, if it has
-                not been deleted, `false` will appear.
-
-            hosts:
-              type: array
-              description: |+
-                An array of host information.
-
-              items:
-                type: string
-            metadata:
-              type: object
-              patternProperties:
-                ^[a-zA-Z0-9-_:. ]{1,255}$:
-                  type:
-                    - string
-                    - 'null'
-                  maxLength: 255
-              additionalProperties: false
-              description: |+
-                Metadata key and value pairs associated with the aggregate.
 
             uuid:
               type: string
@@ -9466,9 +9428,6 @@ components:
         min-ver: '2.81'
       required:
         - cache
-    Os_AggregatesImagesResponse:
-      type: object
-      description: Response of the os-aggregates/id/images:post operation
     Os_Assisted_Volume_SnapshotsCreate:
       type: object
       properties:
@@ -9789,23 +9748,10 @@ components:
       description: Response of the os-fixed-ips/id:get operation
     Os_Fixed_IpsActionReserveRequest:
       type: object
-      description: |+
-        Reserves or releases a fixed IP.
-
-        To reserve a fixed IP address, specify `reserve` in the request body.
-        To release a fixed IP address, specify `unreserve` in the request body.
-
-        Normal response codes: 202
-
-        Error response codes: badRequest(400), unauthorized(401), forbidden(403),
-        itemNotFound(404), gone(410)
-
+      description: Empty body for reserve action
       properties:
         reserve:
           type: 'null'
-          description: |+
-            The attribute to reserve an IP with a value of `null`.
-
       x-openstack:
         action-name: reserve
     Os_Fixed_IpsActionReserveResponse:
@@ -9966,9 +9912,7 @@ components:
                   driver, it is the Ironic node uuid.
 
               id:
-                type:
-                  - integer
-                  - string
+                type: string
                 description: |+
                   The id of the hypervisor as a UUID.
 
@@ -10266,9 +10210,7 @@ components:
                   **Available until version 2.87**
 
               id:
-                type:
-                  - integer
-                  - string
+                type: string
                 description: The id of the hypervisor. From version 2.53 it is a string
                   as UUID
               state:
@@ -10562,9 +10504,7 @@ components:
                 **Available until version 2.87**
 
             id:
-              type:
-                - integer
-                - string
+              type: string
               description: The id of the hypervisor. From version 2.53 it is a string
                 as UUID
             state:
@@ -11563,20 +11503,7 @@ components:
       description: Response of the os-networks/id:get operation
     Os_NetworksActionDisassociateRequest:
       type: object
-      description: |+
-        Disassociates a project from a network.
-
-        Specify the `disassociate\_project` action in the request body.
-
-        Policy defaults enable only users with the administrative role or the
-        owner of the network to perform this operation. Cloud providers can change
-        these permissions through the `policy.json` file.
-
-        Normal response codes: 202
-
-        Error response codes: unauthorized(401), forbidden(403), itemNotFound(404),
-        gone(410), notImplemented(501)
-
+      description: Empty body for disassociate action
       properties:
         disassociate:
           type: 'null'
@@ -11616,26 +11543,10 @@ components:
         action-name: disassociate_project
     Os_NetworksActionAssociate_HostRequest:
       type: object
-      description: |+
-        Associates a network with a host.
-
-        Specify the `associate\_host` action in the request body.
-
-        Policy defaults enable only users with the administrative role or the owner
-        of the network to perform this operation. Cloud providers can change these
-        permissions through the `policy.json` file.
-
-        Normal response codes: 202
-
-        Error response codes: unauthorized(401), forbidden(403), itemNotFound(404),
-        gone(410), notImplemented(501)
-
+      description: Empty body for associate_host action
       properties:
         associate_host:
           type: 'null'
-          description: |+
-            The name of the host to associate.
-
       x-openstack:
         action-name: associate_host
     Os_NetworksActionAssociate_HostResponse:
@@ -22661,28 +22572,64 @@ components:
       description: Response of the os-volumes_boot/id/action:post:evacuate action
       x-openstack:
         action-name: evacuate
-    Os_Volumes_BootActionAddfloatingipRequest:
+    Os_Volumes_BootAction_Add_Floating_Ip:
       type: object
-      description: Empty body for addFloatingIp action
       properties:
         addFloatingIp:
-          type: 'null'
+          type: object
+          properties:
+            address:
+              type: string
+              oneOf:
+                - format: ipv4
+                - format: ipv6
+            fixed_address:
+              type: string
+              oneOf:
+                - format: ipv4
+                - format: ipv6
+          additionalProperties: false
+          required:
+            - address
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.43'
         action-name: addFloatingIp
+      required:
+        - addFloatingIp
     Os_Volumes_BootActionAddfloatingipResponse:
       type: object
-      description: Response of the os-volumes_boot/id/action:post operation
-    Os_Volumes_BootActionRemovefloatingipRequest:
+      description: Response of the os-volumes_boot/id/action:post:addFloatingIp action
+      x-openstack:
+        action-name: addFloatingIp
+    Os_Volumes_BootAction_Remove_Floating_Ip:
       type: object
-      description: Empty body for removeFloatingIp action
       properties:
         removeFloatingIp:
-          type: 'null'
+          type: object
+          properties:
+            address:
+              type: string
+              oneOf:
+                - format: ipv4
+                - format: ipv6
+          additionalProperties: false
+          required:
+            - address
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.43'
         action-name: removeFloatingIp
+      required:
+        - removeFloatingIp
     Os_Volumes_BootActionRemovefloatingipResponse:
       type: object
-      description: Response of the os-volumes_boot/id/action:post operation
+      description: Response of the os-volumes_boot/id/action:post:removeFloatingIp
+        action
+      x-openstack:
+        action-name: removeFloatingIp
     Os_Volumes_BootAction_Lock_273:
       type: object
       properties:
@@ -23022,28 +22969,59 @@ components:
       description: Response of the os-volumes_boot/id/action:post:os-migrateLive action
       x-openstack:
         action-name: os-migrateLive
-    Os_Volumes_BootActionAddfixedipRequest:
+    Os_Volumes_BootAction_Add_Fixed_Ip:
       type: object
-      description: Empty body for addFixedIp action
       properties:
         addFixedIp:
-          type: 'null'
+          type: object
+          properties:
+            networkId:
+              type:
+                - string
+                - number
+              minLength: 1
+              maxLength: 36
+          additionalProperties: false
+          required:
+            - networkId
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.43'
         action-name: addFixedIp
+      required:
+        - addFixedIp
     Os_Volumes_BootActionAddfixedipResponse:
       type: object
-      description: Response of the os-volumes_boot/id/action:post operation
-    Os_Volumes_BootActionRemovefixedipRequest:
+      description: Response of the os-volumes_boot/id/action:post:addFixedIp action
+      x-openstack:
+        action-name: addFixedIp
+    Os_Volumes_BootAction_Remove_Fixed_Ip:
       type: object
-      description: Empty body for removeFixedIp action
       properties:
         removeFixedIp:
-          type: 'null'
+          type: object
+          properties:
+            address:
+              type: string
+              oneOf:
+                - format: ipv4
+                - format: ipv6
+          additionalProperties: false
+          required:
+            - address
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.43'
         action-name: removeFixedIp
+      required:
+        - removeFixedIp
     Os_Volumes_BootActionRemovefixedipResponse:
       type: object
-      description: Response of the os-volumes_boot/id/action:post operation
+      description: Response of the os-volumes_boot/id/action:post:removeFixedIp action
+      x-openstack:
+        action-name: removeFixedIp
     Os_Volumes_BootActionPauseRequest:
       type: object
       description: Empty body for pause action
@@ -23070,50 +23048,111 @@ components:
       description: Response of the os-volumes_boot/id/action:post:unpause action
       x-openstack:
         action-name: unpause
-    Os_Volumes_BootActionOs-GetvncconsoleRequest:
+    Os_Volumes_BootActionGet_Vnc_Console:
       type: object
-      description: Empty body for os-getVNCConsole action
       properties:
         os-getVNCConsole:
-          type: 'null'
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - novnc
+                - xvpvnc
+          additionalProperties: false
+          required:
+            - type
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.5'
         action-name: os-getVNCConsole
+      required:
+        - os-getVNCConsole
     Os_Volumes_BootActionOs-GetvncconsoleResponse:
       type: object
-      description: Response of the os-volumes_boot/id/action:post operation
-    Os_Volumes_BootActionOs-GetspiceconsoleRequest:
+      description: Response of the os-volumes_boot/id/action:post:os-getVNCConsole
+        action
+      x-openstack:
+        action-name: os-getVNCConsole
+    Os_Volumes_BootActionGet_Spice_Console:
       type: object
-      description: Empty body for os-getSPICEConsole action
       properties:
         os-getSPICEConsole:
-          type: 'null'
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - spice-html5
+          additionalProperties: false
+          required:
+            - type
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.5'
         action-name: os-getSPICEConsole
+      required:
+        - os-getSPICEConsole
     Os_Volumes_BootActionOs-GetspiceconsoleResponse:
       type: object
-      description: Response of the os-volumes_boot/id/action:post operation
-    Os_Volumes_BootActionOs-GetrdpconsoleRequest:
+      description: Response of the os-volumes_boot/id/action:post:os-getSPICEConsole
+        action
+      x-openstack:
+        action-name: os-getSPICEConsole
+    Os_Volumes_BootActionGet_Rdp_Console:
       type: object
-      description: Empty body for os-getRDPConsole action
       properties:
         os-getRDPConsole:
-          type: 'null'
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - rdp-html5
+          additionalProperties: false
+          required:
+            - type
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.5'
         action-name: os-getRDPConsole
+      required:
+        - os-getRDPConsole
     Os_Volumes_BootActionOs-GetrdpconsoleResponse:
       type: object
-      description: Response of the os-volumes_boot/id/action:post operation
-    Os_Volumes_BootActionOs-GetserialconsoleRequest:
+      description: Response of the os-volumes_boot/id/action:post:os-getRDPConsole
+        action
+      x-openstack:
+        action-name: os-getRDPConsole
+    Os_Volumes_BootActionGet_Serial_Console:
       type: object
-      description: Empty body for os-getSerialConsole action
       properties:
         os-getSerialConsole:
-          type: 'null'
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - serial
+          additionalProperties: false
+          required:
+            - type
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.5'
         action-name: os-getSerialConsole
+      required:
+        - os-getSerialConsole
     Os_Volumes_BootActionOs-GetserialconsoleResponse:
       type: object
-      description: Response of the os-volumes_boot/id/action:post operation
+      description: Response of the os-volumes_boot/id/action:post:os-getSerialConsole
+        action
+      x-openstack:
+        action-name: os-getSerialConsole
     Os_Volumes_BootAction_Rescue:
       type: object
       properties:
@@ -34671,11 +34710,9 @@ components:
           properties:
             reservation_id:
               type: string
-              description: |+
-                The reservation id for the server. This is an id that can
-                be useful in tracking groups of servers created with multiple
-                create, that will all have the same reservation\_id.
-
+              description: The reservation id for the server. This is an id that can
+                be useful in tracking groups of servers created with multiple create,
+                that will all have the same reservation_id.
     ServersDetailResponse:
       type: object
       properties:
@@ -37212,6 +37249,7 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404), conflict(409)
 
+      summary: Confirm Resized Server (confirmResize Action)
       properties:
         confirmResize:
           type: 'null'
@@ -37256,6 +37294,7 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404), conflict(409)
 
+      summary: Revert Resized Server (revertResize Action)
       properties:
         revertResize:
           type: 'null'
@@ -37267,38 +37306,31 @@ components:
     ServersAction_Action_Reboot:
       type: object
       description: |+
-        Live-migrates a server to a new host without rebooting.
+        Reboots a server.
 
-        Specify the `os-migrateLive` action in the request body.
+        Specify the `reboot` action in the request body.
 
-        Use the `host` parameter to specify the destination host. If
-        this param is `null`, the scheduler chooses a host. If a scheduled host
-        is not suitable to do migration, the scheduler tries up to
-        `migrate\_max\_retries` rescheduling attempts.
+        **Preconditions**
 
-        Starting from API version 2.25, the `block\_migration` parameter could be
-        to `auto` so that nova can decide value of block\_migration during live
-        migration.
+        The preconditions for rebooting a server depend on the type of reboot.
 
-        Policy defaults enable only users with the administrative role to
-        perform this operation. Cloud providers can change these permissions
-        through the `policy.json` file.
+        You can only *SOFT* reboot a server when its status is `ACTIVE`.
 
-        Starting from REST API version 2.34 pre-live-migration checks are done
-        asynchronously, results of these checks are available in `instance-actions`.
-        Nova responds immediately, and no pre-live-migration checks are returned.
-        The instance will not immediately change state to `ERROR`, if a failure of
-        the live-migration checks occurs.
+        You can only *HARD* reboot a server when its status is one of:
 
-        Starting from API version 2.68, the `force` parameter is no longer accepted
-        as this could not be meaningfully supported by servers with complex resource
-        allocations.
+        If the server is locked, you must have administrator privileges
+        to reboot the server.
+
+        **Asynchronous Postconditions**
+
+        After you successfully reboot a server, its status changes to `ACTIVE`.
 
         Normal response codes: 202
 
-        Error response codes: badRequest(400), unauthorized(401), forbidden(403)
-        itemNotFound(404), conflict(409)
+        Error response codes: unauthorized(401), forbidden(403), itemNotFound(404),
+        conflict(409)
 
+      summary: Reboot Server (reboot Action)
       properties:
         reboot:
           type: object
@@ -37332,32 +37364,30 @@ components:
     ServersAction_Action_Resize:
       type: object
       description: |+
-        Migrates a server to a host.
+        Resizes a server.
 
-        Specify the `migrate` action in the request body.
+        Specify the `resize` action in the request body.
 
-        Up to microversion 2.55, the scheduler chooses the host.
-        Starting from microversion 2.56, the `host` parameter is available
-        to specify the destination host. If you specify `null` or don’t specify
-        this parameter, the scheduler chooses a host.
+        **Preconditions**
+
+        You can only resize a server when its status is `ACTIVE` or `SHUTOFF`.
+
+        If the server is locked, you must have administrator privileges
+        to resize the server.
 
         **Asynchronous Postconditions**
 
-        A successfully migrated server shows a `VERIFY\_RESIZE` status and `finished`
+        A successfully resized server shows a `VERIFY\_RESIZE` status and `finished`
         migration status. If the cloud has configured the [resize\_confirm\_window](https://docs.openstack.org/nova/latest/configuration/config.html#DEFAULT.resize_confirm_window)
         option of the Compute service to a positive value, the Compute service
-        automatically confirms the migrate operation after the configured interval.
-
-        There are two different policies for this action, depending on whether the host
-        parameter is set. Both defaults enable only users with the administrative role
-        to perform this operation. Cloud providers can change these permissions
-        through the `policy.json` file.
+        automatically confirms the resize operation after the configured interval.
 
         Normal response codes: 202
 
-        Error response codes: badRequest(400), unauthorized(401), forbidden(403)
+        Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404), conflict(409)
 
+      summary: Resize Server (resize Action)
       properties:
         resize:
           type: object
@@ -37411,6 +37441,7 @@ components:
         - resize
     ServersAction_Action_Rebuild_20:
       type: object
+      summary: Rebuild Server (rebuild Action)
       properties:
         rebuild:
           type: object
@@ -37564,6 +37595,7 @@ components:
         - rebuild
     ServersAction_Action_Rebuild_21:
       type: object
+      summary: Rebuild Server (rebuild Action)
       properties:
         rebuild:
           type: object
@@ -37717,6 +37749,7 @@ components:
         - rebuild
     ServersAction_Action_Rebuild_219:
       type: object
+      summary: Rebuild Server (rebuild Action)
       properties:
         rebuild:
           type: object
@@ -37886,6 +37919,7 @@ components:
         - rebuild
     ServersAction_Action_Rebuild_254:
       type: object
+      summary: Rebuild Server (rebuild Action)
       properties:
         rebuild:
           type: object
@@ -38081,6 +38115,7 @@ components:
         - rebuild
     ServersAction_Action_Rebuild_257:
       type: object
+      summary: Rebuild Server (rebuild Action)
       properties:
         rebuild:
           type: object
@@ -38271,6 +38306,7 @@ components:
         - rebuild
     ServersAction_Action_Rebuild_263:
       type: object
+      summary: Rebuild Server (rebuild Action)
       properties:
         rebuild:
           type: object
@@ -38485,6 +38521,7 @@ components:
         - rebuild
     ServersAction_Action_Rebuild_290:
       type: object
+      summary: Rebuild Server (rebuild Action)
       properties:
         rebuild:
           type: object
@@ -38724,6 +38761,7 @@ components:
         - rebuild
     ServersAction_Action_Rebuild_294:
       type: object
+      summary: Rebuild Server (rebuild Action)
       properties:
         rebuild:
           type: object
@@ -38990,6 +39028,7 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404), conflict(409)
 
+      summary: Rebuild Server (rebuild Action)
       oneOf:
         - $ref: '#/components/schemas/ServersAction_Action_Rebuild_20'
         - $ref: '#/components/schemas/ServersAction_Action_Rebuild_21'
@@ -39004,6 +39043,7 @@ components:
         action-name: rebuild
     ServersAction_Action_Create_Image_20:
       type: object
+      summary: Create Image (createImage Action)
       properties:
         createImage:
           type: object
@@ -39043,6 +39083,7 @@ components:
         - createImage
     ServersAction_Action_Create_Image_21:
       type: object
+      summary: Create Image (createImage Action)
       properties:
         createImage:
           type: object
@@ -39142,6 +39183,7 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404), conflict(409)
 
+      summary: Create Image (createImage Action)
       oneOf:
         - $ref: '#/components/schemas/ServersAction_Action_Create_Image_20'
         - $ref: '#/components/schemas/ServersAction_Action_Create_Image_21'
@@ -39159,6 +39201,45 @@ components:
       x-openstack:
         action-name: createImage
     ServersActionOs-StartRequest:
+      type: object
+      description: |+
+        Starts a stopped server and changes its status to `ACTIVE`.
+
+        Specify the `os-start` action in the request body.
+
+        **Preconditions**
+
+        The server status must be `SHUTOFF`.
+
+        If the server is locked, you must have administrator privileges
+        to start the server.
+
+        **Asynchronous Postconditions**
+
+        After you successfully start a server, its status changes to `ACTIVE`.
+
+        **Troubleshooting**
+
+        If the server status does not change to `ACTIVE`, the start operation failed.
+        Ensure that you meet the preconditions and run the request again.
+        If the request fails again, investigate whether another operation is running
+        that causes a race condition.
+
+        Normal response codes: 202
+
+        Error response codes: unauthorized(401), forbidden(403), itemNotFound(404),
+        conflict(409)
+
+      summary: Start Server (os-start Action)
+      properties:
+        os-start:
+          type: 'null'
+          description: |+
+            The action to start a stopped server.
+
+      x-openstack:
+        action-name: os-start
+    ServersActionOs-StopRequest:
       type: object
       description: |+
         Stops a running server and changes its status to `SHUTOFF`.
@@ -39183,20 +39264,13 @@ components:
         Error response codes: unauthorized(401), forbidden(403), itemNotFound(404),
         conflict(409)
 
-      properties:
-        os-start:
-          type: 'null'
-          description: |+
-            The action to start a stopped server.
-
-      x-openstack:
-        action-name: os-start
-    ServersActionOs-StopRequest:
-      type: object
-      description: Empty body for os-stop action
+      summary: Stop Server (os-stop Action)
       properties:
         os-stop:
           type: 'null'
+          description: |+
+            The action to stop a running server.
+
       x-openstack:
         action-name: os-stop
     ServersAction_Action_Trigger_Crash_Dump:
@@ -39226,6 +39300,7 @@ components:
         Error response codes: unauthorized(401), forbidden(403), itemNotFound(404),
         conflict(409), gone(410)
 
+      summary: Reset Networking On A Server (resetNetwork Action) (DEPRECATED)
       properties:
         resetNetwork:
           type: 'null'
@@ -39249,6 +39324,7 @@ components:
 
         Error response codes: unauthorized(401), forbidden(403), itemNotFound(404), conflict(409)
 
+      summary: Inject Network Information (injectNetworkInfo Action)
       properties:
         injectNetworkInfo:
           type: 'null'
@@ -39272,6 +39348,7 @@ components:
 
         Error response codes: unauthorized(401), forbidden(403), itemNotFound(404)
 
+      summary: Reset Server State (os-resetState Action)
       properties:
         os-resetState:
           type: object
@@ -39311,6 +39388,7 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404), conflict(409), notImplemented(501)
 
+      summary: Change Administrative Password (changePassword Action)
       properties:
         changePassword:
           type: object
@@ -39349,6 +39427,7 @@ components:
         Error response codes: unauthorized(401), forbidden(403),
         notFound(404), conflict(409), methodNotImplemented(501)
 
+      summary: Show Console Output (os-getConsoleOutput Action)
       properties:
         os-getConsoleOutput:
           type: object
@@ -39396,6 +39475,7 @@ components:
         action-name: os-getConsoleOutput
     ServersAction_Create_Backup_20:
       type: object
+      summary: Create Server Back Up (createBackup Action)
       properties:
         createBackup:
           type: object
@@ -39452,6 +39532,7 @@ components:
         - createBackup
     ServersAction_Create_Backup_21:
       type: object
+      summary: Create Server Back Up (createBackup Action)
       properties:
         createBackup:
           type: object
@@ -39520,6 +39601,7 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404), conflict(409)
 
+      summary: Create Server Back Up (createBackup Action)
       oneOf:
         - $ref: '#/components/schemas/ServersAction_Create_Backup_20'
         - $ref: '#/components/schemas/ServersAction_Create_Backup_21'
@@ -39539,45 +39621,21 @@ components:
     ServersActionRestoreRequest:
       type: object
       description: |+
-        Unshelves, or restores, a shelved server.
+        Restores a previously soft-deleted server instance. You cannot use
+        this method to restore deleted instances.
 
-        Specify the `unshelve` action in the request body.
+        Specify the `restore` action in the request body.
 
-        Policy defaults enable only users with the administrative role or the owner of the server to perform this operation. Cloud providers can change these permissions through the `policy.json` file.
-
-        **Preconditions**
-
-        Unshelving a server without parameters requires its status to be `SHELVED` or `SHELVED\_OFFLOADED`.
-
-        Unshelving a server with availability\_zone and/or host parameters requires its status to be only `SHELVED\_OFFLOADED` otherwise HTTP 409 conflict response is returned.
-
-        If a server is locked, you must have administrator privileges to unshelve the server.
-
-        As of `microversion 2.91`, you can unshelve to a specific compute node if you have PROJECT\_ADMIN privileges.
-        This microversion also gives the ability to pin a server to an availability\_zone and to unpin a server
-        from any availability\_zone.
-
-        When a server is pinned to an availability\_zone, the server move operations will keep the server in that
-        availability\_zone. However, when the server is not pinned to any availability\_zone, the move operations can
-        move the server to nodes in different availability\_zones.
-
-        The behavior according to unshelve parameters will follow the below table.
-
-        **Asynchronous Postconditions**
-
-        After you successfully unshelve a server, its status changes to `ACTIVE`.
-        The server appears on the compute node.
-
-        The shelved image is deleted from the list of images returned by an API call.
-
-        **Troubleshooting**
-
-        If the server status does not change to `ACTIVE`, the unshelve operation failed. Ensure that you meet the preconditions and run the request again. If the request fails again, investigate whether another operation is running that causes a race condition.
+        Policy defaults enable only users with the administrative role or
+        the owner of the server to perform this operation. Cloud providers
+        can change these permissions through the `policy.json` file.
 
         Normal response codes: 202
 
-        Error response codes: badRequest(400), unauthorized(401), forbidden(403), itemNotFound(404), conflict(409)
+        Error response codes: unauthorized(401), forbidden(403), itemNotFound(404),
+        conflict(409)
 
+      summary: Restore Soft-Deleted Instance (restore Action)
       properties:
         restore:
           type: 'null'
@@ -39602,6 +39660,7 @@ components:
         Error response codes: unauthorized(401), forbidden(403), itemNotFound(404),
         conflict(409)
 
+      summary: Force-Delete Server (forceDelete Action)
       properties:
         forceDelete:
           type: 'null'
@@ -39612,6 +39671,7 @@ components:
         action-name: forceDelete
     ServersAction_Evacuate_20:
       type: object
+      summary: Evacuate Server (evacuate Action)
       properties:
         evacuate:
           type: object
@@ -39704,6 +39764,7 @@ components:
         - evacuate
     ServersAction_Evacuate_214:
       type: object
+      summary: Evacuate Server (evacuate Action)
       properties:
         evacuate:
           type: object
@@ -39751,6 +39812,7 @@ components:
         - evacuate
     ServersAction_Evacuate_229:
       type: object
+      summary: Evacuate Server (evacuate Action)
       properties:
         evacuate:
           type: object
@@ -39852,6 +39914,7 @@ components:
         - evacuate
     ServersAction_Evacuate_268:
       type: object
+      summary: Evacuate Server (evacuate Action)
       properties:
         evacuate:
           type: object
@@ -39899,6 +39962,7 @@ components:
         - evacuate
     ServersAction_Evacuate_295:
       type: object
+      summary: Evacuate Server (evacuate Action)
       properties:
         evacuate:
           type: object
@@ -39958,6 +40022,7 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404), conflict(409)
 
+      summary: Evacuate Server (evacuate Action)
       oneOf:
         - $ref: '#/components/schemas/ServersAction_Evacuate_20'
         - $ref: '#/components/schemas/ServersAction_Evacuate_214'
@@ -39982,7 +40047,7 @@ components:
 
       x-openstack:
         action-name: evacuate
-    ServersActionAddfloatingipRequest:
+    ServersAction_Add_Floating_Ip:
       type: object
       description: |+
         Adds a floating IP address to a server, which associates
@@ -40010,16 +40075,42 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404)
 
+      summary: Add (Associate) Floating Ip (addFloatingIp Action) (DEPRECATED)
       properties:
         addFloatingIp:
-          type: 'null'
+          type: object
           description: |+
             The action. Contains required floating IP `address` and optional
             `fixed\_address`.
 
+          properties:
+            address:
+              type: string
+              oneOf:
+                - format: ipv4
+                - format: ipv6
+              description: |+
+                The fixed IP address with which you want to associate the floating IP address.
+
+            fixed_address:
+              type: string
+              oneOf:
+                - format: ipv4
+                - format: ipv6
+              description: |+
+                The fixed IP address with which you want to associate the floating IP address.
+
+          additionalProperties: false
+          required:
+            - address
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.43'
         action-name: addFloatingIp
-    ServersActionRemovefloatingipRequest:
+      required:
+        - addFloatingIp
+    ServersAction_Remove_Floating_Ip:
       type: object
       description: |+
         Removes, or disassociates, a floating IP address from a server.
@@ -40036,44 +40127,67 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404), conflict(409)
 
+      summary: Remove (Disassociate) Floating Ip (removeFloatingIp Action) (DEPRECATED)
       properties:
         removeFloatingIp:
-          type: 'null'
+          type: object
           description: |+
             The action to remove or disassociate a floating IP address
             from the server.
 
+          properties:
+            address:
+              type: string
+              oneOf:
+                - format: ipv4
+                - format: ipv6
+              description: |+
+                The floating IP address.
+
+          additionalProperties: false
+          required:
+            - address
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.43'
         action-name: removeFloatingIp
+      required:
+        - removeFloatingIp
     ServersAction_Lock_273:
       type: object
       description: |+
-        Shelf-offloads, or removes, a shelved server.
+        Locks a server.
 
-        Specify the `shelveOffload` action in the request body.
+        Specify the `lock` action in the request body.
 
-        Data and resource associations are deleted. If an instance is no longer needed, you can remove that instance from the hypervisor to minimize resource usage.
+        Most actions by non-admin users are not allowed to the server
+        after this operation is successful and the server is locked.
+        See the “Lock, Unlock” item in [Server actions](https://docs.openstack.org/api-guide/compute/server_concepts.html#server-actions)
+        for the restricted actions.
+        But administrators can perform actions on the server
+        even though the server is locked. Note that from microversion 2.73 it is
+        possible to specify a reason when locking the server.
 
-        Policy defaults enable only users with the administrative role or the owner of the server to perform this operation. Cloud providers can change these permissions through the `policy.json` file.
+        The [unlock action](https://docs.openstack.org/api-ref/compute/#unlock-server-unlock-action)
+        will unlock a server in locked state so additional actions can
+        be performed on the server by non-admin users.
 
-        **Preconditions**
+        You can know whether a server is locked or not and the `locked\_reason`
+        (if specified, from the 2.73 microversion) by the [List Servers Detailed API](https://docs.openstack.org/api-ref/compute/#list-servers-detailed)
+        or
+        the [Show Server Details API](https://docs.openstack.org/api-ref/compute/#show-server-details).
 
-        The server status must be `SHELVED`.
-
-        If the server is locked, you must have administrator privileges to shelve-offload the server.
-
-        **Asynchronous Postconditions**
-
-        After you successfully shelve-offload a server, its status changes to `SHELVED\_OFFLOADED`. The server instance data appears on the compute node.
-
-        **Troubleshooting**
-
-        If the server status does not change to `SHELVED\_OFFLOADED`, the shelve-offload operation failed. Ensure that you meet the preconditions and run the request again. If the request fails again, investigate whether another operation is running that causes a race condition.
+        Policy defaults enable only users with the administrative role or
+        the owner of the server to perform this operation. Cloud providers
+        can change these permissions through the `policy.json` file.
+        Administrators can overwrite owner’s lock.
 
         Normal response codes: 202
 
-        Error response codes: unauthorized(401), forbidden(403), itemNotFound(404), conflict(409)
+        Error response codes: unauthorized(401), forbidden(403), itemNotFound(404)
 
+      summary: Lock Server (lock Action)
       properties:
         lock:
           type:
@@ -40098,14 +40212,58 @@ components:
         - lock
     ServersActionUnlockRequest:
       type: object
-      description: Empty body for unlock action
+      description: |+
+        Unlocks a locked server.
+
+        Specify the `unlock` action in the request body.
+
+        Policy defaults enable only users with the administrative role or
+        the owner of the server to perform this operation. Cloud providers
+        can change these permissions through the `policy.json` file.
+
+        Normal response codes: 202
+
+        Error response codes: unauthorized(401), forbidden(403), itemNotFound(404)
+
+      summary: Unlock Server (unlock Action)
       properties:
         unlock:
           type: 'null'
+          description: |+
+            The action to unlock a locked server.
+
       x-openstack:
         action-name: unlock
     ServersAction_Migrate_256:
       type: object
+      description: |+
+        Migrates a server to a host.
+
+        Specify the `migrate` action in the request body.
+
+        Up to microversion 2.55, the scheduler chooses the host.
+        Starting from microversion 2.56, the `host` parameter is available
+        to specify the destination host. If you specify `null` or don’t specify
+        this parameter, the scheduler chooses a host.
+
+        **Asynchronous Postconditions**
+
+        A successfully migrated server shows a `VERIFY\_RESIZE` status and `finished`
+        migration status. If the cloud has configured the [resize\_confirm\_window](https://docs.openstack.org/nova/latest/configuration/config.html#DEFAULT.resize_confirm_window)
+        option of the Compute service to a positive value, the Compute service
+        automatically confirms the migrate operation after the configured interval.
+
+        There are two different policies for this action, depending on whether the host
+        parameter is set. Both defaults enable only users with the administrative role
+        to perform this operation. Cloud providers can change these permissions
+        through the `policy.json` file.
+
+        Normal response codes: 202
+
+        Error response codes: badRequest(400), unauthorized(401), forbidden(403)
+        itemNotFound(404), conflict(409)
+
+      summary: Migrate Server (migrate Action)
       properties:
         migrate:
           type:
@@ -40120,6 +40278,11 @@ components:
               maxLength: 255
               pattern: ^[a-zA-Z0-9-._]*$
           additionalProperties: false
+          description: |+
+            The action to cold migrate a server.
+            This parameter can be `null`.
+            Up to microversion 2.55, this parameter should be `null`.
+
       additionalProperties: false
       x-openstack:
         min-ver: '2.56'
@@ -40128,9 +40291,13 @@ components:
         - migrate
     ServersAction_Migrate_Live_20:
       type: object
+      summary: Live-Migrate Server (os-migrateLive Action)
       properties:
         os-migrateLive:
           type: object
+          description: |+
+            The action.
+
           properties:
             block_migration:
               type:
@@ -40159,6 +40326,14 @@ components:
                 - NO
                 - No
                 - no
+              description: |+
+                Set to `True` to enable over commit when the destination host is checked for
+                available disk space. Set to `False` to disable over commit. This setting affects
+                only the libvirt virt driver.
+
+
+                **Available until version 2.25**
+
             disk_over_commit:
               type:
                 - boolean
@@ -40186,6 +40361,14 @@ components:
                 - NO
                 - No
                 - no
+              description: |+
+                Set to `True` to enable over commit when the destination host is checked for
+                available disk space. Set to `False` to disable over commit. This setting affects
+                only the libvirt virt driver.
+
+
+                **Available until version 2.25**
+
             host:
               type:
                 - string
@@ -40193,6 +40376,23 @@ components:
               minLength: 1
               maxLength: 255
               pattern: ^[a-zA-Z0-9-._]*$
+              description: |+
+                The host to which to migrate the server. If this parameter is `None`,
+                the scheduler chooses a host.
+
+
+
+                Warning
+
+
+                Prior to microversion 2.30, specifying a host will bypass
+                validation by the scheduler, which could result in failures to actually
+                migrate the instance to the specified host, or over-subscription of the
+                host. It is recommended to either not specify a host so that the
+                scheduler will pick one, or specify a host with microversion >= 2.30 and
+                without `force=True` set.
+
+
           additionalProperties: false
           required:
             - block_migration
@@ -40207,9 +40407,13 @@ components:
         - os-migrateLive
     ServersAction_Migrate_Live_225:
       type: object
+      summary: Live-Migrate Server (os-migrateLive Action)
       properties:
         os-migrateLive:
           type: object
+          description: |+
+            The action.
+
           properties:
             block_migration:
               type:
@@ -40239,6 +40443,17 @@ components:
                 - No
                 - no
                 - auto
+              description: |+
+                Migrates local disks by using block migration. Set to `auto` which means
+                nova will detect whether source and destination hosts on shared storage. if they are
+                on shared storage, the live-migration won’t be block migration. Otherwise the block
+                migration will be executed. Set to `True`, means the request will fail when the
+                source or destination host uses shared storage. Set to `False` means the request
+                will fail when the source and destination hosts are not on the shared storage.
+
+
+                **New in version 2.25**
+
             host:
               type:
                 - string
@@ -40246,6 +40461,23 @@ components:
               minLength: 1
               maxLength: 255
               pattern: ^[a-zA-Z0-9-._]*$
+              description: |+
+                The host to which to migrate the server. If this parameter is `None`,
+                the scheduler chooses a host.
+
+
+
+                Warning
+
+
+                Prior to microversion 2.30, specifying a host will bypass
+                validation by the scheduler, which could result in failures to actually
+                migrate the instance to the specified host, or over-subscription of the
+                host. It is recommended to either not specify a host so that the
+                scheduler will pick one, or specify a host with microversion >= 2.30 and
+                without `force=True` set.
+
+
           additionalProperties: false
           required:
             - block_migration
@@ -40259,9 +40491,13 @@ components:
         - os-migrateLive
     ServersAction_Migrate_Live_230:
       type: object
+      summary: Live-Migrate Server (os-migrateLive Action)
       properties:
         os-migrateLive:
           type: object
+          description: |+
+            The action.
+
           properties:
             block_migration:
               type:
@@ -40291,6 +40527,17 @@ components:
                 - No
                 - no
                 - auto
+              description: |+
+                Migrates local disks by using block migration. Set to `auto` which means
+                nova will detect whether source and destination hosts on shared storage. if they are
+                on shared storage, the live-migration won’t be block migration. Otherwise the block
+                migration will be executed. Set to `True`, means the request will fail when the
+                source or destination host uses shared storage. Set to `False` means the request
+                will fail when the source and destination hosts are not on the shared storage.
+
+
+                **New in version 2.25**
+
             host:
               type:
                 - string
@@ -40298,6 +40545,23 @@ components:
               minLength: 1
               maxLength: 255
               pattern: ^[a-zA-Z0-9-._]*$
+              description: |+
+                The host to which to migrate the server. If this parameter is `None`,
+                the scheduler chooses a host.
+
+
+
+                Warning
+
+
+                Prior to microversion 2.30, specifying a host will bypass
+                validation by the scheduler, which could result in failures to actually
+                migrate the instance to the specified host, or over-subscription of the
+                host. It is recommended to either not specify a host so that the
+                scheduler will pick one, or specify a host with microversion >= 2.30 and
+                without `force=True` set.
+
+
             force:
               type:
                 - boolean
@@ -40325,6 +40589,27 @@ components:
                 - NO
                 - No
                 - no
+              description: |+
+                Force a live-migration by not verifying the provided destination host by
+                the scheduler.
+
+
+
+                Warning
+
+
+                This could result in failures to actually live migrate the
+                instance to the specified host. It is recommended to either not specify
+                a host so that the scheduler will pick one, or specify a host without
+                `force=True` set.
+
+
+
+                **New in version 2.30**
+
+
+                **Available until version 2.67**
+
           additionalProperties: false
           required:
             - block_migration
@@ -40338,9 +40623,13 @@ components:
         - os-migrateLive
     ServersAction_Migrate_Live_268:
       type: object
+      summary: Live-Migrate Server (os-migrateLive Action)
       properties:
         os-migrateLive:
           type: object
+          description: |+
+            The action.
+
           properties:
             block_migration:
               type:
@@ -40370,6 +40659,17 @@ components:
                 - No
                 - no
                 - auto
+              description: |+
+                Migrates local disks by using block migration. Set to `auto` which means
+                nova will detect whether source and destination hosts on shared storage. if they are
+                on shared storage, the live-migration won’t be block migration. Otherwise the block
+                migration will be executed. Set to `True`, means the request will fail when the
+                source or destination host uses shared storage. Set to `False` means the request
+                will fail when the source and destination hosts are not on the shared storage.
+
+
+                **New in version 2.25**
+
             host:
               type:
                 - string
@@ -40377,6 +40677,23 @@ components:
               minLength: 1
               maxLength: 255
               pattern: ^[a-zA-Z0-9-._]*$
+              description: |+
+                The host to which to migrate the server. If this parameter is `None`,
+                the scheduler chooses a host.
+
+
+
+                Warning
+
+
+                Prior to microversion 2.30, specifying a host will bypass
+                validation by the scheduler, which could result in failures to actually
+                migrate the instance to the specified host, or over-subscription of the
+                host. It is recommended to either not specify a host so that the
+                scheduler will pick one, or specify a host with microversion >= 2.30 and
+                without `force=True` set.
+
+
           additionalProperties: false
           required:
             - block_migration
@@ -40388,6 +40705,40 @@ components:
       required:
         - os-migrateLive
     ServersActionOs-MigrateliveRequest:
+      description: |+
+        Live-migrates a server to a new host without rebooting.
+
+        Specify the `os-migrateLive` action in the request body.
+
+        Use the `host` parameter to specify the destination host. If
+        this param is `null`, the scheduler chooses a host. If a scheduled host
+        is not suitable to do migration, the scheduler tries up to
+        `migrate\_max\_retries` rescheduling attempts.
+
+        Starting from API version 2.25, the `block\_migration` parameter could be
+        to `auto` so that nova can decide value of block\_migration during live
+        migration.
+
+        Policy defaults enable only users with the administrative role to
+        perform this operation. Cloud providers can change these permissions
+        through the `policy.json` file.
+
+        Starting from REST API version 2.34 pre-live-migration checks are done
+        asynchronously, results of these checks are available in `instance-actions`.
+        Nova responds immediately, and no pre-live-migration checks are returned.
+        The instance will not immediately change state to `ERROR`, if a failure of
+        the live-migration checks occurs.
+
+        Starting from API version 2.68, the `force` parameter is no longer accepted
+        as this could not be meaningfully supported by servers with complex resource
+        allocations.
+
+        Normal response codes: 202
+
+        Error response codes: badRequest(400), unauthorized(401), forbidden(403)
+        itemNotFound(404), conflict(409)
+
+      summary: Live-Migrate Server (os-migrateLive Action)
       oneOf:
         - $ref: '#/components/schemas/ServersAction_Migrate_Live_20'
         - $ref: '#/components/schemas/ServersAction_Migrate_Live_225'
@@ -40396,7 +40747,7 @@ components:
       x-openstack:
         discriminator: microversion
         action-name: os-migrateLive
-    ServersActionAddfixedipRequest:
+    ServersAction_Add_Fixed_Ip:
       type: object
       description: |+
         Adds a fixed IP address to a server instance, which associates that
@@ -40414,15 +40765,34 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404)
 
+      summary: Add (Associate) Fixed Ip (addFixedIp Action) (DEPRECATED)
       properties:
         addFixedIp:
-          type: 'null'
+          type: object
           description: |+
             The action to add a fixed ip address to a server.
 
+          properties:
+            networkId:
+              type:
+                - string
+                - number
+              minLength: 1
+              maxLength: 36
+              description: |+
+                The network ID.
+
+          additionalProperties: false
+          required:
+            - networkId
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.43'
         action-name: addFixedIp
-    ServersActionRemovefixedipRequest:
+      required:
+        - addFixedIp
+    ServersAction_Remove_Fixed_Ip:
       type: object
       description: |+
         Removes, or disassociates, a fixed IP address from a server.
@@ -40438,15 +40808,58 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404)
 
+      summary: Remove (Disassociate) Fixed Ip (removeFixedIp Action) (DEPRECATED)
       properties:
         removeFixedIp:
-          type: 'null'
+          type: object
           description: |+
             The action to remove a fixed ip address from a server.
 
+          properties:
+            address:
+              type: string
+              oneOf:
+                - format: ipv4
+                - format: ipv6
+              description: |+
+                The IP address.
+
+          additionalProperties: false
+          required:
+            - address
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.43'
         action-name: removeFixedIp
+      required:
+        - removeFixedIp
     ServersActionPauseRequest:
+      type: object
+      description: |+
+        Pauses a server. Changes its status to `PAUSED`.
+
+        Specify the `pause` action in the request body.
+
+        Policy defaults enable only users with the administrative role or
+        the owner of the server to perform this operation. Cloud providers
+        can change these permissions through the `policy.json` file.
+
+        Normal response codes: 202
+
+        Error response codes: unauthorized(401), forbidden(403), itemNotFound(404),
+        conflict(409), notImplemented(501)
+
+      summary: Pause Server (pause Action)
+      properties:
+        pause:
+          type: 'null'
+          description: |+
+            The action to pause a server.
+
+      x-openstack:
+        action-name: pause
+    ServersActionUnpauseRequest:
       type: object
       description: |+
         Unpauses a paused server and changes its status to `ACTIVE`.
@@ -40462,23 +40875,16 @@ components:
         Error response codes: unauthorized(401), forbidden(403), itemNotFound(404),
         conflict(409), notImplemented(501)
 
-      properties:
-        pause:
-          type: 'null'
-          description: |+
-            The action to pause a server.
-
-      x-openstack:
-        action-name: pause
-    ServersActionUnpauseRequest:
-      type: object
-      description: Empty body for unpause action
+      summary: Unpause Server (unpause Action)
       properties:
         unpause:
           type: 'null'
+          description: |+
+            The action to unpause a paused server.
+
       x-openstack:
         action-name: unpause
-    ServersActionOs-GetvncconsoleRequest:
+    ServersActionGet_Vnc_Console:
       type: object
       description: |+
         Gets a VNC console for a server.
@@ -40490,14 +40896,32 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403), itemNotFound(404),
         conflict(409), notImplemented(501)
 
+      summary: Get VNC Console (os-getVNCConsole Action) (DEPRECATED)
       properties:
         os-getVNCConsole:
-          type: 'null'
+          type: object
           description: |+
             The action.
 
+          properties:
+            type:
+              type: string
+              enum:
+                - novnc
+                - xvpvnc
+              description: |+
+                The type of VNC console. The only valid value is `novnc`.
+
+          additionalProperties: false
+          required:
+            - type
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.5'
         action-name: os-getVNCConsole
+      required:
+        - os-getVNCConsole
     ServersActionOs-GetvncconsoleResponse:
       type: object
       description: The remote console object.
@@ -40507,7 +40931,9 @@ components:
           properties:
             type:
               type: string
-              description: The type of the remote console
+              description: |+
+                The type of VNC console. The only valid value is `novnc`.
+
               enum:
                 - rdp-html5
                 - serial
@@ -40515,8 +40941,15 @@ components:
                 - novnc
             url:
               type: string
-              description: The URL used to connect to the console.
-    ServersActionOs-GetspiceconsoleRequest:
+              description: |+
+                The URL used to connect to the VNC console.
+
+          description: |+
+            The remote console object.
+
+      x-openstack:
+        action-name: os-getVNCConsole
+    ServersActionGet_Spice_Console:
       type: object
       description: |+
         Gets a SPICE console for a server.
@@ -40531,14 +40964,31 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403), itemNotFound(404),
         conflict(409), notImplemented(501)
 
+      summary: Get SPICE Console (os-getSPICEConsole Action) (DEPRECATED)
       properties:
         os-getSPICEConsole:
-          type: 'null'
+          type: object
           description: |+
             The action.
 
+          properties:
+            type:
+              type: string
+              enum:
+                - spice-html5
+              description: |+
+                The type of SPICE console. The only valid value is `spice-html5`.
+
+          additionalProperties: false
+          required:
+            - type
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.5'
         action-name: os-getSPICEConsole
+      required:
+        - os-getSPICEConsole
     ServersActionOs-GetspiceconsoleResponse:
       type: object
       description: The remote console object.
@@ -40548,7 +40998,9 @@ components:
           properties:
             type:
               type: string
-              description: The type of the remote console
+              description: |+
+                The type of VNC console. The only valid value is `novnc`.
+
               enum:
                 - rdp-html5
                 - serial
@@ -40556,8 +41008,15 @@ components:
                 - novnc
             url:
               type: string
-              description: The URL used to connect to the console.
-    ServersActionOs-GetrdpconsoleRequest:
+              description: |+
+                The URL used to connect to the VNC console.
+
+          description: |+
+            The remote console object.
+
+      x-openstack:
+        action-name: os-getSPICEConsole
+    ServersActionGet_Rdp_Console:
       type: object
       description: |+
         Gets an [RDP](https://technet.microsoft.com/en-us/windowsserver/ee236407) console for a server.
@@ -40572,14 +41031,31 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403), itemNotFound(404),
         conflict(409), notImplemented(501)
 
+      summary: Get RDP Console (os-getRDPConsole Action) (DEPRECATED)
       properties:
         os-getRDPConsole:
-          type: 'null'
+          type: object
           description: |+
             The action.
 
+          properties:
+            type:
+              type: string
+              enum:
+                - rdp-html5
+              description: |+
+                The type of RDP console. The only valid value is `rdp-html5`.
+
+          additionalProperties: false
+          required:
+            - type
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.5'
         action-name: os-getRDPConsole
+      required:
+        - os-getRDPConsole
     ServersActionOs-GetrdpconsoleResponse:
       type: object
       description: The remote console object.
@@ -40589,7 +41065,9 @@ components:
           properties:
             type:
               type: string
-              description: The type of the remote console
+              description: |+
+                The type of VNC console. The only valid value is `novnc`.
+
               enum:
                 - rdp-html5
                 - serial
@@ -40597,8 +41075,15 @@ components:
                 - novnc
             url:
               type: string
-              description: The URL used to connect to the console.
-    ServersActionOs-GetserialconsoleRequest:
+              description: |+
+                The URL used to connect to the VNC console.
+
+          description: |+
+            The remote console object.
+
+      x-openstack:
+        action-name: os-getRDPConsole
+    ServersActionGet_Serial_Console:
       type: object
       description: |+
         Gets a serial console for a server.
@@ -40613,14 +41098,31 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403), itemNotFound(404),
         conflict(409), notImplemented(501)
 
+      summary: Get Serial Console (os-getSerialConsole Action) (DEPRECATED)
       properties:
         os-getSerialConsole:
-          type: 'null'
+          type: object
           description: |+
             The action.
 
+          properties:
+            type:
+              type: string
+              enum:
+                - serial
+              description: |+
+                The type of serial console. The only valid value is `serial`.
+
+          additionalProperties: false
+          required:
+            - type
+      additionalProperties: false
       x-openstack:
+        min-ver: '2.1'
+        max-ver: '2.5'
         action-name: os-getSerialConsole
+      required:
+        - os-getSerialConsole
     ServersActionOs-GetserialconsoleResponse:
       type: object
       description: The remote console object.
@@ -40630,7 +41132,9 @@ components:
           properties:
             type:
               type: string
-              description: The type of the remote console
+              description: |+
+                The type of VNC console. The only valid value is `novnc`.
+
               enum:
                 - rdp-html5
                 - serial
@@ -40638,31 +41142,36 @@ components:
                 - novnc
             url:
               type: string
-              description: The URL used to connect to the console.
+              description: |+
+                The URL used to connect to the VNC console.
+
+          description: |+
+            The remote console object.
+
+      x-openstack:
+        action-name: os-getSerialConsole
     ServersAction_Rescue:
       type: object
       description: |+
-        Unrescues a server. Changes status to `ACTIVE`.
+        Puts a server in rescue mode and changes its status to `RESCUE`.
 
-        Specify the `unrescue` action in the request body.
+        Specify the `rescue` action in the request body.
 
-        **Preconditions**
-
-        The server must exist.
-
-        You can only unrescue a server when its status is `RESCUE`.
+        If you specify the `rescue\_image\_ref` extended attribute,
+        the image is used to rescue the instance. If you omit an image
+        reference, the base image reference is used by default.
 
         **Asynchronous Postconditions**
 
-        After you successfully unrescue a server and make a
-        `GET /servers/​{server\_id}​`
-        request, its status changes to `ACTIVE`.
+        After you successfully rescue a server and make a `GET
+        /servers/​{server\_id}​` request, its status changes to `RESCUE`.
 
-        Normal response codes: 202
+        Normal response codes: 200
 
-        Error response codes: unauthorized(401), forbidden(403), itemNotFound(404),
-        conflict(409), notImplemented(501)
+        Error response codes: badRequest(400), unauthorized(401), forbidden(403),
+        itemNotFound(404), conflict(409), notImplemented(501)
 
+      summary: Rescue Server (rescue Action)
       properties:
         rescue:
           type:
@@ -40700,10 +41209,35 @@ components:
         action-name: rescue
     ServersActionUnrescueRequest:
       type: object
-      description: Empty body for unrescue action
+      description: |+
+        Unrescues a server. Changes status to `ACTIVE`.
+
+        Specify the `unrescue` action in the request body.
+
+        **Preconditions**
+
+        The server must exist.
+
+        You can only unrescue a server when its status is `RESCUE`.
+
+        **Asynchronous Postconditions**
+
+        After you successfully unrescue a server and make a
+        `GET /servers/​{server\_id}​`
+        request, its status changes to `ACTIVE`.
+
+        Normal response codes: 202
+
+        Error response codes: unauthorized(401), forbidden(403), itemNotFound(404),
+        conflict(409), notImplemented(501)
+
+      summary: Unrescue Server (unrescue Action)
       properties:
         unrescue:
           type: 'null'
+          description: |+
+            The action to unrescue a server in rescue mode.
+
       x-openstack:
         action-name: unrescue
     ServersActionAddsecuritygroupRequest:
@@ -40718,6 +41252,7 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404), conflict(409)
 
+      summary: Add Security Group To A Server (addSecurityGroup Action)
       properties:
         addSecurityGroup:
           type: 'null'
@@ -40738,6 +41273,7 @@ components:
         Error response codes: badRequest(400), unauthorized(401), forbidden(403),
         itemNotFound(404), conflict(409)
 
+      summary: Remove Security Group From A Server (removeSecurityGroup Action)
       properties:
         removeSecurityGroup:
           type: 'null'
@@ -40748,22 +41284,85 @@ components:
         action-name: removeSecurityGroup
     ServersActionShelveRequest:
       type: object
-      description: Empty body for shelve action
+      description: |+
+        Shelves a server.
+
+        Specify the `shelve` action in the request body.
+
+        All associated data and resources are kept but anything still in memory is not retained. To restore a shelved instance, use the `unshelve` action. To remove a shelved instance, use the `shelveOffload` action.
+
+        Policy defaults enable only users with the administrative role or the owner of the server to perform this operation. Cloud providers can change these permissions through the `policy.json` file.
+
+        **Preconditions**
+
+        The server status must be `ACTIVE`, `SHUTOFF`, `PAUSED`, or `SUSPENDED`.
+
+        If the server is locked, you must have administrator privileges to shelve the server.
+
+        **Asynchronous Postconditions**
+
+        After you successfully shelve a server, its status changes to `SHELVED` and the image status is `ACTIVE`. The server instance data appears on the compute node that the Compute service manages.
+
+        If you boot the server from volumes or set the `shelved\_offload\_time` option to 0, the Compute service automatically deletes the instance on compute nodes and changes the server status to `SHELVED\_OFFLOADED`.
+
+        **Troubleshooting**
+
+        If the server status does not change to `SHELVED` or `SHELVED\_OFFLOADED`, the shelve operation failed. Ensure that you meet the preconditions and run the request again. If the request fails again, investigate whether another operation is running that causes a race condition.
+
+        Normal response codes: 202
+
+        Error response codes: unauthorized(401), forbidden(403), itemNotFound(404), conflict(409)
+
+      summary: Shelve Server (shelve Action)
       properties:
         shelve:
           type: 'null'
+          description: |+
+            The action.
+
       x-openstack:
         action-name: shelve
     ServersActionShelveoffloadRequest:
       type: object
-      description: Empty body for shelveOffload action
+      description: |+
+        Shelf-offloads, or removes, a shelved server.
+
+        Specify the `shelveOffload` action in the request body.
+
+        Data and resource associations are deleted. If an instance is no longer needed, you can remove that instance from the hypervisor to minimize resource usage.
+
+        Policy defaults enable only users with the administrative role or the owner of the server to perform this operation. Cloud providers can change these permissions through the `policy.json` file.
+
+        **Preconditions**
+
+        The server status must be `SHELVED`.
+
+        If the server is locked, you must have administrator privileges to shelve-offload the server.
+
+        **Asynchronous Postconditions**
+
+        After you successfully shelve-offload a server, its status changes to `SHELVED\_OFFLOADED`. The server instance data appears on the compute node.
+
+        **Troubleshooting**
+
+        If the server status does not change to `SHELVED\_OFFLOADED`, the shelve-offload operation failed. Ensure that you meet the preconditions and run the request again. If the request fails again, investigate whether another operation is running that causes a race condition.
+
+        Normal response codes: 202
+
+        Error response codes: unauthorized(401), forbidden(403), itemNotFound(404), conflict(409)
+
+      summary: Shelf-Offload (Remove) Server (shelveOffload Action)
       properties:
         shelveOffload:
           type: 'null'
+          description: |+
+            The action.
+
       x-openstack:
         action-name: shelveOffload
     ServersAction_Unshelve_277:
       type: object
+      summary: Unshelve (Restore) Shelved Server (unshelve Action)
       properties:
         unshelve:
           type:
@@ -40778,6 +41377,9 @@ components:
           required:
             - availability_zone
           additionalProperties: false
+          description: |+
+            The action.
+
       additionalProperties: false
       x-openstack:
         min-ver: '2.77'
@@ -40787,6 +41389,7 @@ components:
         - unshelve
     ServersAction_Unshelve_291:
       type: object
+      summary: Unshelve (Restore) Shelved Server (unshelve Action)
       properties:
         unshelve:
           oneOf:
@@ -40803,6 +41406,9 @@ components:
               additionalProperties: false
             - type:
                 - 'null'
+          description: |+
+            The action.
+
       additionalProperties: false
       x-openstack:
         min-ver: '2.91'
@@ -40810,6 +41416,47 @@ components:
       required:
         - unshelve
     ServersActionUnshelveRequest:
+      description: |+
+        Unshelves, or restores, a shelved server.
+
+        Specify the `unshelve` action in the request body.
+
+        Policy defaults enable only users with the administrative role or the owner of the server to perform this operation. Cloud providers can change these permissions through the `policy.json` file.
+
+        **Preconditions**
+
+        Unshelving a server without parameters requires its status to be `SHELVED` or `SHELVED\_OFFLOADED`.
+
+        Unshelving a server with availability\_zone and/or host parameters requires its status to be only `SHELVED\_OFFLOADED` otherwise HTTP 409 conflict response is returned.
+
+        If a server is locked, you must have administrator privileges to unshelve the server.
+
+        As of `microversion 2.91`, you can unshelve to a specific compute node if you have PROJECT\_ADMIN privileges.
+        This microversion also gives the ability to pin a server to an availability\_zone and to unpin a server
+        from any availability\_zone.
+
+        When a server is pinned to an availability\_zone, the server move operations will keep the server in that
+        availability\_zone. However, when the server is not pinned to any availability\_zone, the move operations can
+        move the server to nodes in different availability\_zones.
+
+        The behavior according to unshelve parameters will follow the below table.
+
+        **Asynchronous Postconditions**
+
+        After you successfully unshelve a server, its status changes to `ACTIVE`.
+        The server appears on the compute node.
+
+        The shelved image is deleted from the list of images returned by an API call.
+
+        **Troubleshooting**
+
+        If the server status does not change to `ACTIVE`, the unshelve operation failed. Ensure that you meet the preconditions and run the request again. If the request fails again, investigate whether another operation is running that causes a race condition.
+
+        Normal response codes: 202
+
+        Error response codes: badRequest(400), unauthorized(401), forbidden(403), itemNotFound(404), conflict(409)
+
+      summary: Unshelve (Restore) Shelved Server (unshelve Action)
       oneOf:
         - $ref: '#/components/schemas/ServersAction_Unshelve_277'
         - $ref: '#/components/schemas/ServersAction_Unshelve_291'
@@ -40832,6 +41479,7 @@ components:
         Error response codes: unauthorized(401), forbidden(403), itemNotFound(404),
         conflict(409)
 
+      summary: Suspend Server (suspend Action)
       properties:
         suspend:
           type: 'null'
@@ -40842,10 +41490,27 @@ components:
         action-name: suspend
     ServersActionResumeRequest:
       type: object
-      description: Empty body for resume action
+      description: |+
+        Resumes a suspended server and changes its status to `ACTIVE`.
+
+        Specify the `resume` action in the request body.
+
+        Policy defaults enable only users with the administrative role or
+        the owner of the server to perform this operation. Cloud providers
+        can change these permissions through the `policy.json` file.
+
+        Normal response codes: 202
+
+        Error response codes: unauthorized(401), forbidden(403),
+        itemNotFound(404), conflict(409)
+
+      summary: Resume Suspended Server (resume Action)
       properties:
         resume:
           type: 'null'
+          description: |+
+            The action to resume a suspended server.
+
       x-openstack:
         action-name: resume
     ServersConsolesListResponse:
@@ -41628,6 +42293,7 @@ components:
 
         Error response codes: badRequest(400), unauthorized(401), forbidden(403), itemNotFound(404), conflict(409)
 
+      summary: Force Migration Complete Action (force_complete Action)
       properties:
         force_complete:
           type: 'null'
@@ -43103,7 +43769,64 @@ components:
 
     ServersOs_Security_GroupsListResponse:
       type: object
-      description: Response of the servers/server_id/os-security-groups:get operation
+      properties:
+        security_groups:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: |+
+                  The ID of the security group.
+
+              name:
+                type: string
+                description: |+
+                  The security group name.
+
+              description:
+                type: string
+                description: |+
+                  Security group description.
+
+              tenant_id:
+                type: string
+                format: uuid
+                description: |+
+                  The UUID of the tenant in a multi-tenancy cloud.
+
+              rules:
+                type: array
+                description: |+
+                  The list of security group rules.
+
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    from_port:
+                      type: integer
+                    to_port:
+                      type: integer
+                    ip_protocol:
+                      type: string
+                    ip_range:
+                      type: object
+                    group:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                    parent_group_id:
+                      type: string
+                      format: uuid
+          description: |+
+            One or more security groups objects.
+
     ServersTagsListResponse:
       type: object
       description: Server Tags
@@ -44297,36 +45020,36 @@ components:
       schema:
         type: string
         enum:
-          - vm_state
-          - display_name
-          - auto_disk_config
-          - task_state
-          - root_device_name
-          - access_ip_v6
-          - terminated_at
-          - user_id
-          - updated_at
-          - node
-          - project_id
-          - created_at
-          - instance_type_id
-          - uuid
-          - image_ref
-          - progress
-          - ramdisk_id
-          - availability_zone
-          - key_name
-          - kernel_id
-          - launched_at
-          - launch_index
-          - access_ip_v4
-          - display_description
-          - hostname
-          - config_drive
-          - power_state
           - locked_by
+          - instance_type_id
+          - hostname
+          - display_name
+          - kernel_id
+          - availability_zone
+          - uuid
+          - access_ip_v6
+          - auto_disk_config
+          - created_at
+          - project_id
+          - display_description
+          - access_ip_v4
           - host
+          - launched_at
+          - vm_state
+          - user_id
+          - node
+          - key_name
+          - power_state
+          - config_drive
+          - updated_at
+          - progress
+          - image_ref
+          - ramdisk_id
           - locked
+          - root_device_name
+          - launch_index
+          - terminated_at
+          - task_state
     os_volumes_boot_sort_dir:
       in: query
       name: sort_dir
@@ -44661,36 +45384,36 @@ components:
       schema:
         type: string
         enum:
-          - vm_state
-          - display_name
-          - auto_disk_config
-          - task_state
-          - root_device_name
-          - access_ip_v6
-          - terminated_at
-          - user_id
-          - updated_at
-          - node
-          - project_id
-          - created_at
-          - instance_type_id
-          - uuid
-          - image_ref
-          - progress
-          - ramdisk_id
-          - availability_zone
-          - key_name
-          - kernel_id
-          - launched_at
-          - launch_index
-          - access_ip_v4
-          - display_description
-          - hostname
-          - config_drive
-          - power_state
           - locked_by
+          - instance_type_id
+          - hostname
+          - display_name
+          - kernel_id
+          - availability_zone
+          - uuid
+          - access_ip_v6
+          - auto_disk_config
+          - created_at
+          - project_id
+          - display_description
+          - access_ip_v4
           - host
+          - launched_at
+          - vm_state
+          - user_id
+          - node
+          - key_name
+          - power_state
+          - config_drive
+          - updated_at
+          - progress
+          - image_ref
+          - ramdisk_id
           - locked
+          - root_device_name
+          - launch_index
+          - terminated_at
+          - task_state
     os_volumes_boot_detail_sort_dir:
       in: query
       name: sort_dir
@@ -45032,36 +45755,36 @@ components:
       schema:
         type: string
         enum:
-          - vm_state
-          - display_name
-          - auto_disk_config
-          - task_state
-          - root_device_name
-          - access_ip_v6
-          - terminated_at
-          - user_id
-          - updated_at
-          - node
-          - project_id
-          - created_at
-          - instance_type_id
-          - uuid
-          - image_ref
-          - progress
-          - ramdisk_id
-          - availability_zone
-          - key_name
-          - kernel_id
-          - launched_at
-          - launch_index
-          - access_ip_v4
-          - display_description
-          - hostname
-          - config_drive
-          - power_state
           - locked_by
+          - instance_type_id
+          - hostname
+          - display_name
+          - kernel_id
+          - availability_zone
+          - uuid
+          - access_ip_v6
+          - auto_disk_config
+          - created_at
+          - project_id
+          - display_description
+          - access_ip_v4
           - host
+          - launched_at
+          - vm_state
+          - user_id
+          - node
+          - key_name
+          - power_state
+          - config_drive
+          - updated_at
+          - progress
+          - image_ref
+          - ramdisk_id
           - locked
+          - root_device_name
+          - launch_index
+          - terminated_at
+          - task_state
     servers_sort_dir:
       in: query
       name: sort_dir
@@ -45396,36 +46119,36 @@ components:
       schema:
         type: string
         enum:
-          - vm_state
-          - display_name
-          - auto_disk_config
-          - task_state
-          - root_device_name
-          - access_ip_v6
-          - terminated_at
-          - user_id
-          - updated_at
-          - node
-          - project_id
-          - created_at
-          - instance_type_id
-          - uuid
-          - image_ref
-          - progress
-          - ramdisk_id
-          - availability_zone
-          - key_name
-          - kernel_id
-          - launched_at
-          - launch_index
-          - access_ip_v4
-          - display_description
-          - hostname
-          - config_drive
-          - power_state
           - locked_by
+          - instance_type_id
+          - hostname
+          - display_name
+          - kernel_id
+          - availability_zone
+          - uuid
+          - access_ip_v6
+          - auto_disk_config
+          - created_at
+          - project_id
+          - display_description
+          - access_ip_v4
           - host
+          - launched_at
+          - vm_state
+          - user_id
+          - node
+          - key_name
+          - power_state
+          - config_drive
+          - updated_at
+          - progress
+          - image_ref
+          - ramdisk_id
           - locked
+          - root_device_name
+          - launch_index
+          - terminated_at
+          - task_state
     servers_detail_sort_dir:
       in: query
       name: sort_dir

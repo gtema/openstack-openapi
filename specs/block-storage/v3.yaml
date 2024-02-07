@@ -181,7 +181,7 @@ paths:
                 - $ref: '#/components/schemas/VolumesAction_Volume_Readonly_Update'
                 - $ref: '#/components/schemas/VolumesAction_Retype'
                 - $ref: '#/components/schemas/VolumesAction_Set_Bootable'
-                - $ref: '#/components/schemas/VolumesActionOs-ReimageRequest'
+                - $ref: '#/components/schemas/VolumesAction_Reimage_368'
                 - $ref: '#/components/schemas/VolumesActionCreate'
                 - $ref: '#/components/schemas/VolumesActionOs-Show_Image_MetadataRequest'
                 - $ref: '#/components/schemas/VolumesActionDelete'
@@ -213,6 +213,7 @@ paths:
                   - $ref: '#/components/schemas/VolumesActionOs-ExtendResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Update_Readonly_FlagResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-RetypeResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-ReimageResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-UnmanageResponse'
         '201':
           description: Ok
@@ -222,7 +223,6 @@ paths:
                 oneOf:
                   - $ref: '#/components/schemas/VolumesActionOs-Migrate_Volume_CompletionResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Initialize_ConnectionResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-ReimageResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Set_Image_MetadataResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Show_Image_MetadataResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Unset_Image_MetadataResponse'
@@ -412,7 +412,7 @@ paths:
                 - $ref: '#/components/schemas/VolumesAction_Volume_Readonly_Update'
                 - $ref: '#/components/schemas/VolumesAction_Retype'
                 - $ref: '#/components/schemas/VolumesAction_Set_Bootable'
-                - $ref: '#/components/schemas/VolumesActionOs-ReimageRequest'
+                - $ref: '#/components/schemas/VolumesAction_Reimage_368'
                 - $ref: '#/components/schemas/VolumesActionCreate'
                 - $ref: '#/components/schemas/VolumesActionOs-Show_Image_MetadataRequest'
                 - $ref: '#/components/schemas/VolumesActionDelete'
@@ -444,6 +444,7 @@ paths:
                   - $ref: '#/components/schemas/VolumesActionOs-ExtendResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Update_Readonly_FlagResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-RetypeResponse'
+                  - $ref: '#/components/schemas/VolumesActionOs-ReimageResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-UnmanageResponse'
         '201':
           description: Ok
@@ -453,7 +454,6 @@ paths:
                 oneOf:
                   - $ref: '#/components/schemas/VolumesActionOs-Migrate_Volume_CompletionResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Initialize_ConnectionResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-ReimageResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Set_Image_MetadataResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Show_Image_MetadataResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Unset_Image_MetadataResponse'
@@ -9318,17 +9318,60 @@ components:
         action
       x-openstack:
         action-name: os-set_bootable
-    VolumesActionOs-ReimageRequest:
+    VolumesAction_Reimage_368:
       type: object
-      description: Empty body for os-reimage action
       properties:
         os-reimage:
-          type: 'null'
+          type: object
+          properties:
+            image_id:
+              type: string
+              format: uuid
+            reimage_reserved:
+              type:
+                - boolean
+                - string
+              enum:
+                - true
+                - 'True'
+                - 'TRUE'
+                - 'true'
+                - '1'
+                - ON
+                - On
+                - on
+                - YES
+                - Yes
+                - yes
+                - y
+                - t
+                - false
+                - 'False'
+                - 'FALSE'
+                - 'false'
+                - '0'
+                - OFF
+                - Off
+                - off
+                - NO
+                - No
+                - no
+                - n
+                - f
+          additionalProperties: false
+          required:
+            - image_id
+      additionalProperties: false
       x-openstack:
+        min-ver: '3.68'
         action-name: os-reimage
+      required:
+        - os-reimage
     VolumesActionOs-ReimageResponse:
       type: object
-      description: Response of the project_id/volumes/id/action:post operation
+      description: Response of the project_id/volumes/id/action:post:os-reimage action
+      x-openstack:
+        action-name: os-reimage
     VolumesActionCreate:
       type: object
       properties:
