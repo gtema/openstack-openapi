@@ -597,7 +597,7 @@ def visit_openapi_operation_header(self, node):
     raise nodes.SkipNode
 
 
-def setup(app):
+def setup(app) -> dict[str, bool]:
     # Add some config options around microversions
     app.add_node(
         openapi_operation_header, html=(visit_openapi_operation_header, None)
@@ -611,4 +611,8 @@ def setup(app):
     # _static directory during final build.
     app.connect("build-finished", copy_assets)
 
-    return {"version": __version__}
+    return {
+        "parallel_read_safe": True,
+        "parallel_write_safe": True,
+        "version": __version__,
+    }
