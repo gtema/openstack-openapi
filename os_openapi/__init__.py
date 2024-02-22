@@ -6,6 +6,7 @@
     RESTful API. Based on ``sphinxcontrib-openapi``.
 
 """
+
 import functools
 import itertools
 import os
@@ -43,6 +44,7 @@ def _get_spec(abspath, encoding):
 
 class openapi(nodes.Part, nodes.Element):
     """OpenAPI node"""
+
     pass
 
 
@@ -142,9 +144,9 @@ def normalize_spec(spec, **options):
             method["parameters"].extend(parameters)
 
 
-
 class OpenApiDirective(SphinxDirective):
     """Directive implementation"""
+
     required_arguments = 1
     option_spec = dict(
         {
@@ -188,11 +190,9 @@ class OpenApiDirective(SphinxDirective):
         return results
 
     def _get_spec_header_nodes(self, spec):
-        #header = nodes.section(ids=["openapi-info"])
-        #header += nodes.title(text=spec["info"]["title"])
-        descr = spec["info"].get("description")
-        if descr:
-            header = nodes.paragraph(text=descr)
+        description = spec["info"].get("description")
+        summary = spec["info"].get("summary")
+        header = nodes.paragraph(text=description if description else summary)
         return header
 
     def _get_api_group_nodes(self, spec, tag):
@@ -235,14 +235,22 @@ class OpenApiDirective(SphinxDirective):
             )
             if body:
                 actions = body.get("oneOf", [])
-                discriminator = body.get("x-openstack", {}).get("discriminator")
+                discriminator = body.get("x-openstack", {}).get(
+                    "discriminator"
+                )
                 if actions and discriminator == "action":
                     for candidate in actions:
-                        action_name = candidate.get("x-openstack", {}).get("action-name")
+                        action_name = candidate.get("x-openstack", {}).get(
+                            "action-name"
+                        )
                         if not action_name:
                             # No action name on the body. Take 1st property name
-                            action_name = list(candidate["properties"].keys())[0]
-                        operation_specs.append((operation_spec, action_name, candidate))
+                            action_name = list(candidate["properties"].keys())[
+                                0
+                            ]
+                        operation_specs.append(
+                            (operation_spec, action_name, candidate)
+                        )
                 else:
                     # This does not look like an action, just return operation
                     operation_specs.append((operation_spec, None, None))
@@ -250,23 +258,33 @@ class OpenApiDirective(SphinxDirective):
                 # This does not look like an action (no body), just return operation
                 operation_specs.append((operation_spec, None, None))
 
-        for (operation_spec, action_name, action_body) in operation_specs:
+        for operation_spec, action_name, action_body in operation_specs:
             # Iterate over spec and eventual actions
             op_id = (
-                operation_spec["operationId"].replace(":", "_").replace("/", "_")
+                operation_spec["operationId"]
+                .replace(":", "_")
+                .replace("/", "_")
             )
             if action_name:
                 op_id += f"-{action_name}"
 
             container = nodes.section(
-                ids=[f"operation-{op_id}"], classes=["accordion-item", "operation", "operation-" + method, "gy-2"]
+                ids=[f"operation-{op_id}"],
+                classes=[
+                    "accordion-item",
+                    "operation",
+                    "operation-" + method,
+                    "gy-2",
+                ],
             )
-            #container += nodes.title(text=operation_spec.get("summary", path), classes=["invisible"])
+            # container += nodes.title(text=operation_spec.get("summary", path), classes=["invisible"])
             op_header = openapi_operation_header()
             if not action_name:
                 op_header["summary"] = operation_spec.get("summary")
             else:
-                op_header["summary"] = action_body.get("description", f"{action_name} action")
+                op_header["summary"] = action_body.get(
+                    "description", f"{action_name} action"
+                )
             # op_header["description"] = operation_spec.get("description")
             op_header["operationId"] = op_id
             op_header["method"] = method
@@ -277,16 +295,23 @@ class OpenApiDirective(SphinxDirective):
                 ids=[f"collapse{op_id}"],
             )
             content += nodes.paragraph(
-                text=operation_spec.get("description", ""), classes=["accordion-body"]
+                text=operation_spec.get("description", ""),
+                classes=["accordion-body"],
             )
 
-            content += self._get_operation_request_node(op_id, operation_spec, action_name, action_body)
-            content += self._get_operation_response_node(op_id, operation_spec, action_name)
+            content += self._get_operation_request_node(
+                op_id, operation_spec, action_name, action_body
+            )
+            content += self._get_operation_response_node(
+                op_id, operation_spec, action_name
+            )
 
             container += content
             yield container
 
-    def _get_operation_request_node(self, operationId, operation_spec, action_name=None, action_body=None):
+    def _get_operation_request_node(
+        self, operationId, operation_spec, action_name=None, action_body=None
+    ):
         """Build the Request section"""
         request = nodes.section(ids=[f"api-req-{operationId}"])
         request += nodes.title(text="Request")
@@ -337,19 +362,23 @@ class OpenApiDirective(SphinxDirective):
 
         return request
 
-    def _get_operation_response_node(self, operationId, operation_spec, action_name=None):
+    def _get_operation_response_node(
+        self, operationId, operation_spec, action_name=None
+    ):
         """Build the Response section"""
         responses = nodes.section(ids=[f"api-res-{operationId}"])
         responses += nodes.title(text="Responses")
 
         response_specs = operation_spec.get("responses")
         for code, response_spec in sorted(response_specs.items()):
-            rsp_id = 'response-%d' % self.env.new_serialno('response')
+            rsp_id = "response-%d" % self.env.new_serialno("response")
             response = nodes.section(ids=[rsp_id])
             response += nodes.title(text=code)
             descr = response_spec.get("description")
             if descr:
-                response += nodes.paragraph(text=descr, classes=["description"])
+                response += nodes.paragraph(
+                    text=descr, classes=["description"]
+                )
             responses += response
             response_schema = None
 
@@ -374,8 +403,7 @@ class OpenApiDirective(SphinxDirective):
             # Body
             if not action_name:
                 response_schema = (
-                    response_spec
-                    .get("content", {})
+                    response_spec.get("content", {})
                     .get("application/json", {})
                     .get("schema")
                 )
@@ -383,8 +411,7 @@ class OpenApiDirective(SphinxDirective):
                 # Iterate over all available responses to find suitable action response
                 candidates = []
                 body_candidate = (
-                    response_spec
-                    .get("content", {})
+                    response_spec.get("content", {})
                     .get("application/json", {})
                     .get("schema")
                 )
@@ -404,7 +431,9 @@ class OpenApiDirective(SphinxDirective):
                 # on the server side, but is missing in openapi
 
             if response_schema:
-                for el in self._get_request_table_field_row(response_schema, None, set()):
+                for el in self._get_request_table_field_row(
+                    response_schema, None, set()
+                ):
                     rows.append(el)
 
             tbody = nodes.tbody()
@@ -446,7 +475,9 @@ class OpenApiDirective(SphinxDirective):
             if min_ver:
                 note = f"<br/><strong>New in version {min_ver}</strong>"
             if max_ver:
-                note = f"<br/><strong>Available until version {max_ver}</strong>"
+                note = (
+                    f"<br/><strong>Available until version {max_ver}</strong>"
+                )
         param_descr = f'{field.get("description", "")}{note or ""}'
 
         if typ == "object" and "properties" in field:
@@ -455,7 +486,9 @@ class OpenApiDirective(SphinxDirective):
                 tr = nodes.row()
                 tr += nodes.entry("", nodes.paragraph(text=field_name))
                 tr += nodes.entry("", nodes.paragraph(text="body"))
-                tr += nodes.entry("", nodes.paragraph(text=field.get("type", "")))
+                tr += nodes.entry(
+                    "", nodes.paragraph(text=field.get("type", ""))
+                )
                 tr += nodes.entry("", nodes.paragraph(text=param_descr))
                 yield tr
 
@@ -472,7 +505,9 @@ class OpenApiDirective(SphinxDirective):
                 tr = nodes.row()
                 tr += nodes.entry("", nodes.paragraph(text=field_name))
                 tr += nodes.entry("", nodes.paragraph(text="body"))
-                tr += nodes.entry("", nodes.paragraph(text=field.get("type", "")))
+                tr += nodes.entry(
+                    "", nodes.paragraph(text=field.get("type", ""))
+                )
                 tr += nodes.entry("", nodes.paragraph(text=param_descr))
                 yield tr
         if not typ and "oneOf" in field:
@@ -498,11 +533,18 @@ class OpenApiDirective(SphinxDirective):
             title += f" ({sample_key})"
         p.append(nodes.strong(text=title))
         yield p
-        pre = nodes.literal_block("", classes=["javascript", "highlight-javascript"])
-        pre.append(nodes.literal(text=sample, language="javascript", classes=["highlight", "code"]))
+        pre = nodes.literal_block(
+            "", classes=["javascript", "highlight-javascript"]
+        )
+        pre.append(
+            nodes.literal(
+                text=sample,
+                language="javascript",
+                classes=["highlight", "code"],
+            )
+        )
         # TODO(gtema): how to trigger activation of pygments?
         yield pre
-
 
 
 def copy_assets(app, exception):
@@ -535,7 +577,7 @@ def visit_openapi_operation_header(self, node):
             if x
         ]
     )
-    if path[0] != "/":
+    if len(path) > 0 and path[0] != "/":
         path = "/" + path
     self.body.append(
         f'<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{tag_id}" aria-expanded="false" aria-controls="collapse{tag_id}">'
