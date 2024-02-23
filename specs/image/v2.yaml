@@ -819,18 +819,18 @@ paths:
 
         **Size Comparison Filters**
 
-        You can use the `size\_min` and `size\_max` query parameters to filter images
+        You can use the `size_min` and `size_max` query parameters to filter images
         that are greater than or less than the image size. The size, in bytes, is the
         size of an image on disk.
 
         For example, to filter the container to include only images that are from 1 to
-        4 MB, set the `size\_min` query parameter to `1048576` and the `size\_max`
+        4 MB, set the `size_min` query parameter to `1048576` and the `size_max`
         query parameter to `4194304`.
 
         **Time Comparison Filters**
 
-        You can use a *comparison operator* along with the `created\_at` or
-        `updated\_at` fields to filter your results. Specify the operator first, a
+        You can use a *comparison operator* along with the `created_at` or
+        `updated_at` fields to filter your results. Specify the operator first, a
         colon (`:`) as a separator, and then the time in [ISO 8601 Format](https://en.wikipedia.org/wiki/ISO_8601). Available comparison operators
         are:
 
@@ -840,7 +840,7 @@ paths:
 
         You can use query parameters to sort the results of this operation.
 
-        To sort the response, use the `sort\_key` and `sort\_dir` query
+        To sort the response, use the `sort_key` and `sort_dir` query
         parameters:
 
         Alternatively, specify the `sort` query parameter:
@@ -1072,13 +1072,13 @@ paths:
 
         To import the data into the entire set of stores you may consume from this
         particular deployment of Glance without specifying each one of them, you can
-        use the optional boolean body parameter `all\_stores`.
+        use the optional boolean body parameter `all_stores`.
         Note that this can’t be used simultaneously with the `stores` parameter.
 
         To set the behavior of the import workflow in case of error, you can use the
-        optional boolean body parameter `all\_stores\_must\_succeed`.
+        optional boolean body parameter `all_stores_must_succeed`.
         When set to True (default), if an error occurs during the upload in at least one store,
-        the worfklow fails, the data is deleted from stores where copying is done and
+        the workflow fails, the data is deleted from stores where copying is done and
         the state of the image remains unchanged.
         When set to False, the workflow will fail only if the upload fails
         on all stores specified. In case of a partial success, the locations added to
@@ -1240,7 +1240,7 @@ paths:
         *(Since Image API v2.0)*
 
         Example call: `curl -i -X GET -H "X-Auth-Token: $token"
-        $image\_url/v2/images/{image\_id}/file`
+        $image_url/v2/images/{image_id}/file`
 
         The response body contains the raw binary data that represents the
         actual virtual disk. The `Content-Type` header contains the
@@ -7994,7 +7994,7 @@ components:
             as this field is no longer populated by the Image Service beginning with the 
             Victoria release. It remains present for backward compatibility with legacy
             images. To validate image data, instead use the secure multihash fields 
-            `os\_hash\_algo` and `os\_hash\_value`.
+            `os_hash_algo` and `os_hash_value`.
 
           maxLength: 32
         os_hash_algo:
@@ -8005,7 +8005,7 @@ components:
           description: |+
             The algorithm used to compute a secure hash of the image data for this
             image. The result of the computation is displayed as the value of the
-            `os\_hash\_value` property. The value might be `null` (JSON null
+            `os_hash_value` property. The value might be `null` (JSON null
             data type). The algorithm used is chosen by the cloud operator; it
             may not be configured by end users. *(Since Image API v2.7)*
 
@@ -8017,7 +8017,7 @@ components:
           readOnly: true
           description: |+
             The hexdigest of the secure hash of the image data computed using the
-            algorithm whose name is the value of the `os\_hash\_algo` property.
+            algorithm whose name is the value of the `os_hash_algo` property.
             The value might be `null` (JSON null data type) if data has not
             yet been associated with this image, or if the image was created using
             a version of the Image Service API prior to version 2.7.
@@ -8172,7 +8172,7 @@ components:
             from UTC. In the previous example, the offset value is `-05:00`.
 
 
-            If the `updated\_at` date and time stamp is not set, its value is
+            If the `updated_at` date and time stamp is not set, its value is
             `null`.
 
         tags:
@@ -8188,7 +8188,7 @@ components:
           readOnly: true
           description: |+
             The URL to access the image file kept in external store. *It is present
-            only if the* `show\_image\_direct\_url` *option is* `true` *in the Image
+            only if the* `show_image_direct_url` *option is* `true` *in the Image
             service’s configuration file.* **Because it presents a security risk, this
             option is disabled by default.**
 
@@ -8266,7 +8266,7 @@ components:
             contains a `url` key, whose value is a URL specifying a location, and a
             `metadata` key, whose value is a dict of key:value pairs containing
             information appropriate to the use of whatever external store is indicated
-            by the URL. *This list appears only if the* `show\_multiple\_locations`
+            by the URL. *This list appears only if the* `show_multiple_locations`
             *option is set to* `true` *in the Image service’s configuration file.*
             **Because it presents a security risk, this option is disabled by
             default.**
@@ -8377,7 +8377,7 @@ components:
             as this field is no longer populated by the Image Service beginning with the 
             Victoria release. It remains present for backward compatibility with legacy
             images. To validate image data, instead use the secure multihash fields 
-            `os\_hash\_algo` and `os\_hash\_value`.
+            `os_hash_algo` and `os_hash_value`.
 
           maxLength: 32
         os_hash_algo:
@@ -8388,7 +8388,7 @@ components:
           description: |+
             The algorithm used to compute a secure hash of the image data for this
             image. The result of the computation is displayed as the value of the
-            `os\_hash\_value` property. The value might be `null` (JSON null
+            `os_hash_value` property. The value might be `null` (JSON null
             data type). The algorithm used is chosen by the cloud operator; it
             may not be configured by end users. *(Since Image API v2.7)*
 
@@ -8400,7 +8400,7 @@ components:
           readOnly: true
           description: |+
             The hexdigest of the secure hash of the image data computed using the
-            algorithm whose name is the value of the `os\_hash\_algo` property.
+            algorithm whose name is the value of the `os_hash_algo` property.
             The value might be `null` (JSON null data type) if data has not
             yet been associated with this image, or if the image was created using
             a version of the Image Service API prior to version 2.7.
@@ -8552,7 +8552,7 @@ components:
             from UTC. In the previous example, the offset value is `-05:00`.
 
 
-            If the `updated\_at` date and time stamp is not set, its value is
+            If the `updated_at` date and time stamp is not set, its value is
             `null`.
 
         tags:
@@ -8568,7 +8568,7 @@ components:
           readOnly: true
           description: |+
             The URL to access the image file kept in external store. *It is present
-            only if the* `show\_image\_direct\_url` *option is* `true` *in the Image
+            only if the* `show_image_direct_url` *option is* `true` *in the Image
             service’s configuration file.* **Because it presents a security risk, this
             option is disabled by default.**
 
@@ -8646,7 +8646,7 @@ components:
             contains a `url` key, whose value is a URL specifying a location, and a
             `metadata` key, whose value is a dict of key:value pairs containing
             information appropriate to the use of whatever external store is indicated
-            by the URL. *This list appears only if the* `show\_multiple\_locations`
+            by the URL. *This list appears only if the* `show_multiple_locations`
             *option is set to* `true` *in the Image service’s configuration file.*
             **Because it presents a security risk, this option is disabled by
             default.**
@@ -8955,7 +8955,7 @@ components:
             as this field is no longer populated by the Image Service beginning with the 
             Victoria release. It remains present for backward compatibility with legacy
             images. To validate image data, instead use the secure multihash fields 
-            `os\_hash\_algo` and `os\_hash\_value`.
+            `os_hash_algo` and `os_hash_value`.
 
           maxLength: 32
         os_hash_algo:
@@ -8966,7 +8966,7 @@ components:
           description: |+
             The algorithm used to compute a secure hash of the image data for this
             image. The result of the computation is displayed as the value of the
-            `os\_hash\_value` property. The value might be `null` (JSON null
+            `os_hash_value` property. The value might be `null` (JSON null
             data type). The algorithm used is chosen by the cloud operator; it
             may not be configured by end users. *(Since Image API v2.7)*
 
@@ -8978,7 +8978,7 @@ components:
           readOnly: true
           description: |+
             The hexdigest of the secure hash of the image data computed using the
-            algorithm whose name is the value of the `os\_hash\_algo` property.
+            algorithm whose name is the value of the `os_hash_algo` property.
             The value might be `null` (JSON null data type) if data has not
             yet been associated with this image, or if the image was created using
             a version of the Image Service API prior to version 2.7.
@@ -9135,7 +9135,7 @@ components:
             from UTC. In the previous example, the offset value is `-05:00`.
 
 
-            If the `updated\_at` date and time stamp is not set, its value is
+            If the `updated_at` date and time stamp is not set, its value is
             `null`.
 
         tags:
@@ -9151,7 +9151,7 @@ components:
           readOnly: true
           description: |+
             The URL to access the image file kept in external store. *It is present
-            only if the* `show\_image\_direct\_url` *option is* `true` *in the Image
+            only if the* `show_image_direct_url` *option is* `true` *in the Image
             service’s configuration file.* **Because it presents a security risk, this
             option is disabled by default.**
 
@@ -9229,7 +9229,7 @@ components:
             contains a `url` key, whose value is a URL specifying a location, and a
             `metadata` key, whose value is a dict of key:value pairs containing
             information appropriate to the use of whatever external store is indicated
-            by the URL. *This list appears only if the* `show\_multiple\_locations`
+            by the URL. *This list appears only if the* `show_multiple_locations`
             *option is set to* `true` *in the Image service’s configuration file.*
             **Because it presents a security risk, this option is disabled by
             default.**
@@ -10122,7 +10122,7 @@ components:
             from UTC. In the previous example, the offset value is `-05:00`.
 
 
-            If the `updated\_at` date and time stamp is not set, its value is
+            If the `updated_at` date and time stamp is not set, its value is
             `null`.
 
         status:
@@ -10204,7 +10204,7 @@ components:
             from UTC. In the previous example, the offset value is `-05:00`.
 
 
-            If the `updated\_at` date and time stamp is not set, its value is
+            If the `updated_at` date and time stamp is not set, its value is
             `null`.
 
         status:
@@ -10289,7 +10289,7 @@ components:
             from UTC. In the previous example, the offset value is `-05:00`.
 
 
-            If the `updated\_at` date and time stamp is not set, its value is
+            If the `updated_at` date and time stamp is not set, its value is
             `null`.
 
         status:
@@ -10468,7 +10468,7 @@ components:
             The date and time stamp format is [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
 
 
-            If the `updated\_at` date and time stamp is not set, its value is
+            If the `updated_at` date and time stamp is not set, its value is
             `null`.
 
           type: string
@@ -10633,14 +10633,14 @@ components:
             fields:
 
 
-            * `created\_at`
+            * `created_at`
             * `id`
             * `owner`
             * `schema`
             * `self`
             * `status`
             * `type`
-            * `updated\_at`
+            * `updated_at`
       name: tasks
     TaskGetRequest:
       type: object
@@ -10807,7 +10807,7 @@ components:
             The date and time stamp format is [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
 
 
-            If the `updated\_at` date and time stamp is not set, its value is
+            If the `updated_at` date and time stamp is not set, its value is
             `null`.
 
           type: string
@@ -10961,7 +10961,7 @@ components:
             additionalProperties: true
             validation_data:
               type: object
-              additonalProperties: false
+              additionalProperties: false
               properties:
                 usage:
                   type: integer

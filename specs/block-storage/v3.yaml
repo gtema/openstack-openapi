@@ -196,42 +196,17 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/VolumesActionRevertResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Reset_StatusResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Force_DeleteResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Force_DetachResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Migrate_VolumeResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-AttachResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-DetachResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-ReserveResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-UnreserveResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Begin_DetachingResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Roll_DetachingResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Terminate_ConnectionResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Volume_Upload_ImageResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-ExtendResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Update_Readonly_FlagResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-RetypeResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-ReimageResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-UnmanageResponse'
+                $ref: '#/components/schemas/VolumesActionOs-Volume_Upload_ImageResponse'
         '201':
           description: Ok
           content:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/VolumesActionOs-Migrate_Volume_CompletionResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Initialize_ConnectionResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Set_Image_MetadataResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Show_Image_MetadataResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Unset_Image_MetadataResponse'
         '200':
           description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VolumesActionOs-Set_BootableResponse'
       tags:
         - volumes
   /v3/{project_id}/volumes/{id}:
@@ -427,42 +402,17 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/VolumesActionRevertResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Reset_StatusResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Force_DeleteResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Force_DetachResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Migrate_VolumeResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-AttachResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-DetachResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-ReserveResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-UnreserveResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Begin_DetachingResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Roll_DetachingResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Terminate_ConnectionResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Volume_Upload_ImageResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-ExtendResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Update_Readonly_FlagResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-RetypeResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-ReimageResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-UnmanageResponse'
+                $ref: '#/components/schemas/VolumesActionOs-Volume_Upload_ImageResponse'
         '201':
           description: Ok
           content:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/VolumesActionOs-Migrate_Volume_CompletionResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Initialize_ConnectionResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Set_Image_MetadataResponse'
                   - $ref: '#/components/schemas/VolumesActionOs-Show_Image_MetadataResponse'
-                  - $ref: '#/components/schemas/VolumesActionOs-Unset_Image_MetadataResponse'
         '200':
           description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VolumesActionOs-Set_BootableResponse'
       tags:
         - volumes
   /v3/volumes/{id}:
@@ -795,6 +745,14 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
+      parameters:
+        - $ref: '#/components/parameters/type_is_public'
+        - $ref: '#/components/parameters/type_sort'
+        - $ref: '#/components/parameters/type_sort_key'
+        - $ref: '#/components/parameters/type_sort_dir'
+        - $ref: '#/components/parameters/type_limit'
+        - $ref: '#/components/parameters/type_marker'
+        - $ref: '#/components/parameters/type_offset'
       description: |+
         Lists volume types.
 
@@ -863,8 +821,6 @@ paths:
                   - $ref: '#/components/schemas/TypesActionCreateResponse'
                   - $ref: '#/components/schemas/TypesActionUpdateResponse'
                   - $ref: '#/components/schemas/TypesActionDeleteResponse'
-                  - $ref: '#/components/schemas/TypesActionAddprojectaccessResponse'
-                  - $ref: '#/components/schemas/TypesActionRemoveprojectaccessResponse'
       tags:
         - types
   /v3/{project_id}/types/{id}:
@@ -980,8 +936,6 @@ paths:
                   - $ref: '#/components/schemas/TypesActionCreateResponse'
                   - $ref: '#/components/schemas/TypesActionUpdateResponse'
                   - $ref: '#/components/schemas/TypesActionDeleteResponse'
-                  - $ref: '#/components/schemas/TypesActionAddprojectaccessResponse'
-                  - $ref: '#/components/schemas/TypesActionRemoveprojectaccessResponse'
       tags:
         - types
   /v3/types/{id}:
@@ -7179,9 +7133,7 @@ components:
                   The associated volume type name for the volume.
 
               metadata:
-                type:
-                  - 'null'
-                  - object
+                type: object
                 patternProperties:
                   ^[a-zA-Z0-9-_:. /]{1,255}$:
                     type: string
@@ -7252,11 +7204,11 @@ components:
                   ```
                   [
                     {
-                      'server\_id': '6c8cf6e0-4c8f-442f-9196-9679737feec6',
-                      'attachment\_id': '3dafcac4-1cb9-4b60-a227-d729baa10cf6',
-                      'attached\_at': '2019-09-30T19:30:34.000000',
-                      'host\_name': null,
-                      'volume\_id': '5d95d5ee-4bdd-4452-b9d7-d44ca10d3d53',
+                      'server_id': '6c8cf6e0-4c8f-442f-9196-9679737feec6',
+                      'attachment_id': '3dafcac4-1cb9-4b60-a227-d729baa10cf6',
+                      'attached_at': '2019-09-30T19:30:34.000000',
+                      'host_name': null,
+                      'volume_id': '5d95d5ee-4bdd-4452-b9d7-d44ca10d3d53',
                       'device': '/dev/vda',
                       'id': '5d95d5ee-4bdd-4452-b9d7-d44ca10d3d53'
                     }
@@ -7359,7 +7311,7 @@ components:
                   from UTC. In the previous example, the offset value is `-05:00`.
 
 
-                  If the `updated\_at` date and time stamp is not set, its value is
+                  If the `updated_at` date and time stamp is not set, its value is
                   `null`.
 
               replication_status:
@@ -8234,9 +8186,7 @@ components:
                 The associated volume type name for the volume.
 
             metadata:
-              type:
-                - 'null'
-                - object
+              type: object
               patternProperties:
                 ^[a-zA-Z0-9-_:. /]{1,255}$:
                   type: string
@@ -8307,11 +8257,11 @@ components:
                 ```
                 [
                   {
-                    'server\_id': '6c8cf6e0-4c8f-442f-9196-9679737feec6',
-                    'attachment\_id': '3dafcac4-1cb9-4b60-a227-d729baa10cf6',
-                    'attached\_at': '2019-09-30T19:30:34.000000',
-                    'host\_name': null,
-                    'volume\_id': '5d95d5ee-4bdd-4452-b9d7-d44ca10d3d53',
+                    'server_id': '6c8cf6e0-4c8f-442f-9196-9679737feec6',
+                    'attachment_id': '3dafcac4-1cb9-4b60-a227-d729baa10cf6',
+                    'attached_at': '2019-09-30T19:30:34.000000',
+                    'host_name': null,
+                    'volume_id': '5d95d5ee-4bdd-4452-b9d7-d44ca10d3d53',
                     'device': '/dev/vda',
                     'id': '5d95d5ee-4bdd-4452-b9d7-d44ca10d3d53'
                   }
@@ -8414,7 +8364,7 @@ components:
                 from UTC. In the previous example, the offset value is `-05:00`.
 
 
-                If the `updated\_at` date and time stamp is not set, its value is
+                If the `updated_at` date and time stamp is not set, its value is
                 `null`.
 
             replication_status:
@@ -8539,11 +8489,6 @@ components:
           type: 'null'
       x-openstack:
         action-name: revert
-    VolumesActionRevertResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:revert action
-      x-openstack:
-        action-name: revert
     VolumesActionOs-Reset_StatusRequest:
       type: object
       description: Empty body for os-reset_status action
@@ -8552,24 +8497,12 @@ components:
           type: 'null'
       x-openstack:
         action-name: os-reset_status
-    VolumesActionOs-Reset_StatusResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-reset_status
-        action
-      x-openstack:
-        action-name: os-reset_status
     VolumesActionOs-Force_DeleteRequest:
       type: object
       description: Empty body for os-force_delete action
       properties:
         os-force_delete:
           type: 'null'
-      x-openstack:
-        action-name: os-force_delete
-    VolumesActionOs-Force_DeleteResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-force_delete
-        action
       x-openstack:
         action-name: os-force_delete
     VolumesAction_Force_Detach:
@@ -8593,12 +8526,6 @@ components:
         action-name: os-force_detach
       required:
         - os-force_detach
-    VolumesActionOs-Force_DetachResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-force_detach
-        action
-      x-openstack:
-        action-name: os-force_detach
     VolumesAction_Migrate_Volume_30:
       type: object
       properties:
@@ -8773,12 +8700,6 @@ components:
       x-openstack:
         discriminator: microversion
         action-name: os-migrate_volume
-    VolumesActionOs-Migrate_VolumeResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-migrate_volume
-        action
-      x-openstack:
-        action-name: os-migrate_volume
     VolumesAction_Migrate_Volume_Completion:
       type: object
       properties:
@@ -8801,12 +8722,6 @@ components:
         action-name: os-migrate_volume_completion
       required:
         - os-migrate_volume_completion
-    VolumesActionOs-Migrate_Volume_CompletionResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-migrate_volume_completion
-        action
-      x-openstack:
-        action-name: os-migrate_volume_completion
     VolumesAction_Attach:
       type: object
       properties:
@@ -8841,11 +8756,6 @@ components:
         action-name: os-attach
       required:
         - os-attach
-    VolumesActionOs-AttachResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-attach action
-      x-openstack:
-        action-name: os-attach
     VolumesAction_Detach:
       type: object
       properties:
@@ -8865,22 +8775,12 @@ components:
         action-name: os-detach
       required:
         - os-detach
-    VolumesActionOs-DetachResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-detach action
-      x-openstack:
-        action-name: os-detach
     VolumesActionOs-ReserveRequest:
       type: object
       description: Empty body for os-reserve action
       properties:
         os-reserve:
           type: 'null'
-      x-openstack:
-        action-name: os-reserve
-    VolumesActionOs-ReserveResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-reserve action
       x-openstack:
         action-name: os-reserve
     VolumesActionOs-UnreserveRequest:
@@ -8891,12 +8791,6 @@ components:
           type: 'null'
       x-openstack:
         action-name: os-unreserve
-    VolumesActionOs-UnreserveResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-unreserve
-        action
-      x-openstack:
-        action-name: os-unreserve
     VolumesActionOs-Begin_DetachingRequest:
       type: object
       description: Empty body for os-begin_detaching action
@@ -8905,24 +8799,12 @@ components:
           type: 'null'
       x-openstack:
         action-name: os-begin_detaching
-    VolumesActionOs-Begin_DetachingResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-begin_detaching
-        action
-      x-openstack:
-        action-name: os-begin_detaching
     VolumesActionOs-Roll_DetachingRequest:
       type: object
       description: Empty body for os-roll_detaching action
       properties:
         os-roll_detaching:
           type: 'null'
-      x-openstack:
-        action-name: os-roll_detaching
-    VolumesActionOs-Roll_DetachingResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-roll_detaching
-        action
       x-openstack:
         action-name: os-roll_detaching
     VolumesAction_Initialize_Connection:
@@ -8943,12 +8825,6 @@ components:
         action-name: os-initialize_connection
       required:
         - os-initialize_connection
-    VolumesActionOs-Initialize_ConnectionResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-initialize_connection
-        action
-      x-openstack:
-        action-name: os-initialize_connection
     VolumesAction_Terminate_Connection:
       type: object
       properties:
@@ -8968,12 +8844,6 @@ components:
         action-name: os-terminate_connection
       required:
         - os-terminate_connection
-    VolumesActionOs-Terminate_ConnectionResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-terminate_connection
-        action
-      x-openstack:
-        action-name: os-terminate_connection
     VolumesAction_Volume_Upload_Image_30:
       type: object
       properties:
@@ -9158,10 +9028,51 @@ components:
         action-name: os-volume_upload_image
     VolumesActionOs-Volume_Upload_ImageResponse:
       type: object
-      description: Response of the project_id/volumes/id/action:post:os-volume_upload_image
-        action
-      x-openstack:
-        action-name: os-volume_upload_image
+      properties:
+        container_format:
+          type: string
+          description: Container format for the new image. Default is bare.
+        disk_format:
+          type: string
+          description: Disk format for the new image. Default is raw.
+        display_description:
+          type: string
+          description: The volume description.
+        id:
+          type: string
+          format: uuid
+          description: The UUID of the volume.
+        image_id:
+          type: string
+          format: uuid
+          description: The uuid for the new image.
+        image_name:
+          type: string
+          description: The name for the new image.
+        protected:
+          type: boolean
+          description: Whether the new image is protected. Default=False.
+          x-openstack:
+            min-ver: '3.1'
+        size:
+          type: integer
+          format: int64
+          description: The size of the volume, in gibibytes (GiB).
+        status:
+          type: integer
+          description: The volume status.
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time when the resource was updated.
+        visibility:
+          type: string
+          description: The visibility property of the new image. Default is private.
+          x-openstack:
+            min-ver: '3.1'
+        volume_type:
+          type: string
+          description: The associated volume type name for the volume.
     VolumesAction_Extend:
       type: object
       properties:
@@ -9183,11 +9094,6 @@ components:
         action-name: os-extend
       required:
         - os-extend
-    VolumesActionOs-ExtendResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-extend action
-      x-openstack:
-        action-name: os-extend
     VolumesAction_Volume_Readonly_Update:
       type: object
       properties:
@@ -9233,12 +9139,6 @@ components:
         action-name: os-update_readonly_flag
       required:
         - os-update_readonly_flag
-    VolumesActionOs-Update_Readonly_FlagResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-update_readonly_flag
-        action
-      x-openstack:
-        action-name: os-update_readonly_flag
     VolumesAction_Retype:
       type: object
       properties:
@@ -9262,11 +9162,6 @@ components:
         action-name: os-retype
       required:
         - os-retype
-    VolumesActionOs-RetypeResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-retype action
-      x-openstack:
-        action-name: os-retype
     VolumesAction_Set_Bootable:
       type: object
       properties:
@@ -9312,12 +9207,6 @@ components:
         action-name: os-set_bootable
       required:
         - os-set_bootable
-    VolumesActionOs-Set_BootableResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-set_bootable
-        action
-      x-openstack:
-        action-name: os-set_bootable
     VolumesAction_Reimage_368:
       type: object
       properties:
@@ -9367,11 +9256,6 @@ components:
         action-name: os-reimage
       required:
         - os-reimage
-    VolumesActionOs-ReimageResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-reimage action
-      x-openstack:
-        action-name: os-reimage
     VolumesActionCreate:
       type: object
       properties:
@@ -9395,10 +9279,20 @@ components:
         - os-set_image_metadata
     VolumesActionOs-Set_Image_MetadataResponse:
       type: object
-      description: Response of the project_id/volumes/id/action:post:os-set_image_metadata
-        action
-      x-openstack:
-        action-name: os-set_image_metadata
+      description: Metadata key and value pairs. The maximum size for each metadata
+        key and value pair is 255 bytes.
+      properties:
+        metadata:
+          type: object
+          patternProperties:
+            ^[a-zA-Z0-9-_:. /]{1,255}$:
+              type: string
+              maxLength: 255
+          additionalProperties: false
+          description: |+
+            One or more metadata key and value pairs that are
+            associated with the volume.
+
     VolumesActionOs-Show_Image_MetadataRequest:
       type: object
       description: Empty body for os-show_image_metadata action
@@ -9409,10 +9303,20 @@ components:
         action-name: os-show_image_metadata
     VolumesActionOs-Show_Image_MetadataResponse:
       type: object
-      description: Response of the project_id/volumes/id/action:post:os-show_image_metadata
-        action
-      x-openstack:
-        action-name: os-show_image_metadata
+      description: Metadata key and value pairs. The maximum size for each metadata
+        key and value pair is 255 bytes.
+      properties:
+        metadata:
+          type: object
+          patternProperties:
+            ^[a-zA-Z0-9-_:. /]{1,255}$:
+              type: string
+              maxLength: 255
+          additionalProperties: false
+          description: |+
+            One or more metadata key and value pairs that are
+            associated with the volume.
+
     VolumesActionDelete:
       type: object
       properties:
@@ -9431,23 +9335,12 @@ components:
         action-name: os-unset_image_metadata
       required:
         - os-unset_image_metadata
-    VolumesActionOs-Unset_Image_MetadataResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-unset_image_metadata
-        action
-      x-openstack:
-        action-name: os-unset_image_metadata
     VolumesActionOs-UnmanageRequest:
       type: object
       description: Empty body for os-unmanage action
       properties:
         os-unmanage:
           type: 'null'
-      x-openstack:
-        action-name: os-unmanage
-    VolumesActionOs-UnmanageResponse:
-      type: object
-      description: Response of the project_id/volumes/id/action:post:os-unmanage action
       x-openstack:
         action-name: os-unmanage
     VolumeUpdate_30:
@@ -9576,9 +9469,7 @@ components:
                 The associated volume type name for the volume.
 
             metadata:
-              type:
-                - 'null'
-                - object
+              type: object
               patternProperties:
                 ^[a-zA-Z0-9-_:. /]{1,255}$:
                   type: string
@@ -9649,11 +9540,11 @@ components:
                 ```
                 [
                   {
-                    'server\_id': '6c8cf6e0-4c8f-442f-9196-9679737feec6',
-                    'attachment\_id': '3dafcac4-1cb9-4b60-a227-d729baa10cf6',
-                    'attached\_at': '2019-09-30T19:30:34.000000',
-                    'host\_name': null,
-                    'volume\_id': '5d95d5ee-4bdd-4452-b9d7-d44ca10d3d53',
+                    'server_id': '6c8cf6e0-4c8f-442f-9196-9679737feec6',
+                    'attachment_id': '3dafcac4-1cb9-4b60-a227-d729baa10cf6',
+                    'attached_at': '2019-09-30T19:30:34.000000',
+                    'host_name': null,
+                    'volume_id': '5d95d5ee-4bdd-4452-b9d7-d44ca10d3d53',
                     'device': '/dev/vda',
                     'id': '5d95d5ee-4bdd-4452-b9d7-d44ca10d3d53'
                   }
@@ -9756,7 +9647,7 @@ components:
                 from UTC. In the previous example, the offset value is `-05:00`.
 
 
-                If the `updated\_at` date and time stamp is not set, its value is
+                If the `updated_at` date and time stamp is not set, its value is
                 `null`.
 
             replication_status:
@@ -9860,9 +9751,7 @@ components:
                 The associated volume type name for the volume.
 
             metadata:
-              type:
-                - 'null'
-                - object
+              type: object
               patternProperties:
                 ^[a-zA-Z0-9-_:. /]{1,255}$:
                   type: string
@@ -9933,11 +9822,11 @@ components:
                 ```
                 [
                   {
-                    'server\_id': '6c8cf6e0-4c8f-442f-9196-9679737feec6',
-                    'attachment\_id': '3dafcac4-1cb9-4b60-a227-d729baa10cf6',
-                    'attached\_at': '2019-09-30T19:30:34.000000',
-                    'host\_name': null,
-                    'volume\_id': '5d95d5ee-4bdd-4452-b9d7-d44ca10d3d53',
+                    'server_id': '6c8cf6e0-4c8f-442f-9196-9679737feec6',
+                    'attachment_id': '3dafcac4-1cb9-4b60-a227-d729baa10cf6',
+                    'attached_at': '2019-09-30T19:30:34.000000',
+                    'host_name': null,
+                    'volume_id': '5d95d5ee-4bdd-4452-b9d7-d44ca10d3d53',
                     'device': '/dev/vda',
                     'id': '5d95d5ee-4bdd-4452-b9d7-d44ca10d3d53'
                   }
@@ -10040,7 +9929,7 @@ components:
                 from UTC. In the previous example, the offset value is `-05:00`.
 
 
-                If the `updated\_at` date and time stamp is not set, its value is
+                If the `updated_at` date and time stamp is not set, its value is
                 `null`.
 
             replication_status:
@@ -10143,7 +10032,7 @@ components:
         volume_type:
           type: object
           description: |+
-            A `volume\_type` object.
+            A `volume_type` object.
 
           properties:
             name:
@@ -10223,12 +10112,127 @@ components:
         - volume_type
     TypesCreateResponse:
       type: object
-      description: Response of the project_id/types:post:create action
-      x-openstack:
-        action-name: create
+      properties:
+        volume_type:
+          type: object
+          properties:
+            description:
+              type: string
+              description: |+
+                The volume type description.
+
+            extra_specs:
+              description: |+
+                A key and value pair that contains additional
+                specifications that are associated with the volume type. Examples
+                include capabilities, capacity, compression, and so on, depending
+                on the storage driver in use.
+
+              type: object
+              patternProperties:
+                ^[a-zA-Z0-9-_:.]{1,255}$:
+                  type:
+                    - string
+                    - 'null'
+                  minLength: 0
+                  maxLength: 255
+              additionalProperties: false
+            id:
+              type: string
+              format: uuid
+              description: |+
+                The UUID of the volume type.
+
+            is_public:
+              type: boolean
+              description: |+
+                Whether the volume type is publicly visible.
+
+            name:
+              type: string
+              description: |+
+                The name of the volume type.
+
+            os-volume-type-access:is_public:
+              type: boolean
+              description: |+
+                Whether the volume type is publicly visible.
+
+            qos_specs_id:
+              type: string
+              format: uuid
+              description: |+
+                The QoS specifications ID.
+
+          description: |+
+            A `volume_type` object.
+
     TypesListResponse:
       type: object
-      description: Response of the project_id/types:get operation
+      properties:
+        volume_types:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+                description: |+
+                  The volume type description.
+
+              extra_specs:
+                description: |+
+                  A key and value pair that contains additional
+                  specifications that are associated with the volume type. Examples
+                  include capabilities, capacity, compression, and so on, depending
+                  on the storage driver in use.
+
+                type: object
+                patternProperties:
+                  ^[a-zA-Z0-9-_:.]{1,255}$:
+                    type:
+                      - string
+                      - 'null'
+                    minLength: 0
+                    maxLength: 255
+                additionalProperties: false
+              id:
+                type: string
+                format: uuid
+                description: |+
+                  The UUID of the volume type.
+
+              is_public:
+                type: boolean
+                description: |+
+                  Whether the volume type is publicly visible.
+
+              name:
+                type: string
+                description: |+
+                  The name of the volume type.
+
+              os-volume-type-access:is_public:
+                type: boolean
+                description: |+
+                  Whether the volume type is publicly visible.
+
+              qos_specs_id:
+                type: string
+                format: uuid
+                description: |+
+                  The QoS specifications ID.
+
+            description: |+
+              A `volume_type` object.
+
+          description: |+
+            The list of volume types. In an environment with
+            multiple-storage back ends, the scheduler determines where to send
+            the volume based on the volume type. For information about how to
+            use volume types to create multiple- storage back ends, see
+            [Configure multiple-storage back ends](https://docs.openstack.org/cinder/latest/admin/blockstorage-multi-backend.html).
+
     TypesAction_Create:
       type: object
       properties:
@@ -10394,12 +10398,6 @@ components:
         action-name: addProjectAccess
       required:
         - addProjectAccess
-    TypesActionAddprojectaccessResponse:
-      type: object
-      description: Response of the project_id/types/id/action:post:addProjectAccess
-        action
-      x-openstack:
-        action-name: addProjectAccess
     TypesAction_Removeprojectaccess:
       type: object
       properties:
@@ -10418,12 +10416,6 @@ components:
         action-name: removeProjectAccess
       required:
         - removeProjectAccess
-    TypesActionRemoveprojectaccessResponse:
-      type: object
-      description: Response of the project_id/types/id/action:post:removeProjectAccess
-        action
-      x-openstack:
-        action-name: removeProjectAccess
     Type_Update:
       type: object
       properties:
@@ -10481,19 +10473,125 @@ components:
         - volume_type
     TypeUpdateResponse:
       type: object
-      description: Response of the project_id/types/id:put:update action
-      x-openstack:
-        action-name: update
+      properties:
+        volume_type:
+          type: object
+          properties:
+            description:
+              type: string
+              description: |+
+                The volume type description.
+
+            extra_specs:
+              description: |+
+                A key and value pair that contains additional
+                specifications that are associated with the volume type. Examples
+                include capabilities, capacity, compression, and so on, depending
+                on the storage driver in use.
+
+              type: object
+              patternProperties:
+                ^[a-zA-Z0-9-_:.]{1,255}$:
+                  type:
+                    - string
+                    - 'null'
+                  minLength: 0
+                  maxLength: 255
+              additionalProperties: false
+            id:
+              type: string
+              format: uuid
+              description: |+
+                The UUID of the volume type.
+
+            is_public:
+              type: boolean
+              description: |+
+                Whether the volume type is publicly visible.
+
+            name:
+              type: string
+              description: |+
+                The name of the volume type.
+
+            os-volume-type-access:is_public:
+              type: boolean
+              description: |+
+                Whether the volume type is publicly visible.
+
+            qos_specs_id:
+              type: string
+              format: uuid
+              description: |+
+                The QoS specifications ID.
+
+          description: |+
+            A `volume_type` object.
+
     TypeShowResponse:
       type: object
-      description: Response of the project_id/types/id:get operation
+      properties:
+        volume_type:
+          type: object
+          properties:
+            description:
+              type: string
+              description: |+
+                The volume type description.
+
+            extra_specs:
+              description: |+
+                A key and value pair that contains additional
+                specifications that are associated with the volume type. Examples
+                include capabilities, capacity, compression, and so on, depending
+                on the storage driver in use.
+
+              type: object
+              patternProperties:
+                ^[a-zA-Z0-9-_:.]{1,255}$:
+                  type:
+                    - string
+                    - 'null'
+                  minLength: 0
+                  maxLength: 255
+              additionalProperties: false
+            id:
+              type: string
+              format: uuid
+              description: |+
+                The UUID of the volume type.
+
+            is_public:
+              type: boolean
+              description: |+
+                Whether the volume type is publicly visible.
+
+            name:
+              type: string
+              description: |+
+                The name of the volume type.
+
+            os-volume-type-access:is_public:
+              type: boolean
+              description: |+
+                Whether the volume type is publicly visible.
+
+            qos_specs_id:
+              type: string
+              format: uuid
+              description: |+
+                The QoS specifications ID.
+
+          description: |+
+            A `volume_type` object.
+
     Group_TypesCreate:
       type: object
       properties:
         group_type:
           type: object
           description: |+
-            A `group\_type` object.
+            A `group_type` object.
 
           properties:
             name:
@@ -11410,10 +11508,36 @@ components:
         - metadata
     VolumesMetadataCreateResponse:
       type: object
-      description: Response of the project_id/volumes/volume_id/metadata:post operation
+      description: Metadata key and value pairs. The maximum size for each metadata
+        key and value pair is 255 bytes.
+      properties:
+        metadata:
+          type: object
+          patternProperties:
+            ^[a-zA-Z0-9-_:. /]{1,255}$:
+              type: string
+              maxLength: 255
+          additionalProperties: false
+          description: |+
+            One or more metadata key and value pairs that are
+            associated with the volume.
+
     VolumesMetadataListResponse:
       type: object
-      description: Response of the project_id/volumes/volume_id/metadata:get operation
+      description: Metadata key and value pairs. The maximum size for each metadata
+        key and value pair is 255 bytes.
+      properties:
+        metadata:
+          type: object
+          patternProperties:
+            ^[a-zA-Z0-9-_:. /]{1,255}$:
+              type: string
+              maxLength: 255
+          additionalProperties: false
+          description: |+
+            One or more metadata key and value pairs that are
+            associated with the volume.
+
     VolumesMetadataUpdate:
       type: object
       properties:
@@ -11431,10 +11555,34 @@ components:
         - meta
     VolumesMetadataUpdateResponse:
       type: object
-      description: Response of the project_id/volumes/volume_id/metadata/id:put operation
+      description: Metadata key and value pairs. The maximum size for each metadata
+        key and value pair is 255 bytes.
+      properties:
+        meta:
+          maxProperties: 1
+          type: object
+          patternProperties:
+            ^[a-zA-Z0-9-_:. /]{1,255}$:
+              type: string
+              maxLength: 255
+          additionalProperties: false
+          description: A metadata object. Contains one or more metadata key and value
+            pairs that are associated with the resource.
     VolumesMetadataShowResponse:
       type: object
-      description: Response of the project_id/volumes/volume_id/metadata/id:get operation
+      description: Metadata key and value pairs. The maximum size for each metadata
+        key and value pair is 255 bytes.
+      properties:
+        meta:
+          maxProperties: 1
+          type: object
+          patternProperties:
+            ^[a-zA-Z0-9-_:. /]{1,255}$:
+              type: string
+              maxLength: 255
+          additionalProperties: false
+          description: A metadata object. Contains one or more metadata key and value
+            pairs that are associated with the resource.
     VolumesMetadataUpdate_All:
       type: object
       properties:
@@ -11454,7 +11602,20 @@ components:
         - metadata
     VolumesMetadataUpdate_AllResponse:
       type: object
-      description: Response of the project_id/volumes/volume_id/metadata:put operation
+      description: Metadata key and value pairs. The maximum size for each metadata
+        key and value pair is 255 bytes.
+      properties:
+        metadata:
+          type: object
+          patternProperties:
+            ^[a-zA-Z0-9-_:. /]{1,255}$:
+              type: string
+              maxLength: 255
+          additionalProperties: false
+          description: |+
+            One or more metadata key and value pairs that are
+            associated with the volume.
+
     ConsistencygroupsDetailResponse:
       type: object
       description: Response of the project_id/consistencygroups/detail:get operation
@@ -12637,7 +12798,7 @@ components:
         qos_specs:
           type: object
           description: |+
-            A `qos\_specs` object.
+            A `qos_specs` object.
 
           properties:
             name:
@@ -12836,10 +12997,36 @@ components:
         - extra_specs
     TypesExtra_SpecsCreateResponse:
       type: object
-      description: Response of the project_id/types/type_id/extra_specs:post operation
+      properties:
+        extra_specs:
+          description: A key and value pair that contains additional specifications
+            that are associated with the volume type. Examples include capabilities,
+            capacity, compression, and so on, depending on the storage driver in use.
+          type: object
+          patternProperties:
+            ^[a-zA-Z0-9-_:.]{1,255}$:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+          additionalProperties: false
     TypesExtra_SpecsListResponse:
       type: object
-      description: Response of the project_id/types/type_id/extra_specs:get operation
+      properties:
+        extra_specs:
+          description: A key and value pair that contains additional specifications
+            that are associated with the volume type. Examples include capabilities,
+            capacity, compression, and so on, depending on the storage driver in use.
+          type: object
+          patternProperties:
+            ^[a-zA-Z0-9-_:.]{1,255}$:
+              type:
+                - string
+                - 'null'
+              minLength: 0
+              maxLength: 255
+          additionalProperties: false
     TypesExtra_SpecUpdate:
       type: object
       additionalProperties: false
@@ -12854,10 +13041,24 @@ components:
       maxProperties: 1
     TypesExtra_SpecUpdateResponse:
       type: object
-      description: Response of the project_id/types/type_id/extra_specs/id:put operation
+      additionalProperties: false
+      patternProperties:
+        ^[a-zA-Z0-9-_:.]{1,255}$:
+          type:
+            - string
+            - 'null'
+          minLength: 0
+          maxLength: 255
     TypesExtra_SpecShowResponse:
       type: object
-      description: Response of the project_id/types/type_id/extra_specs/id:get operation
+      additionalProperties: false
+      patternProperties:
+        ^[a-zA-Z0-9-_:.]{1,255}$:
+          type:
+            - string
+            - 'null'
+          minLength: 0
+          maxLength: 255
     VolumesEncryptionListResponse:
       type: object
       description: Response of the project_id/volumes/volume_id/encryption:get operation
@@ -13131,8 +13332,20 @@ components:
       description: Response of the project_id/os-volume-transfer/id:get operation
     TypesOs_Volume_Type_AccessListResponse:
       type: object
-      description: Response of the project_id/types/type_id/os-volume-type-access:get
-        operation
+      properties:
+        volume_type_access:
+          type: array
+          items:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+                description: The UUID of the project.
+              volume_type_id:
+                type: string
+                format: uuid
+                description: The UUID of the volume type.
     TypesEncryptionCreate:
       type: object
       properties:
@@ -13170,10 +13383,95 @@ components:
         - encryption
     TypesEncryptionCreateResponse:
       type: object
-      description: Response of the project_id/types/type_id/encryption:post operation
+      properties:
+        encryption:
+          type: object
+          properties:
+            cipher:
+              type: string
+              description: The encryption algorithm or mode. For example, aes-xts-plain64.
+                The default value is None.
+            control_location:
+              type: string
+              enum:
+                - front-end
+                - back-end
+              description: Notional service where encryption is performed. Valid values
+                are “front-end” or “back-end”. The default value is “front-end”.
+            created_at:
+              type: string
+              format: date-time
+              description: The date and time when the resource was created.
+            deleted:
+              type: boolean
+              description: The resource is deleted or not.
+            deleted_at:
+              type:
+                - string
+                - 'null'
+              format: date-time
+              description: The date and time when the resource was deleted.
+            encryption_id:
+              type: string
+              format: uuid
+              description: The UUID of the encryption.
+            key_size:
+              type: integer
+              description: Size of encryption key, in bits. This is usually 256. The
+                default value is None.
+            provider:
+              type: string
+              description: The class that provides encryption support.
+            updated_at:
+              type:
+                - string
+                - 'null'
+              format: date-time
+              description: The date and time when the resource was updated.
     TypesEncryptionListResponse:
       type: object
-      description: Response of the project_id/types/type_id/encryption:get operation
+      properties:
+        cipher:
+          type: string
+          description: The encryption algorithm or mode. For example, aes-xts-plain64.
+            The default value is None.
+        control_location:
+          type: string
+          enum:
+            - front-end
+            - back-end
+          description: Notional service where encryption is performed. Valid values
+            are “front-end” or “back-end”. The default value is “front-end”.
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time when the resource was created.
+        deleted:
+          type: boolean
+          description: The resource is deleted or not.
+        deleted_at:
+          type:
+            - string
+            - 'null'
+          format: date-time
+          description: The date and time when the resource was deleted.
+        encryption_id:
+          type: string
+          format: uuid
+          description: The UUID of the encryption.
+        key_size:
+          type: integer
+          description: Size of encryption key, in bits. This is usually 256. The default
+            value is None.
+        provider:
+          type: string
+          description: The class that provides encryption support.
+        updated_at:
+          type:
+            - string
+            - 'null'
+          format: date-time
+          description: The date and time when the resource was updated.
     TypesEncryptionUpdate:
       type: object
       properties:
@@ -13209,10 +13507,58 @@ components:
         - encryption
     TypesEncryptionUpdateResponse:
       type: object
-      description: Response of the project_id/types/type_id/encryption/id:put operation
+      properties:
+        encryption:
+          type: object
+          properties:
+            cipher:
+              type: string
+              description: The encryption algorithm or mode. For example, aes-xts-plain64.
+                The default value is None.
+            control_location:
+              type: string
+              enum:
+                - front-end
+                - back-end
+              description: Notional service where encryption is performed. Valid values
+                are “front-end” or “back-end”. The default value is “front-end”.
+            created_at:
+              type: string
+              format: date-time
+              description: The date and time when the resource was created.
+            deleted:
+              type: boolean
+              description: The resource is deleted or not.
+            deleted_at:
+              type:
+                - string
+                - 'null'
+              format: date-time
+              description: The date and time when the resource was deleted.
+            encryption_id:
+              type: string
+              format: uuid
+              description: The UUID of the encryption.
+            key_size:
+              type: integer
+              description: Size of encryption key, in bits. This is usually 256. The
+                default value is None.
+            provider:
+              type: string
+              description: The class that provides encryption support.
+            updated_at:
+              type:
+                - string
+                - 'null'
+              format: date-time
+              description: The date and time when the resource was updated.
     TypesEncryptionShowResponse:
       type: object
-      description: Response of the project_id/types/type_id/encryption/id:get operation
+      properties:
+        cipher:
+          type: string
+          description: The encryption algorithm or mode. For example, aes-xts-plain64.
+            The default value is None.
   parameters:
     all_tenants:
       in: query
@@ -13342,6 +13688,61 @@ components:
       schema:
         type: string
       required: true
+    type_is_public:
+      in: query
+      name: is_public
+      description: Filter the volume type by public visibility.
+      schema:
+        type: boolean
+    type_sort:
+      in: query
+      name: sort
+      description: 'Comma-separated list of sort keys and optional sort directions
+        in the form of < key > [: < direction > ]. A valid direction is asc (ascending)
+        or desc (descending).'
+      schema:
+        type: string
+    type_sort_key:
+      in: query
+      name: sort_key
+      description: Sorts by an attribute. A valid value is name, status, container_format,
+        disk_format, size, id, created_at, or updated_at. Default is created_at. The
+        API uses the natural sorting direction of the sort_key attribute value. Deprecated
+        in favour of the combined sort parameter.
+      schema:
+        type: string
+    type_sort_dir:
+      in: query
+      name: sort_dir
+      description: Sorts by one or more sets of attribute and sort direction combinations.
+        If you omit the sort direction in a set, default is desc. Deprecated in favour
+        of the combined sort parameter.
+      schema:
+        type: string
+    type_limit:
+      in: query
+      name: limit
+      description: Requests a page size of items. Returns a number of items up to
+        a limit value. Use the limit parameter to make an initial limited request
+        and use the ID of the last-seen item from the response as the marker parameter
+        value in a subsequent limited request.
+      schema:
+        type: integer
+    type_marker:
+      in: query
+      name: marker
+      description: The ID of the last-seen item. Use the limit parameter to make an
+        initial limited request and use the ID of the last-seen item from the response
+        as the marker parameter value in a subsequent limited request.
+      schema:
+        type: string
+    type_offset:
+      in: query
+      name: offset
+      description: Used in conjunction with limit to return a slice of items. offset
+        is where to start in the list.
+      schema:
+        type: integer
     types_id:
       in: path
       name: id
