@@ -71,11 +71,11 @@ paths:
         If the request is valid, the service returns the `Accepted (202)`
         response code. To confirm the update, check that the load balancer
         provisioning status is `ACTIVE`. If the status is
-        `PENDING\_UPDATE`, use a GET operation to poll the load balancer
+        `PENDING_UPDATE`, use a GET operation to poll the load balancer
         object for changes.
 
         This operation returns the updated load balancer object with the
-        `ACTIVE`, `PENDING\_UPDATE`, or `ERROR` provisioning status.
+        `ACTIVE`, `PENDING_UPDATE`, or `ERROR` provisioning status.
 
       operationId: lbaas/loadbalancers/loadbalancer_id:put
       requestBody:
@@ -133,10 +133,10 @@ paths:
         of provisioning the load balancer.
 
         In the response, the load balancer [provisioning status](#prov-status) is
-        `ACTIVE`, `PENDING\_CREATE`, or `ERROR`.
+        `ACTIVE`, `PENDING_CREATE`, or `ERROR`.
 
-        If the status is `PENDING\_CREATE`, issue GET
-        `/v2/lbaas/loadbalancers/{loadbalancer\_id}` to view the progress of
+        If the status is `PENDING_CREATE`, issue GET
+        `/v2/lbaas/loadbalancers/{loadbalancer_id}` to view the progress of
         the provisioning operation. When the load balancer status changes
         to `ACTIVE`, the load balancer is successfully provisioned and
         is ready for further configuration.
@@ -150,12 +150,12 @@ paths:
         Administrative users can specify a project ID that is different than
         their own to create load balancers for other projects.
 
-        An optional `flavor\_id` attribute can be used to create the load balancer
+        An optional `flavor_id` attribute can be used to create the load balancer
         using a pre-configured octavia flavor. Flavors are created by the operator
         to allow custom load balancer configurations, such as allocating more
         memory for the load balancer.
 
-        An optional `vip\_qos\_policy\_id` attribute from Neutron can be used to
+        An optional `vip_qos_policy_id` attribute from Neutron can be used to
         apply QoS policies on a loadbalancer VIP, also could pass a ‘null’ value to
         remove QoS policies.
 
@@ -163,15 +163,15 @@ paths:
         load balancer. The `provider` attribute specifies which backend should
         be used to create the load balancer. This could be the default provider
         (`octavia`) or a vendor supplied `provider` if one has been installed.
-        Setting both a flavor\_id and a provider will result in a conflict error if
+        Setting both a flavor_id and a provider will result in a conflict error if
         the provider does not match the provider of the configured flavor profiles.
 
         Specifying a Virtual IP (VIP) is mandatory. There are three ways to specify
         a VIP network for the load balancer:
 
-        Additional VIPs may also be specified in the `additional\_vips` field, by
-        providing a list of JSON objects containing a `subnet\_id` and optionally
-        an `ip\_address`. All additional subnets must be part of the same network
+        Additional VIPs may also be specified in the `additional_vips` field, by
+        providing a list of JSON objects containing a `subnet_id` and optionally
+        an `ip_address`. All additional subnets must be part of the same network
         as the primary VIP.
 
       operationId: lbaas/loadbalancers:post
@@ -240,11 +240,11 @@ paths:
 
         If the request is valid, the service returns the `Accepted (202)`
         response code. To confirm the update, check that the listener provisioning
-        status is `ACTIVE`. If the status is `PENDING\_UPDATE`, use a GET
+        status is `ACTIVE`. If the status is `PENDING_UPDATE`, use a GET
         operation to poll the listener object for changes.
 
         This operation returns the updated listener object with the
-        `ACTIVE`, `PENDING\_UPDATE`, or `ERROR` provisioning status.
+        `ACTIVE`, `PENDING_UPDATE`, or `ERROR` provisioning status.
 
       operationId: lbaas/listeners/listener_id:put
       requestBody:
@@ -305,10 +305,10 @@ paths:
         contains a unique ID and the status of provisioning the listener.
 
         In the response, the listener [provisioning status](#prov-status) is
-        `ACTIVE`, `PENDING\_CREATE`, or `ERROR`.
+        `ACTIVE`, `PENDING_CREATE`, or `ERROR`.
 
-        If the status is `PENDING\_CREATE`, issue GET
-        `/v2/lbaas/listeners/{listener\_id}` to view the progress of
+        If the status is `PENDING_CREATE`, issue GET
+        `/v2/lbaas/listeners/{listener_id}` to view the progress of
         the provisioning operation. When the listener status changes
         to `ACTIVE`, the listener is successfully provisioned and
         is ready for further configuration.
@@ -319,8 +319,8 @@ paths:
         response body. Validation errors require that you correct the error
         and submit the request again.
 
-        Specifying a project\_id is deprecated. The listener will inherit
-        the project\_id of the parent load balancer.
+        Specifying a project_id is deprecated. The listener will inherit
+        the project_id of the parent load balancer.
 
         You can configure all documented features of the listener at creation time by
         specifying the additional elements or attributes in the request.
@@ -394,11 +394,11 @@ paths:
 
         If the request is valid, the service returns the `Accepted (202)`
         response code. To confirm the update, check that the pool provisioning
-        status is `ACTIVE`. If the status is `PENDING\_UPDATE`, use a GET
+        status is `ACTIVE`. If the status is `PENDING_UPDATE`, use a GET
         operation to poll the pool object for changes.
 
         This operation returns the updated pool object with the
-        `ACTIVE`, `PENDING\_UPDATE`, or `ERROR` provisioning status.
+        `ACTIVE`, `PENDING_UPDATE`, or `ERROR` provisioning status.
 
       operationId: lbaas/pools/pool_id:put
       requestBody:
@@ -458,10 +458,10 @@ paths:
         response object, which contains a unique ID.
 
         In the response, the pool [provisioning status](#prov-status) is
-        `ACTIVE`, `PENDING\_CREATE`, or `ERROR`.
+        `ACTIVE`, `PENDING_CREATE`, or `ERROR`.
 
-        If the status is `PENDING\_CREATE`, issue GET
-        `/v2/lbaas/pools/{pool\_id}` to view the progress of
+        If the status is `PENDING_CREATE`, issue GET
+        `/v2/lbaas/pools/{pool_id}` to view the progress of
         the provisioning operation. When the pool status changes
         to `ACTIVE`, the pool is successfully provisioned and
         is ready for further configuration.
@@ -477,8 +477,8 @@ paths:
         response body. Validation errors require that you correct the error
         and submit the request again.
 
-        Specifying a project\_id is deprecated. The pool will inherit the
-        project\_id of the parent load balancer.
+        Specifying a project_id is deprecated. The pool will inherit the
+        project_id of the parent load balancer.
 
         You can configure all documented features of the pool at creation time by
         specifying the additional elements or attributes in the request.
@@ -486,7 +486,7 @@ paths:
         To create a pool, the parent load balancer must have an `ACTIVE`
         provisioning status.
 
-        `SOURCE\_IP\_PORT` algorithm is available from version 2.13.
+        `SOURCE_IP_PORT` algorithm is available from version 2.13.
 
       operationId: lbaas/pools:post
       requestBody:
@@ -555,11 +555,11 @@ paths:
         If the request is valid, the service returns the `Accepted (202)`
         response code. To confirm the update, check that the L7 policy
         provisioning status is `ACTIVE`. If the status is
-        `PENDING\_UPDATE`, use a GET operation to poll the L7 policy
+        `PENDING_UPDATE`, use a GET operation to poll the L7 policy
         object for changes.
 
         This operation returns the updated L7 policy object with the
-        `ACTIVE`, `PENDING\_UPDATE`, or `ERROR` provisioning status.
+        `ACTIVE`, `PENDING_UPDATE`, or `ERROR` provisioning status.
 
         If a policy is updated with a position that matches that of an existing
         policy, then the updated policy is inserted at the given position.
@@ -620,10 +620,10 @@ paths:
         of provisioning the L7 policy.
 
         In the response, the L7 policy [provisioning status](#prov-status) is
-        `ACTIVE`, `PENDING\_CREATE`, or `ERROR`.
+        `ACTIVE`, `PENDING_CREATE`, or `ERROR`.
 
-        If the status is `PENDING\_CREATE`, issue GET
-        `/v2/lbaas/l7policies/{l7policy\_id}` to view the progress of
+        If the status is `PENDING_CREATE`, issue GET
+        `/v2/lbaas/l7policies/{l7policy_id}` to view the progress of
         the provisioning operation. When the L7 policy status changes
         to `ACTIVE`, the L7 policy is successfully provisioned and
         is ready for further configuration.
@@ -634,7 +634,7 @@ paths:
         response body. Validation errors require that you correct the error
         and submit the request again.
 
-        All the rules associated with a given policy are logically ANDed together. A
+        All the rules associated with a given policy are logically AND-ed together. A
         request must match all the policy’s rules to match the policy.
 
         If you need to express a logical OR operation between rules, then do this by
@@ -643,9 +643,9 @@ paths:
         If a new policy is created with a position that matches that of an existing
         policy, then the new policy is inserted at the given position.
 
-        L7 policies with `action` of `REDIRECT\_TO\_URL` will return the default HTTP
-        `Found (302)` response code with the `redirect\_url`. Also, specify
-        `redirect\_http\_code` to configure the needed HTTP response code, such as,
+        L7 policies with `action` of `REDIRECT_TO_URL` will return the default HTTP
+        `Found (302)` response code with the `redirect_url`. Also, specify
+        `redirect_http_code` to configure the needed HTTP response code, such as,
         301, 302, 303, 307 and 308.
 
         L7 policies with `action` of `REJECT` will return a `Forbidden (403)`
@@ -717,11 +717,11 @@ paths:
 
         If the request is valid, the service returns the `Accepted (202)`
         response code. To confirm the update, check that the health monitor
-        provisioning status is `ACTIVE`. If the status is `PENDING\_UPDATE`,
+        provisioning status is `ACTIVE`. If the status is `PENDING_UPDATE`,
         use a GET operation to poll the health monitor object for changes.
 
         This operation returns the updated health monitor object with the
-        `ACTIVE`, `PENDING\_UPDATE`, or `ERROR` provisioning status.
+        `ACTIVE`, `PENDING_UPDATE`, or `ERROR` provisioning status.
 
       operationId: lbaas/healthmonitors/healthmonitor_id:put
       requestBody:
@@ -781,10 +781,10 @@ paths:
         contains a unique ID and the status of provisioning the health monitor.
 
         In the response, the health monitor [provisioning status](#prov-status) is
-        `ACTIVE`, `PENDING\_CREATE`, or `ERROR`.
+        `ACTIVE`, `PENDING_CREATE`, or `ERROR`.
 
-        If the status is `PENDING\_CREATE`, issue GET
-        `/v2/lbaas/healthmonitors/{healthmonitor\_id}` to view the progress of
+        If the status is `PENDING_CREATE`, issue GET
+        `/v2/lbaas/healthmonitors/{healthmonitor_id}` to view the progress of
         the provisioning operation. When the health monitor status changes
         to `ACTIVE`, the health monitor is successfully provisioned and
         is ready for further configuration.
@@ -795,8 +795,8 @@ paths:
         response body. Validation errors require that you correct the error
         and submit the request again.
 
-        Specifying a project\_id is deprecated. The health monitor will inherit
-        the project\_id of the parent load balancer.
+        Specifying a project_id is deprecated. The health monitor will inherit
+        the project_id of the parent load balancer.
 
         At a minimum, you must specify these health monitor attributes:
 
@@ -1561,10 +1561,10 @@ paths:
         of provisioning the L7 rule.
 
         In the response, the L7 rule [provisioning status](#prov-status) is
-        `ACTIVE`, `PENDING\_CREATE`, or `ERROR`.
+        `ACTIVE`, `PENDING_CREATE`, or `ERROR`.
 
-        If the status is `PENDING\_CREATE`, issue GET
-        `/v2/lbaas/l7policies/{l7policy\_id}/rules/{l7rule\_id}` to view the
+        If the status is `PENDING_CREATE`, issue GET
+        `/v2/lbaas/l7policies/{l7policy_id}/rules/{l7rule_id}` to view the
         progress of the provisioning operation. When the L7 rule status changes
         to `ACTIVE`, the L7 rule is successfully provisioned and
         is ready for further configuration.
@@ -1575,7 +1575,7 @@ paths:
         response body. Validation errors require that you correct the error
         and submit the request again.
 
-        All the rules associated with a given policy are logically ANDed together. A
+        All the rules associated with a given policy are logically AND-ed together. A
         request must match all the policy’s rules to match the policy.
 
         If you need to express a logical OR operation between rules, then do this by
@@ -1649,11 +1649,11 @@ paths:
         If the request is valid, the service returns the `Accepted (202)`
         response code. To confirm the update, check that the L7 rule
         provisioning status is `ACTIVE`. If the status is
-        `PENDING\_UPDATE`, use a GET operation to poll the L7 rule
+        `PENDING_UPDATE`, use a GET operation to poll the L7 rule
         object for changes.
 
         This operation returns the updated L7 rule object with the
-        `ACTIVE`, `PENDING\_UPDATE`, or `ERROR` provisioning status.
+        `ACTIVE`, `PENDING_UPDATE`, or `ERROR` provisioning status.
 
       operationId: lbaas/l7policies/l7policy_id/rules/rule_id:put
       requestBody:
@@ -1710,10 +1710,10 @@ paths:
         returns a response object, which contains a unique ID.
 
         In the response, the member [provisioning status](#prov-status) is
-        `ACTIVE`, `PENDING\_CREATE`, or `ERROR`.
+        `ACTIVE`, `PENDING_CREATE`, or `ERROR`.
 
-        If the status is `PENDING\_CREATE`, issue GET
-        `/v2/lbaas/pools/{pool\_id}/members/{member\_id}` to view the progress of
+        If the status is `PENDING_CREATE`, issue GET
+        `/v2/lbaas/pools/{pool_id}/members/{member_id}` to view the progress of
         the provisioning operation. When the member status changes
         to `ACTIVE`, the member is successfully provisioned and
         is ready for further configuration.
@@ -1729,17 +1729,17 @@ paths:
         Some attributes receive default values if you omit them from the
         request:
 
-        If you omit the `subnet\_id` parameter, the `vip\_subnet\_id` for the parent
+        If you omit the `subnet_id` parameter, the `vip_subnet_id` for the parent
         load balancer will be used for the member subnet UUID.
 
         The member `address` does not necessarily need to be a member of the
-        `subnet\_id` subnet. Members can be routable from the subnet specified
-        either via the default route or by using `host\_routes` defined on the subnet.
+        `subnet_id` subnet. Members can be routable from the subnet specified
+        either via the default route or by using `host_routes` defined on the subnet.
 
         Administrative users can specify a project ID that is different than
         their own to create members for other projects.
 
-        `monitor\_address` and/or `monitor\_port` can be used to have the health
+        `monitor_address` and/or `monitor_port` can be used to have the health
         monitor, if one is configured for the pool, connect to an alternate IP address
         and port when executing a health check on the member.
 
@@ -1782,15 +1782,15 @@ paths:
 
         The member ‘192.0.2.17:80’ will be created, because no such member existed.
 
-        The optional parameter `additive\_only` when defined as `true` will skip
+        The optional parameter `additive_only` when defined as `true` will skip
         deletions for members missing from the provided list. If this were set in the
         above example, the member ‘192.0.2.15:80’ would have remained in the pool.
 
         If the request is valid, the service returns the `Accepted (202)`
         response code. To confirm the updates, check that the member provisioning
         statuses are `ACTIVE` for new or updated members, and that any unspecified
-        members were correctly deleted. If the statuses are `PENDING\_UPDATE` or
-        `PENDING\_DELETE`, use GET to poll the member objects for changes.
+        members were correctly deleted. If the statuses are `PENDING_UPDATE` or
+        `PENDING_DELETE`, use GET to poll the member objects for changes.
 
       operationId: lbaas/pools/pool_id/members:put
       requestBody:
@@ -1859,7 +1859,7 @@ paths:
 
         If the request is valid, the service returns the `Accepted (202)`
         response code. To confirm the update, check that the member provisioning
-        status is `ACTIVE`. If the status is `PENDING\_UPDATE`, use a GET
+        status is `ACTIVE`. If the status is `PENDING_UPDATE`, use a GET
         operation to poll the member object for changes.
 
         Setting the member weight to `0` means that the member will not receive
@@ -1867,7 +1867,7 @@ paths:
         backend member of active connections.
 
         This operation returns the updated member object with the
-        `ACTIVE`, `PENDING\_UPDATE`, or `ERROR` provisioning status.
+        `ACTIVE`, `PENDING_UPDATE`, or `ERROR` provisioning status.
 
       operationId: lbaas/pools/pool_id/members/member_id:put
       requestBody:
@@ -1895,7 +1895,7 @@ paths:
         Shows the current statistics for a listener.
 
         This operation returns the statistics of a listener object identified
-        by listener\_id.
+        by listener_id.
 
         If you are not an administrative user and the parent load balancer does not
         belong to your project, the service returns the HTTP `Forbidden (403)`
@@ -1924,7 +1924,7 @@ paths:
         Shows the current statistics for a load balancer.
 
         This operation returns the statistics of a load balancer object identified
-        by loadbalancer\_id.
+        by loadbalancer_id.
 
         If you are not an administrative user and the load balancer object does not
         belong to your project, the service returns the HTTP `Forbidden (403)`
@@ -1955,10 +1955,10 @@ paths:
         This operation returns a status tree for a load balancer object, by load
         balancer ID.
 
-        `provisioning\_status` is the status associated with lifecycle of the resource.
+        `provisioning_status` is the status associated with lifecycle of the resource.
         See [Provisioning Status Codes](#prov-status) for descriptions of the status codes.
 
-        `operating\_status` is the observed status of the resource.
+        `operating_status` is the observed status of the resource.
         See [Operating Status Codes](#op-status) for descriptions of the status codes.
 
         If you are not an administrative user and the load balancer object does not
@@ -2128,8 +2128,8 @@ components:
                     - subnet_id
                 description: |+
                   A list of JSON objects defining “additional VIPs”. The format for these
-                  is `{"subnet\_id": <subnet\_id>, "ip\_address": <ip\_address>}`, where
-                  the `subnet\_id` field is mandatory and the `ip\_address` field is
+                  is `{"subnet_id": <subnet_id>, "ip_address": <ip_address>}`, where
+                  the `subnet_id` field is mandatory and the `ip_address` field is
                   optional. Additional VIP subnets must all belong to the same network as
                   the primary VIP.
 
@@ -2314,8 +2314,8 @@ components:
                   - subnet_id
               description: |+
                 A list of JSON objects defining “additional VIPs”. The format for these
-                is `{"subnet\_id": <subnet\_id>, "ip\_address": <ip\_address>}`, where
-                the `subnet\_id` field is mandatory and the `ip\_address` field is
+                is `{"subnet_id": <subnet_id>, "ip_address": <ip_address>}`, where
+                the `subnet_id` field is mandatory and the `ip_address` field is
                 optional. Additional VIP subnets must all belong to the same network as
                 the primary VIP.
 
@@ -2425,22 +2425,22 @@ components:
               type: string
               format: uuid
               description: |+
-                The ID of the Virtual IP (VIP) port. One of `vip\_network\_id`,
-                `vip\_port\_id`, or `vip\_subnet\_id` must be specified.
+                The ID of the Virtual IP (VIP) port. One of `vip_network_id`,
+                `vip_port_id`, or `vip_subnet_id` must be specified.
 
             vip_subnet_id:
               type: string
               format: uuid
               description: |+
-                The ID of the subnet for the Virtual IP (VIP). One of `vip\_network\_id`,
-                `vip\_port\_id`, or `vip\_subnet\_id` must be specified.
+                The ID of the subnet for the Virtual IP (VIP). One of `vip_network_id`,
+                `vip_port_id`, or `vip_subnet_id` must be specified.
 
             vip_network_id:
               type: string
               format: uuid
               description: |+
-                The ID of the network for the Virtual IP (VIP). One of `vip\_network\_id`,
-                `vip\_port\_id`, or `vip\_subnet\_id` must be specified.
+                The ID of the network for the Virtual IP (VIP). One of `vip_network_id`,
+                `vip_port_id`, or `vip_subnet_id` must be specified.
 
             vip_qos_policy_id:
               type: string
@@ -2465,8 +2465,8 @@ components:
                   - subnet_id
               description: |+
                 A list of JSON objects defining “additional VIPs”. The format for these
-                is `{"subnet\_id": <subnet\_id>, "ip\_address": <ip\_address>}`, where
-                the `subnet\_id` field is mandatory and the `ip\_address` field is
+                is `{"subnet_id": <subnet_id>, "ip_address": <ip_address>}`, where
+                the `subnet_id` field is mandatory and the `ip_address` field is
                 optional. Additional VIP subnets must all belong to the same network as
                 the primary VIP.
 
@@ -2496,12 +2496,12 @@ components:
                     type: string
                     enum:
                       - TCP
-                      - SCTP
-                      - PROMETHEUS
-                      - HTTP
-                      - TERMINATED_HTTPS
-                      - HTTPS
                       - UDP
+                      - SCTP
+                      - HTTP
+                      - HTTPS
+                      - PROMETHEUS
+                      - TERMINATED_HTTPS
                   protocol_port:
                     type: integer
                     minimum: 1
@@ -2535,18 +2535,18 @@ components:
                         type: string
                         enum:
                           - TCP
+                          - UDP
+                          - PROXYV2
                           - PROXY
                           - SCTP
-                          - PROXYV2
-                          - HTTPS
                           - HTTP
-                          - UDP
+                          - HTTPS
                       lb_algorithm:
                         type: string
                         enum:
-                          - LEAST_CONNECTIONS
                           - SOURCE_IP_PORT
                           - SOURCE_IP
+                          - LEAST_CONNECTIONS
                           - ROUND_ROBIN
                       session_persistence:
                         type: object
@@ -2554,9 +2554,9 @@ components:
                           type:
                             type: string
                             enum:
-                              - APP_COOKIE
                               - HTTP_COOKIE
                               - SOURCE_IP
+                              - APP_COOKIE
                           cookie_name:
                             type: string
                             maxLength: 255
@@ -2580,11 +2580,11 @@ components:
                             enum:
                               - TCP
                               - TLS-HELLO
-                              - PING
                               - SCTP
-                              - HTTPS
-                              - HTTP
                               - UDP-CONNECT
+                              - HTTP
+                              - PING
+                              - HTTPS
                           delay:
                             type: integer
                           timeout:
@@ -2600,15 +2600,15 @@ components:
                           http_method:
                             type: string
                             enum:
-                              - HEAD
-                              - GET
+                              - CONNECT
                               - TRACE
                               - PUT
+                              - DELETE
+                              - HEAD
+                              - GET
+                              - PATCH
                               - POST
                               - OPTIONS
-                              - DELETE
-                              - PATCH
-                              - CONNECT
                           url_path:
                             type: string
                             format: url_path
@@ -2639,10 +2639,10 @@ components:
                         description: |-
                           Defines mandatory and optional attributes of a POST request.
                         required:
-                          - timeout
-                          - delay
                           - max_retries
                           - type
+                          - delay
+                          - timeout
                       members:
                         type: array
                         items:
@@ -2733,9 +2733,9 @@ components:
                           type: string
                           enum:
                             - REDIRECT_TO_URL
-                            - REJECT
-                            - REDIRECT_PREFIX
                             - REDIRECT_TO_POOL
+                            - REDIRECT_PREFIX
+                            - REJECT
                         redirect_pool:
                           type: object
                           properties:
@@ -2751,18 +2751,18 @@ components:
                               type: string
                               enum:
                                 - TCP
+                                - UDP
+                                - PROXYV2
                                 - PROXY
                                 - SCTP
-                                - PROXYV2
-                                - HTTPS
                                 - HTTP
-                                - UDP
+                                - HTTPS
                             lb_algorithm:
                               type: string
                               enum:
-                                - LEAST_CONNECTIONS
                                 - SOURCE_IP_PORT
                                 - SOURCE_IP
+                                - LEAST_CONNECTIONS
                                 - ROUND_ROBIN
                             session_persistence:
                               type: object
@@ -2770,9 +2770,9 @@ components:
                                 type:
                                   type: string
                                   enum:
-                                    - APP_COOKIE
                                     - HTTP_COOKIE
                                     - SOURCE_IP
+                                    - APP_COOKIE
                                 cookie_name:
                                   type: string
                                   maxLength: 255
@@ -2796,11 +2796,11 @@ components:
                                   enum:
                                     - TCP
                                     - TLS-HELLO
-                                    - PING
                                     - SCTP
-                                    - HTTPS
-                                    - HTTP
                                     - UDP-CONNECT
+                                    - HTTP
+                                    - PING
+                                    - HTTPS
                                 delay:
                                   type: integer
                                 timeout:
@@ -2816,15 +2816,15 @@ components:
                                 http_method:
                                   type: string
                                   enum:
-                                    - HEAD
-                                    - GET
+                                    - CONNECT
                                     - TRACE
                                     - PUT
+                                    - DELETE
+                                    - HEAD
+                                    - GET
+                                    - PATCH
                                     - POST
                                     - OPTIONS
-                                    - DELETE
-                                    - PATCH
-                                    - CONNECT
                                 url_path:
                                   type: string
                                   format: url_path
@@ -2849,10 +2849,10 @@ components:
                               description: |-
                                 Defines mandatory and optional attributes of a POST request.
                               required:
-                                - timeout
-                                - delay
                                 - max_retries
                                 - type
+                                - delay
+                                - timeout
                             members:
                               type: array
                               items:
@@ -2944,22 +2944,22 @@ components:
                               type:
                                 type: string
                                 enum:
-                                  - PATH
-                                  - SSL_CONN_HAS_CERT
-                                  - COOKIE
                                   - FILE_TYPE
-                                  - HEADER
                                   - SSL_DN_FIELD
-                                  - SSL_VERIFY_RESULT
+                                  - PATH
+                                  - COOKIE
                                   - HOST_NAME
+                                  - SSL_CONN_HAS_CERT
+                                  - SSL_VERIFY_RESULT
+                                  - HEADER
                               compare_type:
                                 type: string
                                 enum:
-                                  - STARTS_WITH
-                                  - EQUAL_TO
-                                  - ENDS_WITH
                                   - REGEX
+                                  - ENDS_WITH
                                   - CONTAINS
+                                  - EQUAL_TO
+                                  - STARTS_WITH
                               key:
                                 type: string
                                 maxLength: 255
@@ -2978,9 +2978,9 @@ components:
                             description: |-
                               Defines mandatory and optional attributes of a POST request.
                             required:
-                              - compare_type
-                              - value
                               - type
+                              - value
+                              - compare_type
                         tags:
                           type: array
                           items:
@@ -3027,9 +3027,9 @@ components:
                   client_authentication:
                     type: string
                     enum:
+                      - OPTIONAL
                       - NONE
                       - MANDATORY
-                      - OPTIONAL
                   client_crl_container_ref:
                     type: string
                     maxLength: 255
@@ -3060,8 +3060,8 @@ components:
                 description: |-
                   Defines mandatory and optional attributes of a POST request.
                 required:
-                  - protocol
                   - protocol_port
+                  - protocol
               description: |+
                 The associated listener IDs, if any.
 
@@ -3082,18 +3082,18 @@ components:
                     type: string
                     enum:
                       - TCP
+                      - UDP
+                      - PROXYV2
                       - PROXY
                       - SCTP
-                      - PROXYV2
-                      - HTTPS
                       - HTTP
-                      - UDP
+                      - HTTPS
                   lb_algorithm:
                     type: string
                     enum:
-                      - LEAST_CONNECTIONS
                       - SOURCE_IP_PORT
                       - SOURCE_IP
+                      - LEAST_CONNECTIONS
                       - ROUND_ROBIN
                   session_persistence:
                     type: object
@@ -3101,9 +3101,9 @@ components:
                       type:
                         type: string
                         enum:
-                          - APP_COOKIE
                           - HTTP_COOKIE
                           - SOURCE_IP
+                          - APP_COOKIE
                       cookie_name:
                         type: string
                         maxLength: 255
@@ -3127,11 +3127,11 @@ components:
                         enum:
                           - TCP
                           - TLS-HELLO
-                          - PING
                           - SCTP
-                          - HTTPS
-                          - HTTP
                           - UDP-CONNECT
+                          - HTTP
+                          - PING
+                          - HTTPS
                       delay:
                         type: integer
                       timeout:
@@ -3147,15 +3147,15 @@ components:
                       http_method:
                         type: string
                         enum:
-                          - HEAD
-                          - GET
+                          - CONNECT
                           - TRACE
                           - PUT
+                          - DELETE
+                          - HEAD
+                          - GET
+                          - PATCH
                           - POST
                           - OPTIONS
-                          - DELETE
-                          - PATCH
-                          - CONNECT
                       url_path:
                         type: string
                         format: url_path
@@ -3180,10 +3180,10 @@ components:
                     description: |-
                       Defines mandatory and optional attributes of a POST request.
                     required:
-                      - timeout
-                      - delay
                       - max_retries
                       - type
+                      - delay
+                      - timeout
                   members:
                     type: array
                     items:
@@ -3803,8 +3803,8 @@ components:
                   - subnet_id
               description: |+
                 A list of JSON objects defining “additional VIPs”. The format for these
-                is `{"subnet\_id": <subnet\_id>, "ip\_address": <ip\_address>}`, where
-                the `subnet\_id` field is mandatory and the `ip\_address` field is
+                is `{"subnet_id": <subnet_id>, "ip_address": <ip_address>}`, where
+                the `subnet_id` field is mandatory and the `ip_address` field is
                 optional. Additional VIP subnets must all belong to the same network as
                 the primary VIP.
 
@@ -3985,8 +3985,8 @@ components:
                   - subnet_id
               description: |+
                 A list of JSON objects defining “additional VIPs”. The format for these
-                is `{"subnet\_id": <subnet\_id>, "ip\_address": <ip\_address>}`, where
-                the `subnet\_id` field is mandatory and the `ip\_address` field is
+                is `{"subnet_id": <subnet_id>, "ip_address": <ip_address>}`, where
+                the `subnet_id` field is mandatory and the `ip_address` field is
                 optional. Additional VIP subnets must all belong to the same network as
                 the primary VIP.
 
@@ -4103,7 +4103,7 @@ components:
                 type: string
                 description: |+
                   The protocol for the resource. One of `HTTP`, `HTTPS`, `SCTP`,
-                  `PROMETHEUS`, `TCP`, `TERMINATED\_HTTPS`, or `UDP`.
+                  `PROMETHEUS`, `TCP`, `TERMINATED_HTTPS`, or `UDP`.
 
               protocol_port:
                 type: integer
@@ -4121,9 +4121,9 @@ components:
                 type: string
                 description: |+
                   The URI of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                  PKCS12 format certificate/key bundle for `TERMINATED\_HTTPS` listeners.
+                  PKCS12 format certificate/key bundle for `TERMINATED_HTTPS` listeners.
                   DEPRECATED: A secret container of type “certificate” containing the
-                  certificate and key for `TERMINATED\_HTTPS` listeners.
+                  certificate and key for `TERMINATED_HTTPS` listeners.
 
               sni_container_refs:
                 type: array
@@ -4131,9 +4131,9 @@ components:
                   type: string
                 description: |+
                   A list of URIs to the [key manager service](https://docs.openstack.org/barbican/latest/) secrets containing
-                  PKCS12 format certificate/key bundles for `TERMINATED\_HTTPS` listeners.
+                  PKCS12 format certificate/key bundles for `TERMINATED_HTTPS` listeners.
                   (DEPRECATED) Secret containers of type “certificate” containing the
-                  certificates and keys for `TERMINATED\_HTTPS` listeners.
+                  certificates and keys for `TERMINATED_HTTPS` listeners.
 
               project_id:
                 type: string
@@ -4246,7 +4246,7 @@ components:
                 type: string
                 description: |+
                   The ref of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                  PEM format client CA certificate bundle for `TERMINATED\_HTTPS`
+                  PEM format client CA certificate bundle for `TERMINATED_HTTPS`
                   listeners.
 
 
@@ -4265,7 +4265,7 @@ components:
                 type: string
                 description: |+
                   The URI of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                  PEM format CA revocation list file for `TERMINATED\_HTTPS` listeners.
+                  PEM format CA revocation list file for `TERMINATED_HTTPS` listeners.
 
 
                   **New in version 2.8**
@@ -4316,7 +4316,7 @@ components:
               hsts_max_age:
                 type: integer
                 description: |+
-                  The value of the `max\_age` directive for the
+                  The value of the `max_age` directive for the
                   Strict-Transport-Security HTTP response header.
 
 
@@ -4401,7 +4401,7 @@ components:
               type: string
               description: |+
                 The protocol for the resource. One of `HTTP`, `HTTPS`, `SCTP`,
-                `PROMETHEUS`, `TCP`, `TERMINATED\_HTTPS`, or `UDP`.
+                `PROMETHEUS`, `TCP`, `TERMINATED_HTTPS`, or `UDP`.
 
             protocol_port:
               type: integer
@@ -4419,9 +4419,9 @@ components:
               type: string
               description: |+
                 The URI of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PKCS12 format certificate/key bundle for `TERMINATED\_HTTPS` listeners.
+                PKCS12 format certificate/key bundle for `TERMINATED_HTTPS` listeners.
                 DEPRECATED: A secret container of type “certificate” containing the
-                certificate and key for `TERMINATED\_HTTPS` listeners.
+                certificate and key for `TERMINATED_HTTPS` listeners.
 
             sni_container_refs:
               type: array
@@ -4429,9 +4429,9 @@ components:
                 type: string
               description: |+
                 A list of URIs to the [key manager service](https://docs.openstack.org/barbican/latest/) secrets containing
-                PKCS12 format certificate/key bundles for `TERMINATED\_HTTPS` listeners.
+                PKCS12 format certificate/key bundles for `TERMINATED_HTTPS` listeners.
                 (DEPRECATED) Secret containers of type “certificate” containing the
-                certificates and keys for `TERMINATED\_HTTPS` listeners.
+                certificates and keys for `TERMINATED_HTTPS` listeners.
 
             project_id:
               type: string
@@ -4544,7 +4544,7 @@ components:
               type: string
               description: |+
                 The ref of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format client CA certificate bundle for `TERMINATED\_HTTPS`
+                PEM format client CA certificate bundle for `TERMINATED_HTTPS`
                 listeners.
 
 
@@ -4563,7 +4563,7 @@ components:
               type: string
               description: |+
                 The URI of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA revocation list file for `TERMINATED\_HTTPS` listeners.
+                PEM format CA revocation list file for `TERMINATED_HTTPS` listeners.
 
 
                 **New in version 2.8**
@@ -4614,7 +4614,7 @@ components:
             hsts_max_age:
               type: integer
               description: |+
-                The value of the `max\_age` directive for the
+                The value of the `max_age` directive for the
                 Strict-Transport-Security HTTP response header.
 
 
@@ -4675,15 +4675,15 @@ components:
               type: string
               enum:
                 - TCP
-                - SCTP
-                - PROMETHEUS
-                - HTTP
-                - TERMINATED_HTTPS
-                - HTTPS
                 - UDP
+                - SCTP
+                - HTTP
+                - HTTPS
+                - PROMETHEUS
+                - TERMINATED_HTTPS
               description: |+
                 The protocol for the resource. One of `HTTP`, `HTTPS`, `SCTP`,
-                `PROMETHEUS`, `TCP`, `TERMINATED\_HTTPS`, or `UDP`.
+                `PROMETHEUS`, `TCP`, `TERMINATED_HTTPS`, or `UDP`.
 
             protocol_port:
               type: integer
@@ -4705,9 +4705,9 @@ components:
               maxLength: 255
               description: |+
                 The URI of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PKCS12 format certificate/key bundle for `TERMINATED\_HTTPS` listeners.
+                PKCS12 format certificate/key bundle for `TERMINATED_HTTPS` listeners.
                 DEPRECATED: A secret container of type “certificate” containing the
-                certificate and key for `TERMINATED\_HTTPS` listeners.
+                certificate and key for `TERMINATED_HTTPS` listeners.
 
             sni_container_refs:
               type: array
@@ -4716,9 +4716,9 @@ components:
                 maxLength: 255
               description: |+
                 A list of URIs to the [key manager service](https://docs.openstack.org/barbican/latest/) secrets containing
-                PKCS12 format certificate/key bundles for `TERMINATED\_HTTPS` listeners.
+                PKCS12 format certificate/key bundles for `TERMINATED_HTTPS` listeners.
                 (DEPRECATED) Secret containers of type “certificate” containing the
-                certificates and keys for `TERMINATED\_HTTPS` listeners.
+                certificates and keys for `TERMINATED_HTTPS` listeners.
 
             project_id:
               type: string
@@ -4748,18 +4748,18 @@ components:
                   type: string
                   enum:
                     - TCP
+                    - UDP
+                    - PROXYV2
                     - PROXY
                     - SCTP
-                    - PROXYV2
-                    - HTTPS
                     - HTTP
-                    - UDP
+                    - HTTPS
                 lb_algorithm:
                   type: string
                   enum:
-                    - LEAST_CONNECTIONS
                     - SOURCE_IP_PORT
                     - SOURCE_IP
+                    - LEAST_CONNECTIONS
                     - ROUND_ROBIN
                 session_persistence:
                   type: object
@@ -4767,9 +4767,9 @@ components:
                     type:
                       type: string
                       enum:
-                        - APP_COOKIE
                         - HTTP_COOKIE
                         - SOURCE_IP
+                        - APP_COOKIE
                     cookie_name:
                       type: string
                       maxLength: 255
@@ -4793,11 +4793,11 @@ components:
                       enum:
                         - TCP
                         - TLS-HELLO
-                        - PING
                         - SCTP
-                        - HTTPS
-                        - HTTP
                         - UDP-CONNECT
+                        - HTTP
+                        - PING
+                        - HTTPS
                     delay:
                       type: integer
                     timeout:
@@ -4813,15 +4813,15 @@ components:
                     http_method:
                       type: string
                       enum:
-                        - HEAD
-                        - GET
+                        - CONNECT
                         - TRACE
                         - PUT
+                        - DELETE
+                        - HEAD
+                        - GET
+                        - PATCH
                         - POST
                         - OPTIONS
-                        - DELETE
-                        - PATCH
-                        - CONNECT
                     url_path:
                       type: string
                       format: url_path
@@ -4852,10 +4852,10 @@ components:
                   description: |-
                     Defines mandatory and optional attributes of a POST request.
                   required:
-                    - timeout
-                    - delay
                     - max_retries
                     - type
+                    - delay
+                    - timeout
                 members:
                   type: array
                   items:
@@ -4968,9 +4968,9 @@ components:
                     type: string
                     enum:
                       - REDIRECT_TO_URL
-                      - REJECT
-                      - REDIRECT_PREFIX
                       - REDIRECT_TO_POOL
+                      - REDIRECT_PREFIX
+                      - REJECT
                   redirect_pool:
                     type: object
                     properties:
@@ -4986,18 +4986,18 @@ components:
                         type: string
                         enum:
                           - TCP
+                          - UDP
+                          - PROXYV2
                           - PROXY
                           - SCTP
-                          - PROXYV2
-                          - HTTPS
                           - HTTP
-                          - UDP
+                          - HTTPS
                       lb_algorithm:
                         type: string
                         enum:
-                          - LEAST_CONNECTIONS
                           - SOURCE_IP_PORT
                           - SOURCE_IP
+                          - LEAST_CONNECTIONS
                           - ROUND_ROBIN
                       session_persistence:
                         type: object
@@ -5005,9 +5005,9 @@ components:
                           type:
                             type: string
                             enum:
-                              - APP_COOKIE
                               - HTTP_COOKIE
                               - SOURCE_IP
+                              - APP_COOKIE
                           cookie_name:
                             type: string
                             maxLength: 255
@@ -5031,11 +5031,11 @@ components:
                             enum:
                               - TCP
                               - TLS-HELLO
-                              - PING
                               - SCTP
-                              - HTTPS
-                              - HTTP
                               - UDP-CONNECT
+                              - HTTP
+                              - PING
+                              - HTTPS
                           delay:
                             type: integer
                           timeout:
@@ -5051,15 +5051,15 @@ components:
                           http_method:
                             type: string
                             enum:
-                              - HEAD
-                              - GET
+                              - CONNECT
                               - TRACE
                               - PUT
+                              - DELETE
+                              - HEAD
+                              - GET
+                              - PATCH
                               - POST
                               - OPTIONS
-                              - DELETE
-                              - PATCH
-                              - CONNECT
                           url_path:
                             type: string
                             format: url_path
@@ -5084,10 +5084,10 @@ components:
                         description: |-
                           Defines mandatory and optional attributes of a POST request.
                         required:
-                          - timeout
-                          - delay
                           - max_retries
                           - type
+                          - delay
+                          - timeout
                       members:
                         type: array
                         items:
@@ -5179,22 +5179,22 @@ components:
                         type:
                           type: string
                           enum:
-                            - PATH
-                            - SSL_CONN_HAS_CERT
-                            - COOKIE
                             - FILE_TYPE
-                            - HEADER
                             - SSL_DN_FIELD
-                            - SSL_VERIFY_RESULT
+                            - PATH
+                            - COOKIE
                             - HOST_NAME
+                            - SSL_CONN_HAS_CERT
+                            - SSL_VERIFY_RESULT
+                            - HEADER
                         compare_type:
                           type: string
                           enum:
-                            - STARTS_WITH
-                            - EQUAL_TO
-                            - ENDS_WITH
                             - REGEX
+                            - ENDS_WITH
                             - CONTAINS
+                            - EQUAL_TO
+                            - STARTS_WITH
                         key:
                           type: string
                           maxLength: 255
@@ -5213,9 +5213,9 @@ components:
                       description: |-
                         Defines mandatory and optional attributes of a POST request.
                       required:
-                        - compare_type
-                        - value
                         - type
+                        - value
+                        - compare_type
                   tags:
                     type: array
                     items:
@@ -5300,7 +5300,7 @@ components:
               maxLength: 255
               description: |+
                 The ref of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format client CA certificate bundle for `TERMINATED\_HTTPS`
+                PEM format client CA certificate bundle for `TERMINATED_HTTPS`
                 listeners.
 
 
@@ -5309,9 +5309,9 @@ components:
             client_authentication:
               type: string
               enum:
+                - OPTIONAL
                 - NONE
                 - MANDATORY
-                - OPTIONAL
               description: |+
                 The TLS client authentication mode. One of the options `NONE`,
                 `OPTIONAL` or `MANDATORY`.
@@ -5324,7 +5324,7 @@ components:
               maxLength: 255
               description: |+
                 The URI of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA revocation list file for `TERMINATED\_HTTPS` listeners.
+                PEM format CA revocation list file for `TERMINATED_HTTPS` listeners.
 
 
                 **New in version 2.8**
@@ -5357,7 +5357,7 @@ components:
             hsts_max_age:
               type: integer
               description: |+
-                The value of the `max\_age` directive for the
+                The value of the `max_age` directive for the
                 Strict-Transport-Security HTTP response header.
                 Setting this enables HTTP Strict Transport
                 Security (HSTS) for the TLS-terminated listener.
@@ -5370,7 +5370,7 @@ components:
               description: |+
                 Defines whether the `includeSubDomains` directive should be
                 added to the Strict-Transport-Security HTTP response
-                header. This requires setting the `hsts\_max\_age` option as well in
+                header. This requires setting the `hsts_max_age` option as well in
                 order to become effective.
 
 
@@ -5381,7 +5381,7 @@ components:
               description: |+
                 Defines whether the `preload` directive should be
                 added to the Strict-Transport-Security HTTP response
-                header. This requires setting the `hsts\_max\_age` option as well in
+                header. This requires setting the `hsts_max_age` option as well in
                 order to become effective.
 
 
@@ -5393,9 +5393,9 @@ components:
           description: |-
             Defines mandatory and optional attributes of a POST request.
           required:
+            - protocol_port
             - protocol
             - loadbalancer_id
-            - protocol_port
     LbaasListenersCreateResponse:
       type: object
       description: Base type for complex types
@@ -5439,7 +5439,7 @@ components:
               type: string
               description: |+
                 The protocol for the resource. One of `HTTP`, `HTTPS`, `SCTP`,
-                `PROMETHEUS`, `TCP`, `TERMINATED\_HTTPS`, or `UDP`.
+                `PROMETHEUS`, `TCP`, `TERMINATED_HTTPS`, or `UDP`.
 
             protocol_port:
               type: integer
@@ -5457,9 +5457,9 @@ components:
               type: string
               description: |+
                 The URI of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PKCS12 format certificate/key bundle for `TERMINATED\_HTTPS` listeners.
+                PKCS12 format certificate/key bundle for `TERMINATED_HTTPS` listeners.
                 DEPRECATED: A secret container of type “certificate” containing the
-                certificate and key for `TERMINATED\_HTTPS` listeners.
+                certificate and key for `TERMINATED_HTTPS` listeners.
 
             sni_container_refs:
               type: array
@@ -5467,9 +5467,9 @@ components:
                 type: string
               description: |+
                 A list of URIs to the [key manager service](https://docs.openstack.org/barbican/latest/) secrets containing
-                PKCS12 format certificate/key bundles for `TERMINATED\_HTTPS` listeners.
+                PKCS12 format certificate/key bundles for `TERMINATED_HTTPS` listeners.
                 (DEPRECATED) Secret containers of type “certificate” containing the
-                certificates and keys for `TERMINATED\_HTTPS` listeners.
+                certificates and keys for `TERMINATED_HTTPS` listeners.
 
             project_id:
               type: string
@@ -5582,7 +5582,7 @@ components:
               type: string
               description: |+
                 The ref of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format client CA certificate bundle for `TERMINATED\_HTTPS`
+                PEM format client CA certificate bundle for `TERMINATED_HTTPS`
                 listeners.
 
 
@@ -5601,7 +5601,7 @@ components:
               type: string
               description: |+
                 The URI of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA revocation list file for `TERMINATED\_HTTPS` listeners.
+                PEM format CA revocation list file for `TERMINATED_HTTPS` listeners.
 
 
                 **New in version 2.8**
@@ -5652,7 +5652,7 @@ components:
             hsts_max_age:
               type: integer
               description: |+
-                The value of the `max\_age` directive for the
+                The value of the `max_age` directive for the
                 Strict-Transport-Security HTTP response header.
 
 
@@ -5722,9 +5722,9 @@ components:
               maxLength: 255
               description: |+
                 The URI of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PKCS12 format certificate/key bundle for `TERMINATED\_HTTPS` listeners.
+                PKCS12 format certificate/key bundle for `TERMINATED_HTTPS` listeners.
                 DEPRECATED: A secret container of type “certificate” containing the
-                certificate and key for `TERMINATED\_HTTPS` listeners.
+                certificate and key for `TERMINATED_HTTPS` listeners.
 
             sni_container_refs:
               type: array
@@ -5733,9 +5733,9 @@ components:
                 maxLength: 255
               description: |+
                 A list of URIs to the [key manager service](https://docs.openstack.org/barbican/latest/) secrets containing
-                PKCS12 format certificate/key bundles for `TERMINATED\_HTTPS` listeners.
+                PKCS12 format certificate/key bundles for `TERMINATED_HTTPS` listeners.
                 (DEPRECATED) Secret containers of type “certificate” containing the
-                certificates and keys for `TERMINATED\_HTTPS` listeners.
+                certificates and keys for `TERMINATED_HTTPS` listeners.
 
             default_pool_id:
               type: string
@@ -5808,7 +5808,7 @@ components:
               maxLength: 255
               description: |+
                 The ref of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format client CA certificate bundle for `TERMINATED\_HTTPS`
+                PEM format client CA certificate bundle for `TERMINATED_HTTPS`
                 listeners.
 
 
@@ -5817,9 +5817,9 @@ components:
             client_authentication:
               type: string
               enum:
+                - OPTIONAL
                 - NONE
                 - MANDATORY
-                - OPTIONAL
               description: |+
                 The TLS client authentication mode. One of the options `NONE`,
                 `OPTIONAL` or `MANDATORY`.
@@ -5832,7 +5832,7 @@ components:
               maxLength: 255
               description: |+
                 The URI of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA revocation list file for `TERMINATED\_HTTPS` listeners.
+                PEM format CA revocation list file for `TERMINATED_HTTPS` listeners.
 
 
                 **New in version 2.8**
@@ -5886,7 +5886,7 @@ components:
             hsts_max_age:
               type: integer
               description: |+
-                The value of the `max\_age` directive for the
+                The value of the `max_age` directive for the
                 Strict-Transport-Security HTTP response header.
                 Setting this enables HTTP Strict Transport
                 Security (HSTS) for the TLS-terminated listener.
@@ -5899,7 +5899,7 @@ components:
               description: |+
                 Defines whether the `includeSubDomains` directive should be
                 added to the Strict-Transport-Security HTTP response
-                header. This requires setting the `hsts\_max\_age` option as well in
+                header. This requires setting the `hsts_max_age` option as well in
                 order to become effective.
 
 
@@ -5910,7 +5910,7 @@ components:
               description: |+
                 Defines whether the `preload` directive should be
                 added to the Strict-Transport-Security HTTP response
-                header. This requires setting the `hsts\_max\_age` option as well in
+                header. This requires setting the `hsts_max_age` option as well in
                 order to become effective.
 
 
@@ -5961,7 +5961,7 @@ components:
               type: string
               description: |+
                 The protocol for the resource. One of `HTTP`, `HTTPS`, `SCTP`,
-                `PROMETHEUS`, `TCP`, `TERMINATED\_HTTPS`, or `UDP`.
+                `PROMETHEUS`, `TCP`, `TERMINATED_HTTPS`, or `UDP`.
 
             protocol_port:
               type: integer
@@ -5979,9 +5979,9 @@ components:
               type: string
               description: |+
                 The URI of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PKCS12 format certificate/key bundle for `TERMINATED\_HTTPS` listeners.
+                PKCS12 format certificate/key bundle for `TERMINATED_HTTPS` listeners.
                 DEPRECATED: A secret container of type “certificate” containing the
-                certificate and key for `TERMINATED\_HTTPS` listeners.
+                certificate and key for `TERMINATED_HTTPS` listeners.
 
             sni_container_refs:
               type: array
@@ -5989,9 +5989,9 @@ components:
                 type: string
               description: |+
                 A list of URIs to the [key manager service](https://docs.openstack.org/barbican/latest/) secrets containing
-                PKCS12 format certificate/key bundles for `TERMINATED\_HTTPS` listeners.
+                PKCS12 format certificate/key bundles for `TERMINATED_HTTPS` listeners.
                 (DEPRECATED) Secret containers of type “certificate” containing the
-                certificates and keys for `TERMINATED\_HTTPS` listeners.
+                certificates and keys for `TERMINATED_HTTPS` listeners.
 
             project_id:
               type: string
@@ -6104,7 +6104,7 @@ components:
               type: string
               description: |+
                 The ref of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format client CA certificate bundle for `TERMINATED\_HTTPS`
+                PEM format client CA certificate bundle for `TERMINATED_HTTPS`
                 listeners.
 
 
@@ -6123,7 +6123,7 @@ components:
               type: string
               description: |+
                 The URI of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA revocation list file for `TERMINATED\_HTTPS` listeners.
+                PEM format CA revocation list file for `TERMINATED_HTTPS` listeners.
 
 
                 **New in version 2.8**
@@ -6174,7 +6174,7 @@ components:
             hsts_max_age:
               type: integer
               description: |+
-                The value of the `max\_age` directive for the
+                The value of the `max_age` directive for the
                 Strict-Transport-Security HTTP response header.
 
 
@@ -6254,8 +6254,8 @@ components:
             lb_algorithm:
               type: string
               description: |+
-                The load balancing algorithm for the pool. One of `LEAST\_CONNECTIONS`,
-                `ROUND\_ROBIN`, `SOURCE\_IP`, or `SOURCE\_IP\_PORT`.
+                The load balancing algorithm for the pool. One of `LEAST_CONNECTIONS`,
+                `ROUND_ROBIN`, `SOURCE_IP`, or `SOURCE_IP_PORT`.
 
             session_persistence:
               type: object
@@ -6356,7 +6356,7 @@ components:
               type: string
               description: |+
                 The reference to the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PKCS12 format certificate/key bundle for `tls\_enabled` pools for
+                PKCS12 format certificate/key bundle for `tls_enabled` pools for
                 TLS client authentication to the member servers.
 
 
@@ -6366,7 +6366,7 @@ components:
               type: string
               description: |+
                 The reference of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA certificate bundle for `tls\_enabled` pools.
+                PEM format CA certificate bundle for `tls_enabled` pools.
 
 
                 **New in version 2.8**
@@ -6375,7 +6375,7 @@ components:
               type: string
               description: |+
                 The reference of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA revocation list file for `tls\_enabled` pools.
+                PEM format CA revocation list file for `tls_enabled` pools.
 
             tls_enabled:
               type: boolean
@@ -6473,8 +6473,8 @@ components:
               lb_algorithm:
                 type: string
                 description: |+
-                  The load balancing algorithm for the pool. One of `LEAST\_CONNECTIONS`,
-                  `ROUND\_ROBIN`, `SOURCE\_IP`, or `SOURCE\_IP\_PORT`.
+                  The load balancing algorithm for the pool. One of `LEAST_CONNECTIONS`,
+                  `ROUND_ROBIN`, `SOURCE_IP`, or `SOURCE_IP_PORT`.
 
               session_persistence:
                 type: object
@@ -6575,7 +6575,7 @@ components:
                 type: string
                 description: |+
                   The reference to the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                  PKCS12 format certificate/key bundle for `tls\_enabled` pools for
+                  PKCS12 format certificate/key bundle for `tls_enabled` pools for
                   TLS client authentication to the member servers.
 
 
@@ -6585,7 +6585,7 @@ components:
                 type: string
                 description: |+
                   The reference of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                  PEM format CA certificate bundle for `tls\_enabled` pools.
+                  PEM format CA certificate bundle for `tls_enabled` pools.
 
 
                   **New in version 2.8**
@@ -6594,7 +6594,7 @@ components:
                 type: string
                 description: |+
                   The reference of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                  PEM format CA revocation list file for `tls\_enabled` pools.
+                  PEM format CA revocation list file for `tls_enabled` pools.
 
               tls_enabled:
                 type: boolean
@@ -6682,27 +6682,27 @@ components:
               type: string
               format: uuid
               description: |+
-                The ID of the listener for the pool. Either `listener\_id` or
-                `loadbalancer\_id` must be specified. The listener has some restrictions,
+                The ID of the listener for the pool. Either `listener_id` or
+                `loadbalancer_id` must be specified. The listener has some restrictions,
                 See [Protocol Combinations (Listener/Pool)](#valid-protocol).
 
             loadbalancer_id:
               type: string
               format: uuid
               description: |+
-                The ID of the load balancer for the pool. Either `listener\_id` or
-                `loadbalancer\_id` must be specified.
+                The ID of the load balancer for the pool. Either `listener_id` or
+                `loadbalancer_id` must be specified.
 
             protocol:
               type: string
               enum:
                 - TCP
+                - UDP
+                - PROXYV2
                 - PROXY
                 - SCTP
-                - PROXYV2
-                - HTTPS
                 - HTTP
-                - UDP
+                - HTTPS
               description: |+
                 The protocol for the resource. One of `HTTP`, `HTTPS`, `PROXY`,
                 `PROXYV2`, `SCTP`, `TCP`, or `UDP`.
@@ -6710,13 +6710,13 @@ components:
             lb_algorithm:
               type: string
               enum:
-                - LEAST_CONNECTIONS
                 - SOURCE_IP_PORT
                 - SOURCE_IP
+                - LEAST_CONNECTIONS
                 - ROUND_ROBIN
               description: |+
-                The load balancing algorithm for the pool. One of `LEAST\_CONNECTIONS`,
-                `ROUND\_ROBIN`, `SOURCE\_IP`, or `SOURCE\_IP\_PORT`.
+                The load balancing algorithm for the pool. One of `LEAST_CONNECTIONS`,
+                `ROUND_ROBIN`, `SOURCE_IP`, or `SOURCE_IP_PORT`.
 
             session_persistence:
               type: object
@@ -6724,9 +6724,9 @@ components:
                 type:
                   type: string
                   enum:
-                    - APP_COOKIE
                     - HTTP_COOKIE
                     - SOURCE_IP
+                    - APP_COOKIE
                 cookie_name:
                   type: string
                   maxLength: 255
@@ -6759,11 +6759,11 @@ components:
                   enum:
                     - TCP
                     - TLS-HELLO
-                    - PING
                     - SCTP
-                    - HTTPS
-                    - HTTP
                     - UDP-CONNECT
+                    - HTTP
+                    - PING
+                    - HTTPS
                 delay:
                   type: integer
                 timeout:
@@ -6779,15 +6779,15 @@ components:
                 http_method:
                   type: string
                   enum:
-                    - HEAD
-                    - GET
+                    - CONNECT
                     - TRACE
                     - PUT
+                    - DELETE
+                    - HEAD
+                    - GET
+                    - PATCH
                     - POST
                     - OPTIONS
-                    - DELETE
-                    - PATCH
-                    - CONNECT
                 url_path:
                   type: string
                   format: url_path
@@ -6818,10 +6818,10 @@ components:
               description: |-
                 Defines mandatory and optional attributes of a POST request.
               required:
-                - timeout
-                - delay
                 - max_retries
                 - type
+                - delay
+                - timeout
             members:
               type: array
               items:
@@ -6874,7 +6874,7 @@ components:
               maxLength: 255
               description: |+
                 The reference to the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PKCS12 format certificate/key bundle for `tls\_enabled` pools for
+                PKCS12 format certificate/key bundle for `tls_enabled` pools for
                 TLS client authentication to the member servers.
 
 
@@ -6885,7 +6885,7 @@ components:
               maxLength: 255
               description: |+
                 The reference of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA certificate bundle for `tls\_enabled` pools.
+                PEM format CA certificate bundle for `tls_enabled` pools.
 
 
                 **New in version 2.8**
@@ -6895,7 +6895,7 @@ components:
               maxLength: 255
               description: |+
                 The reference of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA revocation list file for `tls\_enabled` pools.
+                PEM format CA revocation list file for `tls_enabled` pools.
 
             tls_enabled:
               type: boolean
@@ -6946,8 +6946,8 @@ components:
           description: |-
             Defines mandatory and optional attributes of a POST request.
           required:
-            - protocol
             - lb_algorithm
+            - protocol
     LbaasPoolsCreateResponse:
       type: object
       description: Base type for complex types
@@ -6996,8 +6996,8 @@ components:
             lb_algorithm:
               type: string
               description: |+
-                The load balancing algorithm for the pool. One of `LEAST\_CONNECTIONS`,
-                `ROUND\_ROBIN`, `SOURCE\_IP`, or `SOURCE\_IP\_PORT`.
+                The load balancing algorithm for the pool. One of `LEAST_CONNECTIONS`,
+                `ROUND_ROBIN`, `SOURCE_IP`, or `SOURCE_IP_PORT`.
 
             session_persistence:
               type: object
@@ -7098,7 +7098,7 @@ components:
               type: string
               description: |+
                 The reference to the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PKCS12 format certificate/key bundle for `tls\_enabled` pools for
+                PKCS12 format certificate/key bundle for `tls_enabled` pools for
                 TLS client authentication to the member servers.
 
 
@@ -7108,7 +7108,7 @@ components:
               type: string
               description: |+
                 The reference of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA certificate bundle for `tls\_enabled` pools.
+                PEM format CA certificate bundle for `tls_enabled` pools.
 
 
                 **New in version 2.8**
@@ -7117,7 +7117,7 @@ components:
               type: string
               description: |+
                 The reference of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA revocation list file for `tls\_enabled` pools.
+                PEM format CA revocation list file for `tls_enabled` pools.
 
             tls_enabled:
               type: boolean
@@ -7193,13 +7193,13 @@ components:
             lb_algorithm:
               type: string
               enum:
-                - LEAST_CONNECTIONS
                 - SOURCE_IP_PORT
                 - SOURCE_IP
+                - LEAST_CONNECTIONS
                 - ROUND_ROBIN
               description: |+
-                The load balancing algorithm for the pool. One of `LEAST\_CONNECTIONS`,
-                `ROUND\_ROBIN`, or `SOURCE\_IP`.
+                The load balancing algorithm for the pool. One of `LEAST_CONNECTIONS`,
+                `ROUND_ROBIN`, or `SOURCE_IP`.
 
             session_persistence:
               type: object
@@ -7207,9 +7207,9 @@ components:
                 type:
                   type: string
                   enum:
-                    - APP_COOKIE
                     - HTTP_COOKIE
                     - SOURCE_IP
+                    - APP_COOKIE
                 cookie_name:
                   type: string
                   maxLength: 255
@@ -7239,7 +7239,7 @@ components:
               maxLength: 255
               description: |+
                 The reference to the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PKCS12 format certificate/key bundle for `tls\_enabled` pools for
+                PKCS12 format certificate/key bundle for `tls_enabled` pools for
                 TLS client authentication to the member servers.
 
 
@@ -7250,7 +7250,7 @@ components:
               maxLength: 255
               description: |+
                 The reference of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA certificate bundle for `tls\_enabled` pools.
+                PEM format CA certificate bundle for `tls_enabled` pools.
 
 
                 **New in version 2.8**
@@ -7260,7 +7260,7 @@ components:
               maxLength: 255
               description: |+
                 The reference of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA revocation list file for `tls\_enabled` pools.
+                PEM format CA revocation list file for `tls_enabled` pools.
 
             tls_enabled:
               type: boolean
@@ -7355,8 +7355,8 @@ components:
             lb_algorithm:
               type: string
               description: |+
-                The load balancing algorithm for the pool. One of `LEAST\_CONNECTIONS`,
-                `ROUND\_ROBIN`, `SOURCE\_IP`, or `SOURCE\_IP\_PORT`.
+                The load balancing algorithm for the pool. One of `LEAST_CONNECTIONS`,
+                `ROUND_ROBIN`, `SOURCE_IP`, or `SOURCE_IP_PORT`.
 
             session_persistence:
               type: object
@@ -7457,7 +7457,7 @@ components:
               type: string
               description: |+
                 The reference to the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PKCS12 format certificate/key bundle for `tls\_enabled` pools for
+                PKCS12 format certificate/key bundle for `tls_enabled` pools for
                 TLS client authentication to the member servers.
 
 
@@ -7467,7 +7467,7 @@ components:
               type: string
               description: |+
                 The reference of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA certificate bundle for `tls\_enabled` pools.
+                PEM format CA certificate bundle for `tls_enabled` pools.
 
 
                 **New in version 2.8**
@@ -7476,7 +7476,7 @@ components:
               type: string
               description: |+
                 The reference of the [key manager service](https://docs.openstack.org/castellan/latest/) secret containing a
-                PEM format CA revocation list file for `tls\_enabled` pools.
+                PEM format CA revocation list file for `tls_enabled` pools.
 
             tls_enabled:
               type: boolean
@@ -7571,8 +7571,8 @@ components:
             action:
               type: string
               description: |+
-                The L7 policy action. One of `REDIRECT\_PREFIX`, `REDIRECT\_TO\_POOL`,
-                `REDIRECT\_TO\_URL`, or `REJECT`.
+                The L7 policy action. One of `REDIRECT_PREFIX`, `REDIRECT_TO_POOL`,
+                `REDIRECT_TO_URL`, or `REJECT`.
 
             listener_id:
               type: string
@@ -7585,20 +7585,20 @@ components:
               format: uuid
               description: |+
                 Requests matching this policy will be redirected to the pool with this ID.
-                Only valid if `action` is `REDIRECT\_TO\_POOL`. The pool has some
+                Only valid if `action` is `REDIRECT_TO_POOL`. The pool has some
                 restrictions, See [Protocol Combinations (Listener/Pool)](#valid-protocol).
 
             redirect_url:
               type: string
               description: |+
                 Requests matching this policy will be redirected to this URL.
-                Only valid if `action` is `REDIRECT\_TO\_URL`.
+                Only valid if `action` is `REDIRECT_TO_URL`.
 
             redirect_prefix:
               type: string
               description: |+
                 Requests matching this policy will be redirected to this Prefix URL.
-                Only valid if `action` is `REDIRECT\_PREFIX`.
+                Only valid if `action` is `REDIRECT_PREFIX`.
 
             position:
               type: integer
@@ -7647,7 +7647,7 @@ components:
               description: |+
                 Requests matching this policy will be redirected to the specified URL or
                 Prefix URL with the HTTP response code. Valid if `action` is
-                `REDIRECT\_TO\_URL` or `REDIRECT\_PREFIX`. Valid options are: 301, 302,
+                `REDIRECT_TO_URL` or `REDIRECT_PREFIX`. Valid options are: 301, 302,
                 303, 307, or 308. Default is 302.
 
 
@@ -7707,8 +7707,8 @@ components:
               action:
                 type: string
                 description: |+
-                  The L7 policy action. One of `REDIRECT\_PREFIX`, `REDIRECT\_TO\_POOL`,
-                  `REDIRECT\_TO\_URL`, or `REJECT`.
+                  The L7 policy action. One of `REDIRECT_PREFIX`, `REDIRECT_TO_POOL`,
+                  `REDIRECT_TO_URL`, or `REJECT`.
 
               listener_id:
                 type: string
@@ -7721,20 +7721,20 @@ components:
                 format: uuid
                 description: |+
                   Requests matching this policy will be redirected to the pool with this ID.
-                  Only valid if `action` is `REDIRECT\_TO\_POOL`. The pool has some
+                  Only valid if `action` is `REDIRECT_TO_POOL`. The pool has some
                   restrictions, See [Protocol Combinations (Listener/Pool)](#valid-protocol).
 
               redirect_url:
                 type: string
                 description: |+
                   Requests matching this policy will be redirected to this URL.
-                  Only valid if `action` is `REDIRECT\_TO\_URL`.
+                  Only valid if `action` is `REDIRECT_TO_URL`.
 
               redirect_prefix:
                 type: string
                 description: |+
                   Requests matching this policy will be redirected to this Prefix URL.
-                  Only valid if `action` is `REDIRECT\_PREFIX`.
+                  Only valid if `action` is `REDIRECT_PREFIX`.
 
               position:
                 type: integer
@@ -7783,7 +7783,7 @@ components:
                 description: |+
                   Requests matching this policy will be redirected to the specified URL or
                   Prefix URL with the HTTP response code. Valid if `action` is
-                  `REDIRECT\_TO\_URL` or `REDIRECT\_PREFIX`. Valid options are: 301, 302,
+                  `REDIRECT_TO_URL` or `REDIRECT_PREFIX`. Valid options are: 301, 302,
                   303, 307, or 308. Default is 302.
 
 
@@ -7840,19 +7840,19 @@ components:
               type: string
               enum:
                 - REDIRECT_TO_URL
-                - REJECT
-                - REDIRECT_PREFIX
                 - REDIRECT_TO_POOL
+                - REDIRECT_PREFIX
+                - REJECT
               description: |+
-                The L7 policy action. One of `REDIRECT\_PREFIX`, `REDIRECT\_TO\_POOL`,
-                `REDIRECT\_TO\_URL`, or `REJECT`.
+                The L7 policy action. One of `REDIRECT_PREFIX`, `REDIRECT_TO_POOL`,
+                `REDIRECT_TO_URL`, or `REJECT`.
 
             redirect_pool_id:
               type: string
               format: uuid
               description: |+
                 Requests matching this policy will be redirected to the pool with this ID.
-                Only valid if `action` is `REDIRECT\_TO\_POOL`. The pool has some
+                Only valid if `action` is `REDIRECT_TO_POOL`. The pool has some
                 restrictions, See [Protocol Combinations (Listener/Pool)](#valid-protocol).
 
             redirect_url:
@@ -7860,14 +7860,14 @@ components:
               format: url
               description: |+
                 Requests matching this policy will be redirected to this URL.
-                Only valid if `action` is `REDIRECT\_TO\_URL`.
+                Only valid if `action` is `REDIRECT_TO_URL`.
 
             redirect_prefix:
               type: string
               format: url
               description: |+
                 Requests matching this policy will be redirected to this Prefix URL.
-                Only valid if `action` is `REDIRECT\_PREFIX`.
+                Only valid if `action` is `REDIRECT_PREFIX`.
 
             position:
               type: integer
@@ -7890,22 +7890,22 @@ components:
                   type:
                     type: string
                     enum:
-                      - PATH
-                      - SSL_CONN_HAS_CERT
-                      - COOKIE
                       - FILE_TYPE
-                      - HEADER
                       - SSL_DN_FIELD
-                      - SSL_VERIFY_RESULT
+                      - PATH
+                      - COOKIE
                       - HOST_NAME
+                      - SSL_CONN_HAS_CERT
+                      - SSL_VERIFY_RESULT
+                      - HEADER
                   compare_type:
                     type: string
                     enum:
-                      - STARTS_WITH
-                      - EQUAL_TO
-                      - ENDS_WITH
                       - REGEX
+                      - ENDS_WITH
                       - CONTAINS
+                      - EQUAL_TO
+                      - STARTS_WITH
                   key:
                     type: string
                     maxLength: 255
@@ -7930,9 +7930,9 @@ components:
                 description: |-
                   Defines mandatory and optional attributes of a POST request.
                 required:
-                  - compare_type
-                  - value
                   - type
+                  - value
+                  - compare_type
             tags:
               type: array
               items:
@@ -7949,7 +7949,7 @@ components:
               description: |+
                 Requests matching this policy will be redirected to the specified URL or
                 Prefix URL with the HTTP response code. Valid if `action` is
-                `REDIRECT\_TO\_URL` or `REDIRECT\_PREFIX`. Valid options are: 301, 302,
+                `REDIRECT_TO_URL` or `REDIRECT_PREFIX`. Valid options are: 301, 302,
                 303, 307, or 308. Default is 302.
 
 
@@ -7961,8 +7961,8 @@ components:
           description: |-
             Defines mandatory and optional attributes of a POST request.
           required:
-            - action
             - listener_id
+            - action
     LbaasL7PoliciesCreateResponse:
       type: object
       description: Base type for complex types
@@ -8010,8 +8010,8 @@ components:
             action:
               type: string
               description: |+
-                The L7 policy action. One of `REDIRECT\_PREFIX`, `REDIRECT\_TO\_POOL`,
-                `REDIRECT\_TO\_URL`, or `REJECT`.
+                The L7 policy action. One of `REDIRECT_PREFIX`, `REDIRECT_TO_POOL`,
+                `REDIRECT_TO_URL`, or `REJECT`.
 
             listener_id:
               type: string
@@ -8024,20 +8024,20 @@ components:
               format: uuid
               description: |+
                 Requests matching this policy will be redirected to the pool with this ID.
-                Only valid if `action` is `REDIRECT\_TO\_POOL`. The pool has some
+                Only valid if `action` is `REDIRECT_TO_POOL`. The pool has some
                 restrictions, See [Protocol Combinations (Listener/Pool)](#valid-protocol).
 
             redirect_url:
               type: string
               description: |+
                 Requests matching this policy will be redirected to this URL.
-                Only valid if `action` is `REDIRECT\_TO\_URL`.
+                Only valid if `action` is `REDIRECT_TO_URL`.
 
             redirect_prefix:
               type: string
               description: |+
                 Requests matching this policy will be redirected to this Prefix URL.
-                Only valid if `action` is `REDIRECT\_PREFIX`.
+                Only valid if `action` is `REDIRECT_PREFIX`.
 
             position:
               type: integer
@@ -8086,7 +8086,7 @@ components:
               description: |+
                 Requests matching this policy will be redirected to the specified URL or
                 Prefix URL with the HTTP response code. Valid if `action` is
-                `REDIRECT\_TO\_URL` or `REDIRECT\_PREFIX`. Valid options are: 301, 302,
+                `REDIRECT_TO_URL` or `REDIRECT_PREFIX`. Valid options are: 301, 302,
                 303, 307, or 308. Default is 302.
 
 
@@ -8126,19 +8126,19 @@ components:
               type: string
               enum:
                 - REDIRECT_TO_URL
-                - REJECT
-                - REDIRECT_PREFIX
                 - REDIRECT_TO_POOL
+                - REDIRECT_PREFIX
+                - REJECT
               description: |+
-                The L7 policy action. One of `REDIRECT\_PREFIX`, `REDIRECT\_TO\_POOL`,
-                `REDIRECT\_TO\_URL`, or `REJECT`.
+                The L7 policy action. One of `REDIRECT_PREFIX`, `REDIRECT_TO_POOL`,
+                `REDIRECT_TO_URL`, or `REJECT`.
 
             redirect_pool_id:
               type: string
               format: uuid
               description: |+
                 Requests matching this policy will be redirected to the pool with this ID.
-                Only valid if `action` is `REDIRECT\_TO\_POOL`. The pool has some
+                Only valid if `action` is `REDIRECT_TO_POOL`. The pool has some
                 restrictions, See [Protocol Combinations (Listener/Pool)](#valid-protocol).
 
             redirect_url:
@@ -8146,14 +8146,14 @@ components:
               format: url
               description: |+
                 Requests matching this policy will be redirected to this URL.
-                Only valid if `action` is `REDIRECT\_TO\_URL`.
+                Only valid if `action` is `REDIRECT_TO_URL`.
 
             redirect_prefix:
               type: string
               format: url
               description: |+
                 Requests matching this policy will be redirected to this Prefix URL.
-                Only valid if `action` is `REDIRECT\_PREFIX`.
+                Only valid if `action` is `REDIRECT_PREFIX`.
 
             position:
               type: integer
@@ -8184,7 +8184,7 @@ components:
               description: |+
                 Requests matching this policy will be redirected to the specified URL or
                 Prefix URL with the HTTP response code. Valid if `action` is
-                `REDIRECT\_TO\_URL` or `REDIRECT\_PREFIX`. Valid options are: 301, 302,
+                `REDIRECT_TO_URL` or `REDIRECT_PREFIX`. Valid options are: 301, 302,
                 303, 307, or 308. Default is 302.
 
 
@@ -8239,8 +8239,8 @@ components:
             action:
               type: string
               description: |+
-                The L7 policy action. One of `REDIRECT\_PREFIX`, `REDIRECT\_TO\_POOL`,
-                `REDIRECT\_TO\_URL`, or `REJECT`.
+                The L7 policy action. One of `REDIRECT_PREFIX`, `REDIRECT_TO_POOL`,
+                `REDIRECT_TO_URL`, or `REJECT`.
 
             listener_id:
               type: string
@@ -8253,20 +8253,20 @@ components:
               format: uuid
               description: |+
                 Requests matching this policy will be redirected to the pool with this ID.
-                Only valid if `action` is `REDIRECT\_TO\_POOL`. The pool has some
+                Only valid if `action` is `REDIRECT_TO_POOL`. The pool has some
                 restrictions, See [Protocol Combinations (Listener/Pool)](#valid-protocol).
 
             redirect_url:
               type: string
               description: |+
                 Requests matching this policy will be redirected to this URL.
-                Only valid if `action` is `REDIRECT\_TO\_URL`.
+                Only valid if `action` is `REDIRECT_TO_URL`.
 
             redirect_prefix:
               type: string
               description: |+
                 Requests matching this policy will be redirected to this Prefix URL.
-                Only valid if `action` is `REDIRECT\_PREFIX`.
+                Only valid if `action` is `REDIRECT_PREFIX`.
 
             position:
               type: integer
@@ -8315,7 +8315,7 @@ components:
               description: |+
                 Requests matching this policy will be redirected to the specified URL or
                 Prefix URL with the HTTP response code. Valid if `action` is
-                `REDIRECT\_TO\_URL` or `REDIRECT\_PREFIX`. Valid options are: 301, 302,
+                `REDIRECT_TO_URL` or `REDIRECT_PREFIX`. Valid options are: 301, 302,
                 303, 307, or 308. Default is 302.
 
 
@@ -8655,11 +8655,11 @@ components:
               enum:
                 - TCP
                 - TLS-HELLO
-                - PING
                 - SCTP
-                - HTTPS
-                - HTTP
                 - UDP-CONNECT
+                - HTTP
+                - PING
+                - HTTPS
               description: |+
                 The type of health monitor. One of `HTTP`, `HTTPS`, `PING`,
                 `SCTP`, `TCP`, `TLS-HELLO`, or `UDP-CONNECT`.
@@ -8695,15 +8695,15 @@ components:
             http_method:
               type: string
               enum:
-                - HEAD
-                - GET
+                - CONNECT
                 - TRACE
                 - PUT
+                - DELETE
+                - HEAD
+                - GET
+                - PATCH
                 - POST
                 - OPTIONS
-                - DELETE
-                - PATCH
-                - CONNECT
               description: |+
                 The HTTP method that the health monitor uses for requests. One of
                 `CONNECT`, `DELETE`, `GET`, `HEAD`, `OPTIONS`, `PATCH`,
@@ -8790,8 +8790,8 @@ components:
           required:
             - timeout
             - type
-            - pool_id
             - max_retries
+            - pool_id
             - delay
     LbaasHealthmonitorsCreateResponse:
       type: object
@@ -8986,15 +8986,15 @@ components:
             http_method:
               type: string
               enum:
-                - HEAD
-                - GET
+                - CONNECT
                 - TRACE
                 - PUT
+                - DELETE
+                - HEAD
+                - GET
+                - PATCH
                 - POST
                 - OPTIONS
-                - DELETE
-                - PATCH
-                - CONNECT
               description: |+
                 The HTTP method that the health monitor uses for requests. One of
                 `CONNECT`, `DELETE`, `GET`, `HEAD`, `OPTIONS`, `PATCH`,
@@ -9737,8 +9737,8 @@ components:
           description: |-
             Defines mandatory and optional attributes of a POST request.
           required:
-            - flavor_data
             - provider_name
+            - flavor_data
             - name
     LbaasFlavorprofilesCreateResponse:
       type: object
@@ -9862,8 +9862,8 @@ components:
           description: |-
             Defines mandatory and optional attributes of a POST request.
           required:
-            - availability_zone_profile_id
             - name
+            - availability_zone_profile_id
     LbaasAvailabilityzonesCreateResponse:
       type: object
       description: Base type for complex types
@@ -9980,8 +9980,8 @@ components:
           description: |-
             Defines mandatory and optional attributes of a POST request.
           required:
-            - availability_zone_data
             - provider_name
+            - availability_zone_data
             - name
     LbaasAvailabilityzoneprofilesCreateResponse:
       type: object
@@ -10116,7 +10116,7 @@ components:
                 type: string
                 description: |+
                   The status of the amphora. One of: `BOOTING`, `ALLOCATED`, `READY`,
-                  `PENDING\_CREATE`, `PENDING\_DELETE`, `DELETED`, `ERROR`.
+                  `PENDING_CREATE`, `PENDING_DELETE`, `DELETED`, `ERROR`.
 
               vrrp_interface:
                 type: string
@@ -10257,7 +10257,7 @@ components:
               type: string
               description: |+
                 The status of the amphora. One of: `BOOTING`, `ALLOCATED`, `READY`,
-                `PENDING\_CREATE`, `PENDING\_DELETE`, `DELETED`, `ERROR`.
+                `PENDING_CREATE`, `PENDING_DELETE`, `DELETED`, `ERROR`.
 
             vrrp_interface:
               type: string
@@ -10410,7 +10410,7 @@ components:
             description: |-
               Base type for complex types
           description: |+
-            The provider flavor capabilities dictonary object.
+            The provider flavor capabilities dictionary object.
 
     LbaasProvidersAvailability_Zone_CapabilitiesAz_CapabilitiesResponse:
       type: object
@@ -10434,7 +10434,7 @@ components:
             description: |-
               Base type for complex types
           description: |+
-            The provider availability zone capabilities dictonary object.
+            The provider availability zone capabilities dictionary object.
 
     LbaasL7PoliciesRulesListResponse:
       type: object
@@ -10454,15 +10454,15 @@ components:
               type:
                 type: string
                 description: |+
-                  The L7 rule type. One of `COOKIE`, `FILE\_TYPE`, `HEADER`,
-                  `HOST\_NAME`, `PATH`, `SSL\_CONN\_HAS\_CERT`, `SSL\_VERIFY\_RESULT`,
-                  or `SSL\_DN\_FIELD`.
+                  The L7 rule type. One of `COOKIE`, `FILE_TYPE`, `HEADER`,
+                  `HOST_NAME`, `PATH`, `SSL_CONN_HAS_CERT`, `SSL_VERIFY_RESULT`,
+                  or `SSL_DN_FIELD`.
 
               compare_type:
                 type: string
                 description: |+
-                  The comparison type for the L7 rule. One of `CONTAINS`, `ENDS\_WITH`,
-                  `EQUAL\_TO`, `REGEX`, or `STARTS\_WITH`.
+                  The comparison type for the L7 rule. One of `CONTAINS`, `ENDS_WITH`,
+                  `EQUAL_TO`, `REGEX`, or `STARTS_WITH`.
 
               key:
                 type: string
@@ -10550,30 +10550,30 @@ components:
             type:
               type: string
               enum:
-                - PATH
-                - SSL_CONN_HAS_CERT
-                - COOKIE
                 - FILE_TYPE
-                - HEADER
                 - SSL_DN_FIELD
-                - SSL_VERIFY_RESULT
+                - PATH
+                - COOKIE
                 - HOST_NAME
+                - SSL_CONN_HAS_CERT
+                - SSL_VERIFY_RESULT
+                - HEADER
               description: |+
-                The L7 rule type. One of `COOKIE`, `FILE\_TYPE`, `HEADER`,
-                `HOST\_NAME`, `PATH`, `SSL\_CONN\_HAS\_CERT`, `SSL\_VERIFY\_RESULT`,
-                or `SSL\_DN\_FIELD`.
+                The L7 rule type. One of `COOKIE`, `FILE_TYPE`, `HEADER`,
+                `HOST_NAME`, `PATH`, `SSL_CONN_HAS_CERT`, `SSL_VERIFY_RESULT`,
+                or `SSL_DN_FIELD`.
 
             compare_type:
               type: string
               enum:
-                - STARTS_WITH
-                - EQUAL_TO
-                - ENDS_WITH
                 - REGEX
+                - ENDS_WITH
                 - CONTAINS
+                - EQUAL_TO
+                - STARTS_WITH
               description: |+
-                The comparison type for the L7 rule. One of `CONTAINS`, `ENDS\_WITH`,
-                `EQUAL\_TO`, `REGEX`, or `STARTS\_WITH`.
+                The comparison type for the L7 rule. One of `CONTAINS`, `ENDS_WITH`,
+                `EQUAL_TO`, `REGEX`, or `STARTS_WITH`.
 
             key:
               type: string
@@ -10624,9 +10624,9 @@ components:
           description: |-
             Defines mandatory and optional attributes of a POST request.
           required:
-            - compare_type
-            - value
             - type
+            - value
+            - compare_type
     LbaasL7PoliciesRulesCreateResponse:
       type: object
       description: Base type for complex types
@@ -10643,15 +10643,15 @@ components:
             type:
               type: string
               description: |+
-                The L7 rule type. One of `COOKIE`, `FILE\_TYPE`, `HEADER`,
-                `HOST\_NAME`, `PATH`, `SSL\_CONN\_HAS\_CERT`, `SSL\_VERIFY\_RESULT`,
-                or `SSL\_DN\_FIELD`.
+                The L7 rule type. One of `COOKIE`, `FILE_TYPE`, `HEADER`,
+                `HOST_NAME`, `PATH`, `SSL_CONN_HAS_CERT`, `SSL_VERIFY_RESULT`,
+                or `SSL_DN_FIELD`.
 
             compare_type:
               type: string
               description: |+
-                The comparison type for the L7 rule. One of `CONTAINS`, `ENDS\_WITH`,
-                `EQUAL\_TO`, `REGEX`, or `STARTS\_WITH`.
+                The comparison type for the L7 rule. One of `CONTAINS`, `ENDS_WITH`,
+                `EQUAL_TO`, `REGEX`, or `STARTS_WITH`.
 
             key:
               type: string
@@ -10734,15 +10734,15 @@ components:
             type:
               type: string
               description: |+
-                The L7 rule type. One of `COOKIE`, `FILE\_TYPE`, `HEADER`,
-                `HOST\_NAME`, `PATH`, `SSL\_CONN\_HAS\_CERT`, `SSL\_VERIFY\_RESULT`,
-                or `SSL\_DN\_FIELD`.
+                The L7 rule type. One of `COOKIE`, `FILE_TYPE`, `HEADER`,
+                `HOST_NAME`, `PATH`, `SSL_CONN_HAS_CERT`, `SSL_VERIFY_RESULT`,
+                or `SSL_DN_FIELD`.
 
             compare_type:
               type: string
               description: |+
-                The comparison type for the L7 rule. One of `CONTAINS`, `ENDS\_WITH`,
-                `EQUAL\_TO`, `REGEX`, or `STARTS\_WITH`.
+                The comparison type for the L7 rule. One of `CONTAINS`, `ENDS_WITH`,
+                `EQUAL_TO`, `REGEX`, or `STARTS_WITH`.
 
             key:
               type: string
@@ -10819,30 +10819,30 @@ components:
             type:
               type: string
               enum:
-                - PATH
-                - SSL_CONN_HAS_CERT
-                - COOKIE
                 - FILE_TYPE
-                - HEADER
                 - SSL_DN_FIELD
-                - SSL_VERIFY_RESULT
+                - PATH
+                - COOKIE
                 - HOST_NAME
+                - SSL_CONN_HAS_CERT
+                - SSL_VERIFY_RESULT
+                - HEADER
               description: |+
-                The L7 rule type. One of `COOKIE`, `FILE\_TYPE`, `HEADER`,
-                `HOST\_NAME`, `PATH`, `SSL\_CONN\_HAS\_CERT`, `SSL\_VERIFY\_RESULT`,
-                or `SSL\_DN\_FIELD`.
+                The L7 rule type. One of `COOKIE`, `FILE_TYPE`, `HEADER`,
+                `HOST_NAME`, `PATH`, `SSL_CONN_HAS_CERT`, `SSL_VERIFY_RESULT`,
+                or `SSL_DN_FIELD`.
 
             compare_type:
               type: string
               enum:
-                - STARTS_WITH
-                - EQUAL_TO
-                - ENDS_WITH
                 - REGEX
+                - ENDS_WITH
                 - CONTAINS
+                - EQUAL_TO
+                - STARTS_WITH
               description: |+
-                The comparison type for the L7 rule. One of `CONTAINS`, `ENDS\_WITH`,
-                `EQUAL\_TO`, `REGEX`, or `STARTS\_WITH`.
+                The comparison type for the L7 rule. One of `CONTAINS`, `ENDS_WITH`,
+                `EQUAL_TO`, `REGEX`, or `STARTS_WITH`.
 
             key:
               type: string
@@ -10899,15 +10899,15 @@ components:
             type:
               type: string
               description: |+
-                The L7 rule type. One of `COOKIE`, `FILE\_TYPE`, `HEADER`,
-                `HOST\_NAME`, `PATH`, `SSL\_CONN\_HAS\_CERT`, `SSL\_VERIFY\_RESULT`,
-                or `SSL\_DN\_FIELD`.
+                The L7 rule type. One of `COOKIE`, `FILE_TYPE`, `HEADER`,
+                `HOST_NAME`, `PATH`, `SSL_CONN_HAS_CERT`, `SSL_VERIFY_RESULT`,
+                or `SSL_DN_FIELD`.
 
             compare_type:
               type: string
               description: |+
-                The comparison type for the L7 rule. One of `CONTAINS`, `ENDS\_WITH`,
-                `EQUAL\_TO`, `REGEX`, or `STARTS\_WITH`.
+                The comparison type for the L7 rule. One of `CONTAINS`, `ENDS_WITH`,
+                `EQUAL_TO`, `REGEX`, or `STARTS_WITH`.
 
             key:
               type: string
@@ -11074,7 +11074,7 @@ components:
                 type: integer
                 description: |+
                   An alternate protocol port used for health monitoring a backend member.
-                  Default is `null` which monitors the member `protocol\_port`.
+                  Default is `null` which monitors the member `protocol_port`.
 
               tags:
                 type: array
@@ -11172,7 +11172,7 @@ components:
               maximum: 65535
               description: |+
                 An alternate protocol port used for health monitoring a backend member.
-                Default is `null` which monitors the member `protocol\_port`.
+                Default is `null` which monitors the member `protocol_port`.
 
             monitor_address:
               type: string
@@ -11298,7 +11298,7 @@ components:
               type: integer
               description: |+
                 An alternate protocol port used for health monitoring a backend member.
-                Default is `null` which monitors the member `protocol\_port`.
+                Default is `null` which monitors the member `protocol_port`.
 
             tags:
               type: array
@@ -11387,7 +11387,7 @@ components:
                 maximum: 65535
                 description: |+
                   An alternate protocol port used for health monitoring a backend member.
-                  Default is `null` which monitors the member `protocol\_port`.
+                  Default is `null` which monitors the member `protocol_port`.
 
               monitor_address:
                 type: string
@@ -11513,7 +11513,7 @@ components:
               type: integer
               description: |+
                 An alternate protocol port used for health monitoring a backend member.
-                Default is `null` which monitors the member `protocol\_port`.
+                Default is `null` which monitors the member `protocol_port`.
 
             tags:
               type: array
@@ -11575,7 +11575,7 @@ components:
               maximum: 65535
               description: |+
                 An alternate protocol port used for health monitoring a backend member.
-                Default is `null` which monitors the member `protocol\_port`.
+                Default is `null` which monitors the member `protocol_port`.
 
             monitor_address:
               type: string
@@ -11695,7 +11695,7 @@ components:
               type: integer
               description: |+
                 An alternate protocol port used for health monitoring a backend member.
-                Default is `null` which monitors the member `protocol\_port`.
+                Default is `null` which monitors the member `protocol_port`.
 
             tags:
               type: array

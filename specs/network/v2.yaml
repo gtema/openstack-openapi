@@ -774,7 +774,7 @@ paths:
         into an external network. An external network has its
         `router:external` extended field set to `true`. To specify an
         external gateway, the ID of the external network must be passed
-        in the `network\_id` parameter of the `external\_gateway\_info`
+        in the `network_id` parameter of the `external_gateway_info`
         attribute in the request body.
 
         Normal response codes: 201
@@ -916,7 +916,7 @@ paths:
         Instead the extra routes sent are added to the existing set of
         extra routes.
 
-        The use of the add\_extraroutes/remove\_extraroutes member actions
+        The use of the add_extraroutes/remove_extraroutes member actions
         is preferred to updating the `routes` attribute in all cases when
         concurrent updates to the set of extra routes are possible.
 
@@ -964,7 +964,7 @@ paths:
         Instead the the extra routes sent are removed from the existing set of
         extra routes.
 
-        The use of the add\_extraroutes/remove\_extraroutes member actions
+        The use of the add_extraroutes/remove_extraroutes member actions
         is preferred to updating the `routes` attribute in all cases when
         concurrent updates to the set of extra routes are possible.
 
@@ -1012,35 +1012,35 @@ paths:
         same router.
 
         The add/update/remove external gateways operations extend the use of
-        `router.external\_gateway\_info` to manage multiple external gateways.
+        `router.external_gateway_info` to manage multiple external gateways.
         The full set of external gateways is exposed in the read-only
-        `router.external\_gateways` parameter. `router.external\_gateways`
-        contains a list of `external\_gateway\_info` structures like:
+        `router.external_gateways` parameter. `router.external_gateways`
+        contains a list of `external_gateway_info` structures like:
 
-        The first item (index 0) of the `external\_gateways` list is special if a
+        The first item (index 0) of the `external_gateways` list is special if a
         router does not have any gateway ports yet:
 
         The order of the the rest of the list (indexes 1, 2, …) is irrelevant
         and ignored.
 
         The first external gateway can be managed in two
-        ways: via `router.external\_gateway\_info` or via
-        `add/update/remove\_external\_gateways`. The other external gateways
-        can only be managed via `add/update/remove\_external\_gateways`.
+        ways: via `router.external_gateway_info` or via
+        `add/update/remove_external_gateways`. The other external gateways
+        can only be managed via `add/update/remove_external_gateways`.
 
         The format of the request body is the same as the format of the read-only
-        `router.external\_gateways` parameter, but wrapped as follows:
+        `router.external_gateways` parameter, but wrapped as follows:
 
         The response codes and response body are the same as to the update of
         the router. That is the whole router object is returned including the
-        `external\_gateway\_info` and `external\_gateways` parameters which
+        `external_gateway_info` and `external_gateways` parameters which
         represents the result of the operation.
 
-        Changes in `router.external\_gateway\_info` are reflected
-        in `router.external\_gateways` and vice versa. Updating
-        `external\_gateway\_info` also updates the first element of
-        `external\_gateways` and it leaves the rest of `external\_gateways`
-        unchanged. Setting `external\_gateway\_info` to an empty value removes
+        Changes in `router.external_gateway_info` are reflected
+        in `router.external_gateways` and vice versa. Updating
+        `external_gateway_info` also updates the first element of
+        `external_gateways` and it leaves the rest of `external_gateways`
+        unchanged. Setting `external_gateway_info` to an empty value removes
         a single gateway and one of the extra gateways takes its place instead.
 
         Normal response codes: 200
@@ -1071,26 +1071,26 @@ paths:
         Update some external gateways of router.
 
         For general information on the add/update/remove external gateways
-        operations see `add\_external\_gateways` above.
+        operations see `add_external_gateways` above.
 
-        The external gateways to be updated are identified by the `network\_ids`
-        found in the PUT request. The `external\_fixed\_ips`, `enable\_snat`,
-        fields can be updated. The `network\_id` field cannot be updated - any
+        The external gateways to be updated are identified by the `network_ids`
+        found in the PUT request. The `external_fixed_ips`, `enable_snat`,
+        fields can be updated. The `network_id` field cannot be updated - any
         changes will cause a gateway port to be removed and recreated.
 
         The format of the request body is the same as the format of the read-only
-        `router.external\_gateways` parameter, but wrapped as follows:
+        `router.external_gateways` parameter, but wrapped as follows:
 
-        The `enable\_snat` field does not have any effect for extra gateways except
+        The `enable_snat` field does not have any effect for extra gateways except
         for the first external gateway in the list.
 
-        The `network\_id` field is used to identify a particular gateway port along
-        with the `external\_fixed\_ips` field. Specifying just the `network\_id` field
+        The `network_id` field is used to identify a particular gateway port along
+        with the `external_fixed_ips` field. Specifying just the `network_id` field
         is ambiguous: Neutron will attempt to find the matching gateway port but if
         there are multiple matches it will return an error response code.
 
-        The `enable\_snat` field can be omitted from the request. Specifying
-        `external\_fixed\_ips` will result in matching ports based on those
+        The `enable_snat` field can be omitted from the request. Specifying
+        `external_fixed_ips` will result in matching ports based on those
         fixed IPs. If a gateway port has a subset of the specified fixed IPs,
         then the set of IPs will be updated to match the ones in the request.
         Alternatively, if a gateway port has a superset of fixed IPs from the
@@ -1098,12 +1098,12 @@ paths:
 
         The response codes and response body are the same as to the update of
         the router. That is the whole router object is returned including the
-        `external\_gateway\_info` and `external\_gateways` parameters which
+        `external_gateway_info` and `external_gateways` parameters which
         represents the result of the operation.
 
-        Please note that updating `external\_gateway\_info` also updates
-        the first element of `external\_gateways` and it leaves the rest of
-        `external\_gateways` unchanged.
+        Please note that updating `external_gateway_info` also updates
+        the first element of `external_gateways` and it leaves the rest of
+        `external_gateways` unchanged.
 
         Normal response codes: 200
 
@@ -1133,18 +1133,18 @@ paths:
         Remove some external gateways from router.
 
         For general information on the add/update/remove external gateways
-        operations see `add\_external\_gateways` above.
+        operations see `add_external_gateways` above.
 
         The format of the request body is the same as the format of the read-only
-        `router.external\_gateways` parameter, but wrapped as follows:
+        `router.external_gateways` parameter, but wrapped as follows:
 
-        However the request body can be partial. Only the `network\_id`
-        and `external\_fixed\_ips` fields from the `external\_gateway\_info`
+        However the request body can be partial. Only the `network_id`
+        and `external_fixed_ips` fields from the `external_gateway_info`
         structure is used in order to match the specific gateway ports.
-        The `enable\_snat` key can be present but its value is ignored.
+        The `enable_snat` key can be present but its value is ignored.
 
-        Please note that setting `external\_gateway\_info` to an empty value
-        also resets `external\_gateways` to the empty list.
+        Please note that setting `external_gateway_info` to an empty value
+        also resets `external_gateways` to the empty list.
 
         Normal response codes: 200
 
@@ -1256,10 +1256,10 @@ paths:
         query parameter to control which fields are returned in the response body.
         Additionally, you can filter results by using query string parameters.
         For information, see [Filtering and Column Selection](https://wiki.openstack.org/wiki/Neutron/APIv2-specification#Filtering_and_Column_Selection). If Neutron configuration supports
-        pagination by overriding allow\_pagination = false, the `marker` query
+        pagination by overriding allow_pagination = false, the `marker` query
         parameter can set the last element id the client has seen and `limit`
         set the maximum number of items to return. if Neutron configuration has
-        allow\_sorting = true, `sort\_key` and `sort\_dir` pairs can be used
+        allow_sorting = true, `sort_key` and `sort_dir` pairs can be used
         where sort direction is ‘asc’ or ‘desc’.
 
         Normal response codes: 200
@@ -1283,7 +1283,7 @@ paths:
 
         This operation establishes a new flavor.
 
-        The service\_type to which the flavor applies is a required
+        The service_type to which the flavor applies is a required
         parameter. The corresponding service plugin must have been
         activated as part of the configuration.
         Check [Service providers](#list-service-providers) for how to see
@@ -1372,7 +1372,7 @@ paths:
       description: |+
         Updates a flavor.
 
-        The service\_type cannot be updated as there may be associated
+        The service_type cannot be updated as there may be associated
         service profiles and consumers depending on the value.
 
         Normal response codes: 200
@@ -1949,7 +1949,7 @@ paths:
         By default, this operation associates the floating IP address with
         a single fixed IP address that is configured on an OpenStack
         Networking port. If a port has multiple IP addresses, you must
-        specify the `fixed\_ip\_address` attribute in the request body to
+        specify the `fixed_ip_address` attribute in the request body to
         associate a fixed IP address with the floating IP address.
 
         You can create floating IPs on only external networks. When you
@@ -2002,7 +2002,7 @@ paths:
 
         This example request shows details for a floating IP in JSON
         format. This example also filters the result by the
-        `fixed\_ip\_address` and `floating\_ip\_address` fields.
+        `fixed_ip_address` and `floating_ip_address` fields.
 
         Normal response codes: 200
 
@@ -2043,7 +2043,7 @@ paths:
         The association process is the same as the process for the create
         floating IP operation.
 
-        To disassociate a floating IP from a port, set the `port\_id`
+        To disassociate a floating IP from a port, set the `port_id`
         attribute to null or omit it from the request body.
 
         This example updates a floating IP:
@@ -4686,8 +4686,8 @@ paths:
       description: |+
         Lists OpenStack Networking security groups to which the project has access.
 
-        The response is an array of `security\_group` objects which contains a list of
-        `security\_group\_rules` objects.
+        The response is an array of `security_group` objects which contains a list of
+        `security_group_rules` objects.
 
         Use the `fields` query parameter to control which fields are
         returned in the response body. Additionally, you can filter results
@@ -6102,19 +6102,19 @@ paths:
         Creates a subnet on a network.
 
         OpenStack Networking does not try to derive the correct IP version
-        from the CIDR. If you do not specify the `gateway\_ip` attribute,
+        from the CIDR. If you do not specify the `gateway_ip` attribute,
         OpenStack Networking allocates an address from the CIDR for the
         gateway for the subnet.
 
-        To specify a subnet without a gateway, set the `gateway\_ip`
+        To specify a subnet without a gateway, set the `gateway_ip`
         attribute to `null` in the request body. If you do not specify
-        the `allocation\_pools` attribute, OpenStack Networking
+        the `allocation_pools` attribute, OpenStack Networking
         automatically allocates pools for covering all IP addresses in the
         CIDR, excluding the address reserved for the subnet gateway.
         Otherwise, you can explicitly specify allocation pools as shown in
         the following example.
 
-        When you specify both the `allocation\_pools` and `gateway\_ip`
+        When you specify both the `allocation_pools` and `gateway_ip`
         attributes, you must ensure that the gateway IP does not overlap
         with the allocation pools; otherwise, the call returns the
         `Conflict (409)` response code.
@@ -6124,13 +6124,13 @@ paths:
         this subnet, not including the local subnet route, use the host
         routes.
 
-        Specify the `ipv6\_ra\_mode` and `ipv6\_address\_mode` attributes
+        Specify the `ipv6_ra_mode` and `ipv6_address_mode` attributes
         to create subnets that support IPv6 configurations, such as
         stateless address autoconfiguration (SLAAC), DHCPv6 stateful, and
         DHCPv6 stateless configurations.
 
         A subnet can optionally be associated with a network segment when
-        it is created by specifying the `segment\_id` of a valid segment
+        it is created by specifying the `segment_id` of a valid segment
         on the specified network. A network with subnets associated in this
         way is called a routed network. On any given network, all of the
         subnets must be associated with segments or none of them can be.
@@ -6192,9 +6192,9 @@ paths:
         and Column Selection](https://wiki.openstack.org/wiki/Neutron/APIv2-specification#Filtering_and_Column_Selection).
 
         If the `ip-substring-filtering` extension is enabled, the Neutron API
-        supports IP address substring filtering on the `fixed\_ips` attribute.
-        If you specify an IP address substring (`ip\_address\_substr`) in
-        an entry of the `fixed\_ips` attribute, the Neutron API will list all
+        supports IP address substring filtering on the `fixed_ips` attribute.
+        If you specify an IP address substring (`ip_address_substr`) in
+        an entry of the `fixed_ips` attribute, the Neutron API will list all
         ports that have an IP address matching the substring.
 
         Normal response codes: 200
@@ -6217,7 +6217,7 @@ paths:
         Creates a port on a network.
 
         To define the network in which to create the port, specify the
-        `network\_id` attribute in the request body.
+        `network_id` attribute in the request body.
 
         Normal response codes: 201
 
@@ -6349,8 +6349,8 @@ paths:
       description: |+
         Updates a subnet.
 
-        Some attributes, such as IP version (ip\_version), CIDR (cidr), and
-        segment (segment\_id) cannot be updated. Attempting to update these
+        Some attributes, such as IP version (ip_version), CIDR (cidr), and
+        segment (segment_id) cannot be updated. Attempting to update these
         attributes results in a `400 Bad Request` error.
 
         Normal response codes: 200
@@ -6425,7 +6425,7 @@ paths:
         and associated IPs. When you update IPs for a port, any previously
         associated IPs are removed, returned to the respective subnet
         allocation pools, and replaced by the IPs in the request body.
-        Therefore, this operation replaces the `fixed\_ip` attribute when
+        Therefore, this operation replaces the `fixed_ip` attribute when
         you specify it in the request body. If the updated IP addresses are
         not valid or are already in use, the operation fails and the
         existing IP addresses are not removed from the port.
@@ -6433,7 +6433,7 @@ paths:
         When you update security groups for a port and the operation
         succeeds, any associated security groups are removed and replaced
         by the security groups in the request body. Therefore, this
-        operation replaces the `security\_groups` attribute when you
+        operation replaces the `security_groups` attribute when you
         specify it in the request body. If the security groups are not
         valid, the operation fails and the existing security groups are not
         removed from the port.
@@ -6442,7 +6442,7 @@ paths:
         in the response.
 
         Only admins and users with a specific role can update the data plane status
-        (default role: `data\_plane\_integrator`).
+        (default role: `data_plane_integrator`).
 
         Normal response codes: 200
 
@@ -6469,8 +6469,8 @@ paths:
       - $ref: '#/components/parameters/ports_port_id'
     put:
       description: |+
-        Atomically adds a set of allowed\_address\_pairs to the port’s already
-        existing allowed\_address\_pairs.
+        Atomically adds a set of allowed_address_pairs to the port’s already
+        existing allowed_address_pairs.
 
         Normal response codes: 200
 
@@ -6639,7 +6639,7 @@ paths:
         The service is associated with a router. After you create the
         service, it can contain multiple VPN connections.
 
-        An optional `flavor\_id` attribute can be passed to enable dynamic
+        An optional `flavor_id` attribute can be passed to enable dynamic
         selection of an appropriate provider if configured by the operator.
         It is only available when `vpn-flavors` extension is enabled.
         The basic selection algorithm chooses the provider in the first
@@ -6714,7 +6714,7 @@ paths:
         Updates a VPN service.
 
         Updates the attributes of a VPN service. You cannot update a
-        service with a `PENDING\_\*` status.
+        service with a `PENDING_\*` status.
 
         Normal response codes: 200
 
@@ -7417,7 +7417,7 @@ components:
                 By default, only administrative users can change this value.
 
             ip_version:
-              type: string
+              type: integer
               enum:
                 - 4
                 - 6
@@ -7460,7 +7460,7 @@ components:
                 Indicates whether this resource is shared across all projects.
 
             ip_version:
-              type: string
+              type: integer
               enum:
                 - 4
                 - 6
@@ -7506,7 +7506,7 @@ components:
                   Indicates whether this resource is shared across all projects.
 
               ip_version:
-                type: string
+                type: integer
                 enum:
                   - 4
                   - 6
@@ -7575,7 +7575,7 @@ components:
                 Indicates whether this resource is shared across all projects.
 
             ip_version:
-              type: string
+              type: integer
               enum:
                 - 4
                 - 6
@@ -7619,7 +7619,7 @@ components:
                 Indicates whether this resource is shared across all projects.
 
             ip_version:
-              type: string
+              type: integer
               enum:
                 - 4
                 - 6
@@ -7708,7 +7708,7 @@ components:
                 type: string
                 description: |+
                   The name of AMQP topic the agent is listening on such as
-                  `dhcp\_agent`. A special value of `N/A` is used when the
+                  `dhcp_agent`. A special value of `N/A` is used when the
                   agent doesn’t use an AMQP topic.
 
               host:
@@ -7831,7 +7831,7 @@ components:
               type: string
               description: |+
                 The name of AMQP topic the agent is listening on such as
-                `dhcp\_agent`. A special value of `N/A` is used when the
+                `dhcp_agent`. A special value of `N/A` is used when the
                 agent doesn’t use an AMQP topic.
 
             host:
@@ -7929,7 +7929,7 @@ components:
               type: string
               description: |+
                 The name of AMQP topic the agent is listening on such as
-                `dhcp\_agent`. A special value of `N/A` is used when the
+                `dhcp_agent`. A special value of `N/A` is used when the
                 agent doesn’t use an AMQP topic.
 
             host:
@@ -8193,8 +8193,8 @@ components:
               description: |+
                 The external gateway information of the router.
                 If the router has an external gateway, this would be a dict with
-                `network\_id`, `enable\_snat`, `external\_fixed\_ips` and
-                `qos\_policy\_id`.
+                `network_id`, `enable_snat`, `external_fixed_ips` and
+                `qos_policy_id`.
                 Otherwise, this would be `null`.
 
             ha:
@@ -8213,7 +8213,7 @@ components:
                 - 'null'
               description: |+
                 Enable NDP proxy attribute. Default is `false`, To persist this attribute
-                value, set the `enable\_ndp\_proxy\_by\_default` option in the
+                value, set the `enable_ndp_proxy_by_default` option in the
                 `neutron.conf` file. It is available when `router-extend-ndp-proxy`
                 extension is enabled.
 
@@ -8228,7 +8228,7 @@ components:
                 type: string
               description: |+
                 The availability zone candidates for the router.
-                It is available when `router\_availability\_zone` extension is enabled.
+                It is available when `router_availability_zone` extension is enabled.
 
             distributed:
               type:
@@ -8310,9 +8310,9 @@ components:
               description: |+
                 The external gateway information of the router.
                 If the router has an external gateway, this would be a dict with
-                `network\_id`, `enable\_snat`, `external\_fixed\_ips`,
-                `qos\_policy\_id`, `enable\_default\_route\_ecmp` and
-                `enable\_default\_route\_bfd`.
+                `network_id`, `enable_snat`, `external_fixed_ips`,
+                `qos_policy_id`, `enable_default_route_ecmp` and
+                `enable_default_route_bfd`.
                 Otherwise, this would be `null`.
 
             ha:
@@ -8332,9 +8332,9 @@ components:
               description: |+
                 Enable NDP proxy attribute. `true` means NDP proxy is enabled for the
                 router, the IPv6 address of internal subnets attached to the router can be
-                published to external by create `ndp\_proxy`. `false` means NDP proxy is
+                published to external by create `ndp_proxy`. `false` means NDP proxy is
                 disabled, the IPv6 address of internal subnets attached to the router can
-                not be published to external by `ndp\_proxy`. It is available when
+                not be published to external by `ndp_proxy`. It is available when
                 `router-extend-ndp-proxy` extension is enabled.
 
             flavor_id:
@@ -8353,7 +8353,7 @@ components:
                 type: string
               description: |+
                 The availability zone(s) for the router.
-                It is available when `router\_availability\_zone` extension is enabled.
+                It is available when `router_availability_zone` extension is enabled.
 
             availability_zone_hints:
               type: array
@@ -8361,7 +8361,7 @@ components:
                 type: string
               description: |+
                 The availability zone candidates for the router.
-                It is available when `router\_availability\_zone` extension is enabled.
+                It is available when `router_availability_zone` extension is enabled.
 
             tags:
               type: array
@@ -8492,9 +8492,9 @@ components:
                 description: |+
                   The external gateway information of the router.
                   If the router has an external gateway, this would be a dict with
-                  `network\_id`, `enable\_snat`, `external\_fixed\_ips`,
-                  `qos\_policy\_id`, `enable\_default\_route\_ecmp` and
-                  `enable\_default\_route\_bfd`.
+                  `network_id`, `enable_snat`, `external_fixed_ips`,
+                  `qos_policy_id`, `enable_default_route_ecmp` and
+                  `enable_default_route_bfd`.
                   Otherwise, this would be `null`.
 
               ha:
@@ -8514,9 +8514,9 @@ components:
                 description: |+
                   Enable NDP proxy attribute. `true` means NDP proxy is enabled for the
                   router, the IPv6 address of internal subnets attached to the router can be
-                  published to external by create `ndp\_proxy`. `false` means NDP proxy is
+                  published to external by create `ndp_proxy`. `false` means NDP proxy is
                   disabled, the IPv6 address of internal subnets attached to the router can
-                  not be published to external by `ndp\_proxy`. It is available when
+                  not be published to external by `ndp_proxy`. It is available when
                   `router-extend-ndp-proxy` extension is enabled.
 
               flavor_id:
@@ -8535,7 +8535,7 @@ components:
                   type: string
                 description: |+
                   The availability zone(s) for the router.
-                  It is available when `router\_availability\_zone` extension is enabled.
+                  It is available when `router_availability_zone` extension is enabled.
 
               availability_zone_hints:
                 type: array
@@ -8543,7 +8543,7 @@ components:
                   type: string
                 description: |+
                   The availability zone candidates for the router.
-                  It is available when `router\_availability\_zone` extension is enabled.
+                  It is available when `router_availability_zone` extension is enabled.
 
               tags:
                 type: array
@@ -8697,8 +8697,8 @@ components:
               description: |+
                 The external gateway information of the router.
                 If the router has an external gateway, this would be a dict with
-                `network\_id`, `enable\_snat`, `external\_fixed\_ips` and
-                `qos\_policy\_id`.
+                `network_id`, `enable_snat`, `external_fixed_ips` and
+                `qos_policy_id`.
                 Otherwise, this would be `null`.
 
             ha:
@@ -8717,7 +8717,7 @@ components:
                 - 'null'
               description: |+
                 Enable NDP proxy attribute. Default is `false`, To persist this attribute
-                value, set the `enable\_ndp\_proxy\_by\_default` option in the
+                value, set the `enable_ndp_proxy_by_default` option in the
                 `neutron.conf` file. It is available when `router-extend-ndp-proxy`
                 extension is enabled.
 
@@ -8816,9 +8816,9 @@ components:
               description: |+
                 The external gateway information of the router.
                 If the router has an external gateway, this would be a dict with
-                `network\_id`, `enable\_snat`, `external\_fixed\_ips`,
-                `qos\_policy\_id`, `enable\_default\_route\_ecmp` and
-                `enable\_default\_route\_bfd`.
+                `network_id`, `enable_snat`, `external_fixed_ips`,
+                `qos_policy_id`, `enable_default_route_ecmp` and
+                `enable_default_route_bfd`.
                 Otherwise, this would be `null`.
 
             ha:
@@ -8838,9 +8838,9 @@ components:
               description: |+
                 Enable NDP proxy attribute. `true` means NDP proxy is enabled for the
                 router, the IPv6 address of internal subnets attached to the router can be
-                published to external by create `ndp\_proxy`. `false` means NDP proxy is
+                published to external by create `ndp_proxy`. `false` means NDP proxy is
                 disabled, the IPv6 address of internal subnets attached to the router can
-                not be published to external by `ndp\_proxy`. It is available when
+                not be published to external by `ndp_proxy`. It is available when
                 `router-extend-ndp-proxy` extension is enabled.
 
             flavor_id:
@@ -8859,7 +8859,7 @@ components:
                 type: string
               description: |+
                 The availability zone(s) for the router.
-                It is available when `router\_availability\_zone` extension is enabled.
+                It is available when `router_availability_zone` extension is enabled.
 
             availability_zone_hints:
               type: array
@@ -8867,7 +8867,7 @@ components:
                 type: string
               description: |+
                 The availability zone candidates for the router.
-                It is available when `router\_availability\_zone` extension is enabled.
+                It is available when `router_availability_zone` extension is enabled.
 
             tags:
               type: array
@@ -8996,9 +8996,9 @@ components:
               description: |+
                 The external gateway information of the router.
                 If the router has an external gateway, this would be a dict with
-                `network\_id`, `enable\_snat`, `external\_fixed\_ips`,
-                `qos\_policy\_id`, `enable\_default\_route\_ecmp` and
-                `enable\_default\_route\_bfd`.
+                `network_id`, `enable_snat`, `external_fixed_ips`,
+                `qos_policy_id`, `enable_default_route_ecmp` and
+                `enable_default_route_bfd`.
                 Otherwise, this would be `null`.
 
             ha:
@@ -9018,9 +9018,9 @@ components:
               description: |+
                 Enable NDP proxy attribute. `true` means NDP proxy is enabled for the
                 router, the IPv6 address of internal subnets attached to the router can be
-                published to external by create `ndp\_proxy`. `false` means NDP proxy is
+                published to external by create `ndp_proxy`. `false` means NDP proxy is
                 disabled, the IPv6 address of internal subnets attached to the router can
-                not be published to external by `ndp\_proxy`. It is available when
+                not be published to external by `ndp_proxy`. It is available when
                 `router-extend-ndp-proxy` extension is enabled.
 
             flavor_id:
@@ -9039,7 +9039,7 @@ components:
                 type: string
               description: |+
                 The availability zone(s) for the router.
-                It is available when `router\_availability\_zone` extension is enabled.
+                It is available when `router_availability_zone` extension is enabled.
 
             availability_zone_hints:
               type: array
@@ -9047,7 +9047,7 @@ components:
                 type: string
               description: |+
                 The availability zone candidates for the router.
-                It is available when `router\_availability\_zone` extension is enabled.
+                It is available when `router_availability_zone` extension is enabled.
 
             tags:
               type: array
@@ -9454,7 +9454,7 @@ components:
                 Default is `true`.
 
           description: |+
-            A `service\_profile` object.
+            A `service_profile` object.
 
     Service_ProfilesCreateResponse:
       type: object
@@ -9501,7 +9501,7 @@ components:
                 Default is `true`.
 
           description: |+
-            A `service\_profile` object.
+            A `service_profile` object.
 
     Service_ProfilesIndexResponse:
       type: object
@@ -9589,7 +9589,7 @@ components:
                 Default is `true`.
 
           description: |+
-            A `service\_profile` object.
+            A `service_profile` object.
 
     Service_ProfileUpdateResponse:
       type: object
@@ -9636,7 +9636,7 @@ components:
                 Default is `true`.
 
           description: |+
-            A `service\_profile` object.
+            A `service_profile` object.
 
     Service_ProfileShowResponse:
       type: object
@@ -9683,7 +9683,7 @@ components:
                 Default is `true`.
 
           description: |+
-            A `service\_profile` object.
+            A `service_profile` object.
 
     FlavorsNext_ProvidersCreateRequest:
       type: object
@@ -9785,7 +9785,7 @@ components:
               type: string
               maxLength: 255
           description: |+
-            A `service\_profile` object.
+            A `service_profile` object.
 
     FlavorsService_ProfilesCreateResponse:
       type: object
@@ -9804,7 +9804,7 @@ components:
               type: string
               maxLength: 255
           description: |+
-            A `service\_profile` object.
+            A `service_profile` object.
 
     FlavorsService_ProfilesIndexResponse:
       type: object
@@ -10498,7 +10498,7 @@ components:
                 The fixed IP address that is associated with the floating IP.
                 If an internal port has multiple associated IP addresses,
                 the service chooses the first IP address unless you explicitly
-                define a fixed IP address in the `fixed\_ip\_address` parameter.
+                define a fixed IP address in the `fixed_ip_address` parameter.
 
             tenant_id:
               type: string
@@ -10650,8 +10650,8 @@ components:
                 The information of the port that this floating IP associates with.
                 In particular, if the floating IP is associated with a port, this field
                 contains some attributes of the associated port, including `name`,
-                `network\_id`, `mac\_address`, `admin\_state\_up`, `status`,
-                `device\_id` and `device\_owner`. If the floating IP is not associated
+                `network_id`, `mac_address`, `admin_state_up`, `status`,
+                `device_id` and `device_owner`. If the floating IP is not associated
                 with a port, this field is `null`.
 
             port_forwardings:
@@ -10661,10 +10661,10 @@ components:
                 floating IP has multiple port forwarding resources, this field has
                 multiple entries. Each entry consists of network IP protocol
                 (`protocol`), the fixed IP address of internal neutron port
-                (`internal\_ip\_address`), the TCP or UDP port or port range used by
-                internal neutron port (`internal\_port`) or (`internal\_port\_range`)
+                (`internal_ip_address`), the TCP or UDP port or port range used by
+                internal neutron port (`internal_port`) or (`internal_port_range`)
                 and the TCP or UDP port or port range used by floating IP
-                (`external\_port`) or (`external\_port\_range`).
+                (`external_port`) or (`external_port_range`).
 
             description:
               type: string
@@ -10788,8 +10788,8 @@ components:
                   The information of the port that this floating IP associates with.
                   In particular, if the floating IP is associated with a port, this field
                   contains some attributes of the associated port, including `name`,
-                  `network\_id`, `mac\_address`, `admin\_state\_up`, `status`,
-                  `device\_id` and `device\_owner`. If the floating IP is not associated
+                  `network_id`, `mac_address`, `admin_state_up`, `status`,
+                  `device_id` and `device_owner`. If the floating IP is not associated
                   with a port, this field is `null`.
 
               port_forwardings:
@@ -10799,10 +10799,10 @@ components:
                   floating IP has multiple port forwarding resources, this field has
                   multiple entries. Each entry consists of network IP protocol
                   (`protocol`), the fixed IP address of internal neutron port
-                  (`internal\_ip\_address`), the TCP or UDP port or port range used by
-                  internal neutron port (`internal\_port`) or (`internal\_port\_range`)
+                  (`internal_ip_address`), the TCP or UDP port or port range used by
+                  internal neutron port (`internal_port`) or (`internal_port_range`)
                   and the TCP or UDP port or port range used by floating IP
-                  (`external\_port`) or (`external\_port\_range`).
+                  (`external_port`) or (`external_port_range`).
 
               description:
                 type: string
@@ -10837,7 +10837,7 @@ components:
                 The fixed IP address that is associated with the floating IP.
                 If an internal port has multiple associated IP addresses,
                 the service chooses the first IP address unless you explicitly
-                define a fixed IP address in the `fixed\_ip\_address` parameter.
+                define a fixed IP address in the `fixed_ip_address` parameter.
 
             qos_policy_id:
               type:
@@ -10965,8 +10965,8 @@ components:
                 The information of the port that this floating IP associates with.
                 In particular, if the floating IP is associated with a port, this field
                 contains some attributes of the associated port, including `name`,
-                `network\_id`, `mac\_address`, `admin\_state\_up`, `status`,
-                `device\_id` and `device\_owner`. If the floating IP is not associated
+                `network_id`, `mac_address`, `admin_state_up`, `status`,
+                `device_id` and `device_owner`. If the floating IP is not associated
                 with a port, this field is `null`.
 
             port_forwardings:
@@ -10976,10 +10976,10 @@ components:
                 floating IP has multiple port forwarding resources, this field has
                 multiple entries. Each entry consists of network IP protocol
                 (`protocol`), the fixed IP address of internal neutron port
-                (`internal\_ip\_address`), the TCP or UDP port or port range used by
-                internal neutron port (`internal\_port`) or (`internal\_port\_range`)
+                (`internal_ip_address`), the TCP or UDP port or port range used by
+                internal neutron port (`internal_port`) or (`internal_port_range`)
                 and the TCP or UDP port or port range used by floating IP
-                (`external\_port`) or (`external\_port\_range`).
+                (`external_port`) or (`external_port_range`).
 
             description:
               type: string
@@ -11101,8 +11101,8 @@ components:
                 The information of the port that this floating IP associates with.
                 In particular, if the floating IP is associated with a port, this field
                 contains some attributes of the associated port, including `name`,
-                `network\_id`, `mac\_address`, `admin\_state\_up`, `status`,
-                `device\_id` and `device\_owner`. If the floating IP is not associated
+                `network_id`, `mac_address`, `admin_state_up`, `status`,
+                `device_id` and `device_owner`. If the floating IP is not associated
                 with a port, this field is `null`.
 
             port_forwardings:
@@ -11112,10 +11112,10 @@ components:
                 floating IP has multiple port forwarding resources, this field has
                 multiple entries. Each entry consists of network IP protocol
                 (`protocol`), the fixed IP address of internal neutron port
-                (`internal\_ip\_address`), the TCP or UDP port or port range used by
-                internal neutron port (`internal\_port`) or (`internal\_port\_range`)
+                (`internal_ip_address`), the TCP or UDP port or port range used by
+                internal neutron port (`internal_port`) or (`internal_port_range`)
                 and the TCP or UDP port or port range used by floating IP
-                (`external\_port`) or (`external\_port\_range`).
+                (`external_port`) or (`external_port_range`).
 
             description:
               type: string
@@ -11926,7 +11926,7 @@ components:
               type: string
               maxLength: 255
               description: |+
-                The resource log type such as ‘security\_group’.
+                The resource log type such as ‘security_group’.
 
             resource_id:
               type:
@@ -12002,7 +12002,7 @@ components:
               type: string
               maxLength: 255
               description: |+
-                The resource log type such as ‘security\_group’.
+                The resource log type such as ‘security_group’.
 
             resource_id:
               type:
@@ -12092,7 +12092,7 @@ components:
                 type: string
                 maxLength: 255
                 description: |+
-                  The resource log type such as ‘security\_group’.
+                  The resource log type such as ‘security_group’.
 
               resource_id:
                 type:
@@ -12211,7 +12211,7 @@ components:
               type: string
               maxLength: 255
               description: |+
-                The resource log type such as ‘security\_group’.
+                The resource log type such as ‘security_group’.
 
             resource_id:
               type:
@@ -12299,7 +12299,7 @@ components:
               type: string
               maxLength: 255
               description: |+
-                The resource log type such as ‘security\_group’.
+                The resource log type such as ‘security_group’.
 
             resource_id:
               type:
@@ -12386,10 +12386,10 @@ components:
               type:
                 type: string
                 description: |+
-                  The resource log type such as ‘security\_group’.
+                  The resource log type such as ‘security_group’.
 
           description: |+
-            A list of `loggable\_resource` object.
+            A list of `loggable_resource` object.
 
     LogLoggable_ResourceUpdateRequest:
       type: object
@@ -12455,7 +12455,7 @@ components:
                 across all projects.
 
           description: |+
-            A `metering\_label` object.
+            A `metering_label` object.
 
     MeteringMetering_LabelsCreateResponse:
       type: object
@@ -12496,7 +12496,7 @@ components:
                 across all projects.
 
           description: |+
-            A `metering\_label` object.
+            A `metering_label` object.
 
     MeteringMetering_LabelsIndexResponse:
       type: object
@@ -12539,7 +12539,7 @@ components:
                   across all projects.
 
           description: |+
-            A list of `metering\_label` objects.
+            A list of `metering_label` objects.
 
     MeteringMetering_LabelUpdateRequest:
       type: object
@@ -12609,7 +12609,7 @@ components:
                 across all projects.
 
           description: |+
-            A `metering\_label` object.
+            A `metering_label` object.
 
     MeteringMetering_Label_RulesCreateRequest:
       type: object
@@ -12640,7 +12640,7 @@ components:
                 - boolean
               description: |+
                 Indicates whether to count the traffic of a specific IP address with the
-                `remote\_ip\_prefix`, `source\_ip\_prefix`, or `destination\_ip\_prefix`
+                `remote_ip_prefix`, `source_ip_prefix`, or `destination_ip_prefix`
                 values. Default is `false`.
 
             remote_ip_prefix:
@@ -12658,7 +12658,7 @@ components:
             destination_ip_prefix:
               type: string
           description: |+
-            A `metering\_label\_rule` object.
+            A `metering_label_rule` object.
 
     MeteringMetering_Label_RulesCreateResponse:
       type: object
@@ -12694,7 +12694,7 @@ components:
                 - boolean
               description: |+
                 Indicates whether to count the traffic of a specific IP address with the
-                `remote\_ip\_prefix`, `source\_ip\_prefix`, or `destination\_ip\_prefix`
+                `remote_ip_prefix`, `source_ip_prefix`, or `destination_ip_prefix`
                 values.
 
             remote_ip_prefix:
@@ -12712,7 +12712,7 @@ components:
             destination_ip_prefix:
               type: string
           description: |+
-            A `metering\_label\_rule` object.
+            A `metering_label_rule` object.
 
     MeteringMetering_Label_RulesIndexResponse:
       type: object
@@ -12750,7 +12750,7 @@ components:
                   - boolean
                 description: |+
                   Indicates whether to count the traffic of a specific IP address with the
-                  `remote\_ip\_prefix`, `source\_ip\_prefix`, or `destination\_ip\_prefix`
+                  `remote_ip_prefix`, `source_ip_prefix`, or `destination_ip_prefix`
                   values.
 
               remote_ip_prefix:
@@ -12768,7 +12768,7 @@ components:
               destination_ip_prefix:
                 type: string
           description: |+
-            A list of `metering\_label\_rule` objects.
+            A list of `metering_label_rule` objects.
 
     MeteringMetering_Label_RuleUpdateRequest:
       type: object
@@ -12909,7 +12909,7 @@ components:
                   It contains information for every subnet associated to the network.
 
           description: |+
-            The `network\_ip\_availabilities` object.
+            The `network_ip_availabilities` object.
 
     Network_Ip_AvailabilityUpdateRequest:
       type: object
@@ -12977,7 +12977,7 @@ components:
                 It contains information for every subnet associated to the network.
 
           description: |+
-            A `network\_ip\_availability` object.
+            A `network_ip_availability` object.
 
     Network_Segment_RangesCreateRequest:
       type: object
@@ -13363,23 +13363,23 @@ components:
                   An API consumer like nova can use this to determine an appropriate way to
                   attach a device (for example an interface of a virtual server) to the port.
                   Available values currently defined includes
-                  `ovs`, `bridge`, `macvtap`, `hw\_veb`, `hostdev\_physical`,
+                  `ovs`, `bridge`, `macvtap`, `hw_veb`, `hostdev_physical`,
                   `vhostuser`, `distributed` and `other`.
-                  There are also special values: `unbound` and `binding\_failed`.
+                  There are also special values: `unbound` and `binding_failed`.
                   `unbound` means the port is
-                  not bound to a networking back-end. `binding\_failed` means an error
+                  not bound to a networking back-end. `binding_failed` means an error
                   that the port failed to be bound to a networking back-end.
 
               vif_details:
                 type: string
                 description: |+
                   A dictionary which contains additional information on the port.
-                  Currently the following fields are defined: `port\_filter` and
-                  `ovs\_hybrid\_plug`.
-                  `port\_filter` is a boolean indicating the networking service
+                  Currently the following fields are defined: `port_filter` and
+                  `ovs_hybrid_plug`.
+                  `port_filter` is a boolean indicating the networking service
                   provides port filtering features such as security group and/or
                   anti MAC/IP spoofing.
-                  `ovs\_hybrid\_plug` is a boolean used to inform an API consumer
+                  `ovs_hybrid_plug` is a boolean used to inform an API consumer
                   like nova that the hybrid plugging strategy for OVS should be used.
 
               vnic_type:
@@ -13954,7 +13954,7 @@ components:
               drivers:
                 type: string
           description: |+
-            A list of QoS `rule\_type` objects.
+            A list of QoS `rule_type` objects.
 
     QosRule_TypeUpdateRequest:
       type: object
@@ -14002,13 +14002,13 @@ components:
                 List of loaded QoS drivers with supported
                 rule type parameters with possible values for each.
                 Each driver is represented by a dict with the keys
-                `name` and `supported\_parameters`.
+                `name` and `supported_parameters`.
                 Field `name` contains the name of a backend driver.
-                Field `supported\_parameters` contains a list of dicts with
-                `parameter\_name`, `parameter\_type` and `parameter\_values`
+                Field `supported_parameters` contains a list of dicts with
+                `parameter_name`, `parameter_type` and `parameter_values`
                 fields.
-                The valid values for `parameter\_type` are `choices` or `range`.
-                If `parameter\_type` is `choices` then `parameter\_values`
+                The valid values for `parameter_type` are `choices` or `range`.
+                If `parameter_type` is `choices` then `parameter_values`
                 contains a list of acceptable values, otherwise it contains
                 a dict with keys of `start` and `end` which define the range
                 of acceptable values.
@@ -14029,7 +14029,7 @@ components:
               maximum: 2147483647
               description: |+
                 The maximum KBPS (kilobits per second) value. If you specify this
-                value, must be greater than 0 otherwise max\_kbps will have no value.
+                value, must be greater than 0 otherwise max_kbps will have no value.
 
             max_burst_kbps:
               type: number
@@ -14051,7 +14051,7 @@ components:
                 Default value is `egress`.
 
           description: |+
-            A `bandwidth\_limit\_rule` object.
+            A `bandwidth_limit_rule` object.
 
     QosPoliciesBandwidth_Limit_RulesCreateResponse:
       type: object
@@ -14075,7 +14075,7 @@ components:
               maximum: 2147483647
               description: |+
                 The maximum KBPS (kilobits per second) value. If you specify this
-                value, must be greater than 0 otherwise max\_kbps will have no value.
+                value, must be greater than 0 otherwise max_kbps will have no value.
 
             max_burst_kbps:
               type: number
@@ -14097,7 +14097,7 @@ components:
                 Default value is `egress`.
 
           description: |+
-            A `bandwidth\_limit\_rule` object.
+            A `bandwidth_limit_rule` object.
 
     QosPoliciesBandwidth_Limit_RulesIndexResponse:
       type: object
@@ -14123,7 +14123,7 @@ components:
                 maximum: 2147483647
                 description: |+
                   The maximum KBPS (kilobits per second) value. If you specify this
-                  value, must be greater than 0 otherwise max\_kbps will have no value.
+                  value, must be greater than 0 otherwise max_kbps will have no value.
 
               max_burst_kbps:
                 type: number
@@ -14162,7 +14162,7 @@ components:
               maximum: 2147483647
               description: |+
                 The maximum KBPS (kilobits per second) value. If you specify this
-                value, must be greater than 0 otherwise max\_kbps will have no value.
+                value, must be greater than 0 otherwise max_kbps will have no value.
 
             max_burst_kbps:
               type: number
@@ -14183,7 +14183,7 @@ components:
                 Valid values are `egress` and `ingress`.
 
           description: |+
-            A `bandwidth\_limit\_rule` object.
+            A `bandwidth_limit_rule` object.
 
     QosPoliciesBandwidth_Limit_RuleUpdateResponse:
       type: object
@@ -14207,7 +14207,7 @@ components:
               maximum: 2147483647
               description: |+
                 The maximum KBPS (kilobits per second) value. If you specify this
-                value, must be greater than 0 otherwise max\_kbps will have no value.
+                value, must be greater than 0 otherwise max_kbps will have no value.
 
             max_burst_kbps:
               type: number
@@ -14228,7 +14228,7 @@ components:
                 Valid values are `egress` and `ingress`.
 
           description: |+
-            A `bandwidth\_limit\_rule` object.
+            A `bandwidth_limit_rule` object.
 
     QosPoliciesBandwidth_Limit_RuleShowResponse:
       type: object
@@ -14252,7 +14252,7 @@ components:
               maximum: 2147483647
               description: |+
                 The maximum KBPS (kilobits per second) value. If you specify this
-                value, must be greater than 0 otherwise max\_kbps will have no value.
+                value, must be greater than 0 otherwise max_kbps will have no value.
 
             max_burst_kbps:
               type: number
@@ -14274,7 +14274,7 @@ components:
                 Default value is `egress`.
 
           description: |+
-            A `bandwidth\_limit\_rule` object.
+            A `bandwidth_limit_rule` object.
 
     QosPoliciesDscp_Marking_RulesCreateRequest:
       type: object
@@ -14286,7 +14286,7 @@ components:
             tenant_id:
               type: string
             dscp_mark:
-              type: string
+              type: integer
               enum:
                 - 0
                 - 8
@@ -14314,7 +14314,7 @@ components:
                 The DSCP mark value.
 
           description: |+
-            A `dscp\_marking\_rule` object.
+            A `dscp_marking_rule` object.
 
     QosPoliciesDscp_Marking_RulesCreateResponse:
       type: object
@@ -14333,7 +14333,7 @@ components:
             tenant_id:
               type: string
             dscp_mark:
-              type: string
+              type: integer
               enum:
                 - 0
                 - 8
@@ -14361,7 +14361,7 @@ components:
                 The DSCP mark value.
 
           description: |+
-            A `dscp\_marking\_rule` object.
+            A `dscp_marking_rule` object.
 
     QosPoliciesDscp_Marking_RulesIndexResponse:
       type: object
@@ -14381,7 +14381,7 @@ components:
               tenant_id:
                 type: string
               dscp_mark:
-                type: string
+                type: integer
                 enum:
                   - 0
                   - 8
@@ -14409,7 +14409,7 @@ components:
                   The DSCP mark value.
 
           description: |+
-            A list of `dscp\_marking\_rule` objects.
+            A list of `dscp_marking_rule` objects.
 
     QosPoliciesDscp_Marking_RuleUpdateRequest:
       type: object
@@ -14420,7 +14420,7 @@ components:
           type: object
           properties:
             dscp_mark:
-              type: string
+              type: integer
               enum:
                 - 0
                 - 8
@@ -14448,7 +14448,7 @@ components:
                 The DSCP mark value.
 
           description: |+
-            A `dscp\_marking\_rule` object.
+            A `dscp_marking_rule` object.
 
     QosPoliciesDscp_Marking_RuleUpdateResponse:
       type: object
@@ -14467,7 +14467,7 @@ components:
             tenant_id:
               type: string
             dscp_mark:
-              type: string
+              type: integer
               enum:
                 - 0
                 - 8
@@ -14495,7 +14495,7 @@ components:
                 The DSCP mark value.
 
           description: |+
-            A `dscp\_marking\_rule` object.
+            A `dscp_marking_rule` object.
 
     QosPoliciesDscp_Marking_RuleShowResponse:
       type: object
@@ -14514,7 +14514,7 @@ components:
             tenant_id:
               type: string
             dscp_mark:
-              type: string
+              type: integer
               enum:
                 - 0
                 - 8
@@ -14542,7 +14542,7 @@ components:
                 The DSCP mark value.
 
           description: |+
-            A `dscp\_marking\_rule` object.
+            A `dscp_marking_rule` object.
 
     QosPoliciesMinimum_Bandwidth_RulesCreateRequest:
       type: object
@@ -14575,7 +14575,7 @@ components:
                 Default value is `egress`.
 
           description: |+
-            A `minimum\_bandwidth\_rule` object.
+            A `minimum_bandwidth_rule` object.
 
     QosPoliciesMinimum_Bandwidth_RulesCreateResponse:
       type: object
@@ -14614,7 +14614,7 @@ components:
                 Default value is `egress`.
 
           description: |+
-            A `minimum\_bandwidth\_rule` object.
+            A `minimum_bandwidth_rule` object.
 
     QosPoliciesMinimum_Bandwidth_RulesIndexResponse:
       type: object
@@ -14655,7 +14655,7 @@ components:
                   Default value is `egress`.
 
           description: |+
-            A list of `minimum\_bandwidth\_rule` objects associated with
+            A list of `minimum_bandwidth_rule` objects associated with
             the QoS policy.
 
     QosPoliciesMinimum_Bandwidth_RuleUpdateRequest:
@@ -14686,7 +14686,7 @@ components:
                 Valid values are `egress` and `ingress`.
 
           description: |+
-            A `minimum\_bandwidth\_rule` object.
+            A `minimum_bandwidth_rule` object.
 
     QosPoliciesMinimum_Bandwidth_RuleUpdateResponse:
       type: object
@@ -14724,7 +14724,7 @@ components:
                 Valid values are `egress` and `ingress`.
 
           description: |+
-            A `minimum\_bandwidth\_rule` object.
+            A `minimum_bandwidth_rule` object.
 
     QosPoliciesMinimum_Bandwidth_RuleShowResponse:
       type: object
@@ -14763,7 +14763,7 @@ components:
                 Default value is `egress`.
 
           description: |+
-            A `minimum\_bandwidth\_rule` object.
+            A `minimum_bandwidth_rule` object.
 
     QosPoliciesMinimum_Packet_Rate_RulesCreateRequest:
       type: object
@@ -15312,7 +15312,7 @@ components:
             tenant_id:
               type: string
             dscp_mark:
-              type: string
+              type: integer
               enum:
                 - 0
                 - 8
@@ -15351,7 +15351,7 @@ components:
               tenant_id:
                 type: string
               dscp_mark:
-                type: string
+                type: integer
                 enum:
                   - 0
                   - 8
@@ -15383,7 +15383,7 @@ components:
           type: object
           properties:
             dscp_mark:
-              type: string
+              type: integer
               enum:
                 - 0
                 - 8
@@ -15420,7 +15420,7 @@ components:
             tenant_id:
               type: string
             dscp_mark:
-              type: string
+              type: integer
               enum:
                 - 0
                 - 8
@@ -15457,7 +15457,7 @@ components:
             tenant_id:
               type: string
             dscp_mark:
-              type: string
+              type: integer
               enum:
                 - 0
                 - 8
@@ -16082,12 +16082,12 @@ components:
               type: string
               format: uuid
               description: |+
-                The ID of the `object\_type` resource. An `object\_type` of `network`
-                returns a network ID, an `object\_type` of `qos-policy` returns a QoS
-                policy ID, an `object\_type` of `security-group` returns a security
-                group ID, an `object\_type` of `address-scope` returns a address scope
-                ID, an `object\_type` of `subnetpool` returns a subnetpool ID and
-                an `object\_type` of `address-group` returns an address group ID.
+                The ID of the `object_type` resource. An `object_type` of `network`
+                returns a network ID, an `object_type` of `qos-policy` returns a QoS
+                policy ID, an `object_type` of `security-group` returns a security
+                group ID, an `object_type` of `address-scope` returns a address scope
+                ID, an `object_type` of `subnetpool` returns a subnetpool ID and
+                an `object_type` of `address-group` returns an address group ID.
 
             target_tenant:
               type: string
@@ -16102,8 +16102,8 @@ components:
               type: string
               maxLength: 255
               description: |+
-                Action for the RBAC policy which is `access\_as\_external` or
-                `access\_as\_shared`.
+                Action for the RBAC policy which is `access_as_external` or
+                `access_as_shared`.
 
     Rbac_PoliciesCreateResponse:
       type: object
@@ -16129,12 +16129,12 @@ components:
               type: string
               format: uuid
               description: |+
-                The ID of the `object\_type` resource. An `object\_type` of `network`
-                returns a network ID, an `object\_type` of `qos-policy` returns a QoS
-                policy ID, an `object\_type` of `security-group` returns a security
-                group ID, an `object\_type` of `address-scope` returns a address scope
-                ID, an `object\_type` of `subnetpool` returns a subnetpool ID and
-                an `object\_type` of `address-group` returns an address group ID.
+                The ID of the `object_type` resource. An `object_type` of `network`
+                returns a network ID, an `object_type` of `qos-policy` returns a QoS
+                policy ID, an `object_type` of `security-group` returns a security
+                group ID, an `object_type` of `address-scope` returns a address scope
+                ID, an `object_type` of `subnetpool` returns a subnetpool ID and
+                an `object_type` of `address-group` returns an address group ID.
 
             target_tenant:
               type: string
@@ -16152,8 +16152,8 @@ components:
               type: string
               maxLength: 255
               description: |+
-                Action for the RBAC policy which is `access\_as\_external` or
-                `access\_as\_shared`.
+                Action for the RBAC policy which is `access_as_external` or
+                `access_as_shared`.
 
     Rbac_PoliciesIndexResponse:
       type: object
@@ -16181,12 +16181,12 @@ components:
                 type: string
                 format: uuid
                 description: |+
-                  The ID of the `object\_type` resource. An `object\_type` of `network`
-                  returns a network ID, an `object\_type` of `qos-policy` returns a QoS
-                  policy ID, an `object\_type` of `security-group` returns a security
-                  group ID, an `object\_type` of `address-scope` returns a address scope
-                  ID, an `object\_type` of `subnetpool` returns a subnetpool ID and
-                  an `object\_type` of `address-group` returns an address group ID.
+                  The ID of the `object_type` resource. An `object_type` of `network`
+                  returns a network ID, an `object_type` of `qos-policy` returns a QoS
+                  policy ID, an `object_type` of `security-group` returns a security
+                  group ID, an `object_type` of `address-scope` returns a address scope
+                  ID, an `object_type` of `subnetpool` returns a subnetpool ID and
+                  an `object_type` of `address-group` returns an address group ID.
 
               target_tenant:
                 type: string
@@ -16204,8 +16204,8 @@ components:
                 type: string
                 maxLength: 255
                 description: |+
-                  Action for the RBAC policy which is `access\_as\_external` or
-                  `access\_as\_shared`.
+                  Action for the RBAC policy which is `access_as_external` or
+                  `access_as_shared`.
 
     Rbac_PolicyUpdateRequest:
       type: object
@@ -16244,12 +16244,12 @@ components:
               type: string
               format: uuid
               description: |+
-                The ID of the `object\_type` resource. An `object\_type` of `network`
-                returns a network ID, an `object\_type` of `qos-policy` returns a QoS
-                policy ID, an `object\_type` of `security-group` returns a security
-                group ID, an `object\_type` of `address-scope` returns a address scope
-                ID, an `object\_type` of `subnetpool` returns a subnetpool ID and
-                an `object\_type` of `address-group` returns an address group ID.
+                The ID of the `object_type` resource. An `object_type` of `network`
+                returns a network ID, an `object_type` of `qos-policy` returns a QoS
+                policy ID, an `object_type` of `security-group` returns a security
+                group ID, an `object_type` of `address-scope` returns a address scope
+                ID, an `object_type` of `subnetpool` returns a subnetpool ID and
+                an `object_type` of `address-group` returns an address group ID.
 
             target_tenant:
               type: string
@@ -16267,8 +16267,8 @@ components:
               type: string
               maxLength: 255
               description: |+
-                Action for the RBAC policy which is `access\_as\_external` or
-                `access\_as\_shared`.
+                Action for the RBAC policy which is `access_as_external` or
+                `access_as_shared`.
 
     Rbac_PolicyShowResponse:
       type: object
@@ -16294,12 +16294,12 @@ components:
               type: string
               format: uuid
               description: |+
-                The ID of the `object\_type` resource. An `object\_type` of `network`
-                returns a network ID, an `object\_type` of `qos-policy` returns a QoS
-                policy ID, an `object\_type` of `security-group` returns a security
-                group ID, an `object\_type` of `address-scope` returns a address scope
-                ID, an `object\_type` of `subnetpool` returns a subnetpool ID and
-                an `object\_type` of `address-group` returns an address group ID.
+                The ID of the `object_type` resource. An `object_type` of `network`
+                returns a network ID, an `object_type` of `qos-policy` returns a QoS
+                policy ID, an `object_type` of `security-group` returns a security
+                group ID, an `object_type` of `address-scope` returns a address scope
+                ID, an `object_type` of `subnetpool` returns a subnetpool ID and
+                an `object_type` of `address-group` returns an address group ID.
 
             target_tenant:
               type: string
@@ -16317,8 +16317,8 @@ components:
               type: string
               maxLength: 255
               description: |+
-                Action for the RBAC policy which is `access\_as\_external` or
-                `access\_as\_shared`.
+                Action for the RBAC policy which is `access_as_external` or
+                `access_as_shared`.
 
     Default_Security_Group_RulesCreateRequest:
       type: object
@@ -16342,7 +16342,7 @@ components:
               description: |+
                 The remote group UUID to associate with this
                 security group rule. You can specify either the
-                `remote\_group\_id` or `remote\_ip\_prefix` attribute in the
+                `remote_group_id` or `remote_ip_prefix` attribute in the
                 request body.
 
             remote_address_group_id:
@@ -16370,7 +16370,7 @@ components:
                 `tcp` or `6`, `udp` or `17`, `udplite` or `136`,
                 `vrrp` or `112`. Additionally, any integer value between [0-255] is
                 also valid. The string `any` (or integer `0`) means `all` IP
-                protocols. See the constants in `neutron\_lib.constants` for the most
+                protocols. See the constants in `neutron_lib.constants` for the most
                 up-to-date list of supported strings.
 
             port_range_min:
@@ -16379,7 +16379,7 @@ components:
                 The minimum port number in the range that is
                 matched by the security group rule. If the protocol is TCP, UDP,
                 DCCP, SCTP or UDP-Lite this value must be less than or equal to
-                the `port\_range\_max` attribute value. If the protocol is ICMP,
+                the `port_range_max` attribute value. If the protocol is ICMP,
                 this value must be an ICMP type.
 
             port_range_max:
@@ -16388,7 +16388,7 @@ components:
                 The maximum port number in the range that is
                 matched by the security group rule. If the protocol is TCP, UDP,
                 DCCP, SCTP or UDP-Lite this value must be greater than or equal to
-                the `port\_range\_min` attribute value. If the protocol is ICMP,
+                the `port_range_min` attribute value. If the protocol is ICMP,
                 this value must be an ICMP code.
 
             ethertype:
@@ -16423,7 +16423,7 @@ components:
                 security groups created by project user. Default value is `True`.
 
           description: |+
-            A `default\_security\_group\_rule` object.
+            A `default_security_group_rule` object.
 
     Default_Security_Group_RulesCreateResponse:
       type: object
@@ -16449,7 +16449,7 @@ components:
               description: |+
                 The remote group UUID to associate with this
                 security group rule. You can specify either the
-                `remote\_group\_id` or `remote\_ip\_prefix` attribute in the
+                `remote_group_id` or `remote_ip_prefix` attribute in the
                 request body.
 
             remote_address_group_id:
@@ -16481,7 +16481,7 @@ components:
                 `tcp` or `6`, `udp` or `17`, `udplite` or `136`,
                 `vrrp` or `112`. Additionally, any integer value between [0-255] is
                 also valid. The string `any` (or integer `0`) means `all` IP
-                protocols. See the constants in `neutron\_lib.constants` for the most
+                protocols. See the constants in `neutron_lib.constants` for the most
                 up-to-date list of supported strings.
 
             port_range_min:
@@ -16490,7 +16490,7 @@ components:
                 The minimum port number in the range that is
                 matched by the security group rule. If the protocol is TCP, UDP,
                 DCCP, SCTP or UDP-Lite this value must be less than or equal to
-                the `port\_range\_max` attribute value. If the protocol is ICMP,
+                the `port_range_max` attribute value. If the protocol is ICMP,
                 this value must be an ICMP type.
 
             port_range_max:
@@ -16499,7 +16499,7 @@ components:
                 The maximum port number in the range that is
                 matched by the security group rule. If the protocol is TCP, UDP,
                 DCCP, SCTP or UDP-Lite this value must be greater than or equal to
-                the `port\_range\_min` attribute value. If the protocol is ICMP,
+                the `port_range_min` attribute value. If the protocol is ICMP,
                 this value must be an ICMP code.
 
             ethertype:
@@ -16585,7 +16585,7 @@ components:
                   `tcp` or `6`, `udp` or `17`, `udplite` or `136`,
                   `vrrp` or `112`. Additionally, any integer value between [0-255] is
                   also valid. The string `any` (or integer `0`) means `all` IP
-                  protocols. See the constants in `neutron\_lib.constants` for the most
+                  protocols. See the constants in `neutron_lib.constants` for the most
                   up-to-date list of supported strings.
 
               port_range_min:
@@ -16594,7 +16594,7 @@ components:
                   The minimum port number in the range that is
                   matched by the security group rule. If the protocol is TCP, UDP,
                   DCCP, SCTP or UDP-Lite this value must be less than or equal to
-                  the `port\_range\_max` attribute value. If the protocol is ICMP,
+                  the `port_range_max` attribute value. If the protocol is ICMP,
                   this value must be an ICMP type.
 
               port_range_max:
@@ -16603,7 +16603,7 @@ components:
                   The maximum port number in the range that is
                   matched by the security group rule. If the protocol is TCP, UDP,
                   DCCP, SCTP or UDP-Lite this value must be greater than or equal to
-                  the `port\_range\_min` attribute value. If the protocol is ICMP,
+                  the `port_range_min` attribute value. If the protocol is ICMP,
                   this value must be an ICMP code.
 
               ethertype:
@@ -16711,7 +16711,7 @@ components:
               description: |+
                 The remote group UUID to associate with this
                 security group rule. You can specify either the
-                `remote\_group\_id` or `remote\_ip\_prefix` attribute in the
+                `remote_group_id` or `remote_ip_prefix` attribute in the
                 request body.
 
             remote_address_group_id:
@@ -16743,7 +16743,7 @@ components:
                 `tcp` or `6`, `udp` or `17`, `udplite` or `136`,
                 `vrrp` or `112`. Additionally, any integer value between [0-255] is
                 also valid. The string `any` (or integer `0`) means `all` IP
-                protocols. See the constants in `neutron\_lib.constants` for the most
+                protocols. See the constants in `neutron_lib.constants` for the most
                 up-to-date list of supported strings.
 
             port_range_min:
@@ -16752,7 +16752,7 @@ components:
                 The minimum port number in the range that is
                 matched by the security group rule. If the protocol is TCP, UDP,
                 DCCP, SCTP or UDP-Lite this value must be less than or equal to
-                the `port\_range\_max` attribute value. If the protocol is ICMP,
+                the `port_range_max` attribute value. If the protocol is ICMP,
                 this value must be an ICMP type.
 
             port_range_max:
@@ -16761,7 +16761,7 @@ components:
                 The maximum port number in the range that is
                 matched by the security group rule. If the protocol is TCP, UDP,
                 DCCP, SCTP or UDP-Lite this value must be greater than or equal to
-                the `port\_range\_min` attribute value. If the protocol is ICMP,
+                the `port_range_min` attribute value. If the protocol is ICMP,
                 this value must be an ICMP code.
 
             ethertype:
@@ -16796,7 +16796,7 @@ components:
                 security groups created by project user. Default value is `True`.
 
           description: |+
-            A `default\_security\_group\_rule` object.
+            A `default_security_group_rule` object.
 
     Security_GroupsCreateRequest:
       type: object
@@ -16832,7 +16832,7 @@ components:
                 Indicates if the security group is stateful or stateless.
 
           description: |+
-            A `security\_group` object.
+            A `security_group` object.
 
     Security_GroupsCreateResponse:
       type: object
@@ -16862,7 +16862,7 @@ components:
             security_group_rules:
               type: string
               description: |+
-                A list of `security\_group\_rule` objects.
+                A list of `security_group_rule` objects.
                 Refer to [Security group rules](#security-group-rules) for details.
 
             revision_number:
@@ -16905,10 +16905,10 @@ components:
                 - string
                 - boolean
               description: |+
-                Indicates whether this security group is shared to the requestor’s project.
+                Indicates whether this security group is shared to the requester’s project.
 
           description: |+
-            A `security\_group` object.
+            A `security_group` object.
 
     Security_GroupsIndexResponse:
       type: object
@@ -16940,7 +16940,7 @@ components:
               security_group_rules:
                 type: string
                 description: |+
-                  A list of `security\_group\_rule` objects.
+                  A list of `security_group_rule` objects.
                   Refer to [Security group rules](#security-group-rules) for details.
 
               revision_number:
@@ -16983,10 +16983,10 @@ components:
                   - string
                   - boolean
                 description: |+
-                  Indicates whether this security group is shared to the requestor’s project.
+                  Indicates whether this security group is shared to the requester’s project.
 
           description: |+
-            A list of `security\_group` objects.
+            A list of `security_group` objects.
 
     Security_GroupUpdateRequest:
       type: object
@@ -17013,7 +17013,7 @@ components:
                 - string
                 - boolean
           description: |+
-            A `security\_group` object.
+            A `security_group` object.
 
     Security_GroupUpdateResponse:
       type: object
@@ -17043,7 +17043,7 @@ components:
             security_group_rules:
               type: string
               description: |+
-                A list of `security\_group\_rule` objects.
+                A list of `security_group_rule` objects.
                 Refer to [Security group rules](#security-group-rules) for details.
 
             revision_number:
@@ -17086,10 +17086,10 @@ components:
                 - string
                 - boolean
               description: |+
-                Indicates whether this security group is shared to the requestor’s project.
+                Indicates whether this security group is shared to the requester’s project.
 
           description: |+
-            A `security\_group` object.
+            A `security_group` object.
 
     Security_GroupShowResponse:
       type: object
@@ -17119,7 +17119,7 @@ components:
             security_group_rules:
               type: string
               description: |+
-                A list of `security\_group\_rule` objects.
+                A list of `security_group_rule` objects.
                 Refer to [Security group rules](#security-group-rules) for details.
 
             revision_number:
@@ -17162,10 +17162,10 @@ components:
                 - string
                 - boolean
               description: |+
-                Indicates whether this security group is shared to the requestor’s project.
+                Indicates whether this security group is shared to the requester’s project.
 
           description: |+
-            A `security\_group` object.
+            A `security_group` object.
 
     Security_Group_RulesCreateRequest:
       type: object
@@ -17186,7 +17186,7 @@ components:
               description: |+
                 The remote group UUID to associate with this
                 security group rule. You can specify either the
-                `remote\_group\_id` or `remote\_ip\_prefix` attribute in the
+                `remote_group_id` or `remote_ip_prefix` attribute in the
                 request body.
 
             direction:
@@ -17212,7 +17212,7 @@ components:
                 `tcp` or `6`, `udp` or `17`, `udplite` or `136`,
                 `vrrp` or `112`. Additionally, any integer value between [0-255] is
                 also valid. The string `any` (or integer `0`) means `all` IP
-                protocols. See the constants in `neutron\_lib.constants` for the most
+                protocols. See the constants in `neutron_lib.constants` for the most
                 up-to-date list of supported strings.
 
             port_range_min:
@@ -17221,7 +17221,7 @@ components:
                 The minimum port number in the range that is
                 matched by the security group rule. If the protocol is TCP, UDP,
                 DCCP, SCTP or UDP-Lite this value must be less than or equal to
-                the `port\_range\_max` attribute value. If the protocol is ICMP,
+                the `port_range_max` attribute value. If the protocol is ICMP,
                 this value must be an ICMP type.
 
             port_range_max:
@@ -17230,7 +17230,7 @@ components:
                 The maximum port number in the range that is
                 matched by the security group rule. If the protocol is TCP, UDP,
                 DCCP, SCTP or UDP-Lite this value must be greater than or equal to
-                the `port\_range\_min` attribute value. If the protocol is ICMP,
+                the `port_range_min` attribute value. If the protocol is ICMP,
                 this value must be an ICMP code.
 
             ethertype:
@@ -17260,7 +17260,7 @@ components:
             remote_address_group_id:
               type: string
           description: |+
-            A `security\_group\_rule` object.
+            A `security_group_rule` object.
 
     Security_Group_RulesCreateResponse:
       type: object
@@ -17287,7 +17287,7 @@ components:
               description: |+
                 The remote group UUID to associate with this
                 security group rule. You can specify either the
-                `remote\_group\_id` or `remote\_ip\_prefix` attribute in the
+                `remote_group_id` or `remote_ip_prefix` attribute in the
                 request body.
 
             direction:
@@ -17313,7 +17313,7 @@ components:
                 `tcp` or `6`, `udp` or `17`, `udplite` or `136`,
                 `vrrp` or `112`. Additionally, any integer value between [0-255] is
                 also valid. The string `any` (or integer `0`) means `all` IP
-                protocols. See the constants in `neutron\_lib.constants` for the most
+                protocols. See the constants in `neutron_lib.constants` for the most
                 up-to-date list of supported strings.
 
             port_range_min:
@@ -17322,7 +17322,7 @@ components:
                 The minimum port number in the range that is
                 matched by the security group rule. If the protocol is TCP, UDP,
                 DCCP, SCTP or UDP-Lite this value must be less than or equal to
-                the `port\_range\_max` attribute value. If the protocol is ICMP,
+                the `port_range_max` attribute value. If the protocol is ICMP,
                 this value must be an ICMP type.
 
             port_range_max:
@@ -17331,7 +17331,7 @@ components:
                 The maximum port number in the range that is
                 matched by the security group rule. If the protocol is TCP, UDP,
                 DCCP, SCTP or UDP-Lite this value must be greater than or equal to
-                the `port\_range\_min` attribute value. If the protocol is ICMP,
+                the `port_range_min` attribute value. If the protocol is ICMP,
                 this value must be an ICMP code.
 
             ethertype:
@@ -17382,7 +17382,7 @@ components:
             remote_address_group_id:
               type: string
           description: |+
-            A `security\_group\_rule` object.
+            A `security_group_rule` object.
 
     Security_Group_RulesIndexResponse:
       type: object
@@ -17411,7 +17411,7 @@ components:
                 description: |+
                   The remote group UUID to associate with this
                   security group rule. You can specify either the
-                  `remote\_group\_id` or `remote\_ip\_prefix` attribute in the
+                  `remote_group_id` or `remote_ip_prefix` attribute in the
                   request body.
 
               direction:
@@ -17437,7 +17437,7 @@ components:
                   `tcp` or `6`, `udp` or `17`, `udplite` or `136`,
                   `vrrp` or `112`. Additionally, any integer value between [0-255] is
                   also valid. The string `any` (or integer `0`) means `all` IP
-                  protocols. See the constants in `neutron\_lib.constants` for the most
+                  protocols. See the constants in `neutron_lib.constants` for the most
                   up-to-date list of supported strings.
 
               port_range_min:
@@ -17446,7 +17446,7 @@ components:
                   The minimum port number in the range that is
                   matched by the security group rule. If the protocol is TCP, UDP,
                   DCCP, SCTP or UDP-Lite this value must be less than or equal to
-                  the `port\_range\_max` attribute value. If the protocol is ICMP,
+                  the `port_range_max` attribute value. If the protocol is ICMP,
                   this value must be an ICMP type.
 
               port_range_max:
@@ -17455,7 +17455,7 @@ components:
                   The maximum port number in the range that is
                   matched by the security group rule. If the protocol is TCP, UDP,
                   DCCP, SCTP or UDP-Lite this value must be greater than or equal to
-                  the `port\_range\_min` attribute value. If the protocol is ICMP,
+                  the `port_range_min` attribute value. If the protocol is ICMP,
                   this value must be an ICMP code.
 
               ethertype:
@@ -17506,7 +17506,7 @@ components:
               remote_address_group_id:
                 type: string
           description: |+
-            A list of `security\_group\_rule` objects.
+            A list of `security_group_rule` objects.
             Refer to [Security group rules](#security-group-rules) for details.
 
     Security_Group_RuleUpdateRequest:
@@ -17595,7 +17595,7 @@ components:
               description: |+
                 The remote group UUID to associate with this
                 security group rule. You can specify either the
-                `remote\_group\_id` or `remote\_ip\_prefix` attribute in the
+                `remote_group_id` or `remote_ip_prefix` attribute in the
                 request body.
 
             direction:
@@ -17621,7 +17621,7 @@ components:
                 `tcp` or `6`, `udp` or `17`, `udplite` or `136`,
                 `vrrp` or `112`. Additionally, any integer value between [0-255] is
                 also valid. The string `any` (or integer `0`) means `all` IP
-                protocols. See the constants in `neutron\_lib.constants` for the most
+                protocols. See the constants in `neutron_lib.constants` for the most
                 up-to-date list of supported strings.
 
             port_range_min:
@@ -17630,7 +17630,7 @@ components:
                 The minimum port number in the range that is
                 matched by the security group rule. If the protocol is TCP, UDP,
                 DCCP, SCTP or UDP-Lite this value must be less than or equal to
-                the `port\_range\_max` attribute value. If the protocol is ICMP,
+                the `port_range_max` attribute value. If the protocol is ICMP,
                 this value must be an ICMP type.
 
             port_range_max:
@@ -17639,7 +17639,7 @@ components:
                 The maximum port number in the range that is
                 matched by the security group rule. If the protocol is TCP, UDP,
                 DCCP, SCTP or UDP-Lite this value must be greater than or equal to
-                the `port\_range\_min` attribute value. If the protocol is ICMP,
+                the `port_range_min` attribute value. If the protocol is ICMP,
                 this value must be an ICMP code.
 
             ethertype:
@@ -17690,7 +17690,7 @@ components:
             remote_address_group_id:
               type: string
           description: |+
-            A `security\_group\_rule` object.
+            A `security_group_rule` object.
 
     SegmentsCreateRequest:
       type: object
@@ -17728,9 +17728,9 @@ components:
                 - integer
               description: |+
                 The ID of the isolated segment on the physical network.
-                The `network\_type` attribute defines the segmentation model.
-                For example, if the `network\_type` value is vlan, this ID is a vlan
-                identifier. If the `network\_type` value is gre, this ID is a gre key.
+                The `network_type` attribute defines the segmentation model.
+                For example, if the `network_type` value is vlan, this ID is a vlan
+                identifier. If the `network_type` value is gre, this ID is a gre key.
                 `Note` that only the segmentation-id of VLAN type networks can be
                 changed!
 
@@ -17788,9 +17788,9 @@ components:
                 - integer
               description: |+
                 The ID of the isolated segment on the physical network.
-                The `network\_type` attribute defines the segmentation model.
-                For example, if the `network\_type` value is vlan, this ID is a vlan
-                identifier. If the `network\_type` value is gre, this ID is a gre key.
+                The `network_type` attribute defines the segmentation model.
+                For example, if the `network_type` value is vlan, this ID is a vlan
+                identifier. If the `network_type` value is gre, this ID is a gre key.
                 `Note` that only the segmentation-id of VLAN type networks can be
                 changed!
 
@@ -17864,9 +17864,9 @@ components:
                   - integer
                 description: |+
                   The ID of the isolated segment on the physical network.
-                  The `network\_type` attribute defines the segmentation model.
-                  For example, if the `network\_type` value is vlan, this ID is a vlan
-                  identifier. If the `network\_type` value is gre, this ID is a gre key.
+                  The `network_type` attribute defines the segmentation model.
+                  For example, if the `network_type` value is vlan, this ID is a vlan
+                  identifier. If the `network_type` value is gre, this ID is a gre key.
                   `Note` that only the segmentation-id of VLAN type networks can be
                   changed!
 
@@ -17960,9 +17960,9 @@ components:
                 - integer
               description: |+
                 The ID of the isolated segment on the physical network.
-                The `network\_type` attribute defines the segmentation model.
-                For example, if the `network\_type` value is vlan, this ID is a vlan
-                identifier. If the `network\_type` value is gre, this ID is a gre key.
+                The `network_type` attribute defines the segmentation model.
+                For example, if the `network_type` value is vlan, this ID is a vlan
+                identifier. If the `network_type` value is gre, this ID is a gre key.
                 `Note` that only the segmentation-id of VLAN type networks can be
                 changed!
 
@@ -18034,9 +18034,9 @@ components:
                 - integer
               description: |+
                 The ID of the isolated segment on the physical network.
-                The `network\_type` attribute defines the segmentation model.
-                For example, if the `network\_type` value is vlan, this ID is a vlan
-                identifier. If the `network\_type` value is gre, this ID is a gre key.
+                The `network_type` attribute defines the segmentation model.
+                For example, if the `network_type` value is vlan, this ID is a vlan
+                identifier. If the `network_type` value is gre, this ID is a gre key.
                 `Note` that only the segmentation-id of VLAN type networks can be
                 changed!
 
@@ -18102,7 +18102,7 @@ components:
                 type: string
                 description: |+
                   The service type, which is `CORE`, `DUMMY`,
-                  `FIREWALL`, `FLAVORS`, `L3\_ROUTER\_NAT`, `METERING`, `QOS`,
+                  `FIREWALL`, `FLAVORS`, `L3_ROUTER_NAT`, `METERING`, `QOS`,
                   or `VPN`.
 
               name:
@@ -18119,7 +18119,7 @@ components:
                   default.
 
           description: |+
-            A list of `service\_provider` objects.
+            A list of `service_provider` objects.
 
     Service_ProviderUpdateRequest:
       type: object
@@ -18191,8 +18191,8 @@ components:
                 A per-project quota on the prefix space that can
                 be allocated from the subnet pool for project subnets. Default is
                 no quota is enforced on allocations from the subnet pool. For IPv4
-                subnet pools, `default\_quota` is measured in units of /32. For
-                IPv6 subnet pools, `default\_quota` is measured units of /64. All
+                subnet pools, `default_quota` is measured in units of /32. For
+                IPv6 subnet pools, `default_quota` is measured units of /64. All
                 projects that use the subnet pool have the same prefix quota
                 applied.
 
@@ -18202,7 +18202,7 @@ components:
               description: |+
                 The size of the prefix to allocate when the
                 `cidr` or `prefixlen` attributes are omitted when you create
-                the subnet. Default is `min\_prefixlen`.
+                the subnet. Default is `min_prefixlen`.
 
             min_prefixlen:
               type: integer
@@ -18296,8 +18296,8 @@ components:
                 A per-project quota on the prefix space that can
                 be allocated from the subnet pool for project subnets. Default is
                 no quota is enforced on allocations from the subnet pool. For IPv4
-                subnet pools, `default\_quota` is measured in units of /32. For
-                IPv6 subnet pools, `default\_quota` is measured units of /64. All
+                subnet pools, `default_quota` is measured in units of /32. For
+                IPv6 subnet pools, `default_quota` is measured units of /64. All
                 projects that use the subnet pool have the same prefix quota
                 applied.
 
@@ -18313,7 +18313,7 @@ components:
               description: |+
                 The size of the prefix to allocate when the
                 `cidr` or `prefixlen` attributes are omitted when you create
-                the subnet. Default is `min\_prefixlen`.
+                the subnet. Default is `min_prefixlen`.
 
             min_prefixlen:
               type: integer
@@ -18430,8 +18430,8 @@ components:
                   A per-project quota on the prefix space that can
                   be allocated from the subnet pool for project subnets. Default is
                   no quota is enforced on allocations from the subnet pool. For IPv4
-                  subnet pools, `default\_quota` is measured in units of /32. For
-                  IPv6 subnet pools, `default\_quota` is measured units of /64. All
+                  subnet pools, `default_quota` is measured in units of /32. For
+                  IPv6 subnet pools, `default_quota` is measured units of /64. All
                   projects that use the subnet pool have the same prefix quota
                   applied.
 
@@ -18447,7 +18447,7 @@ components:
                 description: |+
                   The size of the prefix to allocate when the
                   `cidr` or `prefixlen` attributes are omitted when you create
-                  the subnet. Default is `min\_prefixlen`.
+                  the subnet. Default is `min_prefixlen`.
 
               min_prefixlen:
                 type: integer
@@ -18556,8 +18556,8 @@ components:
                 A per-project quota on the prefix space that can
                 be allocated from the subnet pool for project subnets. Default is
                 no quota is enforced on allocations from the subnet pool. For IPv4
-                subnet pools, `default\_quota` is measured in units of /32. For
-                IPv6 subnet pools, `default\_quota` is measured units of /64. All
+                subnet pools, `default_quota` is measured in units of /32. For
+                IPv6 subnet pools, `default_quota` is measured units of /64. All
                 projects that use the subnet pool have the same prefix quota
                 applied.
 
@@ -18567,7 +18567,7 @@ components:
               description: |+
                 The size of the prefix to allocate when the
                 `cidr` or `prefixlen` attributes are omitted when you create
-                the subnet. Default is `min\_prefixlen`.
+                the subnet. Default is `min_prefixlen`.
 
             min_prefixlen:
               type: integer
@@ -18653,8 +18653,8 @@ components:
                 A per-project quota on the prefix space that can
                 be allocated from the subnet pool for project subnets. Default is
                 no quota is enforced on allocations from the subnet pool. For IPv4
-                subnet pools, `default\_quota` is measured in units of /32. For
-                IPv6 subnet pools, `default\_quota` is measured units of /64. All
+                subnet pools, `default_quota` is measured in units of /32. For
+                IPv6 subnet pools, `default_quota` is measured units of /64. All
                 projects that use the subnet pool have the same prefix quota
                 applied.
 
@@ -18670,7 +18670,7 @@ components:
               description: |+
                 The size of the prefix to allocate when the
                 `cidr` or `prefixlen` attributes are omitted when you create
-                the subnet. Default is `min\_prefixlen`.
+                the subnet. Default is `min_prefixlen`.
 
             min_prefixlen:
               type: integer
@@ -18785,8 +18785,8 @@ components:
                 A per-project quota on the prefix space that can
                 be allocated from the subnet pool for project subnets. Default is
                 no quota is enforced on allocations from the subnet pool. For IPv4
-                subnet pools, `default\_quota` is measured in units of /32. For
-                IPv6 subnet pools, `default\_quota` is measured units of /64. All
+                subnet pools, `default_quota` is measured in units of /32. For
+                IPv6 subnet pools, `default_quota` is measured units of /64. All
                 projects that use the subnet pool have the same prefix quota
                 applied.
 
@@ -18802,7 +18802,7 @@ components:
               description: |+
                 The size of the prefix to allocate when the
                 `cidr` or `prefixlen` attributes are omitted when you create
-                the subnet. Default is `min\_prefixlen`.
+                the subnet. Default is `min_prefixlen`.
 
             min_prefixlen:
               type: integer
@@ -19314,9 +19314,9 @@ components:
                       type: integer
                       description: |+
                         The ID of the isolated segment on the physical network.
-                        The `network\_type` attribute defines the segmentation model.
-                        For example, if the `network\_type` value is vlan, this ID is a vlan
-                        identifier. If the `network\_type` value is gre, this ID is a gre key.
+                        The `network_type` attribute defines the segmentation model.
+                        For example, if the `network_type` value is vlan, this ID is a vlan
+                        identifier. If the `network_type` value is gre, this ID is a gre key.
                         `Note` that only the segmentation-id of VLAN type networks can be
                         changed!
 
@@ -19364,7 +19364,7 @@ components:
                 description: |+
                   The port security status of the network. Valid values are
                   enabled (`true`) and disabled (`false`).
-                  This value is used as the default value of `port\_security\_enabled`
+                  This value is used as the default value of `port_security_enabled`
                   field of a newly created port.
 
               provider:network_type:
@@ -19485,9 +19485,9 @@ components:
                     type: integer
                     description: |+
                       The ID of the isolated segment on the physical network.
-                      The `network\_type` attribute defines the segmentation model.
-                      For example, if the `network\_type` value is vlan, this ID is a vlan
-                      identifier. If the `network\_type` value is gre, this ID is a gre key.
+                      The `network_type` attribute defines the segmentation model.
+                      For example, if the `network_type` value is vlan, this ID is a vlan
+                      identifier. If the `network_type` value is gre, this ID is a gre key.
 
                   provider:physical_network:
                     type: string
@@ -19534,7 +19534,7 @@ components:
               description: |+
                 The port security status of the network. Valid values are
                 enabled (`true`) and disabled (`false`).
-                This value is used as the default value of `port\_security\_enabled`
+                This value is used as the default value of `port_security_enabled`
                 field of a newly created port.
 
             provider:network_type:
@@ -19670,9 +19670,9 @@ components:
                     type: integer
                     description: |+
                       The ID of the isolated segment on the physical network.
-                      The `network\_type` attribute defines the segmentation model.
-                      For example, if the `network\_type` value is vlan, this ID is a vlan
-                      identifier. If the `network\_type` value is gre, this ID is a gre key.
+                      The `network_type` attribute defines the segmentation model.
+                      For example, if the `network_type` value is vlan, this ID is a vlan
+                      identifier. If the `network_type` value is gre, this ID is a gre key.
                       `Note` that only the segmentation-id of VLAN type networks can be
                       changed!
 
@@ -19720,7 +19720,7 @@ components:
               description: |+
                 The port security status of the network. Valid values are
                 enabled (`true`) and disabled (`false`).
-                This value is used as the default value of `port\_security\_enabled`
+                This value is used as the default value of `port_security_enabled`
                 field of a newly created port.
 
             provider:network_type:
@@ -19808,7 +19808,7 @@ components:
                   Human-readable name of the resource.
 
               ip_version:
-                type: string
+                type: integer
                 enum:
                   - 4
                   - 6
@@ -19977,7 +19977,7 @@ components:
                 Human-readable name of the resource. Default is an empty string.
 
             ip_version:
-              type: string
+              type: integer
               enum:
                 - 4
                 - 6
@@ -20002,7 +20002,7 @@ components:
               minimum: 0
               description: |+
                 The prefix length to use for subnet allocation from a subnet pool.
-                If not specified, the `default\_prefixlen` value of the subnet pool
+                If not specified, the `default_prefixlen` value of the subnet pool
                 will be used.
 
             cidr:
@@ -20016,7 +20016,7 @@ components:
               type: string
               description: |+
                 Gateway IP of this subnet. If the value is `null` that implies no
-                gateway is associated with the subnet. If the gateway\_ip is not
+                gateway is associated with the subnet. If the gateway_ip is not
                 specified, OpenStack Networking allocates an address from the CIDR
                 for the gateway for the subnet by default.
 
@@ -20031,7 +20031,7 @@ components:
                     type: string
               description: |+
                 Allocation pools with `start` and `end` IP addresses
-                for this subnet. If allocation\_pools are not specified, OpenStack
+                for this subnet. If allocation_pools are not specified, OpenStack
                 Networking automatically allocates pools for covering all IP addresses
                 in the CIDR, excluding the address reserved for the subnet gateway by
                 default.
@@ -20160,7 +20160,7 @@ components:
                 Human-readable name of the resource.
 
             ip_version:
-              type: string
+              type: integer
               enum:
                 - 4
                 - 6
@@ -20354,7 +20354,7 @@ components:
                 type: string
                 description: |+
                   The MAC address of the port. If the port uses the `direct-physical`
-                  `vnic\_type` then the value of this field is overwritten with the MAC
+                  `vnic_type` then the value of this field is overwritten with the MAC
                   address provided in the active binding:profile if any.
 
               fixed_ips:
@@ -20371,8 +20371,8 @@ components:
                 description: |+
                   The IP addresses for the port. If the port has multiple IP addresses,
                   this field has multiple entries. Each entry consists of IP address
-                  (`ip\_address`) and the subnet ID from which the IP address
-                  is assigned (`subnet\_id`).
+                  (`ip_address`) and the subnet ID from which the IP address
+                  is assigned (`subnet_id`).
 
               device_id:
                 type: string
@@ -20387,7 +20387,7 @@ components:
                 description: |+
                   The entity type that uses this port.
                   For example, `compute:nova` (server instance), `network:dhcp`
-                  (DHCP agent) or `network:router\_interface` (router interface).
+                  (DHCP agent) or `network:router_interface` (router interface).
 
               tenant_id:
                 type: string
@@ -20412,9 +20412,9 @@ components:
                       type: string
                 description: |+
                   A set of zero or more allowed address pair objects each where address pair
-                  object contains an `ip\_address` and `mac\_address`. While the
-                  `ip\_address` is required, the `mac\_address` will be taken from the
-                  port if not specified. The value of `ip\_address` can be an IP Address
+                  object contains an `ip_address` and `mac_address`. While the
+                  `ip_address` is required, the `mac_address` will be taken from the
+                  port if not specified. The value of `ip_address` can be an IP Address
                   or a CIDR (if supported by the underlying extension plugin).
                   A server connected to the port can send a packet with source address which
                   matches one of the specified allowed address pairs.
@@ -20459,7 +20459,7 @@ components:
                   packet steering feature:
 
 
-                  * `{"openvswitch": {"other\_config": {"tx-steering": "hash|thread"}}}`
+                  * `{"openvswitch": {"other_config": {"tx-steering": "hash|thread"}}}`
               numa_affinity_policy:
                 type: string
                 enum:
@@ -20476,18 +20476,18 @@ components:
                 description: |+
                   Expose Placement resources (i.e.: `minimum-bandwidth`) and
                   traits (i.e.: `vnic-type`, `physnet`) requested by a port to
-                  Nova and Placement. A `resource\_request` object contains
-                  `request\_groups` and `same\_subtree` keys. `request\_groups` is a list
+                  Nova and Placement. A `resource_request` object contains
+                  `request_groups` and `same_subtree` keys. `request_groups` is a list
                   of dicts, where each dict represents one group of resources and traits
                   that needs to be fulfilled from a single resource provider. Every dict in
                   the list must contain `id`, `required` and `resources` keys. The
                   `id` field is a string which represents a unique UUID that is generated
-                  for each group by combining the `port\_id` and UUIDs of the QoS rules
+                  for each group by combining the `port_id` and UUIDs of the QoS rules
                   contributing to the group via the UUID5 method. `required` key contains
-                  the traits (generated from the `vnic\_type` and the `physnet`) required
+                  the traits (generated from the `vnic_type` and the `physnet`) required
                   by the port, and a `resources` key contains a mapping of requested
                   resource class name and requested amount from the QoS policy.
-                  `same\_subtree` key contains a list of `id` values from every resource
+                  `same_subtree` key contains a list of `id` values from every resource
                   group.
 
               binding:vif_type:
@@ -20497,23 +20497,23 @@ components:
                   An API consumer like nova can use this to determine an appropriate way to
                   attach a device (for example an interface of a virtual server) to the port.
                   Available values currently defined includes
-                  `ovs`, `bridge`, `macvtap`, `hw\_veb`, `hostdev\_physical`,
+                  `ovs`, `bridge`, `macvtap`, `hw_veb`, `hostdev_physical`,
                   `vhostuser`, `distributed` and `other`.
-                  There are also special values: `unbound` and `binding\_failed`.
+                  There are also special values: `unbound` and `binding_failed`.
                   `unbound` means the port is
-                  not bound to a networking back-end. `binding\_failed` means an error
+                  not bound to a networking back-end. `binding_failed` means an error
                   that the port failed to be bound to a networking back-end.
 
               binding:vif_details:
-                type: string
+                type: object
                 description: |+
                   A dictionary which contains additional information on the port.
-                  Currently the following fields are defined: `port\_filter` and
-                  `ovs\_hybrid\_plug`.
-                  `port\_filter` is a boolean indicating the networking service
+                  Currently the following fields are defined: `port_filter` and
+                  `ovs_hybrid_plug`.
+                  `port_filter` is a boolean indicating the networking service
                   provides port filtering features such as security group and/or
                   anti MAC/IP spoofing.
-                  `ovs\_hybrid\_plug` is a boolean used to inform an API consumer
+                  `ovs_hybrid_plug` is a boolean used to inform an API consumer
                   like nova that the hybrid plugging strategy for OVS should be used.
 
               binding:vnic_type:
@@ -20622,7 +20622,7 @@ components:
                 type: string
                 description: |+
                   Data assigned to a port by the Networking internal DNS including the
-                  `hostname`, `ip\_address` and `fqdn`.
+                  `hostname`, `ip_address` and `fqdn`.
 
               dns_domain:
                 type: string
@@ -20698,8 +20698,8 @@ components:
                 The IP addresses for the port.
                 If you would like to assign multiple IP addresses for the port,
                 specify multiple entries in this field.
-                Each entry consists of IP address (`ip\_address`) and the subnet ID
-                from which the IP address is assigned (`subnet\_id`).
+                Each entry consists of IP address (`ip_address`) and the subnet ID
+                from which the IP address is assigned (`subnet_id`).
 
 
                 * If you specify both a subnet ID and an IP address, OpenStack Networking
@@ -20722,7 +20722,7 @@ components:
               description: |+
                 The entity type that uses this port.
                 For example, `compute:nova` (server instance), `network:dhcp`
-                (DHCP agent) or `network:router\_interface` (router interface).
+                (DHCP agent) or `network:router_interface` (router interface).
 
             tenant_id:
               type: string
@@ -20744,9 +20744,9 @@ components:
                     type: string
               description: |+
                 A set of zero or more allowed address pair objects each where address pair
-                object contains an `ip\_address` and `mac\_address`. While the
-                `ip\_address` is required, the `mac\_address` will be taken from the
-                port if not specified. The value of `ip\_address` can be an IP Address
+                object contains an `ip_address` and `mac_address`. While the
+                `ip_address` is required, the `mac_address` will be taken from the
+                port if not specified. The value of `ip_address` can be an IP Address
                 or a CIDR (if supported by the underlying extension plugin).
                 A server connected to the port can send a packet with source address which
                 matches one of the specified allowed address pairs.
@@ -20777,8 +20777,8 @@ components:
                 control Open vSwitch’s Userspace Tx packet steering feature:
 
 
-                * `{"openvswitch": {"other\_config": {"tx-steering": "hash"}}}`
-                * `{"openvswitch": {"other\_config": {"tx-steering": "thread"}}}`
+                * `{"openvswitch": {"other_config": {"tx-steering": "hash"}}}`
+                * `{"openvswitch": {"other_config": {"tx-steering": "thread"}}}`
 
 
                 If omitted the default is defined by Open vSwitch.
@@ -20840,10 +20840,10 @@ components:
                 The networking API does not define a specific format of this field.
                 The default is an empty dictionary.
                 If you update it with null then it is treated like {} in the response.
-                Since the port-mac-address-override extension the `device\_mac\_address`
+                Since the port-mac-address-override extension the `device_mac_address`
                 field of the binding:profile can be used to provide the MAC address of the
                 physical device a direct-physical port is being bound to. If provided, then
-                the `mac\_address` field of the port resource will be updated to the MAC
+                the `mac_address` field of the port resource will be updated to the MAC
                 from the active binding.
 
             port_security_enabled:
@@ -20947,7 +20947,7 @@ components:
               type: string
               description: |+
                 The MAC address of the port. If the port uses the `direct-physical`
-                `vnic\_type` then the value of this field is overwritten with the MAC
+                `vnic_type` then the value of this field is overwritten with the MAC
                 address provided in the active binding:profile if any.
 
             fixed_ips:
@@ -20964,8 +20964,8 @@ components:
               description: |+
                 The IP addresses for the port. If the port has multiple IP addresses,
                 this field has multiple entries. Each entry consists of IP address
-                (`ip\_address`) and the subnet ID from which the IP address
-                is assigned (`subnet\_id`).
+                (`ip_address`) and the subnet ID from which the IP address
+                is assigned (`subnet_id`).
 
             device_id:
               type: string
@@ -20980,7 +20980,7 @@ components:
               description: |+
                 The entity type that uses this port.
                 For example, `compute:nova` (server instance), `network:dhcp`
-                (DHCP agent) or `network:router\_interface` (router interface).
+                (DHCP agent) or `network:router_interface` (router interface).
 
             tenant_id:
               type: string
@@ -21005,9 +21005,9 @@ components:
                     type: string
               description: |+
                 A set of zero or more allowed address pair objects each where address pair
-                object contains an `ip\_address` and `mac\_address`. While the
-                `ip\_address` is required, the `mac\_address` will be taken from the
-                port if not specified. The value of `ip\_address` can be an IP Address
+                object contains an `ip_address` and `mac_address`. While the
+                `ip_address` is required, the `mac_address` will be taken from the
+                port if not specified. The value of `ip_address` can be an IP Address
                 or a CIDR (if supported by the underlying extension plugin).
                 A server connected to the port can send a packet with source address which
                 matches one of the specified allowed address pairs.
@@ -21052,7 +21052,7 @@ components:
                 packet steering feature:
 
 
-                * `{"openvswitch": {"other\_config": {"tx-steering": "hash|thread"}}}`
+                * `{"openvswitch": {"other_config": {"tx-steering": "hash|thread"}}}`
             numa_affinity_policy:
               type: string
               enum:
@@ -21069,18 +21069,18 @@ components:
               description: |+
                 Expose Placement resources (i.e.: `minimum-bandwidth`) and
                 traits (i.e.: `vnic-type`, `physnet`) requested by a port to
-                Nova and Placement. A `resource\_request` object contains
-                `request\_groups` and `same\_subtree` keys. `request\_groups` is a list
+                Nova and Placement. A `resource_request` object contains
+                `request_groups` and `same_subtree` keys. `request_groups` is a list
                 of dicts, where each dict represents one group of resources and traits
                 that needs to be fulfilled from a single resource provider. Every dict in
                 the list must contain `id`, `required` and `resources` keys. The
                 `id` field is a string which represents a unique UUID that is generated
-                for each group by combining the `port\_id` and UUIDs of the QoS rules
+                for each group by combining the `port_id` and UUIDs of the QoS rules
                 contributing to the group via the UUID5 method. `required` key contains
-                the traits (generated from the `vnic\_type` and the `physnet`) required
+                the traits (generated from the `vnic_type` and the `physnet`) required
                 by the port, and a `resources` key contains a mapping of requested
                 resource class name and requested amount from the QoS policy.
-                `same\_subtree` key contains a list of `id` values from every resource
+                `same_subtree` key contains a list of `id` values from every resource
                 group.
 
             binding:vif_type:
@@ -21090,23 +21090,23 @@ components:
                 An API consumer like nova can use this to determine an appropriate way to
                 attach a device (for example an interface of a virtual server) to the port.
                 Available values currently defined includes
-                `ovs`, `bridge`, `macvtap`, `hw\_veb`, `hostdev\_physical`,
+                `ovs`, `bridge`, `macvtap`, `hw_veb`, `hostdev_physical`,
                 `vhostuser`, `distributed` and `other`.
-                There are also special values: `unbound` and `binding\_failed`.
+                There are also special values: `unbound` and `binding_failed`.
                 `unbound` means the port is
-                not bound to a networking back-end. `binding\_failed` means an error
+                not bound to a networking back-end. `binding_failed` means an error
                 that the port failed to be bound to a networking back-end.
 
             binding:vif_details:
-              type: string
+              type: object
               description: |+
                 A dictionary which contains additional information on the port.
-                Currently the following fields are defined: `port\_filter` and
-                `ovs\_hybrid\_plug`.
-                `port\_filter` is a boolean indicating the networking service
+                Currently the following fields are defined: `port_filter` and
+                `ovs_hybrid_plug`.
+                `port_filter` is a boolean indicating the networking service
                 provides port filtering features such as security group and/or
                 anti MAC/IP spoofing.
-                `ovs\_hybrid\_plug` is a boolean used to inform an API consumer
+                `ovs_hybrid_plug` is a boolean used to inform an API consumer
                 like nova that the hybrid plugging strategy for OVS should be used.
 
             binding:vnic_type:
@@ -21215,7 +21215,7 @@ components:
               type: string
               description: |+
                 Data assigned to a port by the Networking internal DNS including the
-                `hostname`, `ip\_address` and `fqdn`.
+                `hostname`, `ip_address` and `fqdn`.
 
             dns_domain:
               type: string
@@ -21332,9 +21332,9 @@ components:
                     type: integer
                     description: |+
                       The ID of the isolated segment on the physical network.
-                      The `network\_type` attribute defines the segmentation model.
-                      For example, if the `network\_type` value is vlan, this ID is a vlan
-                      identifier. If the `network\_type` value is gre, this ID is a gre key.
+                      The `network_type` attribute defines the segmentation model.
+                      For example, if the `network_type` value is vlan, this ID is a vlan
+                      identifier. If the `network_type` value is gre, this ID is a gre key.
                       `Note` that only the segmentation-id of VLAN type networks can be
                       changed!
 
@@ -21382,7 +21382,7 @@ components:
               description: |+
                 The port security status of the network. Valid values are
                 enabled (`true`) and disabled (`false`).
-                This value is used as the default value of `port\_security\_enabled`
+                This value is used as the default value of `port_security_enabled`
                 field of a newly created port.
 
             provider:network_type:
@@ -21494,9 +21494,9 @@ components:
                     type: integer
                     description: |+
                       The ID of the isolated segment on the physical network.
-                      The `network\_type` attribute defines the segmentation model.
-                      For example, if the `network\_type` value is vlan, this ID is a vlan
-                      identifier. If the `network\_type` value is gre, this ID is a gre key.
+                      The `network_type` attribute defines the segmentation model.
+                      For example, if the `network_type` value is vlan, this ID is a vlan
+                      identifier. If the `network_type` value is gre, this ID is a gre key.
                       `Note` that only the segmentation-id of VLAN type networks can be
                       changed!
 
@@ -21530,7 +21530,7 @@ components:
               description: |+
                 The port security status of the network. Valid values are
                 enabled (`true`) and disabled (`false`).
-                This value is used as the default value of `port\_security\_enabled`
+                This value is used as the default value of `port_security_enabled`
                 field of a newly created port.
 
             provider:network_type:
@@ -21666,9 +21666,9 @@ components:
                     type: integer
                     description: |+
                       The ID of the isolated segment on the physical network.
-                      The `network\_type` attribute defines the segmentation model.
-                      For example, if the `network\_type` value is vlan, this ID is a vlan
-                      identifier. If the `network\_type` value is gre, this ID is a gre key.
+                      The `network_type` attribute defines the segmentation model.
+                      For example, if the `network_type` value is vlan, this ID is a vlan
+                      identifier. If the `network_type` value is gre, this ID is a gre key.
                       `Note` that only the segmentation-id of VLAN type networks can be
                       changed!
 
@@ -21716,7 +21716,7 @@ components:
               description: |+
                 The port security status of the network. Valid values are
                 enabled (`true`) and disabled (`false`).
-                This value is used as the default value of `port\_security\_enabled`
+                This value is used as the default value of `port_security_enabled`
                 field of a newly created port.
 
             provider:network_type:
@@ -21802,7 +21802,7 @@ components:
                 Human-readable name of the resource.
 
             ip_version:
-              type: string
+              type: integer
               enum:
                 - 4
                 - 6
@@ -21974,7 +21974,7 @@ components:
               type: string
               description: |+
                 Gateway IP of this subnet. If the value is `null` that implies no
-                gateway is associated with the subnet. If the gateway\_ip is not
+                gateway is associated with the subnet. If the gateway_ip is not
                 specified, OpenStack Networking allocates an address from the CIDR
                 for the gateway for the subnet by default.
 
@@ -21989,7 +21989,7 @@ components:
                     type: string
               description: |+
                 Allocation pools with `start` and `end` IP addresses
-                for this subnet. If allocation\_pools are not specified, OpenStack
+                for this subnet. If allocation_pools are not specified, OpenStack
                 Networking automatically allocates pools for covering all IP addresses
                 in the CIDR, excluding the address reserved for the subnet gateway by
                 default.
@@ -22075,7 +22075,7 @@ components:
                 Human-readable name of the resource.
 
             ip_version:
-              type: string
+              type: integer
               enum:
                 - 4
                 - 6
@@ -22267,7 +22267,7 @@ components:
               type: string
               description: |+
                 The MAC address of the port. If the port uses the `direct-physical`
-                `vnic\_type` then the value of this field is overwritten with the MAC
+                `vnic_type` then the value of this field is overwritten with the MAC
                 address provided in the active binding:profile if any.
 
             fixed_ips:
@@ -22284,8 +22284,8 @@ components:
               description: |+
                 The IP addresses for the port. If the port has multiple IP addresses,
                 this field has multiple entries. Each entry consists of IP address
-                (`ip\_address`) and the subnet ID from which the IP address
-                is assigned (`subnet\_id`).
+                (`ip_address`) and the subnet ID from which the IP address
+                is assigned (`subnet_id`).
 
             device_id:
               type: string
@@ -22300,7 +22300,7 @@ components:
               description: |+
                 The entity type that uses this port.
                 For example, `compute:nova` (server instance), `network:dhcp`
-                (DHCP agent) or `network:router\_interface` (router interface).
+                (DHCP agent) or `network:router_interface` (router interface).
 
             tenant_id:
               type: string
@@ -22325,9 +22325,9 @@ components:
                     type: string
               description: |+
                 A set of zero or more allowed address pair objects each where address pair
-                object contains an `ip\_address` and `mac\_address`. While the
-                `ip\_address` is required, the `mac\_address` will be taken from the
-                port if not specified. The value of `ip\_address` can be an IP Address
+                object contains an `ip_address` and `mac_address`. While the
+                `ip_address` is required, the `mac_address` will be taken from the
+                port if not specified. The value of `ip_address` can be an IP Address
                 or a CIDR (if supported by the underlying extension plugin).
                 A server connected to the port can send a packet with source address which
                 matches one of the specified allowed address pairs.
@@ -22372,7 +22372,7 @@ components:
                 packet steering feature:
 
 
-                * `{"openvswitch": {"other\_config": {"tx-steering": "hash|thread"}}}`
+                * `{"openvswitch": {"other_config": {"tx-steering": "hash|thread"}}}`
             numa_affinity_policy:
               type: string
               enum:
@@ -22389,18 +22389,18 @@ components:
               description: |+
                 Expose Placement resources (i.e.: `minimum-bandwidth`) and
                 traits (i.e.: `vnic-type`, `physnet`) requested by a port to
-                Nova and Placement. A `resource\_request` object contains
-                `request\_groups` and `same\_subtree` keys. `request\_groups` is a list
+                Nova and Placement. A `resource_request` object contains
+                `request_groups` and `same_subtree` keys. `request_groups` is a list
                 of dicts, where each dict represents one group of resources and traits
                 that needs to be fulfilled from a single resource provider. Every dict in
                 the list must contain `id`, `required` and `resources` keys. The
                 `id` field is a string which represents a unique UUID that is generated
-                for each group by combining the `port\_id` and UUIDs of the QoS rules
+                for each group by combining the `port_id` and UUIDs of the QoS rules
                 contributing to the group via the UUID5 method. `required` key contains
-                the traits (generated from the `vnic\_type` and the `physnet`) required
+                the traits (generated from the `vnic_type` and the `physnet`) required
                 by the port, and a `resources` key contains a mapping of requested
                 resource class name and requested amount from the QoS policy.
-                `same\_subtree` key contains a list of `id` values from every resource
+                `same_subtree` key contains a list of `id` values from every resource
                 group.
 
             binding:vif_type:
@@ -22410,23 +22410,23 @@ components:
                 An API consumer like nova can use this to determine an appropriate way to
                 attach a device (for example an interface of a virtual server) to the port.
                 Available values currently defined includes
-                `ovs`, `bridge`, `macvtap`, `hw\_veb`, `hostdev\_physical`,
+                `ovs`, `bridge`, `macvtap`, `hw_veb`, `hostdev_physical`,
                 `vhostuser`, `distributed` and `other`.
-                There are also special values: `unbound` and `binding\_failed`.
+                There are also special values: `unbound` and `binding_failed`.
                 `unbound` means the port is
-                not bound to a networking back-end. `binding\_failed` means an error
+                not bound to a networking back-end. `binding_failed` means an error
                 that the port failed to be bound to a networking back-end.
 
             binding:vif_details:
-              type: string
+              type: object
               description: |+
                 A dictionary which contains additional information on the port.
-                Currently the following fields are defined: `port\_filter` and
-                `ovs\_hybrid\_plug`.
-                `port\_filter` is a boolean indicating the networking service
+                Currently the following fields are defined: `port_filter` and
+                `ovs_hybrid_plug`.
+                `port_filter` is a boolean indicating the networking service
                 provides port filtering features such as security group and/or
                 anti MAC/IP spoofing.
-                `ovs\_hybrid\_plug` is a boolean used to inform an API consumer
+                `ovs_hybrid_plug` is a boolean used to inform an API consumer
                 like nova that the hybrid plugging strategy for OVS should be used.
 
             binding:vnic_type:
@@ -22535,7 +22535,7 @@ components:
               type: string
               description: |+
                 Data assigned to a port by the Networking internal DNS including the
-                `hostname`, `ip\_address` and `fqdn`.
+                `hostname`, `ip_address` and `fqdn`.
 
             dns_domain:
               type: string
@@ -22606,8 +22606,8 @@ components:
                 The IP addresses for the port.
                 If you would like to assign multiple IP addresses for the port,
                 specify multiple entries in this field.
-                Each entry consists of IP address (`ip\_address`) and the subnet ID
-                from which the IP address is assigned (`subnet\_id`).
+                Each entry consists of IP address (`ip_address`) and the subnet ID
+                from which the IP address is assigned (`subnet_id`).
 
 
                 * If you specify both a subnet ID and an IP address, OpenStack Networking
@@ -22630,7 +22630,7 @@ components:
               description: |+
                 The entity type that uses this port.
                 For example, `compute:nova` (server instance), `network:dhcp`
-                (DHCP agent) or `network:router\_interface` (router interface).
+                (DHCP agent) or `network:router_interface` (router interface).
 
             allowed_address_pairs:
               type: array
@@ -22643,9 +22643,9 @@ components:
                     type: string
               description: |+
                 A set of zero or more allowed address pair objects each where address pair
-                object contains an `ip\_address` and `mac\_address`. While the
-                `ip\_address` is required, the `mac\_address` will be taken from the
-                port if not specified. The value of `ip\_address` can be an IP Address
+                object contains an `ip_address` and `mac_address`. While the
+                `ip_address` is required, the `mac_address` will be taken from the
+                port if not specified. The value of `ip_address` can be an IP Address
                 or a CIDR (if supported by the underlying extension plugin).
                 A server connected to the port can send a packet with source address which
                 matches one of the specified allowed address pairs.
@@ -22680,8 +22680,8 @@ components:
                 control Open vSwitch’s Userspace Tx packet steering feature:
 
 
-                * `{"openvswitch": {"other\_config": {"tx-steering": "hash"}}}`
-                * `{"openvswitch": {"other\_config": {"tx-steering": "thread"}}}`
+                * `{"openvswitch": {"other_config": {"tx-steering": "hash"}}}`
+                * `{"openvswitch": {"other_config": {"tx-steering": "thread"}}}`
 
 
                 If omitted the default is defined by Open vSwitch.
@@ -22743,10 +22743,10 @@ components:
                 The networking API does not define a specific format of this field.
                 The default is an empty dictionary.
                 If you update it with null then it is treated like {} in the response.
-                Since the port-mac-address-override extension the `device\_mac\_address`
+                Since the port-mac-address-override extension the `device_mac_address`
                 field of the binding:profile can be used to provide the MAC address of the
                 physical device a direct-physical port is being bound to. If provided, then
-                the `mac\_address` field of the port resource will be updated to the MAC
+                the `mac_address` field of the port resource will be updated to the MAC
                 from the active binding.
 
             port_security_enabled:
@@ -22837,7 +22837,7 @@ components:
               type: string
               description: |+
                 The MAC address of the port. If the port uses the `direct-physical`
-                `vnic\_type` then the value of this field is overwritten with the MAC
+                `vnic_type` then the value of this field is overwritten with the MAC
                 address provided in the active binding:profile if any.
 
             fixed_ips:
@@ -22854,8 +22854,8 @@ components:
               description: |+
                 The IP addresses for the port. If the port has multiple IP addresses,
                 this field has multiple entries. Each entry consists of IP address
-                (`ip\_address`) and the subnet ID from which the IP address
-                is assigned (`subnet\_id`).
+                (`ip_address`) and the subnet ID from which the IP address
+                is assigned (`subnet_id`).
 
             device_id:
               type: string
@@ -22870,7 +22870,7 @@ components:
               description: |+
                 The entity type that uses this port.
                 For example, `compute:nova` (server instance), `network:dhcp`
-                (DHCP agent) or `network:router\_interface` (router interface).
+                (DHCP agent) or `network:router_interface` (router interface).
 
             tenant_id:
               type: string
@@ -22895,9 +22895,9 @@ components:
                     type: string
               description: |+
                 A set of zero or more allowed address pair objects each where address pair
-                object contains an `ip\_address` and `mac\_address`. While the
-                `ip\_address` is required, the `mac\_address` will be taken from the
-                port if not specified. The value of `ip\_address` can be an IP Address
+                object contains an `ip_address` and `mac_address`. While the
+                `ip_address` is required, the `mac_address` will be taken from the
+                port if not specified. The value of `ip_address` can be an IP Address
                 or a CIDR (if supported by the underlying extension plugin).
                 A server connected to the port can send a packet with source address which
                 matches one of the specified allowed address pairs.
@@ -22942,7 +22942,7 @@ components:
                 packet steering feature:
 
 
-                * `{"openvswitch": {"other\_config": {"tx-steering": "hash|thread"}}}`
+                * `{"openvswitch": {"other_config": {"tx-steering": "hash|thread"}}}`
             numa_affinity_policy:
               type: string
               enum:
@@ -22959,18 +22959,18 @@ components:
               description: |+
                 Expose Placement resources (i.e.: `minimum-bandwidth`) and
                 traits (i.e.: `vnic-type`, `physnet`) requested by a port to
-                Nova and Placement. A `resource\_request` object contains
-                `request\_groups` and `same\_subtree` keys. `request\_groups` is a list
+                Nova and Placement. A `resource_request` object contains
+                `request_groups` and `same_subtree` keys. `request_groups` is a list
                 of dicts, where each dict represents one group of resources and traits
                 that needs to be fulfilled from a single resource provider. Every dict in
                 the list must contain `id`, `required` and `resources` keys. The
                 `id` field is a string which represents a unique UUID that is generated
-                for each group by combining the `port\_id` and UUIDs of the QoS rules
+                for each group by combining the `port_id` and UUIDs of the QoS rules
                 contributing to the group via the UUID5 method. `required` key contains
-                the traits (generated from the `vnic\_type` and the `physnet`) required
+                the traits (generated from the `vnic_type` and the `physnet`) required
                 by the port, and a `resources` key contains a mapping of requested
                 resource class name and requested amount from the QoS policy.
-                `same\_subtree` key contains a list of `id` values from every resource
+                `same_subtree` key contains a list of `id` values from every resource
                 group.
 
             binding:vif_type:
@@ -22980,23 +22980,23 @@ components:
                 An API consumer like nova can use this to determine an appropriate way to
                 attach a device (for example an interface of a virtual server) to the port.
                 Available values currently defined includes
-                `ovs`, `bridge`, `macvtap`, `hw\_veb`, `hostdev\_physical`,
+                `ovs`, `bridge`, `macvtap`, `hw_veb`, `hostdev_physical`,
                 `vhostuser`, `distributed` and `other`.
-                There are also special values: `unbound` and `binding\_failed`.
+                There are also special values: `unbound` and `binding_failed`.
                 `unbound` means the port is
-                not bound to a networking back-end. `binding\_failed` means an error
+                not bound to a networking back-end. `binding_failed` means an error
                 that the port failed to be bound to a networking back-end.
 
             binding:vif_details:
-              type: string
+              type: object
               description: |+
                 A dictionary which contains additional information on the port.
-                Currently the following fields are defined: `port\_filter` and
-                `ovs\_hybrid\_plug`.
-                `port\_filter` is a boolean indicating the networking service
+                Currently the following fields are defined: `port_filter` and
+                `ovs_hybrid_plug`.
+                `port_filter` is a boolean indicating the networking service
                 provides port filtering features such as security group and/or
                 anti MAC/IP spoofing.
-                `ovs\_hybrid\_plug` is a boolean used to inform an API consumer
+                `ovs_hybrid_plug` is a boolean used to inform an API consumer
                 like nova that the hybrid plugging strategy for OVS should be used.
 
             binding:vnic_type:
@@ -23105,7 +23105,7 @@ components:
               type: string
               description: |+
                 Data assigned to a port by the Networking internal DNS including the
-                `hostname`, `ip\_address` and `fqdn`.
+                `hostname`, `ip_address` and `fqdn`.
 
             dns_domain:
               type: string
@@ -23563,7 +23563,7 @@ components:
               description: |+
                 Indicates whether IPsec VPN service is currently
                 operational. Values are `ACTIVE`, `DOWN`, `BUILD`, `ERROR`,
-                `PENDING\_CREATE`, `PENDING\_UPDATE`, or `PENDING\_DELETE`.
+                `PENDING_CREATE`, `PENDING_UPDATE`, or `PENDING_DELETE`.
 
             flavor_id:
               type:
@@ -23652,7 +23652,7 @@ components:
                 description: |+
                   Indicates whether IPsec VPN service is currently
                   operational. Values are `ACTIVE`, `DOWN`, `BUILD`, `ERROR`,
-                  `PENDING\_CREATE`, `PENDING\_UPDATE`, or `PENDING\_DELETE`.
+                  `PENDING_CREATE`, `PENDING_UPDATE`, or `PENDING_DELETE`.
 
               flavor_id:
                 type:
@@ -23771,7 +23771,7 @@ components:
               description: |+
                 Indicates whether IPsec VPN service is currently
                 operational. Values are `ACTIVE`, `DOWN`, `BUILD`, `ERROR`,
-                `PENDING\_CREATE`, `PENDING\_UPDATE`, or `PENDING\_DELETE`.
+                `PENDING_CREATE`, `PENDING_UPDATE`, or `PENDING_DELETE`.
 
             flavor_id:
               type:
@@ -23858,7 +23858,7 @@ components:
               description: |+
                 Indicates whether IPsec VPN service is currently
                 operational. Values are `ACTIVE`, `DOWN`, `BUILD`, `ERROR`,
-                `PENDING\_CREATE`, `PENDING\_UPDATE`, or `PENDING\_DELETE`.
+                `PENDING_CREATE`, `PENDING_UPDATE`, or `PENDING_DELETE`.
 
             flavor_id:
               type:
@@ -23918,7 +23918,7 @@ components:
               description: |+
                 The peer router identity for authentication. A
                 valid value is an IPv4 address, IPv6 address, e-mail address, key
-                ID, or FQDN. Typically, this value matches the `peer\_address`
+                ID, or FQDN. Typically, this value matches the `peer_address`
                 value.
 
             peer_cidrs:
@@ -23927,7 +23927,7 @@ components:
                 type: string
               description: |+
                 (Deprecated) Unique list of valid peer private
-                CIDRs in the form < net\_address > / < prefix > .
+                CIDRs in the form < net_address > / < prefix > .
 
             local_ep_group_id:
               type:
@@ -23937,9 +23937,9 @@ components:
               description: |+
                 The ID for the endpoint group that contains
                 private subnets for the local side of the connection. Yo must
-                specify this parameter with the `peer\_ep\_group\_id` parameter
-                unless in backward- compatible mode where `peer\_cidrs` is
-                provided with a `subnet\_id` for the VPN service.
+                specify this parameter with the `peer_ep_group_id` parameter
+                unless in backward- compatible mode where `peer_cidrs` is
+                provided with a `subnet_id` for the VPN service.
 
             peer_ep_group_id:
               type:
@@ -23948,10 +23948,10 @@ components:
               format: uuid
               description: |+
                 The ID for the endpoint group that contains
-                private CIDRs in the form < net\_address > / < prefix > for the
+                private CIDRs in the form < net_address > / < prefix > for the
                 peer side of the connection. You must specify this parameter with
-                the `local\_ep\_group\_id` parameter unless in backward-compatible
-                mode where `peer\_cidrs` is provided with a `subnet\_id` for the
+                the `local_ep_group_id` parameter unless in backward-compatible
+                mode where `peer_cidrs` is provided with a `subnet_id` for the
                 VPN service.
 
             mtu:
@@ -24011,7 +24011,7 @@ components:
                 The ID of the IPsec policy.
 
           description: |+
-            An `ipsec\_site\_connection` object.
+            An `ipsec_site_connection` object.
 
     VpnIpsec_Site_ConnectionsCreateResponse:
       type: object
@@ -24066,7 +24066,7 @@ components:
               description: |+
                 The peer router identity for authentication. A
                 valid value is an IPv4 address, IPv6 address, e-mail address, key
-                ID, or FQDN. Typically, this value matches the `peer\_address`
+                ID, or FQDN. Typically, this value matches the `peer_address`
                 value.
 
             peer_cidrs:
@@ -24075,7 +24075,7 @@ components:
                 type: string
               description: |+
                 (Deprecated) Unique list of valid peer private
-                CIDRs in the form < net\_address > / < prefix > .
+                CIDRs in the form < net_address > / < prefix > .
 
             local_ep_group_id:
               type:
@@ -24085,9 +24085,9 @@ components:
               description: |+
                 The ID for the endpoint group that contains
                 private subnets for the local side of the connection. Yo must
-                specify this parameter with the `peer\_ep\_group\_id` parameter
-                unless in backward- compatible mode where `peer\_cidrs` is
-                provided with a `subnet\_id` for the VPN service.
+                specify this parameter with the `peer_ep_group_id` parameter
+                unless in backward- compatible mode where `peer_cidrs` is
+                provided with a `subnet_id` for the VPN service.
 
             peer_ep_group_id:
               type:
@@ -24096,10 +24096,10 @@ components:
               format: uuid
               description: |+
                 The ID for the endpoint group that contains
-                private CIDRs in the form < net\_address > / < prefix > for the
+                private CIDRs in the form < net_address > / < prefix > for the
                 peer side of the connection. You must specify this parameter with
-                the `local\_ep\_group\_id` parameter unless in backward-compatible
-                mode where `peer\_cidrs` is provided with a `subnet\_id` for the
+                the `local_ep_group_id` parameter unless in backward-compatible
+                mode where `peer_cidrs` is provided with a `subnet_id` for the
                 VPN service.
 
             route_mode:
@@ -24159,8 +24159,8 @@ components:
               description: |+
                 Indicates whether the IPsec connection is
                 currently operational. Values are `ACTIVE`, `DOWN`, `BUILD`,
-                `ERROR`, `PENDING\_CREATE`, `PENDING\_UPDATE`, or
-                `PENDING\_DELETE`.
+                `ERROR`, `PENDING_CREATE`, `PENDING_UPDATE`, or
+                `PENDING_DELETE`.
 
             vpnservice_id:
               type: string
@@ -24181,7 +24181,7 @@ components:
                 The ID of the IPsec policy.
 
           description: |+
-            An `ipsec\_site\_connection` object.
+            An `ipsec_site_connection` object.
 
     VpnIpsec_Site_ConnectionsIndexResponse:
       type: object
@@ -24238,7 +24238,7 @@ components:
                 description: |+
                   The peer router identity for authentication. A
                   valid value is an IPv4 address, IPv6 address, e-mail address, key
-                  ID, or FQDN. Typically, this value matches the `peer\_address`
+                  ID, or FQDN. Typically, this value matches the `peer_address`
                   value.
 
               peer_cidrs:
@@ -24247,7 +24247,7 @@ components:
                   type: string
                 description: |+
                   (Deprecated) Unique list of valid peer private
-                  CIDRs in the form < net\_address > / < prefix > .
+                  CIDRs in the form < net_address > / < prefix > .
 
               local_ep_group_id:
                 type:
@@ -24257,9 +24257,9 @@ components:
                 description: |+
                   The ID for the endpoint group that contains
                   private subnets for the local side of the connection. Yo must
-                  specify this parameter with the `peer\_ep\_group\_id` parameter
-                  unless in backward- compatible mode where `peer\_cidrs` is
-                  provided with a `subnet\_id` for the VPN service.
+                  specify this parameter with the `peer_ep_group_id` parameter
+                  unless in backward- compatible mode where `peer_cidrs` is
+                  provided with a `subnet_id` for the VPN service.
 
               peer_ep_group_id:
                 type:
@@ -24268,10 +24268,10 @@ components:
                 format: uuid
                 description: |+
                   The ID for the endpoint group that contains
-                  private CIDRs in the form < net\_address > / < prefix > for the
+                  private CIDRs in the form < net_address > / < prefix > for the
                   peer side of the connection. You must specify this parameter with
-                  the `local\_ep\_group\_id` parameter unless in backward-compatible
-                  mode where `peer\_cidrs` is provided with a `subnet\_id` for the
+                  the `local_ep_group_id` parameter unless in backward-compatible
+                  mode where `peer_cidrs` is provided with a `subnet_id` for the
                   VPN service.
 
               route_mode:
@@ -24331,8 +24331,8 @@ components:
                 description: |+
                   Indicates whether the IPsec connection is
                   currently operational. Values are `ACTIVE`, `DOWN`, `BUILD`,
-                  `ERROR`, `PENDING\_CREATE`, `PENDING\_UPDATE`, or
-                  `PENDING\_DELETE`.
+                  `ERROR`, `PENDING_CREATE`, `PENDING_UPDATE`, or
+                  `PENDING_DELETE`.
 
               vpnservice_id:
                 type: string
@@ -24393,7 +24393,7 @@ components:
               description: |+
                 The peer router identity for authentication. A
                 valid value is an IPv4 address, IPv6 address, e-mail address, key
-                ID, or FQDN. Typically, this value matches the `peer\_address`
+                ID, or FQDN. Typically, this value matches the `peer_address`
                 value.
 
             peer_cidrs:
@@ -24402,7 +24402,7 @@ components:
                 type: string
               description: |+
                 (Deprecated) Unique list of valid peer private
-                CIDRs in the form < net\_address > / < prefix > .
+                CIDRs in the form < net_address > / < prefix > .
 
             local_ep_group_id:
               type:
@@ -24412,9 +24412,9 @@ components:
               description: |+
                 The ID for the endpoint group that contains
                 private subnets for the local side of the connection. Yo must
-                specify this parameter with the `peer\_ep\_group\_id` parameter
-                unless in backward- compatible mode where `peer\_cidrs` is
-                provided with a `subnet\_id` for the VPN service.
+                specify this parameter with the `peer_ep_group_id` parameter
+                unless in backward- compatible mode where `peer_cidrs` is
+                provided with a `subnet_id` for the VPN service.
 
             peer_ep_group_id:
               type:
@@ -24423,10 +24423,10 @@ components:
               format: uuid
               description: |+
                 The ID for the endpoint group that contains
-                private CIDRs in the form < net\_address > / < prefix > for the
+                private CIDRs in the form < net_address > / < prefix > for the
                 peer side of the connection. You must specify this parameter with
-                the `local\_ep\_group\_id` parameter unless in backward-compatible
-                mode where `peer\_cidrs` is provided with a `subnet\_id` for the
+                the `local_ep_group_id` parameter unless in backward-compatible
+                mode where `peer_cidrs` is provided with a `subnet_id` for the
                 VPN service.
 
             mtu:
@@ -24468,7 +24468,7 @@ components:
                 up (`true`) or down (`false`).
 
           description: |+
-            An `ipsec\_site\_connection` object.
+            An `ipsec_site_connection` object.
 
     VpnIpsec_Site_ConnectionUpdateResponse:
       type: object
@@ -24523,7 +24523,7 @@ components:
               description: |+
                 The peer router identity for authentication. A
                 valid value is an IPv4 address, IPv6 address, e-mail address, key
-                ID, or FQDN. Typically, this value matches the `peer\_address`
+                ID, or FQDN. Typically, this value matches the `peer_address`
                 value.
 
             peer_cidrs:
@@ -24532,7 +24532,7 @@ components:
                 type: string
               description: |+
                 (Deprecated) Unique list of valid peer private
-                CIDRs in the form < net\_address > / < prefix > .
+                CIDRs in the form < net_address > / < prefix > .
 
             local_ep_group_id:
               type:
@@ -24542,9 +24542,9 @@ components:
               description: |+
                 The ID for the endpoint group that contains
                 private subnets for the local side of the connection. Yo must
-                specify this parameter with the `peer\_ep\_group\_id` parameter
-                unless in backward- compatible mode where `peer\_cidrs` is
-                provided with a `subnet\_id` for the VPN service.
+                specify this parameter with the `peer_ep_group_id` parameter
+                unless in backward- compatible mode where `peer_cidrs` is
+                provided with a `subnet_id` for the VPN service.
 
             peer_ep_group_id:
               type:
@@ -24553,10 +24553,10 @@ components:
               format: uuid
               description: |+
                 The ID for the endpoint group that contains
-                private CIDRs in the form < net\_address > / < prefix > for the
+                private CIDRs in the form < net_address > / < prefix > for the
                 peer side of the connection. You must specify this parameter with
-                the `local\_ep\_group\_id` parameter unless in backward-compatible
-                mode where `peer\_cidrs` is provided with a `subnet\_id` for the
+                the `local_ep_group_id` parameter unless in backward-compatible
+                mode where `peer_cidrs` is provided with a `subnet_id` for the
                 VPN service.
 
             route_mode:
@@ -24616,8 +24616,8 @@ components:
               description: |+
                 Indicates whether the IPsec connection is
                 currently operational. Values are `ACTIVE`, `DOWN`, `BUILD`,
-                `ERROR`, `PENDING\_CREATE`, `PENDING\_UPDATE`, or
-                `PENDING\_DELETE`.
+                `ERROR`, `PENDING_CREATE`, `PENDING_UPDATE`, or
+                `PENDING_DELETE`.
 
             vpnservice_id:
               type: string
@@ -24638,7 +24638,7 @@ components:
                 The ID of the IPsec policy.
 
           description: |+
-            An `ipsec\_site\_connection` object.
+            An `ipsec_site_connection` object.
 
     VpnIpsec_Site_ConnectionShowResponse:
       type: object
@@ -24693,7 +24693,7 @@ components:
               description: |+
                 The peer router identity for authentication. A
                 valid value is an IPv4 address, IPv6 address, e-mail address, key
-                ID, or FQDN. Typically, this value matches the `peer\_address`
+                ID, or FQDN. Typically, this value matches the `peer_address`
                 value.
 
             peer_cidrs:
@@ -24702,7 +24702,7 @@ components:
                 type: string
               description: |+
                 (Deprecated) Unique list of valid peer private
-                CIDRs in the form < net\_address > / < prefix > .
+                CIDRs in the form < net_address > / < prefix > .
 
             local_ep_group_id:
               type:
@@ -24712,9 +24712,9 @@ components:
               description: |+
                 The ID for the endpoint group that contains
                 private subnets for the local side of the connection. Yo must
-                specify this parameter with the `peer\_ep\_group\_id` parameter
-                unless in backward- compatible mode where `peer\_cidrs` is
-                provided with a `subnet\_id` for the VPN service.
+                specify this parameter with the `peer_ep_group_id` parameter
+                unless in backward- compatible mode where `peer_cidrs` is
+                provided with a `subnet_id` for the VPN service.
 
             peer_ep_group_id:
               type:
@@ -24723,10 +24723,10 @@ components:
               format: uuid
               description: |+
                 The ID for the endpoint group that contains
-                private CIDRs in the form < net\_address > / < prefix > for the
+                private CIDRs in the form < net_address > / < prefix > for the
                 peer side of the connection. You must specify this parameter with
-                the `local\_ep\_group\_id` parameter unless in backward-compatible
-                mode where `peer\_cidrs` is provided with a `subnet\_id` for the
+                the `local_ep_group_id` parameter unless in backward-compatible
+                mode where `peer_cidrs` is provided with a `subnet_id` for the
                 VPN service.
 
             route_mode:
@@ -24786,8 +24786,8 @@ components:
               description: |+
                 Indicates whether the IPsec connection is
                 currently operational. Values are `ACTIVE`, `DOWN`, `BUILD`,
-                `ERROR`, `PENDING\_CREATE`, `PENDING\_UPDATE`, or
-                `PENDING\_DELETE`.
+                `ERROR`, `PENDING_CREATE`, `PENDING_UPDATE`, or
+                `PENDING_DELETE`.
 
             vpnservice_id:
               type: string
@@ -24808,7 +24808,7 @@ components:
                 The ID of the IPsec policy.
 
           description: |+
-            An `ipsec\_site\_connection` object.
+            An `ipsec_site_connection` object.
 
     VpnIpsecpoliciesCreateRequest:
       type: object
@@ -26462,7 +26462,7 @@ components:
       name: ip_version
       description: ip_version query parameter for /v2.0/address-scopes API
       schema:
-        type: string
+        type: integer
         enum:
           - 4
           - 6
@@ -27726,7 +27726,7 @@ components:
       description: dscp_mark query parameter for /v2.0/qos/policies/{policy_id}/dscp_marking_rules
         API
       schema:
-        type: string
+        type: integer
         enum:
           - 0
           - 8
@@ -27971,7 +27971,7 @@ components:
       description: dscp_mark query parameter for /v2.0/qos/alias-dscp-marking-rules
         API
       schema:
-        type: string
+        type: integer
         enum:
           - 0
           - 8
@@ -28107,7 +28107,7 @@ components:
         that associates with this security group rule. This field can contains uuid
         of the security group or special word `PARENT` which means that in the
         real rule created from this template, uuid of the owner Security Group will
-        be put as `remote\_group\_id`.
+        be put as `remote_group_id`.
 
       schema:
         type: string
@@ -28827,7 +28827,7 @@ components:
       name: ip_version
       description: ip_version query parameter for /v2.0/subnets API
       schema:
-        type: string
+        type: integer
         enum:
           - 4
           - 6

@@ -1,0 +1,4 @@
+[files]
+extend-exclude = [
+  "os_openapi/assets/",
+]

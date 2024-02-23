@@ -894,7 +894,7 @@ paths:
       summary: List Aggregates
     post:
       description: |+
-        Creates an aggregate. If specifying an option availability\_zone, the aggregate is
+        Creates an aggregate. If specifying an option availability_zone, the aggregate is
         created as an availability zone and the availability zone is visible to normal users.
 
         Normal response codes: 200
@@ -1100,9 +1100,9 @@ paths:
       description: |+
         Deletes an assisted volume snapshot.
 
-        To make this request, add the `delete\_info` query parameter to the URI, as follows:
+        To make this request, add the `delete_info` query parameter to the URI, as follows:
 
-        DELETE /os-assisted-volume-snapshots/421752a6-acf6-4b2d-bc7a-119f9148cd8c?delete\_info=’{“volume\_id”: “521752a6-acf6-4b2d-bc7a-119f9148cd8c”}’
+        DELETE /os-assisted-volume-snapshots/421752a6-acf6-4b2d-bc7a-119f9148cd8c?delete_info=’{“volume_id”: “521752a6-acf6-4b2d-bc7a-119f9148cd8c”}’
 
         Normal response codes: 204
 
@@ -1891,7 +1891,7 @@ paths:
         Lists floating IP pools.
 
         Policy defaults enable only users with the administrative role or user
-        who is authorized to operate on tenant <tenant\_id> to perform this
+        who is authorized to operate on tenant <tenant_id> to perform this
         operation. Cloud providers can change these permissions through the
         `policy.json` file.
 
@@ -2158,7 +2158,7 @@ paths:
       description: |+
         Runs the fping utility to ping instances and reports which instances are alive.
 
-        Specify the `all\_tenants=1` query parameter to ping instances for all tenants. For example:
+        Specify the `all_tenants=1` query parameter to ping instances for all tenants. For example:
 
         Specify the `include` and `exclude` query parameters to filter the results. For example:
 
@@ -2814,7 +2814,7 @@ paths:
         this operation. Cloud providers can change these permissions through the
         `policy.json` file.
 
-        Starting from microversion 2.59, the response is sorted by `created\_at`
+        Starting from microversion 2.59, the response is sorted by `created_at`
         and `id` in descending order.
 
         Normal response codes: 200
@@ -3101,7 +3101,7 @@ paths:
       description: |+
         Reverts the quotas to default values for a project or a project and a user.
 
-        To revert quotas for a project and a user, specify the `user\_id` query parameter.
+        To revert quotas for a project and a user, specify the `user_id` query parameter.
 
         Normal response codes: 202
 
@@ -3154,7 +3154,7 @@ paths:
       description: |+
         Show the detail of quota for a project or a project and a user.
 
-        To show a quota for a project and a user, specify the `user\_id` query parameter.
+        To show a quota for a project and a user, specify the `user_id` query parameter.
 
         Normal response codes: 200
 
@@ -3229,8 +3229,8 @@ paths:
       description: |+
         Creates a default security group rule.
 
-        If you specify a source port ( `from\_port` ) or destination port ( `to\_port` ) value, you must specify an
-        IP protocol ( `ip\_protocol` ) value. Otherwise, the operation returns the `Bad Request (400)` response code.
+        If you specify a source port ( `from_port` ) or destination port ( `to_port` ) value, you must specify an
+        IP protocol ( `ip_protocol` ) value. Otherwise, the operation returns the `Bad Request (400)` response code.
 
         Normal response codes: 200
 
@@ -3304,7 +3304,7 @@ paths:
   /v2.1/os-security-group-rules:
     post:
       description: |+
-        Creates a rule for a security group. Either `cidr` or `group\_id` must be
+        Creates a rule for a security group. Either `cidr` or `group_id` must be
         specified when creating a rule.
 
         Normal response codes: 200
@@ -3557,7 +3557,7 @@ paths:
       description: |+
         Lists all server groups for the tenant.
 
-        Administrative users can use the `all\_projects` query parameter to list all server groups for all projects.
+        Administrative users can use the `all_projects` query parameter to list all server groups for all projects.
 
         Normal response codes: 200
 
@@ -3712,7 +3712,7 @@ paths:
       description: |+
         Update a compute service to enable or disable scheduling, including recording a
         reason why a compute service was disabled from scheduling. Set or unset the
-        `forced\_down` flag for the service. This operation is only allowed on
+        `forced_down` flag for the service. This operation is only allowed on
         services whose `binary` is `nova-compute`.
 
         This API is available starting with microversion 2.53.
@@ -4663,10 +4663,10 @@ paths:
         links, and the admin password. You can get additional attributes
         through subsequent `GET` requests on the server.
 
-        Include the `block\_device\_mapping\_v2` parameter in the create
+        Include the `block_device_mapping_v2` parameter in the create
         request body to boot a server from a volume.
 
-        Include the `key\_name` parameter in the create request body to add a
+        Include the `key_name` parameter in the create request body to add a
         keypair to the server when you create it. To create a keypair, make a
         [create keypair](https://docs.openstack.org/api-ref/compute/#create-or-import-keypair)
         request.
@@ -4768,11 +4768,11 @@ paths:
         For each server, shows server details including config drive,
         extended status, and server usage information.
 
-        The extended status information appears in the OS-EXT-STS:vm\_state,
-        OS-EXT-STS:power\_state, and OS-EXT-STS:task\_state attributes.
+        The extended status information appears in the OS-EXT-STS:vm_state,
+        OS-EXT-STS:power_state, and OS-EXT-STS:task_state attributes.
 
-        The server usage information appears in the OS-SRV-USG:launched\_at and
-        OS-SRV-USG:terminated\_at attributes.
+        The server usage information appears in the OS-SRV-USG:launched_at and
+        OS-SRV-USG:terminated_at attributes.
 
         HostId is unique per account and is not globally unique.
 
@@ -4805,9 +4805,9 @@ paths:
 
         Includes server details including configuration drive, extended status, and server usage information.
 
-        The extended status information appears in the `OS-EXT-STS:vm\_state`, `OS-EXT-STS:power\_state`, and `OS-EXT-STS:task\_state` attributes.
+        The extended status information appears in the `OS-EXT-STS:vm_state`, `OS-EXT-STS:power_state`, and `OS-EXT-STS:task_state` attributes.
 
-        The server usage information appears in the `OS-SRV-USG:launched\_at` and `OS-SRV-USG:terminated\_at` attributes.
+        The server usage information appears in the `OS-SRV-USG:launched_at` and `OS-SRV-USG:terminated_at` attributes.
 
         HostId is unique per account and is not globally unique.
 
@@ -4838,10 +4838,10 @@ paths:
         Deletes a server.
 
         By default, the instance is going to be (hard) deleted immediately from
-        the system, but you can set `reclaim\_instance\_interval` > 0 to make
+        the system, but you can set `reclaim_instance_interval` > 0 to make
         the API soft delete the instance, so that the instance won’t be
-        deleted until the `reclaim\_instance\_interval` has expired since the
-        instance was soft deleted. The instance marked as `SOFT\_DELETED` can
+        deleted until the `reclaim_instance_interval` has expired since the
+        instance was soft deleted. The instance marked as `SOFT_DELETED` can
         be recovered via `restore` action before it’s really deleted from the
         system.
 
@@ -5441,7 +5441,7 @@ paths:
 
         **Preconditions**
 
-        The server OS-EXT-STS:task\_state value must be `migrating`.
+        The server OS-EXT-STS:task_state value must be `migrating`.
 
         If the server is locked, you must have administrator privileges to force the
         completion of the server migration.
@@ -5896,7 +5896,7 @@ paths:
       description: |+
         Update a volume attachment.
 
-        Policy default role is ‘rule:system\_admin\_or\_owner’, its scope is
+        Policy default role is ‘rule:system_admin_or_owner’, its scope is
         [system, project], which allow project members or system admins to
         change the fields of an attached volume of a server. Policy defaults
         enable only users with the administrative role to change `volumeId`
@@ -6401,7 +6401,7 @@ components:
               maxLength: 255
               pattern: ^(?! )[a-zA-Z0-9. _-]+(?<! )$
               description: |+
-                Only alphanumeric characters with hyphen ‘-’, underscore ‘\_’, spaces
+                Only alphanumeric characters with hyphen ‘-’, underscore ‘_’, spaces
                 and dots ‘.’ are permitted. If an ID is not provided, then a default UUID
                 will be assigned.
 
@@ -6541,7 +6541,7 @@ components:
               maxLength: 255
               pattern: ^(?! )[a-zA-Z0-9. _-]+(?<! )$
               description: |+
-                Only alphanumeric characters with hyphen ‘-’, underscore ‘\_’, spaces
+                Only alphanumeric characters with hyphen ‘-’, underscore ‘_’, spaces
                 and dots ‘.’ are permitted. If an ID is not provided, then a default UUID
                 will be assigned.
 
@@ -6681,7 +6681,7 @@ components:
               maxLength: 255
               pattern: ^(?! )[a-zA-Z0-9. _-]+(?<! )$
               description: |+
-                Only alphanumeric characters with hyphen ‘-’, underscore ‘\_’, spaces
+                Only alphanumeric characters with hyphen ‘-’, underscore ‘_’, spaces
                 and dots ‘.’ are permitted. If an ID is not provided, then a default UUID
                 will be assigned.
 
@@ -6864,7 +6864,7 @@ components:
                 select the compute host based on the virtual image size. Therefore,
                 0 should only be used for volume booted instances or for testing
                 purposes. Volume-backed instances can be enforced for flavors with
-                zero root disk via the `os\_compute\_api:servers:create:zero\_disk\_flavor`
+                zero root disk via the `os_compute_api:servers:create:zero_disk_flavor`
                 policy rule.
 
               type:
@@ -6956,7 +6956,7 @@ components:
               description: |+
                 A dictionary of the flavor’s extra-specs key-and-value pairs. This will
                 only be included if the user is allowed by policy to index flavor
-                extra\_specs.
+                extra_specs.
 
 
                 **New in version 2.61**
@@ -7038,7 +7038,7 @@ components:
                   select the compute host based on the virtual image size. Therefore,
                   0 should only be used for volume booted instances or for testing
                   purposes. Volume-backed instances can be enforced for flavors with
-                  zero root disk via the `os\_compute\_api:servers:create:zero\_disk\_flavor`
+                  zero root disk via the `os_compute_api:servers:create:zero_disk_flavor`
                   policy rule.
 
                 type:
@@ -7130,7 +7130,7 @@ components:
                 description: |+
                   A dictionary of the flavor’s extra-specs key-and-value pairs. This will
                   only be included if the user is allowed by policy to index flavor
-                  extra\_specs.
+                  extra_specs.
 
 
                   **New in version 2.61**
@@ -7207,7 +7207,7 @@ components:
                 select the compute host based on the virtual image size. Therefore,
                 0 should only be used for volume booted instances or for testing
                 purposes. Volume-backed instances can be enforced for flavors with
-                zero root disk via the `os\_compute\_api:servers:create:zero\_disk\_flavor`
+                zero root disk via the `os_compute_api:servers:create:zero_disk_flavor`
                 policy rule.
 
               type:
@@ -7299,7 +7299,7 @@ components:
               description: |+
                 A dictionary of the flavor’s extra-specs key-and-value pairs. This will
                 only be included if the user is allowed by policy to index flavor
-                extra\_specs.
+                extra_specs.
 
 
                 **New in version 2.61**
@@ -7407,7 +7407,7 @@ components:
                 select the compute host based on the virtual image size. Therefore,
                 0 should only be used for volume booted instances or for testing
                 purposes. Volume-backed instances can be enforced for flavors with
-                zero root disk via the `os\_compute\_api:servers:create:zero\_disk\_flavor`
+                zero root disk via the `os_compute_api:servers:create:zero_disk_flavor`
                 policy rule.
 
               type:
@@ -7499,7 +7499,7 @@ components:
               description: |+
                 A dictionary of the flavor’s extra-specs key-and-value pairs. This will
                 only be included if the user is allowed by policy to index flavor
-                extra\_specs.
+                extra_specs.
 
 
                 **New in version 2.61**
@@ -7953,7 +7953,7 @@ components:
                   The UUID of the tenant in a multi-tenancy cloud.
 
           description: |+
-            A list of objects, each with the keys `flavor\_id` and `tenant\_id`.
+            A list of objects, each with the keys `flavor_id` and `tenant_id`.
 
       x-openstack:
         action-name: addTenantAccess
@@ -8015,7 +8015,7 @@ components:
                   The UUID of the tenant in a multi-tenancy cloud.
 
           description: |+
-            A list of objects, each with the keys `flavor\_id` and `tenant\_id`.
+            A list of objects, each with the keys `flavor_id` and `tenant_id`.
 
       x-openstack:
         action-name: removeTenantAccess
@@ -8141,7 +8141,7 @@ components:
                   The UUID of the tenant in a multi-tenancy cloud.
 
           description: |+
-            A list of objects, each with the keys `flavor\_id` and `tenant\_id`.
+            A list of objects, each with the keys `flavor_id` and `tenant_id`.
 
     ImagesListResponse:
       type: object
@@ -9507,7 +9507,7 @@ components:
 
 
                 This string is passed back to user as it is and not being
-                used in Nova internally. So use `snapshot\_id` instead for further
+                used in Nova internally. So use `snapshot_id` instead for further
                 operation on this snapshot.
 
 
@@ -9584,7 +9584,7 @@ components:
                 description: |+
                   An object containing a list of host information. The host information is comprised
                   of host and service objects. The service object returns three parameters representing
-                  the states of the service: `active`, `available`, and `updated\_at`.
+                  the states of the service: `active`, `available`, and `updated_at`.
 
                 examples:
                   JSON request:
@@ -10003,7 +10003,7 @@ components:
                   Note
 
 
-                  Since version 2.28 `cpu\_info` field is returned as a dictionary
+                  Since version 2.28 `cpu_info` field is returned as a dictionary
                   instead of string.
 
 
@@ -10016,7 +10016,7 @@ components:
               current_workload:
                 type: integer
                 description: |+
-                  The current\_workload is the number of tasks the hypervisor is responsible
+                  The current_workload is the number of tasks the hypervisor is responsible
                   for. This will be equal or greater than the number of active VMs on the
                   system (it can be greater when VMs are being deleted and the hypervisor is
                   still cleaning up).
@@ -10297,7 +10297,7 @@ components:
                 Note
 
 
-                Since version 2.28 `cpu\_info` field is returned as a dictionary
+                Since version 2.28 `cpu_info` field is returned as a dictionary
                 instead of string.
 
 
@@ -10310,7 +10310,7 @@ components:
             current_workload:
               type: integer
               description: |+
-                The current\_workload is the number of tasks the hypervisor is responsible
+                The current_workload is the number of tasks the hypervisor is responsible
                 for. This will be equal or greater than the number of active VMs on the
                 system (it can be greater when VMs are being deleted and the hypervisor is
                 still cleaning up).
@@ -10784,33 +10784,38 @@ components:
 
           items:
             type: object
-            description: Keypair object
             properties:
-              name:
-                type: string
+              keypair:
+                type: object
                 description: |+
-                  The name for the keypair.
+                  Keypair object
 
-              public_key:
-                type: string
-                description: |+
-                  The keypair public key.
+                properties:
+                  name:
+                    type: string
+                    description: |+
+                      The name for the keypair.
 
-              fingerprint:
-                type: string
-                description: |+
-                  The fingerprint for the keypair.
+                  public_key:
+                    type: string
+                    description: |+
+                      The keypair public key.
 
-              type:
-                type: string
-                description: |+
-                  The type of the keypair. Allowed values are `ssh` or `x509`.
+                  fingerprint:
+                    type: string
+                    description: |+
+                      The fingerprint for the keypair.
+
+                  type:
+                    type: string
+                    description: |+
+                      The type of the keypair. Allowed values are `ssh` or `x509`.
 
 
-                  **New in version 2.2**
+                      **New in version 2.2**
 
-                x-openstack:
-                  min-ver: '2.2'
+                    x-openstack:
+                      min-ver: '2.2'
         keypairs_links:
           type: array
           description: |+
@@ -10857,7 +10862,7 @@ components:
 
                 Since microversion 2.92, allowed characters are ASCII letters
                 `[a-zA-Z]`, digits `[0-9]` and the following special
-                characters: `[@.\_- ]`.
+                characters: `[@._- ]`.
 
 
             public_key:
@@ -10905,7 +10910,7 @@ components:
 
                 Since microversion 2.92, allowed characters are ASCII letters
                 `[a-zA-Z]`, digits `[0-9]` and the following special
-                characters: `[@.\_- ]`.
+                characters: `[@._- ]`.
 
 
             public_key:
@@ -10937,72 +10942,78 @@ components:
       type: object
       description: Keypair object
       properties:
-        user_id:
-          type: string
+        keypair:
+          type: object
           description: |+
-            The user\_id for a keypair.
+            Keypair object
 
-        deleted:
-          type: boolean
-          description: A boolean indicates whether this keypair is deleted or not.
-            The value is always false (not deleted).
-        created_at:
-          type: string
-          format: date-time
-          description: The date and time when the resource was created.
-        deleted_at:
-          type:
-            - string
-            - 'null'
-          format: date-time
-          description: It is always null.
-        updated_at:
-          type:
-            - string
-            - 'null'
-          format: date-time
-          description: It is always null.
-        id:
-          type: integer
-          description: The keypair ID.
-        name:
-          type: string
-          description: |+
-            The name for the keypair.
+          properties:
+            user_id:
+              type: string
+              description: |+
+                The user_id for a keypair.
 
-        public_key:
-          type: string
-          description: |+
-            The keypair public key.
+            deleted:
+              type: boolean
+              description: A boolean indicates whether this keypair is deleted or
+                not. The value is always false (not deleted).
+            created_at:
+              type: string
+              format: date-time
+              description: The date and time when the resource was created.
+            deleted_at:
+              type:
+                - string
+                - 'null'
+              format: date-time
+              description: It is always null.
+            updated_at:
+              type:
+                - string
+                - 'null'
+              format: date-time
+              description: It is always null.
+            id:
+              type: integer
+              description: The keypair ID.
+            name:
+              type: string
+              description: |+
+                The name for the keypair.
 
-        fingerprint:
-          type: string
-          description: |+
-            The fingerprint for the keypair.
+            public_key:
+              type: string
+              description: |+
+                The keypair public key.
 
-        type:
-          type: string
-          description: |+
-            The type of the keypair. Allowed values are `ssh` or `x509`.
+            fingerprint:
+              type: string
+              description: |+
+                The fingerprint for the keypair.
 
-
-            **New in version 2.2**
-
-          x-openstack:
-            min-ver: '2.2'
-        private_key:
-          type: string
-          description: |+
-            If you do not provide a public key on create, a new keypair will
-            be built for you, and the private key will be returned during the
-            initial create call. Make sure to save this, as there is no way to
-            get this private key again in the future.
+            type:
+              type: string
+              description: |+
+                The type of the keypair. Allowed values are `ssh` or `x509`.
 
 
-            **Available until version 2.91**
+                **New in version 2.2**
 
-          x-openstack:
-            max-ver: '2.91'
+              x-openstack:
+                min-ver: '2.2'
+            private_key:
+              type: string
+              description: |+
+                If you do not provide a public key on create, a new keypair will
+                be built for you, and the private key will be returned during the
+                initial create call. Make sure to save this, as there is no way to
+                get this private key again in the future.
+
+
+                **Available until version 2.91**
+
+              x-openstack:
+                max-ver: '2.91'
     Os_KeypairsCreate:
       type: object
       properties:
@@ -11032,7 +11043,7 @@ components:
 
                 Since microversion 2.92, allowed characters are ASCII letters
                 `[a-zA-Z]`, digits `[0-9]` and the following special
-                characters: `[@.\_- ]`.
+                characters: `[@._- ]`.
 
 
             type:
@@ -11091,7 +11102,7 @@ components:
 
                 Since microversion 2.92, allowed characters are ASCII letters
                 `[a-zA-Z]`, digits `[0-9]` and the following special
-                characters: `[@.\_- ]`.
+                characters: `[@._- ]`.
 
 
             type:
@@ -11115,7 +11126,7 @@ components:
             user_id:
               type: string
               description: |+
-                The user\_id for a keypair. This allows administrative users to
+                The user_id for a keypair. This allows administrative users to
                 upload keys for other users than themselves.
 
 
@@ -11159,7 +11170,7 @@ components:
 
                 Since microversion 2.92, allowed characters are ASCII letters
                 `[a-zA-Z]`, digits `[0-9]` and the following special
-                characters: `[@.\_- ]`.
+                characters: `[@._- ]`.
 
 
             type:
@@ -11183,7 +11194,7 @@ components:
             user_id:
               type: string
               description: |+
-                The user\_id for a keypair. This allows administrative users to
+                The user_id for a keypair. This allows administrative users to
                 upload keys for other users than themselves.
 
 
@@ -11202,82 +11213,88 @@ components:
       type: object
       description: Keypair object
       properties:
-        user_id:
-          type: string
+        keypair:
+          type: object
           description: |+
-            The user\_id for a keypair.
+            Keypair object
 
-        deleted:
-          type: boolean
-          description: |+
-            A boolean indicates whether this keypair is deleted or not.
-            The value is always `false` (not deleted).
+          properties:
+            user_id:
+              type: string
+              description: |+
+                The user_id for a keypair.
 
-        created_at:
-          type: string
-          format: date-time
-          description: |+
-            The date and time when the resource was created. The date and time
-            stamp format is [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+            deleted:
+              type: boolean
+              description: |+
+                A boolean indicates whether this keypair is deleted or not.
+                The value is always `false` (not deleted).
 
-
-
-            ```
-            CCYY-MM-DDThh:mm:ss±hh:mm
-
-            ```
-
-
-            For example, `2015-08-27T09:49:58-05:00`. The `±hh:mm`
-            value, if included, is the time zone as an offset from UTC. In
-            the previous example, the offset value is `-05:00`.
-
-        deleted_at:
-          type:
-            - string
-            - 'null'
-          format: date-time
-          description: |+
-            It is always `null`.
-
-        updated_at:
-          type:
-            - string
-            - 'null'
-          format: date-time
-          description: |+
-            It is always `null`.
-
-        id:
-          type: integer
-          description: |+
-            The keypair ID.
-
-        name:
-          type: string
-          description: |+
-            The name for the keypair.
-
-        public_key:
-          type: string
-          description: |+
-            The keypair public key.
-
-        fingerprint:
-          type: string
-          description: |+
-            The fingerprint for the keypair.
-
-        type:
-          type: string
-          description: |+
-            The type of the keypair. Allowed values are `ssh` or `x509`.
+            created_at:
+              type: string
+              format: date-time
+              description: |+
+                The date and time when the resource was created. The date and time
+                stamp format is [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 
 
-            **New in version 2.2**
 
-          x-openstack:
-            min-ver: '2.2'
+                ```
+                CCYY-MM-DDThh:mm:ss±hh:mm
+
+                ```
+
+
+                For example, `2015-08-27T09:49:58-05:00`. The `±hh:mm`
+                value, if included, is the time zone as an offset from UTC. In
+                the previous example, the offset value is `-05:00`.
+
+            deleted_at:
+              type:
+                - string
+                - 'null'
+              format: date-time
+              description: |+
+                It is always `null`.
+
+            updated_at:
+              type:
+                - string
+                - 'null'
+              format: date-time
+              description: |+
+                It is always `null`.
+
+            id:
+              type: integer
+              description: |+
+                The keypair ID.
+
+            name:
+              type: string
+              description: |+
+                The name for the keypair.
+
+            public_key:
+              type: string
+              description: |+
+                The keypair public key.
+
+            fingerprint:
+              type: string
+              description: |+
+                The fingerprint for the keypair.
+
+            type:
+              type: string
+              description: |+
+                The type of the keypair. Allowed values are `ssh` or `x509`.
+
+
+                **New in version 2.2**
+
+              x-openstack:
+                min-ver: '2.2'
     Os_MigrationsListResponse:
       type: object
       description: List of migration objects
@@ -11560,7 +11577,7 @@ components:
         quota_class_set:
           type: object
           description: |+
-            A `quota\_class\_set` object.
+            A `quota_class_set` object.
 
           properties:
             id:
@@ -11876,7 +11893,7 @@ components:
               maximum: 2147483647
           additionalProperties: false
           description: |+
-            A `quota\_class\_set` object.
+            A `quota_class_set` object.
 
       additionalProperties: false
       x-openstack:
@@ -11893,7 +11910,7 @@ components:
         quota_set:
           type: object
           description: |+
-            A `quota\_set` object.
+            A `quota_set` object.
 
           properties:
             id:
@@ -12236,7 +12253,7 @@ components:
                 - no
           additionalProperties: false
           description: |+
-            A `quota\_set` object.
+            A `quota_set` object.
 
       additionalProperties: false
       x-openstack:
@@ -12250,7 +12267,7 @@ components:
         quota_set:
           type: object
           description: |+
-            A `quota\_set` object.
+            A `quota_set` object.
 
           properties:
             id:
@@ -12460,7 +12477,7 @@ components:
         quota_set:
           type: object
           description: |+
-            A `quota\_set` object.
+            A `quota_set` object.
 
           properties:
             id:
@@ -12472,7 +12489,7 @@ components:
             instances:
               type: object
               description: |+
-                The object of detailed servers quota, including in\_use, limit and
+                The object of detailed servers quota, including in_use, limit and
                 reserved number of instances.
 
               properties:
@@ -12485,7 +12502,7 @@ components:
             cores:
               type: object
               description: |+
-                The object of detailed cores quota, including in\_use, limit and
+                The object of detailed cores quota, including in_use, limit and
                 reserved number of cores.
 
               properties:
@@ -12498,7 +12515,7 @@ components:
             ram:
               type: object
               description: |+
-                The object of detailed key ram quota, including in\_use,
+                The object of detailed key ram quota, including in_use,
                 limit and reserved number of ram.
 
               properties:
@@ -12511,7 +12528,7 @@ components:
             floating_ips:
               type: object
               description: |+
-                The object of detailed floating ips quota, including in\_use, limit and
+                The object of detailed floating ips quota, including in_use, limit and
                 reserved number of floating ips.
 
 
@@ -12529,7 +12546,7 @@ components:
             fixed_ips:
               type: object
               description: |+
-                The object of detailed fixed ips quota, including in\_use, limit and
+                The object of detailed fixed ips quota, including in_use, limit and
                 reserved number of fixed ips.
 
 
@@ -12547,7 +12564,7 @@ components:
             metadata_items:
               type: object
               description: |+
-                The object of detailed key metadata items quota, including in\_use,
+                The object of detailed key metadata items quota, including in_use,
                 limit and reserved number of metadata items.
 
               properties:
@@ -12560,7 +12577,7 @@ components:
             key_pairs:
               type: object
               description: |+
-                The object of detailed key pairs quota, including in\_use, limit and
+                The object of detailed key pairs quota, including in_use, limit and
                 reserved number of key pairs.
 
 
@@ -12568,8 +12585,8 @@ components:
                 Note
 
 
-                `in\_use` field value for keypair quota details is always
-                zero. In Nova, key\_pairs are a user-level resource, not a project-
+                `in_use` field value for keypair quota details is always
+                zero. In Nova, key_pairs are a user-level resource, not a project-
                 level resource, so for legacy reasons, the keypair in-use information
                 is not counted.
 
@@ -12584,7 +12601,7 @@ components:
             security_groups:
               type: object
               description: |+
-                The object of detailed security groups, including in\_use,
+                The object of detailed security groups, including in_use,
                 limit and reserved number of security groups.
 
 
@@ -12602,7 +12619,7 @@ components:
             security_group_rules:
               type: object
               description: |+
-                The object of detailed security group rules quota, including in\_use,
+                The object of detailed security group rules quota, including in_use,
                 limit and reserved number of security group rules.
 
 
@@ -12620,7 +12637,7 @@ components:
             injected_files:
               type: object
               description: |+
-                The object of detailed injected files quota, including in\_use, limit and
+                The object of detailed injected files quota, including in_use, limit and
                 reserved number of injected files.
 
 
@@ -12666,7 +12683,7 @@ components:
             server_groups:
               type: object
               description: |+
-                The object of detailed server groups, including in\_use,
+                The object of detailed server groups, including in_use,
                 limit and reserved number of server groups.
 
               properties:
@@ -12679,7 +12696,7 @@ components:
             server_group_members:
               type: object
               description: |+
-                The object of detailed server group members, including in\_use,
+                The object of detailed server group members, including in_use,
                 limit and reserved number of server group members.
 
               properties:
@@ -12712,7 +12729,7 @@ components:
         quota_set:
           type: object
           description: |+
-            A `quota\_set` object.
+            A `quota_set` object.
 
           properties:
             id:
@@ -13015,8 +13032,8 @@ components:
 
                   * For the `accelerator-request-bound` event, the tag must be
                   the accelerator request UUID.
-                  * For the `power-update` event the tag must be either be `POWER\_ON`
-                  or `POWER\_OFF`.
+                  * For the `power-update` event the tag must be either be `POWER_ON`
+                  or `POWER_OFF`.
                   * For the `volume-extended` event the tag must be the volume id.
             required:
               - server_uuid
@@ -13087,8 +13104,8 @@ components:
 
                   * For the `accelerator-request-bound` event, the tag must be
                   the accelerator request UUID.
-                  * For the `power-update` event the tag must be either be `POWER\_ON`
-                  or `POWER\_OFF`.
+                  * For the `power-update` event the tag must be either be `POWER_ON`
+                  or `POWER_OFF`.
                   * For the `volume-extended` event the tag must be the volume id.
             required:
               - server_uuid
@@ -13160,8 +13177,8 @@ components:
 
                   * For the `accelerator-request-bound` event, the tag must be
                   the accelerator request UUID.
-                  * For the `power-update` event the tag must be either be `POWER\_ON`
-                  or `POWER\_OFF`.
+                  * For the `power-update` event the tag must be either be `POWER_ON`
+                  or `POWER_OFF`.
                   * For the `volume-extended` event the tag must be the volume id.
             required:
               - server_uuid
@@ -13234,8 +13251,8 @@ components:
 
                   * For the `accelerator-request-bound` event, the tag must be
                   the accelerator request UUID.
-                  * For the `power-update` event the tag must be either be `POWER\_ON`
-                  or `POWER\_OFF`.
+                  * For the `power-update` event the tag must be either be `POWER_ON`
+                  or `POWER_OFF`.
                   * For the `volume-extended` event the tag must be the volume id.
             required:
               - server_uuid
@@ -13309,8 +13326,8 @@ components:
 
                   * For the `accelerator-request-bound` event, the tag must be
                   the accelerator request UUID.
-                  * For the `power-update` event the tag must be either be `POWER\_ON`
-                  or `POWER\_OFF`.
+                  * For the `power-update` event the tag must be either be `POWER_ON`
+                  or `POWER_OFF`.
                   * For the `volume-extended` event the tag must be the volume id.
             required:
               - server_uuid
@@ -13392,8 +13409,8 @@ components:
 
                   * For the `accelerator-request-bound` event, the tag must be
                   the accelerator request UUID.
-                  * For the `power-update` event the tag must be either be `POWER\_ON`
-                  or `POWER\_OFF`.
+                  * For the `power-update` event the tag must be either be `POWER_ON`
+                  or `POWER_OFF`.
                   * For the `volume-extended` event the tag must be the volume id.
     Os_Server_GroupsListResponse:
       type: object
@@ -13514,8 +13531,8 @@ components:
                 type: object
                 description: |+
                   The `rules` field, which is a dict, can be applied to the policy.
-                  Currently, only the `max\_server\_per\_host` rule is supported for the
-                  `anti-affinity` policy. The `max\_server\_per\_host` rule allows
+                  Currently, only the `max_server_per_host` rule is supported for the
+                  `anti-affinity` policy. The `max_server_per_host` rule allows
                   specifying how many members of the anti-affinity group can reside on the
                   same compute host. If not specified, only one member from the same
                   anti-affinity group can reside on a given host.
@@ -13709,8 +13726,8 @@ components:
               type: object
               description: |+
                 The `rules` field, which is a dict, can be applied to the policy.
-                Currently, only the `max\_server\_per\_host` rule is supported for the
-                `anti-affinity` policy. The `max\_server\_per\_host` rule allows
+                Currently, only the `max_server_per_host` rule is supported for the
+                `anti-affinity` policy. The `max_server_per_host` rule allows
                 specifying how many members of the anti-affinity group can reside on the
                 same compute host. If not specified, only one member from the same
                 anti-affinity group can reside on a given host. Requesting policy rules
@@ -13858,8 +13875,8 @@ components:
               type: object
               description: |+
                 The `rules` field, which is a dict, can be applied to the policy.
-                Currently, only the `max\_server\_per\_host` rule is supported for the
-                `anti-affinity` policy. The `max\_server\_per\_host` rule allows
+                Currently, only the `max_server_per_host` rule is supported for the
+                `anti-affinity` policy. The `max_server_per_host` rule allows
                 specifying how many members of the anti-affinity group can reside on the
                 same compute host. If not specified, only one member from the same
                 anti-affinity group can reside on a given host.
@@ -14005,8 +14022,8 @@ components:
               type: object
               description: |+
                 The `rules` field, which is a dict, can be applied to the policy.
-                Currently, only the `max\_server\_per\_host` rule is supported for the
-                `anti-affinity` policy. The `max\_server\_per\_host` rule allows
+                Currently, only the `max_server_per_host` rule is supported for the
+                `anti-affinity` policy. The `max_server_per_host` rule allows
                 specifying how many members of the anti-affinity group can reside on the
                 same compute host. If not specified, only one member from the same
                 anti-affinity group can reside on a given host.
@@ -14203,7 +14220,7 @@ components:
             - No
             - no
           description: |+
-            `forced\_down` is a manual override to tell nova that the service in
+            `forced_down` is a manual override to tell nova that the service in
             question has been fenced manually by the operations team (either hard
             powered off, or network unplugged). That signals that it is safe to proceed
             with `evacuate` or other operations that nova has safety checks to
@@ -14364,7 +14381,7 @@ components:
             - No
             - no
           description: |+
-            `forced\_down` is a manual override to tell nova that the service in
+            `forced_down` is a manual override to tell nova that the service in
             question has been fenced manually by the operations team (either hard
             powered off, or network unplugged). That signals that it is safe to proceed
             with `evacuate` or other operations that nova has safety checks to
@@ -23452,7 +23469,7 @@ components:
                       - format: ipv6
                     description: |+
                       Schedule the server on a host in the network specified with this parameter
-                      and a cidr (`os:scheduler\_hints.cidr`).
+                      and a cidr (`os:scheduler_hints.cidr`).
                       It is available when `SimpleCIDRAffinityFilter` is available
                       on cloud side.
 
@@ -23631,11 +23648,11 @@ components:
                       - No
                       - no
                     description: |+
-                      Indicates whether a config drive enables metadata injection. The config\_drive
+                      Indicates whether a config drive enables metadata injection. The config_drive
                       setting provides information about a drive that the instance can mount at boot
                       time. The instance reads files from the drive to get information that is normally
                       available through the metadata service. This metadata is different from the user
-                      data. Not all cloud providers enable the `config\_drive`. Read more in the
+                      data. Not all cloud providers enable the `config_drive`. Read more in the
                       [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
                   no_device: {}
@@ -23746,15 +23763,15 @@ components:
                 > 
                 > 
                 > ```
-                > "block\_device\_mapping\_v2": [{
-                >  "boot\_index": "0",
+                > "block_device_mapping_v2": [{
+                >  "boot_index": "0",
                 >  "uuid": "ac408821-c95a-448f-9292-73986c790911",
-                >  "source\_type": "image",
-                >  "volume\_size": "25",
-                >  "destination\_type": "volume",
-                >  "delete\_on\_termination": true,
+                >  "source_type": "image",
+                >  "volume_size": "25",
+                >  "destination_type": "volume",
+                >  "delete_on_termination": true,
                 >  "tag": "disk1",
-                >  "disk\_bus": "scsi"}]
+                >  "disk_bus": "scsi"}]
                 > 
                 > ```
                 > 
@@ -23800,11 +23817,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             key_name:
@@ -23867,11 +23884,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             security_groups:
@@ -23931,7 +23948,7 @@ components:
           type: object
           description: |+
             The dictionary of data to send to the scheduler. Alternatively, you can specify
-            `OS-SCH-HNT:scheduler\_hints` as the key in the request body.
+            `OS-SCH-HNT:scheduler_hints` as the key in the request body.
 
 
 
@@ -24006,7 +24023,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -24042,7 +24059,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -24051,9 +24068,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -24109,7 +24126,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -24145,7 +24162,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -24154,9 +24171,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -24236,7 +24253,7 @@ components:
                       - format: ipv6
                     description: |+
                       Schedule the server on a host in the network specified with this parameter
-                      and a cidr (`os:scheduler\_hints.cidr`).
+                      and a cidr (`os:scheduler_hints.cidr`).
                       It is available when `SimpleCIDRAffinityFilter` is available
                       on cloud side.
 
@@ -24407,11 +24424,11 @@ components:
                       - No
                       - no
                     description: |+
-                      Indicates whether a config drive enables metadata injection. The config\_drive
+                      Indicates whether a config drive enables metadata injection. The config_drive
                       setting provides information about a drive that the instance can mount at boot
                       time. The instance reads files from the drive to get information that is normally
                       available through the metadata service. This metadata is different from the user
-                      data. Not all cloud providers enable the `config\_drive`. Read more in the
+                      data. Not all cloud providers enable the `config_drive`. Read more in the
                       [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
                   no_device: {}
@@ -24522,15 +24539,15 @@ components:
                 > 
                 > 
                 > ```
-                > "block\_device\_mapping\_v2": [{
-                >  "boot\_index": "0",
+                > "block_device_mapping_v2": [{
+                >  "boot_index": "0",
                 >  "uuid": "ac408821-c95a-448f-9292-73986c790911",
-                >  "source\_type": "image",
-                >  "volume\_size": "25",
-                >  "destination\_type": "volume",
-                >  "delete\_on\_termination": true,
+                >  "source_type": "image",
+                >  "volume_size": "25",
+                >  "destination_type": "volume",
+                >  "delete_on_termination": true,
                 >  "tag": "disk1",
-                >  "disk\_bus": "scsi"}]
+                >  "disk_bus": "scsi"}]
                 > 
                 > ```
                 > 
@@ -24576,11 +24593,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             key_name:
@@ -24635,11 +24652,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             security_groups:
@@ -24689,7 +24706,7 @@ components:
           type: object
           description: |+
             The dictionary of data to send to the scheduler. Alternatively, you can specify
-            `OS-SCH-HNT:scheduler\_hints` as the key in the request body.
+            `OS-SCH-HNT:scheduler_hints` as the key in the request body.
 
 
 
@@ -24764,7 +24781,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -24800,7 +24817,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -24809,9 +24826,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -24867,7 +24884,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -24903,7 +24920,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -24912,9 +24929,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -24994,7 +25011,7 @@ components:
                       - format: ipv6
                     description: |+
                       Schedule the server on a host in the network specified with this parameter
-                      and a cidr (`os:scheduler\_hints.cidr`).
+                      and a cidr (`os:scheduler_hints.cidr`).
                       It is available when `SimpleCIDRAffinityFilter` is available
                       on cloud side.
 
@@ -25165,11 +25182,11 @@ components:
                       - No
                       - no
                     description: |+
-                      Indicates whether a config drive enables metadata injection. The config\_drive
+                      Indicates whether a config drive enables metadata injection. The config_drive
                       setting provides information about a drive that the instance can mount at boot
                       time. The instance reads files from the drive to get information that is normally
                       available through the metadata service. This metadata is different from the user
-                      data. Not all cloud providers enable the `config\_drive`. Read more in the
+                      data. Not all cloud providers enable the `config_drive`. Read more in the
                       [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
                   no_device: {}
@@ -25280,15 +25297,15 @@ components:
                 > 
                 > 
                 > ```
-                > "block\_device\_mapping\_v2": [{
-                >  "boot\_index": "0",
+                > "block_device_mapping_v2": [{
+                >  "boot_index": "0",
                 >  "uuid": "ac408821-c95a-448f-9292-73986c790911",
-                >  "source\_type": "image",
-                >  "volume\_size": "25",
-                >  "destination\_type": "volume",
-                >  "delete\_on\_termination": true,
+                >  "source_type": "image",
+                >  "volume_size": "25",
+                >  "destination_type": "volume",
+                >  "delete_on_termination": true,
                 >  "tag": "disk1",
-                >  "disk\_bus": "scsi"}]
+                >  "disk_bus": "scsi"}]
                 > 
                 > ```
                 > 
@@ -25334,11 +25351,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             key_name:
@@ -25393,11 +25410,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             security_groups:
@@ -25463,7 +25480,7 @@ components:
           type: object
           description: |+
             The dictionary of data to send to the scheduler. Alternatively, you can specify
-            `OS-SCH-HNT:scheduler\_hints` as the key in the request body.
+            `OS-SCH-HNT:scheduler_hints` as the key in the request body.
 
 
 
@@ -25538,7 +25555,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -25574,7 +25591,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -25583,9 +25600,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -25641,7 +25658,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -25677,7 +25694,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -25686,9 +25703,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -25768,7 +25785,7 @@ components:
                       - format: ipv6
                     description: |+
                       Schedule the server on a host in the network specified with this parameter
-                      and a cidr (`os:scheduler\_hints.cidr`).
+                      and a cidr (`os:scheduler_hints.cidr`).
                       It is available when `SimpleCIDRAffinityFilter` is available
                       on cloud side.
 
@@ -25944,11 +25961,11 @@ components:
                       - No
                       - no
                     description: |+
-                      Indicates whether a config drive enables metadata injection. The config\_drive
+                      Indicates whether a config drive enables metadata injection. The config_drive
                       setting provides information about a drive that the instance can mount at boot
                       time. The instance reads files from the drive to get information that is normally
                       available through the metadata service. This metadata is different from the user
-                      data. Not all cloud providers enable the `config\_drive`. Read more in the
+                      data. Not all cloud providers enable the `config_drive`. Read more in the
                       [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
                   no_device: {}
@@ -26064,15 +26081,15 @@ components:
                 > 
                 > 
                 > ```
-                > "block\_device\_mapping\_v2": [{
-                >  "boot\_index": "0",
+                > "block_device_mapping_v2": [{
+                >  "boot_index": "0",
                 >  "uuid": "ac408821-c95a-448f-9292-73986c790911",
-                >  "source\_type": "image",
-                >  "volume\_size": "25",
-                >  "destination\_type": "volume",
-                >  "delete\_on\_termination": true,
+                >  "source_type": "image",
+                >  "volume_size": "25",
+                >  "destination_type": "volume",
+                >  "delete_on_termination": true,
                 >  "tag": "disk1",
-                >  "disk\_bus": "scsi"}]
+                >  "disk_bus": "scsi"}]
                 > 
                 > ```
                 > 
@@ -26118,11 +26135,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             key_name:
@@ -26177,11 +26194,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             security_groups:
@@ -26247,7 +26264,7 @@ components:
           type: object
           description: |+
             The dictionary of data to send to the scheduler. Alternatively, you can specify
-            `OS-SCH-HNT:scheduler\_hints` as the key in the request body.
+            `OS-SCH-HNT:scheduler_hints` as the key in the request body.
 
 
 
@@ -26322,7 +26339,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -26358,7 +26375,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -26367,9 +26384,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -26425,7 +26442,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -26461,7 +26478,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -26470,9 +26487,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -26552,7 +26569,7 @@ components:
                       - format: ipv6
                     description: |+
                       Schedule the server on a host in the network specified with this parameter
-                      and a cidr (`os:scheduler\_hints.cidr`).
+                      and a cidr (`os:scheduler_hints.cidr`).
                       It is available when `SimpleCIDRAffinityFilter` is available
                       on cloud side.
 
@@ -26728,11 +26745,11 @@ components:
                       - No
                       - no
                     description: |+
-                      Indicates whether a config drive enables metadata injection. The config\_drive
+                      Indicates whether a config drive enables metadata injection. The config_drive
                       setting provides information about a drive that the instance can mount at boot
                       time. The instance reads files from the drive to get information that is normally
                       available through the metadata service. This metadata is different from the user
-                      data. Not all cloud providers enable the `config\_drive`. Read more in the
+                      data. Not all cloud providers enable the `config_drive`. Read more in the
                       [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
                   no_device: {}
@@ -26843,15 +26860,15 @@ components:
                 > 
                 > 
                 > ```
-                > "block\_device\_mapping\_v2": [{
-                >  "boot\_index": "0",
+                > "block_device_mapping_v2": [{
+                >  "boot_index": "0",
                 >  "uuid": "ac408821-c95a-448f-9292-73986c790911",
-                >  "source\_type": "image",
-                >  "volume\_size": "25",
-                >  "destination\_type": "volume",
-                >  "delete\_on\_termination": true,
+                >  "source_type": "image",
+                >  "volume_size": "25",
+                >  "destination_type": "volume",
+                >  "delete_on_termination": true,
                 >  "tag": "disk1",
-                >  "disk\_bus": "scsi"}]
+                >  "disk_bus": "scsi"}]
                 > 
                 > ```
                 > 
@@ -26897,11 +26914,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             key_name:
@@ -26956,11 +26973,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             security_groups:
@@ -27026,7 +27043,7 @@ components:
           type: object
           description: |+
             The dictionary of data to send to the scheduler. Alternatively, you can specify
-            `OS-SCH-HNT:scheduler\_hints` as the key in the request body.
+            `OS-SCH-HNT:scheduler_hints` as the key in the request body.
 
 
 
@@ -27101,7 +27118,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -27137,7 +27154,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -27146,9 +27163,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -27204,7 +27221,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -27240,7 +27257,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -27249,9 +27266,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -27502,11 +27519,11 @@ components:
                       - No
                       - no
                     description: |+
-                      Indicates whether a config drive enables metadata injection. The config\_drive
+                      Indicates whether a config drive enables metadata injection. The config_drive
                       setting provides information about a drive that the instance can mount at boot
                       time. The instance reads files from the drive to get information that is normally
                       available through the metadata service. This metadata is different from the user
-                      data. Not all cloud providers enable the `config\_drive`. Read more in the
+                      data. Not all cloud providers enable the `config_drive`. Read more in the
                       [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
                   no_device: {}
@@ -27617,15 +27634,15 @@ components:
                 > 
                 > 
                 > ```
-                > "block\_device\_mapping\_v2": [{
-                >  "boot\_index": "0",
+                > "block_device_mapping_v2": [{
+                >  "boot_index": "0",
                 >  "uuid": "ac408821-c95a-448f-9292-73986c790911",
-                >  "source\_type": "image",
-                >  "volume\_size": "25",
-                >  "destination\_type": "volume",
-                >  "delete\_on\_termination": true,
+                >  "source_type": "image",
+                >  "volume_size": "25",
+                >  "destination_type": "volume",
+                >  "delete_on_termination": true,
                 >  "tag": "disk1",
-                >  "disk\_bus": "scsi"}]
+                >  "disk_bus": "scsi"}]
                 > 
                 > ```
                 > 
@@ -27671,11 +27688,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             key_name:
@@ -27730,11 +27747,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             security_groups:
@@ -27801,7 +27818,7 @@ components:
           type: object
           description: |+
             The dictionary of data to send to the scheduler. Alternatively, you can specify
-            `OS-SCH-HNT:scheduler\_hints` as the key in the request body.
+            `OS-SCH-HNT:scheduler_hints` as the key in the request body.
 
 
 
@@ -27876,7 +27893,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -27912,7 +27929,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -27921,9 +27938,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -27979,7 +27996,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -28015,7 +28032,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -28024,9 +28041,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -28282,11 +28299,11 @@ components:
                       - No
                       - no
                     description: |+
-                      Indicates whether a config drive enables metadata injection. The config\_drive
+                      Indicates whether a config drive enables metadata injection. The config_drive
                       setting provides information about a drive that the instance can mount at boot
                       time. The instance reads files from the drive to get information that is normally
                       available through the metadata service. This metadata is different from the user
-                      data. Not all cloud providers enable the `config\_drive`. Read more in the
+                      data. Not all cloud providers enable the `config_drive`. Read more in the
                       [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
                   no_device: {}
@@ -28402,15 +28419,15 @@ components:
                 > 
                 > 
                 > ```
-                > "block\_device\_mapping\_v2": [{
-                >  "boot\_index": "0",
+                > "block_device_mapping_v2": [{
+                >  "boot_index": "0",
                 >  "uuid": "ac408821-c95a-448f-9292-73986c790911",
-                >  "source\_type": "image",
-                >  "volume\_size": "25",
-                >  "destination\_type": "volume",
-                >  "delete\_on\_termination": true,
+                >  "source_type": "image",
+                >  "volume_size": "25",
+                >  "destination_type": "volume",
+                >  "delete_on_termination": true,
                 >  "tag": "disk1",
-                >  "disk\_bus": "scsi"}]
+                >  "disk_bus": "scsi"}]
                 > 
                 > ```
                 > 
@@ -28456,11 +28473,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             key_name:
@@ -28515,11 +28532,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             security_groups:
@@ -28586,7 +28603,7 @@ components:
           type: object
           description: |+
             The dictionary of data to send to the scheduler. Alternatively, you can specify
-            `OS-SCH-HNT:scheduler\_hints` as the key in the request body.
+            `OS-SCH-HNT:scheduler_hints` as the key in the request body.
 
 
 
@@ -28661,7 +28678,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -28697,7 +28714,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -28706,9 +28723,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -28764,7 +28781,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -28800,7 +28817,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -28809,9 +28826,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -29067,11 +29084,11 @@ components:
                       - No
                       - no
                     description: |+
-                      Indicates whether a config drive enables metadata injection. The config\_drive
+                      Indicates whether a config drive enables metadata injection. The config_drive
                       setting provides information about a drive that the instance can mount at boot
                       time. The instance reads files from the drive to get information that is normally
                       available through the metadata service. This metadata is different from the user
-                      data. Not all cloud providers enable the `config\_drive`. Read more in the
+                      data. Not all cloud providers enable the `config_drive`. Read more in the
                       [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
                   no_device: {}
@@ -29187,15 +29204,15 @@ components:
                 > 
                 > 
                 > ```
-                > "block\_device\_mapping\_v2": [{
-                >  "boot\_index": "0",
+                > "block_device_mapping_v2": [{
+                >  "boot_index": "0",
                 >  "uuid": "ac408821-c95a-448f-9292-73986c790911",
-                >  "source\_type": "image",
-                >  "volume\_size": "25",
-                >  "destination\_type": "volume",
-                >  "delete\_on\_termination": true,
+                >  "source_type": "image",
+                >  "volume_size": "25",
+                >  "destination_type": "volume",
+                >  "delete_on_termination": true,
                 >  "tag": "disk1",
-                >  "disk\_bus": "scsi"}]
+                >  "disk_bus": "scsi"}]
                 > 
                 > ```
                 > 
@@ -29241,11 +29258,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             key_name:
@@ -29300,11 +29317,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             security_groups:
@@ -29394,7 +29411,7 @@ components:
           type: object
           description: |+
             The dictionary of data to send to the scheduler. Alternatively, you can specify
-            `OS-SCH-HNT:scheduler\_hints` as the key in the request body.
+            `OS-SCH-HNT:scheduler_hints` as the key in the request body.
 
 
 
@@ -29469,7 +29486,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -29505,7 +29522,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -29514,9 +29531,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -29572,7 +29589,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -29608,7 +29625,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -29617,9 +29634,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -29856,11 +29873,11 @@ components:
                       - No
                       - no
                     description: |+
-                      Indicates whether a config drive enables metadata injection. The config\_drive
+                      Indicates whether a config drive enables metadata injection. The config_drive
                       setting provides information about a drive that the instance can mount at boot
                       time. The instance reads files from the drive to get information that is normally
                       available through the metadata service. This metadata is different from the user
-                      data. Not all cloud providers enable the `config\_drive`. Read more in the
+                      data. Not all cloud providers enable the `config_drive`. Read more in the
                       [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
                   no_device: {}
@@ -29976,15 +29993,15 @@ components:
                 > 
                 > 
                 > ```
-                > "block\_device\_mapping\_v2": [{
-                >  "boot\_index": "0",
+                > "block_device_mapping_v2": [{
+                >  "boot_index": "0",
                 >  "uuid": "ac408821-c95a-448f-9292-73986c790911",
-                >  "source\_type": "image",
-                >  "volume\_size": "25",
-                >  "destination\_type": "volume",
-                >  "delete\_on\_termination": true,
+                >  "source_type": "image",
+                >  "volume_size": "25",
+                >  "destination_type": "volume",
+                >  "delete_on_termination": true,
                 >  "tag": "disk1",
-                >  "disk\_bus": "scsi"}]
+                >  "disk_bus": "scsi"}]
                 > 
                 > ```
                 > 
@@ -30030,11 +30047,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             key_name:
@@ -30089,11 +30106,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             security_groups:
@@ -30183,7 +30200,7 @@ components:
           type: object
           description: |+
             The dictionary of data to send to the scheduler. Alternatively, you can specify
-            `OS-SCH-HNT:scheduler\_hints` as the key in the request body.
+            `OS-SCH-HNT:scheduler_hints` as the key in the request body.
 
 
 
@@ -30258,7 +30275,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -30294,7 +30311,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -30303,9 +30320,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -30361,7 +30378,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -30397,7 +30414,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -30406,9 +30423,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -30645,11 +30662,11 @@ components:
                       - No
                       - no
                     description: |+
-                      Indicates whether a config drive enables metadata injection. The config\_drive
+                      Indicates whether a config drive enables metadata injection. The config_drive
                       setting provides information about a drive that the instance can mount at boot
                       time. The instance reads files from the drive to get information that is normally
                       available through the metadata service. This metadata is different from the user
-                      data. Not all cloud providers enable the `config\_drive`. Read more in the
+                      data. Not all cloud providers enable the `config_drive`. Read more in the
                       [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
                   no_device: {}
@@ -30765,15 +30782,15 @@ components:
                 > 
                 > 
                 > ```
-                > "block\_device\_mapping\_v2": [{
-                >  "boot\_index": "0",
+                > "block_device_mapping_v2": [{
+                >  "boot_index": "0",
                 >  "uuid": "ac408821-c95a-448f-9292-73986c790911",
-                >  "source\_type": "image",
-                >  "volume\_size": "25",
-                >  "destination\_type": "volume",
-                >  "delete\_on\_termination": true,
+                >  "source_type": "image",
+                >  "volume_size": "25",
+                >  "destination_type": "volume",
+                >  "delete_on_termination": true,
                 >  "tag": "disk1",
-                >  "disk\_bus": "scsi"}]
+                >  "disk_bus": "scsi"}]
                 > 
                 > ```
                 > 
@@ -30819,11 +30836,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             key_name:
@@ -30878,11 +30895,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             security_groups:
@@ -30992,7 +31009,7 @@ components:
           type: object
           description: |+
             The dictionary of data to send to the scheduler. Alternatively, you can specify
-            `OS-SCH-HNT:scheduler\_hints` as the key in the request body.
+            `OS-SCH-HNT:scheduler_hints` as the key in the request body.
 
 
 
@@ -31067,7 +31084,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -31103,7 +31120,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -31112,9 +31129,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -31170,7 +31187,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -31206,7 +31223,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -31215,9 +31232,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -31454,11 +31471,11 @@ components:
                       - No
                       - no
                     description: |+
-                      Indicates whether a config drive enables metadata injection. The config\_drive
+                      Indicates whether a config drive enables metadata injection. The config_drive
                       setting provides information about a drive that the instance can mount at boot
                       time. The instance reads files from the drive to get information that is normally
                       available through the metadata service. This metadata is different from the user
-                      data. Not all cloud providers enable the `config\_drive`. Read more in the
+                      data. Not all cloud providers enable the `config_drive`. Read more in the
                       [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
                   no_device: {}
@@ -31580,15 +31597,15 @@ components:
                 > 
                 > 
                 > ```
-                > "block\_device\_mapping\_v2": [{
-                >  "boot\_index": "0",
+                > "block_device_mapping_v2": [{
+                >  "boot_index": "0",
                 >  "uuid": "ac408821-c95a-448f-9292-73986c790911",
-                >  "source\_type": "image",
-                >  "volume\_size": "25",
-                >  "destination\_type": "volume",
-                >  "delete\_on\_termination": true,
+                >  "source_type": "image",
+                >  "volume_size": "25",
+                >  "destination_type": "volume",
+                >  "delete_on_termination": true,
                 >  "tag": "disk1",
-                >  "disk\_bus": "scsi"}]
+                >  "disk_bus": "scsi"}]
                 > 
                 > ```
                 > 
@@ -31634,11 +31651,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             key_name:
@@ -31693,11 +31710,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             security_groups:
@@ -31807,7 +31824,7 @@ components:
           type: object
           description: |+
             The dictionary of data to send to the scheduler. Alternatively, you can specify
-            `OS-SCH-HNT:scheduler\_hints` as the key in the request body.
+            `OS-SCH-HNT:scheduler_hints` as the key in the request body.
 
 
 
@@ -31882,7 +31899,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -31918,7 +31935,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -31927,9 +31944,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -31985,7 +32002,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -32021,7 +32038,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -32030,9 +32047,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -32269,11 +32286,11 @@ components:
                       - No
                       - no
                     description: |+
-                      Indicates whether a config drive enables metadata injection. The config\_drive
+                      Indicates whether a config drive enables metadata injection. The config_drive
                       setting provides information about a drive that the instance can mount at boot
                       time. The instance reads files from the drive to get information that is normally
                       available through the metadata service. This metadata is different from the user
-                      data. Not all cloud providers enable the `config\_drive`. Read more in the
+                      data. Not all cloud providers enable the `config_drive`. Read more in the
                       [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
                   no_device: {}
@@ -32395,15 +32412,15 @@ components:
                 > 
                 > 
                 > ```
-                > "block\_device\_mapping\_v2": [{
-                >  "boot\_index": "0",
+                > "block_device_mapping_v2": [{
+                >  "boot_index": "0",
                 >  "uuid": "ac408821-c95a-448f-9292-73986c790911",
-                >  "source\_type": "image",
-                >  "volume\_size": "25",
-                >  "destination\_type": "volume",
-                >  "delete\_on\_termination": true,
+                >  "source_type": "image",
+                >  "volume_size": "25",
+                >  "destination_type": "volume",
+                >  "delete_on_termination": true,
                 >  "tag": "disk1",
-                >  "disk\_bus": "scsi"}]
+                >  "disk_bus": "scsi"}]
                 > 
                 > ```
                 > 
@@ -32449,11 +32466,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             key_name:
@@ -32508,11 +32525,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             security_groups:
@@ -32648,7 +32665,7 @@ components:
           type: object
           description: |+
             The dictionary of data to send to the scheduler. Alternatively, you can specify
-            `OS-SCH-HNT:scheduler\_hints` as the key in the request body.
+            `OS-SCH-HNT:scheduler_hints` as the key in the request body.
 
 
 
@@ -32723,7 +32740,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -32759,7 +32776,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -32768,9 +32785,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -32826,7 +32843,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -32862,7 +32879,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -32871,9 +32888,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -33110,11 +33127,11 @@ components:
                       - No
                       - no
                     description: |+
-                      Indicates whether a config drive enables metadata injection. The config\_drive
+                      Indicates whether a config drive enables metadata injection. The config_drive
                       setting provides information about a drive that the instance can mount at boot
                       time. The instance reads files from the drive to get information that is normally
                       available through the metadata service. This metadata is different from the user
-                      data. Not all cloud providers enable the `config\_drive`. Read more in the
+                      data. Not all cloud providers enable the `config_drive`. Read more in the
                       [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
                   no_device: {}
@@ -33236,15 +33253,15 @@ components:
                 > 
                 > 
                 > ```
-                > "block\_device\_mapping\_v2": [{
-                >  "boot\_index": "0",
+                > "block_device_mapping_v2": [{
+                >  "boot_index": "0",
                 >  "uuid": "ac408821-c95a-448f-9292-73986c790911",
-                >  "source\_type": "image",
-                >  "volume\_size": "25",
-                >  "destination\_type": "volume",
-                >  "delete\_on\_termination": true,
+                >  "source_type": "image",
+                >  "volume_size": "25",
+                >  "destination_type": "volume",
+                >  "delete_on_termination": true,
                 >  "tag": "disk1",
-                >  "disk\_bus": "scsi"}]
+                >  "disk_bus": "scsi"}]
                 > 
                 > ```
                 > 
@@ -33290,11 +33307,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             key_name:
@@ -33349,11 +33366,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             security_groups:
@@ -33498,7 +33515,7 @@ components:
 
 
                 This information is published via the metadata service and requires
-                application such as `cloud-init` to propogate it through to the
+                application such as `cloud-init` to propagate it through to the
                 instance.
 
 
@@ -33514,7 +33531,7 @@ components:
           type: object
           description: |+
             The dictionary of data to send to the scheduler. Alternatively, you can specify
-            `OS-SCH-HNT:scheduler\_hints` as the key in the request body.
+            `OS-SCH-HNT:scheduler_hints` as the key in the request body.
 
 
 
@@ -33589,7 +33606,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -33625,7 +33642,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -33634,9 +33651,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -33692,7 +33709,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -33728,7 +33745,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -33737,9 +33754,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -33976,11 +33993,11 @@ components:
                       - No
                       - no
                     description: |+
-                      Indicates whether a config drive enables metadata injection. The config\_drive
+                      Indicates whether a config drive enables metadata injection. The config_drive
                       setting provides information about a drive that the instance can mount at boot
                       time. The instance reads files from the drive to get information that is normally
                       available through the metadata service. This metadata is different from the user
-                      data. Not all cloud providers enable the `config\_drive`. Read more in the
+                      data. Not all cloud providers enable the `config_drive`. Read more in the
                       [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
                   no_device: {}
@@ -34102,15 +34119,15 @@ components:
                 > 
                 > 
                 > ```
-                > "block\_device\_mapping\_v2": [{
-                >  "boot\_index": "0",
+                > "block_device_mapping_v2": [{
+                >  "boot_index": "0",
                 >  "uuid": "ac408821-c95a-448f-9292-73986c790911",
-                >  "source\_type": "image",
-                >  "volume\_size": "25",
-                >  "destination\_type": "volume",
-                >  "delete\_on\_termination": true,
+                >  "source_type": "image",
+                >  "volume_size": "25",
+                >  "destination_type": "volume",
+                >  "delete_on_termination": true,
                 >  "tag": "disk1",
-                >  "disk\_bus": "scsi"}]
+                >  "disk_bus": "scsi"}]
                 > 
                 > ```
                 > 
@@ -34156,11 +34173,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             key_name:
@@ -34215,11 +34232,11 @@ components:
                 - No
                 - no
               description: |+
-                Indicates whether a config drive enables metadata injection. The config\_drive
+                Indicates whether a config drive enables metadata injection. The config_drive
                 setting provides information about a drive that the instance can mount at boot
                 time. The instance reads files from the drive to get information that is normally
                 available through the metadata service. This metadata is different from the user
-                data. Not all cloud providers enable the `config\_drive`. Read more in the
+                data. Not all cloud providers enable the `config_drive`. Read more in the
                 [OpenStack End User Guide](https://docs.openstack.org/nova/latest/user/config-drive.html).
 
             security_groups:
@@ -34364,7 +34381,7 @@ components:
 
 
                 This information is published via the metadata service and requires
-                application such as `cloud-init` to propogate it through to the
+                application such as `cloud-init` to propagate it through to the
                 instance.
 
 
@@ -34380,7 +34397,7 @@ components:
           type: object
           description: |+
             The dictionary of data to send to the scheduler. Alternatively, you can specify
-            `OS-SCH-HNT:scheduler\_hints` as the key in the request body.
+            `OS-SCH-HNT:scheduler_hints` as the key in the request body.
 
 
 
@@ -34455,7 +34472,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -34491,7 +34508,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -34500,9 +34517,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -34558,7 +34575,7 @@ components:
 
 
                 ```
-                "query": "[\">=\",\"$free\_ram\_mb\",1024]"
+                "query": "[\">=\",\"$free_ram_mb\",1024]"
 
                 ```
 
@@ -34594,7 +34611,7 @@ components:
                 - format: ipv6
               description: |+
                 Schedule the server on a host in the network specified with this parameter
-                and a cidr (`os:scheduler\_hints.cidr`).
+                and a cidr (`os:scheduler_hints.cidr`).
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -34603,9 +34620,9 @@ components:
               pattern: ^/[0-9a-f.:]+$
               description: |+
                 Schedule the server on a host in the network specified with an IP address
-                (`os:scheduler\_hints:build\_near\_host\_ip`) and this parameter.
-                If `os:scheduler\_hints:build\_near\_host\_ip` is specified and
-                this paramete is omitted, `/24` is used.
+                (`os:scheduler_hints:build_near_host_ip`) and this parameter.
+                If `os:scheduler_hints:build_near_host_ip` is specified and
+                this parameter is omitted, `/24` is used.
                 It is available when `SimpleCIDRAffinityFilter` is available
                 on cloud side.
 
@@ -34660,7 +34677,7 @@ components:
                   type: string
                   format: password
                   description: |+
-                    The administrative password for the server. If you set `enable\_instance\_password` configuration
+                    The administrative password for the server. If you set `enable_instance_password` configuration
                     option to `False`, the API wouldn’t return the `adminPass` field in response.
 
                 id:
@@ -34977,7 +34994,7 @@ components:
                     description: |+
                       A dictionary of the flavor’s extra-specs key-and-value pairs. This will
                       only be included if the user is allowed by policy to index flavor
-                      extra\_specs.
+                      extra_specs.
 
 
                       **New in version 2.47**
@@ -34994,8 +35011,8 @@ components:
                 type: string
                 description: |+
                   An ID string representing the host. This is a hashed value so will not actually look like
-                  a hostname, and is hashed with data from the project\_id, so the same physical host as seen
-                  by two different project\_ids, will be different. It is useful when within the same project you
+                  a hostname, and is hashed with data from the project_id, so the same physical host as seen
+                  by two different project_ids, will be different. It is useful when within the same project you
                   need to determine if two instances are on the same or different physical hosts for the
                   purposes of availability or performance.
 
@@ -35042,7 +35059,7 @@ components:
 
 
                   This information is published via the metadata service and requires
-                  application such as `cloud-init` to propogate it through to the
+                  application such as `cloud-init` to propagate it through to the
                   instance.
 
 
@@ -35156,7 +35173,7 @@ components:
 
 
                   The `hh±:mm` value, if included, is the time zone as an offset from UTC.
-                  If the `deleted\_at` date and time stamp is not set, its value is `null`.
+                  If the `deleted_at` date and time stamp is not set, its value is `null`.
 
               links:
                 description: Links to the resources in question. See [API Guide /
@@ -35214,7 +35231,7 @@ components:
                 description: |+
                   A percentage value of the operation progress.
                   This parameter only appears when the server status is `ACTIVE`,
-                  `BUILD`, `REBUILD`, `RESIZE`, `VERIFY\_RESIZE` or `MIGRATING`.
+                  `BUILD`, `REBUILD`, `RESIZE`, `VERIFY_RESIZE` or `MIGRATING`.
 
               tenant_id:
                 type: string
@@ -35238,7 +35255,7 @@ components:
                 description: |+
                   The reservation id for the server. This is an id that can
                   be useful in tracking groups of servers created with multiple
-                  create, that will all have the same reservation\_id.
+                  create, that will all have the same reservation_id.
                   By default, it appears in the response for administrative users only.
 
 
@@ -35317,7 +35334,7 @@ components:
 
                   For example, `2015-08-27T09:49:58-05:00`.
                   The `±hh:mm` value, if included, is the time zone as an offset from UTC.
-                  If the `deleted\_at` date and time stamp is not set, its value is `null`.
+                  If the `deleted_at` date and time stamp is not set, its value is `null`.
 
               trusted_image_certificates:
                 type:
@@ -35359,7 +35376,7 @@ components:
               OS-EXT-SRV-ATTR:user_data:
                 type: string
                 description: |+
-                  The user\_data the instance was created with.
+                  The user_data the instance was created with.
                   By default, it appears in the response for administrative users only.
 
 
@@ -35677,7 +35694,7 @@ components:
                   description: |+
                     A dictionary of the flavor’s extra-specs key-and-value pairs. This will
                     only be included if the user is allowed by policy to index flavor
-                    extra\_specs.
+                    extra_specs.
 
 
                     **New in version 2.47**
@@ -35694,8 +35711,8 @@ components:
               type: string
               description: |+
                 An ID string representing the host. This is a hashed value so will not actually look like
-                a hostname, and is hashed with data from the project\_id, so the same physical host as seen
-                by two different project\_ids, will be different. It is useful when within the same project you
+                a hostname, and is hashed with data from the project_id, so the same physical host as seen
+                by two different project_ids, will be different. It is useful when within the same project you
                 need to determine if two instances are on the same or different physical hosts for the
                 purposes of availability or performance.
 
@@ -35742,7 +35759,7 @@ components:
 
 
                 This information is published via the metadata service and requires
-                application such as `cloud-init` to propogate it through to the
+                application such as `cloud-init` to propagate it through to the
                 instance.
 
 
@@ -35865,7 +35882,7 @@ components:
 
 
                 The `hh±:mm` value, if included, is the time zone as an offset from UTC.
-                If the `deleted\_at` date and time stamp is not set, its value is `null`.
+                If the `deleted_at` date and time stamp is not set, its value is `null`.
 
 
                 **New in version 2.75**
@@ -35929,7 +35946,7 @@ components:
               description: |+
                 A percentage value of the operation progress.
                 This parameter only appears when the server status is `ACTIVE`,
-                `BUILD`, `REBUILD`, `RESIZE`, `VERIFY\_RESIZE` or `MIGRATING`.
+                `BUILD`, `REBUILD`, `RESIZE`, `VERIFY_RESIZE` or `MIGRATING`.
 
             tenant_id:
               type: string
@@ -35953,7 +35970,7 @@ components:
               description: |+
                 The reservation id for the server. This is an id that can
                 be useful in tracking groups of servers created with multiple
-                create, that will all have the same reservation\_id.
+                create, that will all have the same reservation_id.
                 By default, it appears in the response for administrative users only.
 
 
@@ -36043,7 +36060,7 @@ components:
 
                 For example, `2015-08-27T09:49:58-05:00`.
                 The `±hh:mm` value, if included, is the time zone as an offset from UTC.
-                If the `deleted\_at` date and time stamp is not set, its value is `null`.
+                If the `deleted_at` date and time stamp is not set, its value is `null`.
 
 
                 **New in version 2.75**
@@ -36088,7 +36105,7 @@ components:
             OS-EXT-SRV-ATTR:user_data:
               type: string
               description: |+
-                The user\_data the instance was created with.
+                The user_data the instance was created with.
                 By default, it appears in the response for administrative users only.
 
 
@@ -36384,7 +36401,7 @@ components:
 
 
                 This information is published via the metadata service and requires
-                application such as `cloud-init` to propogate it through to the
+                application such as `cloud-init` to propagate it through to the
                 instance.
 
 
@@ -36483,7 +36500,7 @@ components:
 
 
                 This information is published via the metadata service and requires
-                application such as `cloud-init` to propogate it through to the
+                application such as `cloud-init` to propagate it through to the
                 instance.
 
 
@@ -36780,7 +36797,7 @@ components:
                   description: |+
                     A dictionary of the flavor’s extra-specs key-and-value pairs. This will
                     only be included if the user is allowed by policy to index flavor
-                    extra\_specs.
+                    extra_specs.
 
 
                     **New in version 2.47**
@@ -36797,8 +36814,8 @@ components:
               type: string
               description: |+
                 An ID string representing the host. This is a hashed value so will not actually look like
-                a hostname, and is hashed with data from the project\_id, so the same physical host as seen
-                by two different project\_ids, will be different. It is useful when within the same project you
+                a hostname, and is hashed with data from the project_id, so the same physical host as seen
+                by two different project_ids, will be different. It is useful when within the same project you
                 need to determine if two instances are on the same or different physical hosts for the
                 purposes of availability or performance.
 
@@ -36845,7 +36862,7 @@ components:
 
 
                 This information is published via the metadata service and requires
-                application such as `cloud-init` to propogate it through to the
+                application such as `cloud-init` to propagate it through to the
                 instance.
 
 
@@ -36968,7 +36985,7 @@ components:
 
 
                 The `hh±:mm` value, if included, is the time zone as an offset from UTC.
-                If the `deleted\_at` date and time stamp is not set, its value is `null`.
+                If the `deleted_at` date and time stamp is not set, its value is `null`.
 
 
                 **New in version 2.75**
@@ -37032,7 +37049,7 @@ components:
               description: |+
                 A percentage value of the operation progress.
                 This parameter only appears when the server status is `ACTIVE`,
-                `BUILD`, `REBUILD`, `RESIZE`, `VERIFY\_RESIZE` or `MIGRATING`.
+                `BUILD`, `REBUILD`, `RESIZE`, `VERIFY_RESIZE` or `MIGRATING`.
 
             tenant_id:
               type: string
@@ -37056,7 +37073,7 @@ components:
               description: |+
                 The reservation id for the server. This is an id that can
                 be useful in tracking groups of servers created with multiple
-                create, that will all have the same reservation\_id.
+                create, that will all have the same reservation_id.
                 By default, it appears in the response for administrative users only.
 
 
@@ -37146,7 +37163,7 @@ components:
 
                 For example, `2015-08-27T09:49:58-05:00`.
                 The `±hh:mm` value, if included, is the time zone as an offset from UTC.
-                If the `deleted\_at` date and time stamp is not set, its value is `null`.
+                If the `deleted_at` date and time stamp is not set, its value is `null`.
 
 
                 **New in version 2.75**
@@ -37191,7 +37208,7 @@ components:
             OS-EXT-SRV-ATTR:user_data:
               type: string
               description: |+
-                The user\_data the instance was created with.
+                The user_data the instance was created with.
                 By default, it appears in the response for administrative users only.
 
 
@@ -37228,14 +37245,14 @@ components:
         **Preconditions**
 
         You can only confirm the resized server where the status is
-        `VERIFY\_RESIZE`.
+        `VERIFY_RESIZE`.
 
         If the server is locked, you must have administrator privileges
         to confirm the server.
 
         **Troubleshooting**
 
-        If the server status remains `VERIFY\_RESIZE`, the request failed. Ensure you
+        If the server status remains `VERIFY_RESIZE`, the request failed. Ensure you
         meet the preconditions and run the request again. If the request fails
         again, the server status should be `ERROR` and a migration status of
         `error`. Investigate the compute back end or ask your cloud provider.
@@ -37268,7 +37285,7 @@ components:
         **Preconditions**
 
         You can only revert the resized server where the status is
-        `VERIFY\_RESIZE` and the OS-EXT-STS:vm\_state is `resized`.
+        `VERIFY_RESIZE` and the OS-EXT-STS:vm_state is `resized`.
 
         If the server is locked, you must have administrator privileges to revert
         the resizing.
@@ -37277,13 +37294,13 @@ components:
 
         After you make this request, you typically must keep polling the server status
         to determine whether the request succeeded. A reverting resize operation shows
-        a status of `REVERT\_RESIZE` and a task\_state of `resize\_reverting`. If
+        a status of `REVERT_RESIZE` and a task_state of `resize_reverting`. If
         successful, the status will return to `ACTIVE` or `SHUTOFF`. You can also
         see the reverted server in the compute node that OpenStack Compute manages.
 
         **Troubleshooting**
 
-        If the server status remains `VERIFY\_RESIZE`, the request failed. Ensure you
+        If the server status remains `VERIFY_RESIZE`, the request failed. Ensure you
         meet the preconditions and run the request again. If the request fails again,
         investigate the compute back end.
 
@@ -37377,8 +37394,8 @@ components:
 
         **Asynchronous Postconditions**
 
-        A successfully resized server shows a `VERIFY\_RESIZE` status and `finished`
-        migration status. If the cloud has configured the [resize\_confirm\_window](https://docs.openstack.org/nova/latest/configuration/config.html#DEFAULT.resize_confirm_window)
+        A successfully resized server shows a `VERIFY_RESIZE` status and `finished`
+        migration status. If the cloud has configured the [resize_confirm_window](https://docs.openstack.org/nova/latest/configuration/config.html#DEFAULT.resize_confirm_window)
         option of the Compute service to a positive value, the Compute service
         automatically confirms the resize operation after the configured interval.
 
@@ -38096,7 +38113,7 @@ components:
                 user’s instances in that project with a new keypair. Keys
                 are owned by users (which is the only resource that’s true
                 of). Servers are owned by projects. Because of this a rebuild
-                with a key\_name is looking up the keypair by the user calling
+                with a key_name is looking up the keypair by the user calling
                 rebuild.
 
 
@@ -38273,7 +38290,7 @@ components:
                 user’s instances in that project with a new keypair. Keys
                 are owned by users (which is the only resource that’s true
                 of). Servers are owned by projects. Because of this a rebuild
-                with a key\_name is looking up the keypair by the user calling
+                with a key_name is looking up the keypair by the user calling
                 rebuild.
 
 
@@ -38289,7 +38306,7 @@ components:
               description: |+
                 Configuration information or scripts to use upon rebuild.
                 Must be Base64 encoded. Restricted to 65535 bytes.
-                If `null` is specified, the existing user\_data is unset.
+                If `null` is specified, the existing user_data is unset.
 
 
                 **New in version 2.57**
@@ -38464,7 +38481,7 @@ components:
                 user’s instances in that project with a new keypair. Keys
                 are owned by users (which is the only resource that’s true
                 of). Servers are owned by projects. Because of this a rebuild
-                with a key\_name is looking up the keypair by the user calling
+                with a key_name is looking up the keypair by the user calling
                 rebuild.
 
 
@@ -38480,7 +38497,7 @@ components:
               description: |+
                 Configuration information or scripts to use upon rebuild.
                 Must be Base64 encoded. Restricted to 65535 bytes.
-                If `null` is specified, the existing user\_data is unset.
+                If `null` is specified, the existing user_data is unset.
 
 
                 **New in version 2.57**
@@ -38679,7 +38696,7 @@ components:
                 user’s instances in that project with a new keypair. Keys
                 are owned by users (which is the only resource that’s true
                 of). Servers are owned by projects. Because of this a rebuild
-                with a key\_name is looking up the keypair by the user calling
+                with a key_name is looking up the keypair by the user calling
                 rebuild.
 
 
@@ -38695,7 +38712,7 @@ components:
               description: |+
                 Configuration information or scripts to use upon rebuild.
                 Must be Base64 encoded. Restricted to 65535 bytes.
-                If `null` is specified, the existing user\_data is unset.
+                If `null` is specified, the existing user_data is unset.
 
 
                 **New in version 2.57**
@@ -38742,7 +38759,7 @@ components:
 
 
                 This information is published via the metadata service and requires
-                application such as `cloud-init` to propogate it through to the
+                application such as `cloud-init` to propagate it through to the
                 instance.
 
 
@@ -38919,7 +38936,7 @@ components:
                 user’s instances in that project with a new keypair. Keys
                 are owned by users (which is the only resource that’s true
                 of). Servers are owned by projects. Because of this a rebuild
-                with a key\_name is looking up the keypair by the user calling
+                with a key_name is looking up the keypair by the user calling
                 rebuild.
 
 
@@ -38935,7 +38952,7 @@ components:
               description: |+
                 Configuration information or scripts to use upon rebuild.
                 Must be Base64 encoded. Restricted to 65535 bytes.
-                If `null` is specified, the existing user\_data is unset.
+                If `null` is specified, the existing user_data is unset.
 
 
                 **New in version 2.57**
@@ -38982,7 +38999,7 @@ components:
 
 
                 This information is published via the metadata service and requires
-                application such as `cloud-init` to propogate it through to the
+                application such as `cloud-init` to propagate it through to the
                 instance.
 
 
@@ -39010,7 +39027,7 @@ components:
         instances which will reimage the volume with the provided
         image. For microversion < 2.93, this operation keeps the
         contents of the volume given the image provided is same as
-        the image with which the volume was created else the opearation
+        the image with which the volume was created else the operation
         will error out.
 
         **Preconditions**
@@ -39154,7 +39171,7 @@ components:
         be created.
         In the volume-backed server case,
         volume snapshots will be created for all volumes attached to the server and
-        then those will be represented with a `block\_device\_mapping` image property
+        then those will be represented with a `block_device_mapping` image property
         in the resulting snapshot image in the Image service.
         If that snapshot image is used later to create a new server,
         it will result in a volume-backed server where the root volume is created
@@ -39420,7 +39437,7 @@ components:
         the optional `length` parameter in the request body.
 
         The server to get console log from should set
-        `export LC\_ALL=en\_US.UTF-8` in order to avoid incorrect unicode error.
+        `export LC_ALL=en_US.UTF-8` in order to avoid incorrect unicode error.
 
         Normal response codes: 200
 
@@ -39895,7 +39912,7 @@ components:
                 Furthermore, this should not be specified when evacuating instances
                 managed by a clustered hypervisor driver like ironic since you
                 cannot specify a node, so the compute service will pick a node randomly
-                which may not be able to accomodate the instance.
+                which may not be able to accommodate the instance.
 
 
 
@@ -40039,7 +40056,7 @@ components:
           type: string
           description: |+
             An administrative password to access the evacuated instance.
-            If you set `enable\_instance\_password` configuration option to `False`,
+            If you set `enable_instance_password` configuration option to `False`,
             the API wouldn’t return the `adminPass` field in response.
 
 
@@ -40062,7 +40079,7 @@ components:
 
         If an instance is connected to multiple networks, you can associate a
         floating IP address with a specific fixed IP address by using the
-        optional `fixed\_address` parameter.
+        optional `fixed_address` parameter.
 
         **Preconditions**
 
@@ -40081,7 +40098,7 @@ components:
           type: object
           description: |+
             The action. Contains required floating IP `address` and optional
-            `fixed\_address`.
+            `fixed_address`.
 
           properties:
             address:
@@ -40173,7 +40190,7 @@ components:
         will unlock a server in locked state so additional actions can
         be performed on the server by non-admin users.
 
-        You can know whether a server is locked or not and the `locked\_reason`
+        You can know whether a server is locked or not and the `locked_reason`
         (if specified, from the 2.73 microversion) by the [List Servers Detailed API](https://docs.openstack.org/api-ref/compute/#list-servers-detailed)
         or
         the [Show Server Details API](https://docs.openstack.org/api-ref/compute/#show-server-details).
@@ -40248,8 +40265,8 @@ components:
 
         **Asynchronous Postconditions**
 
-        A successfully migrated server shows a `VERIFY\_RESIZE` status and `finished`
-        migration status. If the cloud has configured the [resize\_confirm\_window](https://docs.openstack.org/nova/latest/configuration/config.html#DEFAULT.resize_confirm_window)
+        A successfully migrated server shows a `VERIFY_RESIZE` status and `finished`
+        migration status. If the cloud has configured the [resize_confirm_window](https://docs.openstack.org/nova/latest/configuration/config.html#DEFAULT.resize_confirm_window)
         option of the Compute service to a positive value, the Compute service
         automatically confirms the migrate operation after the configured interval.
 
@@ -40713,10 +40730,10 @@ components:
         Use the `host` parameter to specify the destination host. If
         this param is `null`, the scheduler chooses a host. If a scheduled host
         is not suitable to do migration, the scheduler tries up to
-        `migrate\_max\_retries` rescheduling attempts.
+        `migrate_max_retries` rescheduling attempts.
 
-        Starting from API version 2.25, the `block\_migration` parameter could be
-        to `auto` so that nova can decide value of block\_migration during live
+        Starting from API version 2.25, the `block_migration` parameter could be
+        to `auto` so that nova can decide value of block_migration during live
         migration.
 
         Policy defaults enable only users with the administrative role to
@@ -41157,14 +41174,14 @@ components:
 
         Specify the `rescue` action in the request body.
 
-        If you specify the `rescue\_image\_ref` extended attribute,
+        If you specify the `rescue_image_ref` extended attribute,
         the image is used to rescue the instance. If you omit an image
         reference, the base image reference is used by default.
 
         **Asynchronous Postconditions**
 
         After you successfully rescue a server and make a `GET
-        /servers/​{server\_id}​` request, its status changes to `RESCUE`.
+        /servers/​{server_id}​` request, its status changes to `RESCUE`.
 
         Normal response codes: 200
 
@@ -41199,7 +41216,7 @@ components:
           type: string
           description: |+
             An administrative password to access the evacuated instance.
-            If you set `enable\_instance\_password` configuration option to `False`,
+            If you set `enable_instance_password` configuration option to `False`,
             the API wouldn’t return the `adminPass` field in response.
 
 
@@ -41223,7 +41240,7 @@ components:
         **Asynchronous Postconditions**
 
         After you successfully unrescue a server and make a
-        `GET /servers/​{server\_id}​`
+        `GET /servers/​{server_id}​`
         request, its status changes to `ACTIVE`.
 
         Normal response codes: 202
@@ -41303,11 +41320,11 @@ components:
 
         After you successfully shelve a server, its status changes to `SHELVED` and the image status is `ACTIVE`. The server instance data appears on the compute node that the Compute service manages.
 
-        If you boot the server from volumes or set the `shelved\_offload\_time` option to 0, the Compute service automatically deletes the instance on compute nodes and changes the server status to `SHELVED\_OFFLOADED`.
+        If you boot the server from volumes or set the `shelved_offload_time` option to 0, the Compute service automatically deletes the instance on compute nodes and changes the server status to `SHELVED_OFFLOADED`.
 
         **Troubleshooting**
 
-        If the server status does not change to `SHELVED` or `SHELVED\_OFFLOADED`, the shelve operation failed. Ensure that you meet the preconditions and run the request again. If the request fails again, investigate whether another operation is running that causes a race condition.
+        If the server status does not change to `SHELVED` or `SHELVED_OFFLOADED`, the shelve operation failed. Ensure that you meet the preconditions and run the request again. If the request fails again, investigate whether another operation is running that causes a race condition.
 
         Normal response codes: 202
 
@@ -41341,11 +41358,11 @@ components:
 
         **Asynchronous Postconditions**
 
-        After you successfully shelve-offload a server, its status changes to `SHELVED\_OFFLOADED`. The server instance data appears on the compute node.
+        After you successfully shelve-offload a server, its status changes to `SHELVED_OFFLOADED`. The server instance data appears on the compute node.
 
         **Troubleshooting**
 
-        If the server status does not change to `SHELVED\_OFFLOADED`, the shelve-offload operation failed. Ensure that you meet the preconditions and run the request again. If the request fails again, investigate whether another operation is running that causes a race condition.
+        If the server status does not change to `SHELVED_OFFLOADED`, the shelve-offload operation failed. Ensure that you meet the preconditions and run the request again. If the request fails again, investigate whether another operation is running that causes a race condition.
 
         Normal response codes: 202
 
@@ -41425,19 +41442,19 @@ components:
 
         **Preconditions**
 
-        Unshelving a server without parameters requires its status to be `SHELVED` or `SHELVED\_OFFLOADED`.
+        Unshelving a server without parameters requires its status to be `SHELVED` or `SHELVED_OFFLOADED`.
 
-        Unshelving a server with availability\_zone and/or host parameters requires its status to be only `SHELVED\_OFFLOADED` otherwise HTTP 409 conflict response is returned.
+        Unshelving a server with availability_zone and/or host parameters requires its status to be only `SHELVED_OFFLOADED` otherwise HTTP 409 conflict response is returned.
 
         If a server is locked, you must have administrator privileges to unshelve the server.
 
-        As of `microversion 2.91`, you can unshelve to a specific compute node if you have PROJECT\_ADMIN privileges.
-        This microversion also gives the ability to pin a server to an availability\_zone and to unpin a server
-        from any availability\_zone.
+        As of `microversion 2.91`, you can unshelve to a specific compute node if you have PROJECT_ADMIN privileges.
+        This microversion also gives the ability to pin a server to an availability_zone and to unpin a server
+        from any availability_zone.
 
-        When a server is pinned to an availability\_zone, the server move operations will keep the server in that
-        availability\_zone. However, when the server is not pinned to any availability\_zone, the move operations can
-        move the server to nodes in different availability\_zones.
+        When a server is pinned to an availability_zone, the server move operations will keep the server in that
+        availability_zone. However, when the server is not pinned to any availability_zone, the move operations can
+        move the server to nodes in different availability_zones.
 
         The behavior according to unshelve parameters will follow the below table.
 
@@ -41557,11 +41574,11 @@ components:
             Following fields are presented in each dictionary:
 
 
-            * `read\_bytes` - Disk reads in bytes (Integer)
-            * `read\_requests` - Read requests (Integer)
-            * `write\_bytes` - Disk writes in bytes (Integer)
-            * `write\_requests` - Write requests (Integer)
-            * `errors\_count` - Disk errors (Integer)
+            * `read_bytes` - Disk reads in bytes (Integer)
+            * `read_requests` - Read requests (Integer)
+            * `write_bytes` - Disk writes in bytes (Integer)
+            * `write_requests` - Write requests (Integer)
+            * `errors_count` - Disk errors (Integer)
 
 
             **New in version 2.48**
@@ -41691,17 +41708,17 @@ components:
             Following fields are presented in each dictionary:
 
 
-            * `mac\_address` - Mac address of the interface (String)
-            * `rx\_octets` - Received octets (Integer)
-            * `rx\_errors` - Received errors (Integer)
-            * `rx\_drop` - Received packets dropped (Integer)
-            * `rx\_packets` - Received packets (Integer)
-            * `rx\_rate` - Receive rate in bytes (Integer)
-            * `tx\_octets` - Transmitted Octets (Integer)
-            * `tx\_errors` - Transmit errors (Integer)
-            * `tx\_drop` - Transmit dropped packets (Integer)
-            * `tx\_packets` - Transmit packets (Integer)
-            * `tx\_rate` - Transmit rate in bytes (Integer)
+            * `mac_address` - Mac address of the interface (String)
+            * `rx_octets` - Received octets (Integer)
+            * `rx_errors` - Received errors (Integer)
+            * `rx_drop` - Received packets dropped (Integer)
+            * `rx_packets` - Received packets (Integer)
+            * `rx_rate` - Receive rate in bytes (Integer)
+            * `tx_octets` - Transmitted Octets (Integer)
+            * `tx_errors` - Transmit errors (Integer)
+            * `tx_drop` - Transmit dropped packets (Integer)
+            * `tx_packets` - Transmit packets (Integer)
+            * `tx_rate` - Transmit rate in bytes (Integer)
 
 
             **New in version 2.48**
@@ -42260,7 +42277,7 @@ components:
       description: |+
         Force an in-progress live migration for a given server to complete.
 
-        Specify the `force\_complete` action in the request body.
+        Specify the `force_complete` action in the request body.
 
         Policy defaults enable only users with the administrative role to perform
         this operation. Cloud providers can change these permissions through the
@@ -42268,8 +42285,8 @@ components:
 
         **Preconditions**
 
-        The server OS-EXT-STS:vm\_state value must be `active` and the server
-        OS-EXT-STS:task\_state value must be `migrating`.
+        The server OS-EXT-STS:vm_state value must be `active` and the server
+        OS-EXT-STS:task_state value must be `migrating`.
 
         If the server is locked, you must have administrator privileges to force the
         completion of the server migration.
@@ -42705,18 +42722,18 @@ components:
               type: string
               format: uuid
               description: |+
-                The ID of the network for which you want to create a port interface. The `net\_id`
-                and `port\_id` parameters are mutually exclusive. If you do not specify the
-                `net\_id` parameter, the OpenStack Networking API v2.0 uses the network information
+                The ID of the network for which you want to create a port interface. The `net_id`
+                and `port_id` parameters are mutually exclusive. If you do not specify the
+                `net_id` parameter, the OpenStack Networking API v2.0 uses the network information
                 cache that is associated with the instance.
 
             port_id:
               type: string
               format: uuid
               description: |+
-                The ID of the port for which you want to create an interface. The `net\_id`
-                and `port\_id` parameters are mutually exclusive. If you do not specify the
-                `port\_id` parameter, the OpenStack Networking API v2.0 allocates a port and
+                The ID of the port for which you want to create an interface. The `net_id`
+                and `port_id` parameters are mutually exclusive. If you do not specify the
+                `port_id` parameter, the OpenStack Networking API v2.0 allocates a port and
                 creates an interface for it on the network.
 
             fixed_ips:
@@ -42732,14 +42749,14 @@ components:
                       - format: ipv4
                       - format: ipv6
                     description: |+
-                      The IP address. It is required when `fixed\_ips` is specified.
+                      The IP address. It is required when `fixed_ips` is specified.
 
                 required:
                   - ip_address
                 additionalProperties: false
               description: |+
                 Fixed IP addresses. If you request a specific fixed IP address without
-                a `net\_id`, the request returns a `Bad Request (400)` response code.
+                a `net_id`, the request returns a `Bad Request (400)` response code.
 
           additionalProperties: false
       additionalProperties: false
@@ -42759,18 +42776,18 @@ components:
               type: string
               format: uuid
               description: |+
-                The ID of the network for which you want to create a port interface. The `net\_id`
-                and `port\_id` parameters are mutually exclusive. If you do not specify the
-                `net\_id` parameter, the OpenStack Networking API v2.0 uses the network information
+                The ID of the network for which you want to create a port interface. The `net_id`
+                and `port_id` parameters are mutually exclusive. If you do not specify the
+                `net_id` parameter, the OpenStack Networking API v2.0 uses the network information
                 cache that is associated with the instance.
 
             port_id:
               type: string
               format: uuid
               description: |+
-                The ID of the port for which you want to create an interface. The `net\_id`
-                and `port\_id` parameters are mutually exclusive. If you do not specify the
-                `port\_id` parameter, the OpenStack Networking API v2.0 allocates a port and
+                The ID of the port for which you want to create an interface. The `net_id`
+                and `port_id` parameters are mutually exclusive. If you do not specify the
+                `port_id` parameter, the OpenStack Networking API v2.0 allocates a port and
                 creates an interface for it on the network.
 
             fixed_ips:
@@ -42786,14 +42803,14 @@ components:
                       - format: ipv4
                       - format: ipv6
                     description: |+
-                      The IP address. It is required when `fixed\_ips` is specified.
+                      The IP address. It is required when `fixed_ips` is specified.
 
                 required:
                   - ip_address
                 additionalProperties: false
               description: |+
                 Fixed IP addresses. If you request a specific fixed IP address without
-                a `net\_id`, the request returns a `Bad Request (400)` response code.
+                a `net_id`, the request returns a `Bad Request (400)` response code.
 
             tag:
               type: string
@@ -45020,36 +45037,36 @@ components:
       schema:
         type: string
         enum:
-          - locked_by
-          - instance_type_id
           - hostname
-          - display_name
-          - kernel_id
-          - availability_zone
-          - uuid
-          - access_ip_v6
-          - auto_disk_config
-          - created_at
-          - project_id
-          - display_description
-          - access_ip_v4
-          - host
-          - launched_at
           - vm_state
-          - user_id
-          - node
-          - key_name
+          - uuid
           - power_state
-          - config_drive
-          - updated_at
+          - display_description
+          - access_ip_v6
+          - locked_by
+          - created_at
+          - kernel_id
+          - access_ip_v4
           - progress
-          - image_ref
-          - ramdisk_id
-          - locked
           - root_device_name
+          - config_drive
+          - ramdisk_id
+          - instance_type_id
+          - host
+          - image_ref
+          - project_id
+          - user_id
+          - display_name
           - launch_index
-          - terminated_at
           - task_state
+          - auto_disk_config
+          - node
+          - launched_at
+          - availability_zone
+          - updated_at
+          - terminated_at
+          - key_name
+          - locked
     os_volumes_boot_sort_dir:
       in: query
       name: sort_dir
@@ -45384,36 +45401,36 @@ components:
       schema:
         type: string
         enum:
-          - locked_by
-          - instance_type_id
           - hostname
-          - display_name
-          - kernel_id
-          - availability_zone
-          - uuid
-          - access_ip_v6
-          - auto_disk_config
-          - created_at
-          - project_id
-          - display_description
-          - access_ip_v4
-          - host
-          - launched_at
           - vm_state
-          - user_id
-          - node
-          - key_name
+          - uuid
           - power_state
-          - config_drive
-          - updated_at
+          - display_description
+          - access_ip_v6
+          - locked_by
+          - created_at
+          - kernel_id
+          - access_ip_v4
           - progress
-          - image_ref
-          - ramdisk_id
-          - locked
           - root_device_name
+          - config_drive
+          - ramdisk_id
+          - instance_type_id
+          - host
+          - image_ref
+          - project_id
+          - user_id
+          - display_name
           - launch_index
-          - terminated_at
           - task_state
+          - auto_disk_config
+          - node
+          - launched_at
+          - availability_zone
+          - updated_at
+          - terminated_at
+          - key_name
+          - locked
     os_volumes_boot_detail_sort_dir:
       in: query
       name: sort_dir
@@ -45755,36 +45772,36 @@ components:
       schema:
         type: string
         enum:
-          - locked_by
-          - instance_type_id
           - hostname
-          - display_name
-          - kernel_id
-          - availability_zone
-          - uuid
-          - access_ip_v6
-          - auto_disk_config
-          - created_at
-          - project_id
-          - display_description
-          - access_ip_v4
-          - host
-          - launched_at
           - vm_state
-          - user_id
-          - node
-          - key_name
+          - uuid
           - power_state
-          - config_drive
-          - updated_at
+          - display_description
+          - access_ip_v6
+          - locked_by
+          - created_at
+          - kernel_id
+          - access_ip_v4
           - progress
-          - image_ref
-          - ramdisk_id
-          - locked
           - root_device_name
+          - config_drive
+          - ramdisk_id
+          - instance_type_id
+          - host
+          - image_ref
+          - project_id
+          - user_id
+          - display_name
           - launch_index
-          - terminated_at
           - task_state
+          - auto_disk_config
+          - node
+          - launched_at
+          - availability_zone
+          - updated_at
+          - terminated_at
+          - key_name
+          - locked
     servers_sort_dir:
       in: query
       name: sort_dir
@@ -46119,36 +46136,36 @@ components:
       schema:
         type: string
         enum:
-          - locked_by
-          - instance_type_id
           - hostname
-          - display_name
-          - kernel_id
-          - availability_zone
-          - uuid
-          - access_ip_v6
-          - auto_disk_config
-          - created_at
-          - project_id
-          - display_description
-          - access_ip_v4
-          - host
-          - launched_at
           - vm_state
-          - user_id
-          - node
-          - key_name
+          - uuid
           - power_state
-          - config_drive
-          - updated_at
+          - display_description
+          - access_ip_v6
+          - locked_by
+          - created_at
+          - kernel_id
+          - access_ip_v4
           - progress
-          - image_ref
-          - ramdisk_id
-          - locked
           - root_device_name
+          - config_drive
+          - ramdisk_id
+          - instance_type_id
+          - host
+          - image_ref
+          - project_id
+          - user_id
+          - display_name
           - launch_index
-          - terminated_at
           - task_state
+          - auto_disk_config
+          - node
+          - launched_at
+          - availability_zone
+          - updated_at
+          - terminated_at
+          - key_name
+          - locked
     servers_detail_sort_dir:
       in: query
       name: sort_dir

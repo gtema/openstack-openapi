@@ -460,7 +460,7 @@ class OpenApiDirective(SphinxDirective):
 
         return tr
 
-    def _get_request_table_field_row(self, field, field_name, emited_fields):
+    def _get_request_table_field_row(self, field, field_name, emitted_fields):
         """Emit Request description table row for the body element"""
         if not field:
             return
@@ -481,8 +481,8 @@ class OpenApiDirective(SphinxDirective):
         param_descr = f'{field.get("description", "")}{note or ""}'
 
         if typ == "object" and "properties" in field:
-            if field_name and field_name not in emited_fields:
-                emited_fields.add(field_name)
+            if field_name and field_name not in emitted_fields:
+                emitted_fields.add(field_name)
                 tr = nodes.row()
                 tr += nodes.entry("", nodes.paragraph(text=field_name))
                 tr += nodes.entry("", nodes.paragraph(text="body"))
@@ -494,14 +494,14 @@ class OpenApiDirective(SphinxDirective):
 
             for k, v in field["properties"].items():
                 for el in self._get_request_table_field_row(
-                    v, f"{field_name}.{k}" if field_name else k, emited_fields
+                    v, f"{field_name}.{k}" if field_name else k, emitted_fields
                 ):
                     yield el
         elif typ == "array":
             pass
         elif typ:
-            if field_name and field_name not in emited_fields:
-                emited_fields.add(field_name)
+            if field_name and field_name not in emitted_fields:
+                emitted_fields.add(field_name)
                 tr = nodes.row()
                 tr += nodes.entry("", nodes.paragraph(text=field_name))
                 tr += nodes.entry("", nodes.paragraph(text="body"))
@@ -516,13 +516,13 @@ class OpenApiDirective(SphinxDirective):
             if discriminator == "microversion":
                 for opt in opts:
                     for el in self._get_request_table_field_row(
-                        opt, field_name, emited_fields
+                        opt, field_name, emitted_fields
                     ):
                         yield el
             elif discriminator == "action":
                 for opt in opts:
                     for el in self._get_request_table_field_row(
-                        opt, field_name, emited_fields
+                        opt, field_name, emitted_fields
                     ):
                         yield el
 
