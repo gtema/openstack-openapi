@@ -1,0 +1,1146 @@
+openapi: 3.1.0
+info:
+  title: OpenStack Placement API
+  description: |+
+    This is a reference for the OpenStack Placement API. To learn more about
+    OpenStack Placement API concepts, please refer to the
+    [Placement Introduction](https://docs.openstack.org/placement/latest/).
+
+  version: '1.39'
+paths:
+  /:
+    get:
+      description: |+
+        Fetch information about all known major versions of the placement API,
+        including information about the minimum and maximum microversions.
+
+        Normal Response Codes: 200
+
+      operationId: :get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RootHomeResponse'
+      tags:
+        - version
+      summary: List Versions
+  /resource_classes:
+    get:
+      description: |+
+        Return a list of all resource classes.
+
+        Normal Response Codes: 200
+
+      operationId: resource_classes:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ClassesDecorated_FuncResponse'
+      tags:
+        - resource_classes
+      summary: List resource classes
+    post:
+      description: |+
+        Create a new resource class. The new class must be a *custom* resource class,
+        prefixed with CUSTOM_ and distinct from the standard resource classes.
+
+        Normal Response Codes: 201
+
+        Error response codes: badRequest(400), conflict(409)
+
+        A 400 BadRequest response code will be returned if the resource class
+        does not have prefix CUSTOM_.
+
+        A 409 Conflict response code will
+        be returned if another resource class exists with the provided name.
+
+      operationId: resource_classes:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource_ClassesDecorated_FuncRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ClassesDecorated_FuncResponse'
+      tags:
+        - resource_classes
+      summary: Create resource class
+  /resource_classes/{name}:
+    parameters:
+      - $ref: '#/components/parameters/resource_classes_name'
+    get:
+      description: |+
+        Return a representation of the resource class identified by {name}.
+
+        Normal Response Codes: 200
+
+        Error response codes: itemNotFound(404)
+
+      operationId: resource_classes/name:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ClassDecorated_FuncResponse'
+      tags:
+        - resource_classes
+      summary: Show resource class
+    delete:
+      description: |+
+        Delete the resource class identified by {name}.
+
+        Normal Response Codes: 204
+
+        Error response codes: badRequest(400), itemNotFound(404), conflict(409)
+
+        A 400 BadRequest response code will be returned if trying
+        to delete a standard resource class.
+
+        A 409 Conflict response code will be returned if there exist
+        inventories for the resource class.
+
+      operationId: resource_classes/name:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - resource_classes
+      summary: Delete resource class
+    put:
+      description: |+
+        Create or validate the existence of single resource class identified by {name}.
+
+        Normal Response Codes: 201, 204
+
+        A 201 Created response code will be returned if the new resource class
+        is successfully created.
+        A 204 No Content response code will be returned if the resource class
+        already exists.
+
+        Error response codes: badRequest(400)
+
+      operationId: resource_classes/name:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource_ClassDecorated_FuncRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ClassDecorated_FuncResponse'
+      tags:
+        - resource_classes
+      summary: Update resource class
+  /resource_providers:
+    get:
+      description: |+
+        List an optionally filtered collection of resource providers.
+
+        Normal Response Codes: 200
+
+        Error response codes: badRequest(400)
+
+        A 400 BadRequest response code will be returned
+        if a resource class specified in `resources` request parameter
+        does not exist.
+
+      operationId: resource_providers:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProvidersList_Resource_ProvidersResponse'
+      tags:
+        - resource_providers
+      summary: List resource providers
+    post:
+      description: |+
+        Create a new resource provider.
+
+        Normal Response Codes: 201 (microversions 1.0 - 1.19), 200 (microversions
+        1.20 - )
+
+        Error response codes: conflict(409)
+
+        A 409 Conflict response code will
+        be returned if another resource provider exists with the provided name
+        or uuid.
+
+      operationId: resource_providers:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource_ProvidersCreate_Resource_ProviderRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProvidersCreate_Resource_ProviderResponse'
+      tags:
+        - resource_providers
+      summary: Create resource provider
+  /resource_providers/{uuid}:
+    parameters:
+      - $ref: '#/components/parameters/resource_providers_uuid'
+    get:
+      description: |+
+        Return a representation of the resource provider identified by {uuid}.
+
+        Normal Response Codes: 200
+
+        Error response codes: itemNotFound(404)
+
+      operationId: resource_providers/uuid:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProviderGet_Resource_ProviderResponse'
+      tags:
+        - resource_providers
+      summary: Show resource provider
+    delete:
+      description: |+
+        Delete the resource provider identified by {uuid}.
+        This will also disassociate aggregates and delete inventories.
+
+        Normal Response Codes: 204
+
+        Error response codes: itemNotFound(404), conflict(409)
+
+        A 409 Conflict response code will be returned if there exist
+        allocations records for any of the inventories that would be deleted
+        as a result of removing the resource provider.
+
+        This error code will be also returned if there are existing child resource
+        providers under the parent resource provider being deleted.
+
+      operationId: resource_providers/uuid:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - resource_providers
+      summary: Delete resource provider
+    put:
+      description: |+
+        Update the name of the resource provider identified by {uuid}.
+
+        Normal Response Codes: 200
+
+        Error response codes: badRequest(400), itemNotFound(404), conflict(409)
+
+        A 409 Conflict response code will be returned if another resource
+        provider exists with the provided name.
+
+      operationId: resource_providers/uuid:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource_ProviderUpdate_Resource_ProviderRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProviderUpdate_Resource_ProviderResponse'
+      tags:
+        - resource_providers
+      summary: Update resource provider
+  /resource_providers/{uuid}/inventories:
+    parameters:
+      - $ref: '#/components/parameters/resource_providers_uuid'
+    get:
+      description: |+
+        Normal Response Codes: 200
+
+        Error response codes: itemNotFound(404)
+
+      operationId: resource_providers/uuid/inventories:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProvidersInventoriesGet_InventoriesResponse'
+      tags:
+        - resource_providers
+      summary: List resource provider inventories
+    post:
+      description: |-
+        POST to create one inventory.
+
+        On success return a 201 response, a location header pointing
+        to the newly created inventory and an application/json representation
+        of the inventory.
+      operationId: resource_providers/uuid/inventories:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource_ProvidersInventoriesCreate_InventoryRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProvidersInventoriesCreate_InventoryResponse'
+      tags:
+        - resource_providers
+    delete:
+      description: |+
+        Deletes all inventory records for the resource provider identified by {uuid}.
+
+        **Troubleshooting**
+
+        The request returns an HTTP 409 when there are allocations against
+        the provider or if the provider’s inventory is updated by another
+        thread while attempting the operation.
+
+        Normal Response Codes: 204
+
+        Error response codes: itemNotFound(404), conflict(409)
+
+      operationId: resource_providers/uuid/inventories:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - resource_providers
+      summary: Delete resource provider inventories
+    put:
+      description: |+
+        Replaces the set of inventory records for the resource provider identified by {uuid}.
+
+        Normal Response Codes: 200
+
+        Error response codes: badRequest(400), itemNotFound(404), conflict(409)
+
+      operationId: resource_providers/uuid/inventories:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource_ProvidersInventoriesSet_InventoriesRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProvidersInventoriesSet_InventoriesResponse'
+      tags:
+        - resource_providers
+      summary: Update resource provider inventories
+  /resource_providers/{uuid}/inventories/{resource_class}:
+    parameters:
+      - $ref: '#/components/parameters/resource_providers_uuid'
+      - $ref: '#/components/parameters/resource_providers_inventories_resource_class'
+    get:
+      description: |+
+        Normal Response Codes: 200
+
+        Error response codes: itemNotFound(404)
+
+      operationId: resource_providers/uuid/inventories/resource_class:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProvidersInventoryGet_InventoryResponse'
+      tags:
+        - resource_providers
+      summary: Show resource provider inventory
+    delete:
+      description: |+
+        Delete the inventory record of the {resource_class} for
+        the resource provider identified by {uuid}.
+
+        See [Troubleshooting](?expanded=delete-resource-provider-inventories-detail#delete-resource-provider-inventories) section in `Delete resource provider
+        inventories` for a description. In addition, the request returns
+        HTTP 409 when there are allocations for the specified resource
+        provider and resource class.
+
+        Normal Response Codes: 204
+
+        Error response codes: itemNotFound(404), conflict(409)
+
+      operationId: resource_providers/uuid/inventories/resource_class:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - resource_providers
+      summary: Delete resource provider inventory
+    put:
+      description: |+
+        Replace the inventory record of the {resource_class} for the resource
+        provider identified by {uuid}.
+
+        Normal Response Codes: 200
+
+        Error response codes: badRequest(400), itemNotFound(404), conflict(409)
+
+      operationId: resource_providers/uuid/inventories/resource_class:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource_ProvidersInventoryUpdate_InventoryRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProvidersInventoryUpdate_InventoryResponse'
+      tags:
+        - resource_providers
+      summary: Update resource provider inventory
+  /resource_providers/{uuid}/usages:
+    parameters:
+      - $ref: '#/components/parameters/resource_providers_uuid'
+    get:
+      description: |+
+        Return a report of usage information for resources associated with
+        the resource provider identified by {uuid}. The value is a dictionary
+        of resource classes paired with the sum of the allocations of that
+        resource class for this resource provider.
+
+        Normal Response Codes: 200
+
+        Error response codes: itemNotFound(404)
+
+      operationId: resource_providers/uuid/usages:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProvidersUsagesList_UsagesResponse'
+      tags:
+        - resource_providers
+      summary: List resource provider usages
+  /resource_providers/{uuid}/aggregates:
+    parameters:
+      - $ref: '#/components/parameters/resource_providers_uuid'
+    get:
+      description: |+
+        Return a list of aggregates associated with the resource provider
+        identified by {uuid}.
+
+        Normal Response Codes: 200
+
+        Error response codes: itemNotFound(404) if the provider does not exist. (If the
+        provider has no aggregates, the result is 200 with an empty aggregate list.)
+
+      operationId: resource_providers/uuid/aggregates:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProvidersAggregatesDecorated_FuncResponse'
+      tags:
+        - resource_providers
+      summary: List resource provider aggregates
+    put:
+      description: |+
+        Associate a list of aggregates with the resource provider identified by {uuid}.
+
+        Normal Response Codes: 200
+
+        Error response codes: badRequest(400), itemNotFound(404), conflict(409)
+
+      operationId: resource_providers/uuid/aggregates:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource_ProvidersAggregatesDecorated_FuncRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProvidersAggregatesDecorated_FuncResponse'
+      tags:
+        - resource_providers
+      summary: Update resource provider aggregates
+  /resource_providers/{uuid}/allocations:
+    parameters:
+      - $ref: '#/components/parameters/resource_providers_uuid'
+    get:
+      description: |+
+        Return a representation of all allocations made against this resource
+        provider, keyed by consumer uuid. Each allocation includes one or more
+        classes of resource and the amount consumed.
+
+        Normal Response Codes: 200
+
+        Error response codes: itemNotFound(404)
+
+      operationId: resource_providers/uuid/allocations:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProvidersAllocationsList_For_Resource_ProviderResponse'
+      tags:
+        - resource_providers
+      summary: List resource provider allocations
+  /allocations:
+    post:
+      description: |+
+        Create, update or delete allocations for multiple consumers in a single
+        request. This allows a client to atomically set or swap allocations for
+        multiple consumers as may be required during a migration or move type
+        operation.
+
+        The allocations for an individual consumer uuid mentioned in the request
+        can be removed by setting the allocations to an empty object (see the
+        example below).
+
+        **Available as of microversion 1.13.**
+
+        Normal response codes: 204
+
+        Error response codes: badRequest(400), conflict(409)
+
+      operationId: allocations:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AllocationsDecorated_FuncRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationsDecorated_FuncResponse'
+      tags:
+        - allocations
+      summary: Manage allocations
+  /allocations/{consumer_uuid}:
+    parameters:
+      - $ref: '#/components/parameters/allocations_consumer_uuid'
+    get:
+      description: |+
+        List all allocation records for the consumer identified by
+        {consumer_uuid} on all the resource providers it is consuming.
+
+        Normal Response Codes: 200
+
+      operationId: allocations/consumer_uuid:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationList_For_ConsumerResponse'
+      tags:
+        - allocations
+      summary: List allocations
+    delete:
+      description: |+
+        Delete all allocation records for the consumer identified by
+        {consumer_uuid} on all resource providers it is consuming.
+
+        Normal Response Codes: 204
+
+        Error response codes: itemNotFound(404)
+
+      operationId: allocations/consumer_uuid:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - allocations
+      summary: Delete allocations
+    put:
+      description: |+
+        Create or update one or more allocation records representing the consumption of
+        one or more classes of resources from one or more resource providers by
+        the consumer identified by {consumer_uuid}.
+        If allocations already exist for this consumer, they are replaced.
+
+        Normal Response Codes: 204
+
+        Error response codes: badRequest(400), itemNotFound(404), conflict(409)
+
+      operationId: allocations/consumer_uuid:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AllocationDecorated_FuncRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationDecorated_FuncResponse'
+      tags:
+        - allocations
+      summary: Update allocations
+  /allocation_candidates:
+    get:
+      description: |+
+        Returns a dictionary representing a collection of allocation requests
+        and resource provider summaries. Each allocation request has
+        information to form a `PUT /allocations/{consumer_uuid}` request to claim
+        resources against a related set of resource providers. Additional parameters
+        might be required, see [Update allocations](#update-allocations). As several allocation
+        requests are available it’s necessary to select one. To make a
+        decision, resource provider summaries are provided with the
+        inventory/capacity information. For example, this information is used by
+        nova-scheduler’s FilterScheduler to make decisions about on which compute host
+        to build a server.
+
+        You can also find additional case studies of the request parameters in the
+        [Modeling with Provider Trees](https://docs.openstack.org/placement/latest/usage/provider-tree.html) document.
+
+        Normal Response Codes: 200
+
+        Error response codes: badRequest(400)
+
+      operationId: allocation_candidates:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Allocation_CandidatesDecorated_FuncResponse'
+      tags:
+        - allocation_candidates
+      summary: List allocation candidates
+  /traits:
+    get:
+      description: |+
+        Return a list of valid trait strings according to parameters specified.
+
+        Normal Response Codes: 200
+
+      operationId: traits:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraitsDecorated_FuncResponse'
+      tags:
+        - traits
+      summary: List traits
+  /traits/{name}:
+    parameters:
+      - $ref: '#/components/parameters/traits_name'
+    get:
+      description: |+
+        Check if a trait name exists in this cloud.
+
+        Normal Response Codes: 204
+
+        Error response codes: itemNotFound(404)
+
+      operationId: traits/name:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraitDecorated_FuncResponse'
+      tags:
+        - traits
+      summary: Show traits
+    delete:
+      description: |+
+        Delete the trait specified be {name}. Note that only custom traits can be
+        deleted.
+
+        Normal Response Codes: 204
+
+        Error response codes: badRequest(400), itemNotFound(404), conflict(409)
+
+      operationId: traits/name:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - traits
+      summary: Delete traits
+    put:
+      description: |+
+        Insert a new custom trait. If traits already exists 204 will be returned.
+
+        There are two kinds of traits: the standard traits and the custom traits.
+        The standard traits are interoperable across different OpenStack cloud
+        deployments. The definition of standard traits comes from the os-traits
+        library. The standard traits are read-only in the placement API which means
+        that the user can’t modify any standard traits through API.
+        The custom traits are used by admin users to manage the non-standard
+        qualitative information of resource providers.
+
+        Normal Response Codes: 201, 204
+
+        Error response codes: badRequest(400)
+
+      operationId: traits/name:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TraitDecorated_FuncRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraitDecorated_FuncResponse'
+      tags:
+        - traits
+      summary: Update traits
+  /resource_providers/{uuid}/traits:
+    parameters:
+      - $ref: '#/components/parameters/resource_providers_uuid'
+    get:
+      description: |+
+        Return a list of traits for the resource provider identified by {uuid}.
+
+        Normal Response Codes: 200
+
+        Error response codes: itemNotFound(404)
+
+      operationId: resource_providers/uuid/traits:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProvidersTraitsDecorated_FuncResponse'
+      tags:
+        - resource_providers
+      summary: List resource provider traits
+    delete:
+      description: |+
+        Dissociate all the traits from the resource provider identified by {uuid}.
+
+        Normal Response Codes: 204
+
+        Error response codes: itemNotFound(404), conflict(409)
+
+      operationId: resource_providers/uuid/traits:delete
+      responses:
+        '404':
+          description: Error
+        '204':
+          description: Ok
+      tags:
+        - resource_providers
+      summary: Delete resource provider traits
+    put:
+      description: |+
+        Associate traits with the resource provider identified by {uuid}.
+        All the associated traits will be replaced by the traits specified in
+        the request body.
+
+        Normal Response Codes: 200
+
+        Error response codes: badRequest(400), itemNotFound(404), conflict(409)
+
+      operationId: resource_providers/uuid/traits:put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource_ProvidersTraitsDecorated_FuncRequest'
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource_ProvidersTraitsDecorated_FuncResponse'
+      tags:
+        - resource_providers
+      summary: Update resource provider traits
+  /usages:
+    get:
+      description: |+
+        Return a report of usage information for resources associated with the
+        project identified by project_id and user identified by
+        user_id. The value is a dictionary of resource classes paired with
+        the sum of the allocations of that resource class for provided
+        parameters.
+
+        Normal Response Codes: 200
+
+        Error response codes: badRequest(400)
+
+      operationId: usages:get
+      responses:
+        '404':
+          description: Error
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsagesDecorated_FuncResponse'
+      tags:
+        - usages
+      summary: List usages
+  /reshaper:
+    post:
+      description: |+
+        Atomically migrate resource provider inventories and associated allocations.
+        This is used when some of the inventory needs to move from one resource
+        provider to another, such as when a class of inventory moves from a parent
+        provider to a new child provider.
+
+        Normal Response Codes: 204
+
+        Error Response Codes: badRequest(400), conflict(409)
+
+      operationId: reshaper:post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReshaperDecorated_FuncRequest'
+      responses:
+        '404':
+          description: Error
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReshaperDecorated_FuncResponse'
+      tags:
+        - reshaper
+      summary: Reshaper
+components:
+  schemas:
+    RootHomeResponse:
+      type: object
+      description: Response of the :get operation
+    Resource_ClassesDecorated_FuncResponse:
+      type: object
+      description: Response of the resource_classes:get operation
+    Resource_ClassesDecorated_FuncRequest:
+      type: object
+      description: Request of the resource_classes:post operation
+      x-openstack:
+        action-name: decorated_func
+    Resource_ClassDecorated_FuncResponse:
+      type: object
+      description: Response of the resource_classes/name:get operation
+    Resource_ClassDecorated_FuncRequest:
+      type: object
+      description: Request of the resource_classes/name:put operation
+      x-openstack:
+        action-name: decorated_func
+    Resource_ProvidersList_Resource_ProvidersResponse:
+      type: object
+      description: Response of the resource_providers:get operation
+    Resource_ProvidersCreate_Resource_ProviderRequest:
+      type: object
+      description: Request of the resource_providers:post operation
+      x-openstack:
+        action-name: create_resource_provider
+    Resource_ProvidersCreate_Resource_ProviderResponse:
+      type: object
+      description: Response of the resource_providers:post operation
+    Resource_ProviderGet_Resource_ProviderResponse:
+      type: object
+      description: Response of the resource_providers/uuid:get operation
+    Resource_ProviderUpdate_Resource_ProviderRequest:
+      type: object
+      description: Request of the resource_providers/uuid:put operation
+      x-openstack:
+        action-name: update_resource_provider
+    Resource_ProviderUpdate_Resource_ProviderResponse:
+      type: object
+      description: Response of the resource_providers/uuid:put operation
+    Resource_ProvidersInventoriesGet_InventoriesResponse:
+      type: object
+      description: Response of the resource_providers/uuid/inventories:get operation
+    Resource_ProvidersInventoriesCreate_InventoryRequest:
+      type: object
+      description: Request of the resource_providers/uuid/inventories:post operation
+      x-openstack:
+        action-name: create_inventory
+    Resource_ProvidersInventoriesCreate_InventoryResponse:
+      type: object
+      description: Response of the resource_providers/uuid/inventories:post operation
+    Resource_ProvidersInventoriesSet_InventoriesRequest:
+      type: object
+      description: Request of the resource_providers/uuid/inventories:put operation
+      x-openstack:
+        action-name: set_inventories
+    Resource_ProvidersInventoriesSet_InventoriesResponse:
+      type: object
+      description: Response of the resource_providers/uuid/inventories:put operation
+    Resource_ProvidersInventoryGet_InventoryResponse:
+      type: object
+      description: Response of the resource_providers/uuid/inventories/resource_class:get
+        operation
+    Resource_ProvidersInventoryUpdate_InventoryRequest:
+      type: object
+      description: Request of the resource_providers/uuid/inventories/resource_class:put
+        operation
+      x-openstack:
+        action-name: update_inventory
+    Resource_ProvidersInventoryUpdate_InventoryResponse:
+      type: object
+      description: Response of the resource_providers/uuid/inventories/resource_class:put
+        operation
+    Resource_ProvidersUsagesList_UsagesResponse:
+      type: object
+      description: Response of the resource_providers/uuid/usages:get operation
+    Resource_ProvidersAggregatesDecorated_FuncResponse:
+      type: object
+      description: Response of the resource_providers/uuid/aggregates:get operation
+    Resource_ProvidersAggregatesDecorated_FuncRequest:
+      type: object
+      description: Request of the resource_providers/uuid/aggregates:put operation
+      x-openstack:
+        action-name: decorated_func
+    Resource_ProvidersAllocationsList_For_Resource_ProviderResponse:
+      type: object
+      description: Response of the resource_providers/uuid/allocations:get operation
+    AllocationsDecorated_FuncRequest:
+      type: object
+      description: Request of the allocations:post operation
+      x-openstack:
+        action-name: decorated_func
+    AllocationsDecorated_FuncResponse:
+      type: object
+      description: Response of the allocations:post operation
+    AllocationList_For_ConsumerResponse:
+      type: object
+      description: Response of the allocations/consumer_uuid:get operation
+    AllocationDecorated_FuncRequest:
+      type: object
+      description: Request of the allocations/consumer_uuid:put operation
+      x-openstack:
+        action-name: decorated_func
+    AllocationDecorated_FuncResponse:
+      type: object
+      description: Response of the allocations/consumer_uuid:put operation
+    Allocation_CandidatesDecorated_FuncResponse:
+      type: object
+      description: Response of the allocation_candidates:get operation
+    TraitsDecorated_FuncResponse:
+      type: object
+      description: Response of the traits:get operation
+    TraitDecorated_FuncResponse:
+      type: object
+      description: Response of the traits/name:get operation
+    TraitDecorated_FuncRequest:
+      type: object
+      description: Request of the traits/name:put operation
+      x-openstack:
+        action-name: decorated_func
+    Resource_ProvidersTraitsDecorated_FuncResponse:
+      type: object
+      description: Response of the resource_providers/uuid/traits:get operation
+    Resource_ProvidersTraitsDecorated_FuncRequest:
+      type: object
+      description: Request of the resource_providers/uuid/traits:put operation
+      x-openstack:
+        action-name: decorated_func
+    UsagesDecorated_FuncResponse:
+      type: object
+      description: Response of the usages:get operation
+    ReshaperDecorated_FuncRequest:
+      type: object
+      description: Request of the reshaper:post operation
+      x-openstack:
+        action-name: decorated_func
+    ReshaperDecorated_FuncResponse:
+      type: object
+      description: Response of the reshaper:post operation
+  parameters:
+    resource_classes_name:
+      in: path
+      name: name
+      description: name parameter for /resource_classes/{name} API
+      schema:
+        type: string
+      required: true
+    resource_providers_uuid:
+      in: path
+      name: uuid
+      description: uuid parameter for /resource_providers/{uuid}/traits API
+      schema:
+        type: string
+      required: true
+    resource_providers_inventories_resource_class:
+      in: path
+      name: resource_class
+      description: resource_class parameter for /resource_providers/{uuid}/inventories/{resource_class}
+        API
+      schema:
+        type: string
+      required: true
+    allocations_consumer_uuid:
+      in: path
+      name: consumer_uuid
+      description: consumer_uuid parameter for /allocations/{consumer_uuid} API
+      schema:
+        type: string
+      required: true
+    traits_name:
+      in: path
+      name: name
+      description: name parameter for /traits/{name} API
+      schema:
+        type: string
+      required: true
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+tags:
+  - name: version
+  - name: resource_classes
+  - name: resource_providers
+  - name: allocations
+    description: |+
+      Allocations are records representing resources that have been assigned
+      and used by some consumer of that resource. They indicate the amount
+      of a particular resource that has been allocated to a given consumer
+      of that resource from a particular resource provider.
+
+  - name: allocation_candidates
+  - name: traits
+    description: |+
+      Traits are *qualitative* characteristics of resource providers.
+      The classic example for traits can be requesting disk from different
+      providers: a user may request 80GiB of disk space for an instance
+      (quantitative), but may also expect that the disk be SSD instead of
+      spinning disk (qualitative). Traits provide a way to mark that a
+      storage provider is SSD or spinning.
+
+  - name: usages
+    description: |+
+      Represent the consumption of resources for a project and user.
+
+  - name: reshaper
+    description: |+
+      Note
+
+security:
+  - ApiKeyAuth: []
