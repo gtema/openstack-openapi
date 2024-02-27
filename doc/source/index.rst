@@ -171,3 +171,4 @@ front.
    load-balancing
    network
    object-store
+   placement
