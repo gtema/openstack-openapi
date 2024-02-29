@@ -1,5 +1,6 @@
 pbr
-PyYAML>=3.12
+ruamel.yaml
 jsonschema
 markdown
 sphinx-mdinclude
+myst_parser
