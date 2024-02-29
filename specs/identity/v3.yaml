@@ -1015,7 +1015,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DomainsConfigGetResponse'
+                $ref: '#/components/schemas/DomainConfig'
       tags:
         - domains
       summary: Show domain configuration
@@ -1047,7 +1047,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DomainsConfigPutRequest'
+              $ref: '#/components/schemas/DomainConfig'
       responses:
         '403':
           description: Error
@@ -1058,7 +1058,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DomainsConfigPutResponse'
+                $ref: '#/components/schemas/DomainConfig'
       tags:
         - domains
       summary: Create domain configuration
@@ -1073,7 +1073,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DomainsConfigPatchRequest'
+              $ref: '#/components/schemas/DomainConfig'
       responses:
         '403':
           description: Error
@@ -1084,7 +1084,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DomainsConfigPatchResponse'
+                $ref: '#/components/schemas/DomainConfig'
       tags:
         - domains
       summary: Update domain configuration
@@ -1128,7 +1128,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DomainsConfigGroupGetResponse'
+                $ref: '#/components/schemas/DomainConfigGroup'
       tags:
         - domains
       summary: Show domain group configuration
@@ -1166,7 +1166,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DomainsConfigGroupPatchRequest'
+              $ref: '#/components/schemas/DomainConfigGroup'
       responses:
         '403':
           description: Error
@@ -1177,7 +1177,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DomainsConfigGroupPatchResponse'
+                $ref: '#/components/schemas/DomainConfigGroup'
       tags:
         - domains
       summary: Update domain group configuration
@@ -1224,7 +1224,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DomainsConfigGroupOptionGetResponse'
+                $ref: '#/components/schemas/DomainConfigGroup'
       tags:
         - domains
       summary: Show domain group option configuration
@@ -1264,7 +1264,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DomainsConfigGroupOptionPatchRequest'
+              $ref: '#/components/schemas/DomainConfigGroup'
       responses:
         '403':
           description: Error
@@ -1275,7 +1275,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DomainsConfigGroupOptionPatchResponse'
+                $ref: '#/components/schemas/DomainConfigGroup'
       tags:
         - domains
       summary: Update domain group option configuration
@@ -1316,7 +1316,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DomainsConfigDefaultGetResponse'
+                $ref: '#/components/schemas/DomainConfig'
       tags:
         - domains
       summary: Show default configuration settings
@@ -1358,7 +1358,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DomainsConfigDefaultGetResponse'
+                $ref: '#/components/schemas/DomainConfig'
       tags:
         - domains
       summary: Show default configuration for a group
@@ -1403,7 +1403,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DomainsConfigDefaultGroupGetResponse'
+                $ref: '#/components/schemas/DomainConfigGroup'
       tags:
         - domains
       summary: Show default option for a group
@@ -1443,7 +1443,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DomainsUsersRolesGetResponse'
+                $ref: '#/components/schemas/RolesInfos'
       tags:
         - domains
       summary: List role assignments for user on domain
@@ -1480,10 +1480,6 @@ paths:
           description: Error
         '200':
           description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DomainsUsersRoleGetResponse'
       tags:
         - domains
     delete:
@@ -1510,11 +1506,6 @@ paths:
         Relationship: `https://developer.openstack.org/api-ref/identity/v3/index.html#assign-role-to-user-on-domain`
 
       operationId: domains/domain_id/users/user_id/roles/role_id:put
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DomainsUsersRolePutRequest'
       responses:
         '403':
           description: Error
@@ -1522,10 +1513,6 @@ paths:
           description: Error
         '201':
           description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DomainsUsersRolePutResponse'
       tags:
         - domains
       summary: Assign role to user on domain
@@ -1567,7 +1554,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DomainsGroupsRolesGetResponse'
+                $ref: '#/components/schemas/RolesInfos'
       tags:
         - domains
       summary: List role assignments for group on domain
@@ -1604,10 +1591,6 @@ paths:
           description: Error
         '200':
           description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DomainsGroupsRoleGetResponse'
       tags:
         - domains
     delete:
@@ -1634,11 +1617,6 @@ paths:
         Relationship: `https://docs.openstack.org/api/openstack-identity/3/rel/domain_group_role`
 
       operationId: domains/domain_id/groups/group_id/roles/role_id:put
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DomainsGroupsRolePutRequest'
       responses:
         '403':
           description: Error
@@ -1646,10 +1624,6 @@ paths:
           description: Error
         '201':
           description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DomainsGroupsRolePutResponse'
       tags:
         - domains
       summary: Assign role to group on domain
@@ -1924,7 +1898,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GroupGetResponse'
+                $ref: '#/components/schemas/Group'
       tags:
         - groups
       summary: Show group details
@@ -1959,7 +1933,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GroupPatchRequest'
+              $ref: '#/components/schemas/Group'
       responses:
         '403':
           description: Error
@@ -1970,7 +1944,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GroupPatchResponse'
+                $ref: '#/components/schemas/Group'
       tags:
         - groups
       summary: Update group
@@ -1989,6 +1963,8 @@ paths:
         - groups
   /v3/groups:
     get:
+      parameters:
+        - $ref: '#/components/parameters/group_domain_id'
       description: |+
         Lists groups.
 
@@ -2020,7 +1996,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GroupsPostRequest'
+              $ref: '#/components/schemas/Group'
       responses:
         '403':
           description: Error
@@ -2031,7 +2007,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GroupsPostResponse'
+                $ref: '#/components/schemas/Group'
       tags:
         - groups
       summary: Create group
@@ -2052,6 +2028,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/groups_group_id'
     get:
+      parameters:
+        - $ref: '#/components/parameters/group_user_password_expires_at'
       description: |+
         Lists the users that belong to a group.
 
@@ -2104,10 +2082,6 @@ paths:
           description: Error
         '200':
           description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GroupsUserGetResponse'
       tags:
         - groups
     delete:
@@ -2134,11 +2108,6 @@ paths:
         Relationship: `https://docs.openstack.org/api/openstack-identity/3/rel/group_user`
 
       operationId: groups/group_id/users/user_id:put
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GroupsUserPutRequest'
       responses:
         '403':
           description: Error
@@ -2146,10 +2115,6 @@ paths:
           description: Error
         '201':
           description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GroupsUserPutResponse'
       tags:
         - groups
       summary: Add user to group
@@ -4775,11 +4740,11 @@ paths:
   /v3/projects:
     get:
       parameters:
-        - $ref: '#/components/parameters/domain_id'
-        - $ref: '#/components/parameters/enabled'
-        - $ref: '#/components/parameters/is_domain'
-        - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/parent_id'
+        - $ref: '#/components/parameters/project_domain_id'
+        - $ref: '#/components/parameters/project_enabled'
+        - $ref: '#/components/parameters/project_is_domain'
+        - $ref: '#/components/parameters/project_name'
+        - $ref: '#/components/parameters/project_parent_id'
       description: |+
         Lists projects.
 
@@ -5048,11 +5013,6 @@ paths:
         Relationship: `https://docs.openstack.org/api/openstack-identity/3/rel/project_user_role`
 
       operationId: projects/project_id/users/user_id/roles/role_id:put
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ProjectsUsersRolePutRequest'
       responses:
         '403':
           description: Error
@@ -5101,7 +5061,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProjectsUsersRolesGetResponse'
+                $ref: '#/components/schemas/RolesInfos'
       tags:
         - projects
       summary: List role assignments for user on project
@@ -5138,10 +5098,6 @@ paths:
           description: Error
         '200':
           description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProjectsGroupsRoleGetResponse'
       tags:
         - projects
     delete:
@@ -5168,11 +5124,6 @@ paths:
         Relationship: `https://docs.openstack.org/api/openstack-identity/3/rel/project_group_role`
 
       operationId: projects/project_id/groups/group_id/roles/role_id:put
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ProjectsGroupsRolePutRequest'
       responses:
         '403':
           description: Error
@@ -5180,10 +5131,6 @@ paths:
           description: Error
         '201':
           description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProjectsGroupsRolePutResponse'
       tags:
         - projects
       summary: Assign role to group on project
@@ -5225,7 +5172,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProjectsGroupsRolesGetResponse'
+                $ref: '#/components/schemas/RolesInfos'
       tags:
         - projects
       summary: List role assignments for group on project
@@ -5567,6 +5514,16 @@ paths:
         - registered_limits
   /v3/role_assignments:
     get:
+      parameters:
+        - $ref: '#/components/parameters/role_assignment_group_id'
+        - $ref: '#/components/parameters/role_assignment_role_id'
+        - $ref: '#/components/parameters/role_assignment_user_id'
+        - $ref: '#/components/parameters/role_assignment_scope_domain_id'
+        - $ref: '#/components/parameters/role_assignment_scope_project_id'
+        - $ref: '#/components/parameters/role_assignment_inherit'
+        - $ref: '#/components/parameters/role_assignment_effective'
+        - $ref: '#/components/parameters/role_assignment_include_names'
+        - $ref: '#/components/parameters/role_assignment_include_subtree'
       description: |+
         Get a list of role assignments.
 
@@ -5658,6 +5615,13 @@ paths:
         - role_assignments
       summary: List role assignments
     head:
+      parameters:
+        - $ref: '#/components/parameters/role_assignment_group_id'
+        - $ref: '#/components/parameters/role_assignment_role_id'
+        - $ref: '#/components/parameters/role_assignment_user_id'
+        - $ref: '#/components/parameters/role_assignment_scope_domain_id'
+        - $ref: '#/components/parameters/role_assignment_scope_project_id'
+        - $ref: '#/components/parameters/role_assignment_inherit'
       description: |-
         List all role assignments.
 
@@ -5795,6 +5759,8 @@ paths:
         - roles
   /v3/roles:
     get:
+      parameters:
+        - $ref: '#/components/parameters/role_domain_id'
       description: |+
         Lists roles.
 
@@ -7313,7 +7279,7 @@ components:
                   properties:
                     href:
                       type: string
-                      format: url
+                      format: uri
                     rel:
                       type: string
         links:
@@ -7331,7 +7297,7 @@ components:
             properties:
               href:
                 type: string
-                format: url
+                format: uri
               rel:
                 type: string
     Os_FederationProjectsGetResponse:
@@ -7379,7 +7345,7 @@ components:
                   properties:
                     href:
                       type: string
-                      format: url
+                      format: uri
                     rel:
                       type: string
         links:
@@ -7397,7 +7363,7 @@ components:
             properties:
               href:
                 type: string
-                format: url
+                format: uri
               rel:
                 type: string
     AuthDomainsGetResponse:
@@ -7444,7 +7410,7 @@ components:
                   properties:
                     href:
                       type: string
-                      format: url
+                      format: uri
                     rel:
                       type: string
         links:
@@ -7462,7 +7428,7 @@ components:
             properties:
               href:
                 type: string
-                format: url
+                format: uri
               rel:
                 type: string
     Os_FederationDomainsGetResponse:
@@ -7509,7 +7475,7 @@ components:
                   properties:
                     href:
                       type: string
-                      format: url
+                      format: uri
                     rel:
                       type: string
         links:
@@ -7527,7 +7493,7 @@ components:
             properties:
               href:
                 type: string
-                format: url
+                format: uri
               rel:
                 type: string
     AuthSystemGetResponse:
@@ -7573,7 +7539,7 @@ components:
                       description: Region name of the endpoint
                     url:
                       type: string
-                      format: url
+                      format: uri
                       description: The endpoint url
                 description: |+
                   A list of `endpoint` objects.
@@ -7597,6 +7563,211 @@ components:
     AuthTokensOs_PkiRevokedGetResponse:
       type: object
       description: Response of the auth/tokens/OS-PKI/revoked:get operation
+    AuthTokensGetResponse:
+      type: object
+      properties:
+        token:
+          type: object
+          properties:
+            audit_ids:
+              type: array
+              description: |+
+                A list of one or two audit IDs. An audit ID is a
+                unique, randomly generated, URL-safe string that you can use to
+                track a token. The first audit ID is the current audit ID for the
+                token. The second audit ID is present for only re-scoped tokens
+                and is the audit ID from the token before it was re-scoped. A re-
+                scoped token is one that was exchanged for another token of the
+                same or different scope. You can use these audit IDs to track the
+                use of a token or chain of tokens across multiple requests and
+                endpoints without exposing the token ID to non-privileged users.
+
+              items:
+                type: string
+            catalog:
+              description: |+
+                A `catalog` object.
+
+              type: array
+              items:
+                type: object
+                properties:
+                  endpoints:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: |+
+                            The ID of the user. Required if you do not
+                            specify the user name.
+
+                        interface:
+                          type: string
+                          enum:
+                            - public
+                            - internal
+                            - admin
+                        region:
+                          type: string
+                          description: Region name of the endpoint
+                        url:
+                          type: string
+                          format: uri
+                          description: The endpoint url
+                  id:
+                    type: string
+                    format: uuid
+                    description: The UUID of the service to which the endpoint belongs.
+                  type:
+                    type: string
+                    description: The service type, which describes the API implemented
+                      by the service
+                  name:
+                    type: string
+                    description: |+
+                      The user name. Required if you do not specify
+                      the ID of the user. If you specify the user name, you must also
+                      specify the domain, by ID or name.
+
+            expires_at:
+              type: string
+              format: date-time
+              description: |+
+                The date and time when the token expires.
+
+
+                The date and time stamp format is [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601):
+
+
+
+                ```
+                CCYY-MM-DDThh:mm:ss.sssZ
+
+                ```
+
+
+                For example, `2015-08-27T09:49:58.000000Z`.
+
+
+                A `null` value indicates that the token never expires.
+
+            issues_at:
+              type: string
+              format: date-time
+              description: The date and time when the token was issued.
+            methods:
+              type: array
+              description: |+
+                The authentication methods, which are commonly `password`,
+                `token`, or other methods. Indicates the accumulated set of
+                authentication methods that were used to obtain the token. For
+                example, if the token was obtained by password authentication, it
+                contains `password`. Later, if the token is exchanged by using
+                the token authentication method one or more times, the
+                subsequently created tokens contain both `password` and
+                `token` in their `methods` attribute. Unlike multi-factor
+                authentication, the `methods` attribute merely indicates the
+                methods that were used to authenticate the user in exchange for a
+                token. The client is responsible for determining the total number
+                of authentication factors.
+
+              items:
+                type: string
+            user:
+              type: object
+              description: |+
+                A `user` object.
+
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                  description: A user UUID
+                name:
+                  type: string
+                  description: A user name
+                domain:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      description: A user domain UUID
+                    name:
+                      type: string
+                      description: A user domain name
+                  description: |+
+                    A `domain` object including the `id` and `name` representing the
+                    domain the token is scoped to. This is only included in tokens that are
+                    scoped to a domain.
+
+                password_expires_at:
+                  type: string
+                  format: date-time
+                  description: DateTime of the user password expiration
+                OS-FEDERATION:
+                  type: object
+            is_domain:
+              type: boolean
+            domain:
+              type: object
+              description: A domain object including the id and name representing
+                the domain the token is scoped to. This is only included in tokens
+                that are scoped to a domain.
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                  description: A domain UUID
+                name:
+                  type: string
+                  description: A domain name
+            project:
+              type: object
+              description: |+
+                A `project` object including the `id`, `name` and `domain` object
+                representing the project the token is scoped to. This is only included in
+                tokens that are scoped to a project.
+
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                  description: A user domain UUID
+                name:
+                  type: string
+                  description: A user domain name
+            roles:
+              type: array
+              description: |+
+                A list of `role` objects
+
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: A role UUID
+                  name:
+                    type: string
+                    description: A role name
+            system:
+              type: object
+              description: |+
+                A `system` object containing information about which parts of the system
+                the token is scoped to. If the token is scoped to the entire deployment
+                system, the `system` object will consist of `{"all": true}`. This is
+                only included in tokens that are scoped to the system.
+
+              additionalProperties:
+                type: boolean
+          description: |+
+            A `token` object.
+
     AuthTokensPostRequest:
       type: object
       properties:
@@ -7847,7 +8018,7 @@ components:
                           description: Region name of the endpoint
                         url:
                           type: string
-                          format: url
+                          format: uri
                           description: The endpoint url
                   id:
                     type: string
@@ -8061,211 +8232,6 @@ components:
             type: string
           description: A list of authentication rules that may be used with the auth
             receipt to complete the authentication process.
-    AuthTokensGetResponse:
-      type: object
-      properties:
-        token:
-          type: object
-          properties:
-            audit_ids:
-              type: array
-              description: |+
-                A list of one or two audit IDs. An audit ID is a
-                unique, randomly generated, URL-safe string that you can use to
-                track a token. The first audit ID is the current audit ID for the
-                token. The second audit ID is present for only re-scoped tokens
-                and is the audit ID from the token before it was re-scoped. A re-
-                scoped token is one that was exchanged for another token of the
-                same or different scope. You can use these audit IDs to track the
-                use of a token or chain of tokens across multiple requests and
-                endpoints without exposing the token ID to non-privileged users.
-
-              items:
-                type: string
-            catalog:
-              description: |+
-                A `catalog` object.
-
-              type: array
-              items:
-                type: object
-                properties:
-                  endpoints:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          format: uuid
-                          description: |+
-                            The ID of the user. Required if you do not
-                            specify the user name.
-
-                        interface:
-                          type: string
-                          enum:
-                            - public
-                            - internal
-                            - admin
-                        region:
-                          type: string
-                          description: Region name of the endpoint
-                        url:
-                          type: string
-                          format: url
-                          description: The endpoint url
-                  id:
-                    type: string
-                    format: uuid
-                    description: The UUID of the service to which the endpoint belongs.
-                  type:
-                    type: string
-                    description: The service type, which describes the API implemented
-                      by the service
-                  name:
-                    type: string
-                    description: |+
-                      The user name. Required if you do not specify
-                      the ID of the user. If you specify the user name, you must also
-                      specify the domain, by ID or name.
-
-            expires_at:
-              type: string
-              format: date-time
-              description: |+
-                The date and time when the token expires.
-
-
-                The date and time stamp format is [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601):
-
-
-
-                ```
-                CCYY-MM-DDThh:mm:ss.sssZ
-
-                ```
-
-
-                For example, `2015-08-27T09:49:58.000000Z`.
-
-
-                A `null` value indicates that the token never expires.
-
-            issues_at:
-              type: string
-              format: date-time
-              description: The date and time when the token was issued.
-            methods:
-              type: array
-              description: |+
-                The authentication methods, which are commonly `password`,
-                `token`, or other methods. Indicates the accumulated set of
-                authentication methods that were used to obtain the token. For
-                example, if the token was obtained by password authentication, it
-                contains `password`. Later, if the token is exchanged by using
-                the token authentication method one or more times, the
-                subsequently created tokens contain both `password` and
-                `token` in their `methods` attribute. Unlike multi-factor
-                authentication, the `methods` attribute merely indicates the
-                methods that were used to authenticate the user in exchange for a
-                token. The client is responsible for determining the total number
-                of authentication factors.
-
-              items:
-                type: string
-            user:
-              type: object
-              description: |+
-                A `user` object.
-
-              properties:
-                id:
-                  type: string
-                  format: uuid
-                  description: A user UUID
-                name:
-                  type: string
-                  description: A user name
-                domain:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      format: uuid
-                      description: A user domain UUID
-                    name:
-                      type: string
-                      description: A user domain name
-                  description: |+
-                    A `domain` object including the `id` and `name` representing the
-                    domain the token is scoped to. This is only included in tokens that are
-                    scoped to a domain.
-
-                password_expires_at:
-                  type: string
-                  format: date-time
-                  description: DateTime of the user password expiration
-                OS-FEDERATION:
-                  type: object
-            is_domain:
-              type: boolean
-            domain:
-              type: object
-              description: A domain object including the id and name representing
-                the domain the token is scoped to. This is only included in tokens
-                that are scoped to a domain.
-              properties:
-                id:
-                  type: string
-                  format: uuid
-                  description: A domain UUID
-                name:
-                  type: string
-                  description: A domain name
-            project:
-              type: object
-              description: |+
-                A `project` object including the `id`, `name` and `domain` object
-                representing the project the token is scoped to. This is only included in
-                tokens that are scoped to a project.
-
-              properties:
-                id:
-                  type: string
-                  format: uuid
-                  description: A user domain UUID
-                name:
-                  type: string
-                  description: A user domain name
-            roles:
-              type: array
-              description: |+
-                A list of `role` objects
-
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    format: uuid
-                    description: A role UUID
-                  name:
-                    type: string
-                    description: A role name
-            system:
-              type: object
-              description: |+
-                A `system` object containing information about which parts of the system
-                the token is scoped to. If the token is scoped to the entire deployment
-                system, the `system` object will consist of `{"all": true}`. This is
-                only included in tokens that are scoped to the system.
-
-              additionalProperties:
-                type: boolean
-          description: |+
-            A `token` object.
-
     AuthOs_FederationSaml2GetResponse:
       type: object
       description: Response of the auth/OS-FEDERATION/saml2:get operation
@@ -8724,7 +8690,7 @@ components:
                           description: Region name of the endpoint
                         url:
                           type: string
-                          format: url
+                          format: uri
                           description: The endpoint url
                     description: |+
                       A list of `endpoint` objects.
@@ -8842,7 +8808,7 @@ components:
                           description: Region name of the endpoint
                         url:
                           type: string
-                          format: url
+                          format: uri
                           description: The endpoint url
                     description: |+
                       A list of `endpoint` objects.
@@ -8960,7 +8926,7 @@ components:
                           description: Region name of the endpoint
                         url:
                           type: string
-                          format: url
+                          format: uri
                           description: The endpoint url
                     description: |+
                       A list of `endpoint` objects.
@@ -9078,7 +9044,7 @@ components:
                           description: Region name of the endpoint
                         url:
                           type: string
-                          format: url
+                          format: uri
                           description: The endpoint url
                     description: |+
                       A list of `endpoint` objects.
@@ -9157,6 +9123,9 @@ components:
     CredentialPatchResponse:
       type: object
       description: Response of the credentials/credential_id:patch operation
+    CredentialsGetResponse:
+      type: object
+      description: Response of the credentials:get operation
     CredentialsPostRequest:
       type: object
       description: Request of the credentials:post operation
@@ -9246,9 +9215,6 @@ components:
                 in the response to a create request. It is not stored nor ever shown
                 again. If the secret is lost, a new application credential must be
                 created.
-    CredentialsGetResponse:
-      type: object
-      description: Response of the credentials:get operation
     DomainGetResponse:
       type: object
       properties:
@@ -9388,6 +9354,62 @@ components:
             A list of simple strings assigned to a project.
 
       additionalProperties: true
+    DomainsGetResponse:
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: |+
+                  The ID of the domain.
+
+              description:
+                type:
+                  - string
+                  - 'null'
+                description: |+
+                  The description of the domain.
+
+              enabled:
+                type: boolean
+                enum:
+                  - true
+                  - false
+                  - 
+                description: |+
+                  If the user is enabled, this value is `true`.
+                  If the user is disabled, this value is `false`.
+
+              name:
+                type: string
+                minLength: 1
+                maxLength: 64
+                pattern: '[\S]+'
+                description: |+
+                  The name of the project.
+
+              tags:
+                type: array
+                items:
+                  type: string
+                  minLength: 1
+                  maxLength: 255
+                  pattern: ^[^,/]*$
+                required: []
+                maxItems: 80
+                uniqueItems: true
+                description: |+
+                  A list of simple strings assigned to a project.
+
+            additionalProperties: true
+          description: |+
+            A list of `domain` objects
+
     DomainsPostRequest:
       type: object
       properties:
@@ -9480,63 +9502,7 @@ components:
             A list of simple strings assigned to a project.
 
       additionalProperties: true
-    DomainsGetResponse:
-      type: object
-      properties:
-        domains:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-                description: |+
-                  The ID of the domain.
-
-              description:
-                type:
-                  - string
-                  - 'null'
-                description: |+
-                  The description of the domain.
-
-              enabled:
-                type: boolean
-                enum:
-                  - true
-                  - false
-                  - 
-                description: |+
-                  If the user is enabled, this value is `true`.
-                  If the user is disabled, this value is `false`.
-
-              name:
-                type: string
-                minLength: 1
-                maxLength: 64
-                pattern: '[\S]+'
-                description: |+
-                  The name of the project.
-
-              tags:
-                type: array
-                items:
-                  type: string
-                  minLength: 1
-                  maxLength: 255
-                  pattern: ^[^,/]*$
-                required: []
-                maxItems: 80
-                uniqueItems: true
-                description: |+
-                  A list of simple strings assigned to a project.
-
-            additionalProperties: true
-          description: |+
-            A list of `domain` objects
-
-    DomainsConfigPutRequest:
+    DomainConfig:
       type: object
       properties:
         config:
@@ -9566,7 +9532,7 @@ components:
               properties:
                 url:
                   type: string
-                  format: url
+                  format: uri
                   description: |+
                     The LDAP URL.
 
@@ -9578,97 +9544,7 @@ components:
                     `ou=Users,dc=root,dc=org`.
 
               additionalProperties: true
-    DomainsConfigPutResponse:
-      type: object
-      properties:
-        config:
-          type: object
-          description: |+
-            A `config` object.
-
-          properties:
-            identity:
-              type: object
-              description: |+
-                An `identity` object.
-
-              properties:
-                driver:
-                  type: string
-                  description: |+
-                    The Identity backend driver.
-
-              additionalProperties: true
-            ldap:
-              type: object
-              description: |+
-                An `ldap` object. Required to set the LDAP
-                group configuration options.
-
-              properties:
-                url:
-                  type: string
-                  format: url
-                  description: |+
-                    The LDAP URL.
-
-                user_tree_dn:
-                  type: string
-                  description: |+
-                    The base distinguished name (DN) of LDAP, from
-                    where all users can be reached. For example,
-                    `ou=Users,dc=root,dc=org`.
-
-              additionalProperties: true
-    DomainsConfigGetResponse:
-      type: object
-      description: Response of the domains/domain_id/config:get operation
-    DomainsConfigPatchRequest:
-      type: object
-      description: Request of the domains/domain_id/config:patch operation
-    DomainsConfigPatchResponse:
-      type: object
-      properties:
-        config:
-          type: object
-          description: |+
-            A `config` object.
-
-          properties:
-            identity:
-              type: object
-              description: |+
-                An `identity` object.
-
-              properties:
-                driver:
-                  type: string
-                  description: |+
-                    The Identity backend driver.
-
-              additionalProperties: true
-            ldap:
-              type: object
-              description: |+
-                An `ldap` object. Required to set the LDAP
-                group configuration options.
-
-              properties:
-                url:
-                  type: string
-                  format: url
-                  description: |+
-                    The LDAP URL.
-
-                user_tree_dn:
-                  type: string
-                  description: |+
-                    The base distinguished name (DN) of LDAP, from
-                    where all users can be reached. For example,
-                    `ou=Users,dc=root,dc=org`.
-
-              additionalProperties: true
-    DomainsConfigGroupGetResponse:
+    DomainConfigGroup:
       oneOf:
         - type: object
           description: |+
@@ -9689,7 +9565,7 @@ components:
           properties:
             url:
               type: string
-              format: url
+              format: uri
               description: |+
                 The LDAP URL.
 
@@ -9701,158 +9577,9 @@ components:
                 `ou=Users,dc=root,dc=org`.
 
           additionalProperties: true
-    DomainsConfigGroupPatchRequest:
-      oneOf:
-        - type: object
-          description: |+
-            An `identity` object.
-
-          properties:
-            driver:
-              type: string
-              description: |+
-                The Identity backend driver.
-
-          additionalProperties: true
-        - type: object
-          description: |+
-            An `ldap` object. Required to set the LDAP
-            group configuration options.
-
-          properties:
-            url:
-              type: string
-              format: url
-              description: |+
-                The LDAP URL.
-
-            user_tree_dn:
-              type: string
-              description: |+
-                The base distinguished name (DN) of LDAP, from
-                where all users can be reached. For example,
-                `ou=Users,dc=root,dc=org`.
-
-          additionalProperties: true
-    DomainsConfigGroupPatchResponse:
-      oneOf:
-        - type: object
-          description: |+
-            An `identity` object.
-
-          properties:
-            driver:
-              type: string
-              description: |+
-                The Identity backend driver.
-
-          additionalProperties: true
-        - type: object
-          description: |+
-            An `ldap` object. Required to set the LDAP
-            group configuration options.
-
-          properties:
-            url:
-              type: string
-              format: url
-              description: |+
-                The LDAP URL.
-
-            user_tree_dn:
-              type: string
-              description: |+
-                The base distinguished name (DN) of LDAP, from
-                where all users can be reached. For example,
-                `ou=Users,dc=root,dc=org`.
-
-          additionalProperties: true
-    DomainsConfigGroupOptionGetResponse:
+    RolesInfos:
       type: object
-      description: Response of the domains/domain_id/config/group/option:get operation
-    DomainsConfigGroupOptionPatchRequest:
-      type: object
-      description: Request of the domains/domain_id/config/group/option:patch operation
-    DomainsConfigGroupOptionPatchResponse:
-      type: object
-      description: Response of the domains/domain_id/config/group/option:patch operation
-    DomainsConfigDefaultGetResponse:
-      type: object
-      properties:
-        config:
-          type: object
-          description: |+
-            A `config` object.
-
-          properties:
-            identity:
-              type: object
-              description: |+
-                An `identity` object.
-
-              properties:
-                driver:
-                  type: string
-                  description: |+
-                    The Identity backend driver.
-
-              additionalProperties: true
-            ldap:
-              type: object
-              description: |+
-                An `ldap` object. Required to set the LDAP
-                group configuration options.
-
-              properties:
-                url:
-                  type: string
-                  format: url
-                  description: |+
-                    The LDAP URL.
-
-                user_tree_dn:
-                  type: string
-                  description: |+
-                    The base distinguished name (DN) of LDAP, from
-                    where all users can be reached. For example,
-                    `ou=Users,dc=root,dc=org`.
-
-              additionalProperties: true
-    DomainsConfigDefaultGroupGetResponse:
-      oneOf:
-        - type: object
-          description: |+
-            An `identity` object.
-
-          properties:
-            driver:
-              type: string
-              description: |+
-                The Identity backend driver.
-
-          additionalProperties: true
-        - type: object
-          description: |+
-            An `ldap` object. Required to set the LDAP
-            group configuration options.
-
-          properties:
-            url:
-              type: string
-              format: url
-              description: |+
-                The LDAP URL.
-
-            user_tree_dn:
-              type: string
-              description: |+
-                The base distinguished name (DN) of LDAP, from
-                where all users can be reached. For example,
-                `ou=Users,dc=root,dc=org`.
-
-          additionalProperties: true
-    DomainsUsersRolesGetResponse:
-      type: object
+      description: List of roles assigned to the resource
       properties:
         roles:
           type: array
@@ -9865,122 +9592,37 @@ components:
                 description: |+
                   The role ID.
 
-              links:
-                type: object
-                description: |+
-                  The link to the resources in question.
-
               name:
                 type: string
-                minLength: 1
-                maxLength: 255
-                pattern: '[\S]+'
                 description: |+
                   The role name.
 
               description:
                 type: string
-                description: |+
-                  The role description.
-
-              options:
+                description: The role description.
+              links:
                 type: object
                 properties:
-                  immutable:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                additionalProperties: false
+                  self:
+                    type: string
+                    format: uri
+                    description: The link to the resource in question.
                 description: |+
-                  The resource options for the role. Available resource options are
-                  `immutable`.
+                  The link to the resources in question.
+
+            description: |+
+              A prior role object.
 
           description: |+
             A list of `role` objects
 
         links:
           type: object
-    DomainsUsersRolePutRequest:
-      type: object
-      description: Request of the domains/domain_id/users/user_id/roles/role_id:put
-        operation
-    DomainsUsersRolePutResponse:
-      type: object
-      description: Response of the domains/domain_id/users/user_id/roles/role_id:put
-        operation
-    DomainsUsersRoleGetResponse:
-      type: object
-      description: Response of the domains/domain_id/users/user_id/roles/role_id:get
-        operation
-    DomainsGroupsRolesGetResponse:
-      type: object
-      properties:
-        roles:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-                description: |+
-                  The role ID.
-
-              links:
-                type: object
-                description: |+
-                  The link to the resources in question.
-
-              name:
-                type: string
-                minLength: 1
-                maxLength: 255
-                pattern: '[\S]+'
-                description: |+
-                  The role name.
-
-              description:
-                type: string
-                description: |+
-                  The role description.
-
-              options:
-                type: object
-                properties:
-                  immutable:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                additionalProperties: false
-                description: |+
-                  The resource options for the role. Available resource options are
-                  `immutable`.
-
-          description: |+
-            A list of `role` objects
-
-        links:
-          type: object
-    DomainsGroupsRolePutRequest:
-      type: object
-      description: Request of the domains/domain_id/groups/group_id/roles/role_id:put
-        operation
-    DomainsGroupsRolePutResponse:
-      type: object
-      description: Response of the domains/domain_id/groups/group_id/roles/role_id:put
-        operation
-    DomainsGroupsRoleGetResponse:
-      type: object
-      description: Response of the domains/domain_id/groups/group_id/roles/role_id:get
-        operation
+          additionalProperties:
+            type:
+              - string
+              - 'null'
+            format: uri
     Ec2TokensGetResponse:
       type: object
       description: Response of the ec2tokens:get operation
@@ -10050,7 +9692,7 @@ components:
 
             url:
               type: string
-              format: url
+              format: uri
               description: |+
                 The endpoint URL.
 
@@ -10120,12 +9762,84 @@ components:
 
             url:
               type: string
-              format: url
+              format: uri
               description: |+
                 The endpoint URL.
 
           description: |+
             An `endpoint` object.
+
+    EndpointsGetResponse:
+      type: object
+      properties:
+        endpoints:
+          type: array
+          items:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+                description: |+
+                  Indicates whether the endpoint appears in the
+                  service catalog: - `false`. The endpoint does not appear in the
+                  service catalog. - `true`. The endpoint appears in the service
+                  catalog.
+
+              id:
+                type: string
+                format: uuid
+                description: |+
+                  The endpoint ID.
+
+              interface:
+                type: string
+                enum:
+                  - internal
+                  - admin
+                  - public
+                description: |+
+                  The interface type, which describes the
+                  visibility of the endpoint. Value is: - `public`. Visible by
+                  end users on a publicly available network interface. -
+                  `internal`. Visible by end users on an unmetered internal
+                  network interface. - `admin`. Visible by administrative users
+                  on a secure network interface.
+
+              region:
+                type: string
+                description: |+
+                  (Deprecated in v3.2) The geographic location of
+                  the service endpoint.
+
+                x-openstack:
+                  max-ver: '3.2'
+              region_id:
+                type: string
+                format: uuid
+                description: |+
+                  (Since v3.2) The ID of the region that contains
+                  the service endpoint.
+
+                x-openstack:
+                  min-ver: '3.2'
+              service_id:
+                type: string
+                format: uuid
+                description: |+
+                  The UUID of the service to which the endpoint
+                  belongs.
+
+              url:
+                type: string
+                format: uri
+                description: |+
+                  The endpoint URL.
+
+            description: |+
+              An `endpoint` object.
+
+          description: |+
+            A list of `endpoint` objects.
 
     EndpointsPostRequest:
       type: object
@@ -10178,7 +9892,7 @@ components:
 
             url:
               type: string
-              format: url
+              format: uri
               description: |+
                 The endpoint URL.
 
@@ -10249,497 +9963,56 @@ components:
 
             url:
               type: string
-              format: url
+              format: uri
               description: |+
                 The endpoint URL.
 
           description: |+
             An `endpoint` object.
 
-    EndpointsGetResponse:
-      type: object
-      properties:
-        endpoints:
-          type: array
-          items:
-            type: object
-            properties:
-              enabled:
-                type: boolean
-                description: |+
-                  Indicates whether the endpoint appears in the
-                  service catalog: - `false`. The endpoint does not appear in the
-                  service catalog. - `true`. The endpoint appears in the service
-                  catalog.
-
-              id:
-                type: string
-                format: uuid
-                description: |+
-                  The endpoint ID.
-
-              interface:
-                type: string
-                enum:
-                  - internal
-                  - admin
-                  - public
-                description: |+
-                  The interface type, which describes the
-                  visibility of the endpoint. Value is: - `public`. Visible by
-                  end users on a publicly available network interface. -
-                  `internal`. Visible by end users on an unmetered internal
-                  network interface. - `admin`. Visible by administrative users
-                  on a secure network interface.
-
-              region:
-                type: string
-                description: |+
-                  (Deprecated in v3.2) The geographic location of
-                  the service endpoint.
-
-                x-openstack:
-                  max-ver: '3.2'
-              region_id:
-                type: string
-                format: uuid
-                description: |+
-                  (Since v3.2) The ID of the region that contains
-                  the service endpoint.
-
-                x-openstack:
-                  min-ver: '3.2'
-              service_id:
-                type: string
-                format: uuid
-                description: |+
-                  The UUID of the service to which the endpoint
-                  belongs.
-
-              url:
-                type: string
-                format: url
-                description: |+
-                  The endpoint URL.
-
-            description: |+
-              An `endpoint` object.
-
-          description: |+
-            A list of `endpoint` objects.
-
     EndpointsOs_Endpoint_PolicyPolicyGetResponse:
       type: object
       description: Response of the endpoints/endpoint_id/OS-ENDPOINT-POLICY/policy:get
         operation
-    GroupGetResponse:
+    Group:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-          description: |+
-            The ID of the group.
-
-        description:
-          type:
-            - string
-            - 'null'
-          description: |+
-            The description of the group.
-
-        domain_id:
-          type: string
-          minLength: 1
-          maxLength: 64
-          pattern: ^[a-zA-Z0-9-]+$
-          description: |+
-            The ID of the domain.
-
-        name:
-          type: string
-          minLength: 1
-          maxLength: 255
-          pattern: '[\S]+'
-          description: |+
-            The user name. Must be unique within the owning domain.
-
-    GroupPatchRequest:
-      type: object
-      properties:
-        default_project_id:
-          type:
-            - string
-            - 'null'
-          minLength: 1
-          maxLength: 64
-          pattern: ^[a-zA-Z0-9-]+$
-          description: |+
-            The ID of the default project for the user.
-
-        description:
-          type:
-            - string
-            - 'null'
-          description: |+
-            The new description of the group.
-
-        domain_id:
-          type: string
-          minLength: 1
-          maxLength: 64
-          pattern: ^[a-zA-Z0-9-]+$
-          description: |+
-            The ID of the domain.
-
-        enabled:
-          type: boolean
-          enum:
-            - true
-            - false
-            - 
-          description: |+
-            If the user is enabled, this value is `true`.
-            If the user is disabled, this value is `false`.
-
-        federated:
-          type: array
-          items:
-            type: object
-            properties:
-              idp_id:
-                type: string
-              protocols:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    protocol_id:
-                      type: string
-                    unique_id:
-                      type: string
-                  required:
-                    - protocol_id
-                    - unique_id
-                minItems: 1
-            required:
-              - idp_id
-              - protocols
-          description: |+
-            List of federated objects associated with a user. Each object in the list
-            contains the `idp_id` and `protocols`. `protocols` is a list of
-            objects, each of which contains `protocol_id` and `unique_id` of
-            the protocol and user respectively. For example:
-
-
-
-            ```
-            "federated": [
-              {
-                "idp_id": "efbab5a6acad4d108fec6c63d9609d83",
-                "protocols": [
-                  {"protocol_id": "mapped", "unique_id": "test@example.com"}
-                ]
-              }
-            ]
-
-            ```
-
-        name:
-          type: string
-          minLength: 1
-          maxLength: 255
-          pattern: '[\S]+'
-          description: |+
-            The user name. Must be unique within the owning domain.
-
-        password:
-          type:
-            - string
-            - 'null'
-          description: |+
-            The new password for the user.
-
-        options:
+        group:
           type: object
           properties:
-            ignore_change_password_upon_first_use:
+            id:
+              type: string
+              format: uuid
+              readOnly: true
+              description: |+
+                The ID of the group.
+
+            description:
               type:
-                - boolean
+                - string
                 - 'null'
-              enum:
-                - true
-                - false
-                - 
-            ignore_password_expiry:
-              type:
-                - boolean
-                - 'null'
-              enum:
-                - true
-                - false
-                - 
-            ignore_lockout_failure_attempts:
-              type:
-                - boolean
-                - 'null'
-              enum:
-                - true
-                - false
-                - 
-            lock_password:
-              type:
-                - boolean
-                - 'null'
-              enum:
-                - true
-                - false
-                - 
-            ignore_user_inactivity:
-              type:
-                - boolean
-                - 'null'
-              enum:
-                - true
-                - false
-                - 
-            multi_factor_auth_rules:
-              type:
-                - array
-                - 'null'
-              items:
-                type: array
-                items:
-                  type: string
-                minItems: 1
-                uniqueItems: true
-              uniqueItems: true
-            multi_factor_auth_enabled:
-              type:
-                - boolean
-                - 'null'
-              enum:
-                - true
-                - false
-                - 
-          additionalProperties: false
+              description: |+
+                The description of the group.
+
+            domain_id:
+              type: string
+              minLength: 1
+              maxLength: 64
+              pattern: ^[a-zA-Z0-9-]+$
+              description: |+
+                The ID of the domain.
+
+            name:
+              type: string
+              minLength: 1
+              maxLength: 255
+              pattern: '[\S]+'
+              description: |+
+                The user name. Must be unique within the owning domain.
+
           description: |+
-            The resource options for the user. Available resource options are
-            `ignore_change_password_upon_first_use`, `ignore_password_expiry`,
-            `ignore_lockout_failure_attempts`, `lock_password`,
-            `multi_factor_auth_enabled`, and `multi_factor_auth_rules`
-            `ignore_user_inactivity`.
+            A `group` object
 
-      additionalProperties: true
-      minProperties: 1
-      options:
-        type: object
-    GroupPatchResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: |+
-            The ID of the group.
-
-        description:
-          type:
-            - string
-            - 'null'
-          description: |+
-            The description of the group.
-
-        domain_id:
-          type: string
-          minLength: 1
-          maxLength: 64
-          pattern: ^[a-zA-Z0-9-]+$
-          description: |+
-            The ID of the domain.
-
-        name:
-          type: string
-          minLength: 1
-          maxLength: 255
-          pattern: '[\S]+'
-          description: |+
-            The user name. Must be unique within the owning domain.
-
-    GroupsPostRequest:
-      type: object
-      properties:
-        default_project_id:
-          type:
-            - string
-            - 'null'
-          minLength: 1
-          maxLength: 64
-          pattern: ^[a-zA-Z0-9-]+$
-          description: |+
-            The ID of the default project for the user.
-
-        description:
-          type:
-            - string
-            - 'null'
-          description: |+
-            The new description of the group.
-
-        domain_id:
-          type: string
-          minLength: 1
-          maxLength: 64
-          pattern: ^[a-zA-Z0-9-]+$
-          description: |+
-            The ID of the domain.
-
-        enabled:
-          type: boolean
-          enum:
-            - true
-            - false
-            - 
-          description: |+
-            If the user is enabled, this value is `true`.
-            If the user is disabled, this value is `false`.
-
-        federated:
-          type: array
-          items:
-            type: object
-            properties:
-              idp_id:
-                type: string
-              protocols:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    protocol_id:
-                      type: string
-                    unique_id:
-                      type: string
-                  required:
-                    - protocol_id
-                    - unique_id
-                minItems: 1
-            required:
-              - idp_id
-              - protocols
-          description: |+
-            List of federated objects associated with a user. Each object in the list
-            contains the `idp_id` and `protocols`. `protocols` is a list of
-            objects, each of which contains `protocol_id` and `unique_id` of
-            the protocol and user respectively. For example:
-
-
-
-            ```
-            "federated": [
-              {
-                "idp_id": "efbab5a6acad4d108fec6c63d9609d83",
-                "protocols": [
-                  {"protocol_id": "mapped", "unique_id": "test@example.com"}
-                ]
-              }
-            ]
-
-            ```
-
-        name:
-          type: string
-          minLength: 1
-          maxLength: 255
-          pattern: '[\S]+'
-          description: |+
-            The user name. Must be unique within the owning domain.
-
-        password:
-          type:
-            - string
-            - 'null'
-          description: |+
-            The new password for the user.
-
-        options:
-          type: object
-          properties:
-            ignore_change_password_upon_first_use:
-              type:
-                - boolean
-                - 'null'
-              enum:
-                - true
-                - false
-                - 
-            ignore_password_expiry:
-              type:
-                - boolean
-                - 'null'
-              enum:
-                - true
-                - false
-                - 
-            ignore_lockout_failure_attempts:
-              type:
-                - boolean
-                - 'null'
-              enum:
-                - true
-                - false
-                - 
-            lock_password:
-              type:
-                - boolean
-                - 'null'
-              enum:
-                - true
-                - false
-                - 
-            ignore_user_inactivity:
-              type:
-                - boolean
-                - 'null'
-              enum:
-                - true
-                - false
-                - 
-            multi_factor_auth_rules:
-              type:
-                - array
-                - 'null'
-              items:
-                type: array
-                items:
-                  type: string
-                minItems: 1
-                uniqueItems: true
-              uniqueItems: true
-            multi_factor_auth_enabled:
-              type:
-                - boolean
-                - 'null'
-              enum:
-                - true
-                - false
-                - 
-          additionalProperties: false
-          description: |+
-            The resource options for the user. Available resource options are
-            `ignore_change_password_upon_first_use`, `ignore_password_expiry`,
-            `ignore_lockout_failure_attempts`, `lock_password`,
-            `multi_factor_auth_enabled`, and `multi_factor_auth_rules`
-            `ignore_user_inactivity`.
-
-      additionalProperties: true
-      required:
-        - name
-      options:
-        type: object
-    GroupsPostResponse:
-      type: object
-      description: Response of the groups:post operation
     GroupsGetResponse:
       type: object
       properties:
@@ -10751,6 +10024,7 @@ components:
               id:
                 type: string
                 format: uuid
+                readOnly: true
                 description: |+
                   The ID of the group.
 
@@ -10777,21 +10051,193 @@ components:
                 description: |+
                   The user name. Must be unique within the owning domain.
 
+            description: |+
+              A `group` object
+
           description: |+
             A list of `group` objects
 
     GroupsUsersGetResponse:
       type: object
-      description: Response of the groups/group_id/users:get operation
-    GroupsUserPutRequest:
-      type: object
-      description: Request of the groups/group_id/users/user_id:put operation
-    GroupsUserPutResponse:
-      type: object
-      description: Response of the groups/group_id/users/user_id:put operation
-    GroupsUserGetResponse:
-      type: object
-      description: Response of the groups/group_id/users/user_id:get operation
+      properties:
+        users:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                readOnly: true
+                description: |+
+                  The user ID.
+
+              default_project_id:
+                type:
+                  - string
+                  - 'null'
+                minLength: 1
+                maxLength: 64
+                pattern: ^[a-zA-Z0-9-]+$
+                description: |+
+                  The ID of the default project for the user.
+
+              description:
+                type:
+                  - string
+                  - 'null'
+              domain_id:
+                type: string
+                minLength: 1
+                maxLength: 64
+                pattern: ^[a-zA-Z0-9-]+$
+                description: |+
+                  The ID of the domain.
+
+              enabled:
+                type: boolean
+                enum:
+                  - true
+                  - false
+                  - 
+                description: |+
+                  If the user is enabled, this value is `true`.
+                  If the user is disabled, this value is `false`.
+
+              federated:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idp_id:
+                      type: string
+                    protocols:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          protocol_id:
+                            type: string
+                          unique_id:
+                            type: string
+                        required:
+                          - protocol_id
+                          - unique_id
+                      minItems: 1
+                  required:
+                    - idp_id
+                    - protocols
+                description: |+
+                  List of federated objects associated with a user. Each object in the list
+                  contains the `idp_id` and `protocols`. `protocols` is a list of
+                  objects, each of which contains `protocol_id` and `unique_id` of
+                  the protocol and user respectively. For example:
+
+
+
+                  ```
+                  "federated": [
+                    {
+                      "idp_id": "efbab5a6acad4d108fec6c63d9609d83",
+                      "protocols": [
+                        {"protocol_id": "mapped", "unique_id": "test@example.com"}
+                      ]
+                    }
+                  ]
+
+                  ```
+
+              name:
+                type: string
+                minLength: 1
+                maxLength: 255
+                pattern: '[\S]+'
+                description: |+
+                  The user name. Must be unique within the owning domain.
+
+              password:
+                type:
+                  - string
+                  - 'null'
+                description: |+
+                  The new password for the user.
+
+              options:
+                type: object
+                properties:
+                  ignore_change_password_upon_first_use:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  ignore_password_expiry:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  ignore_lockout_failure_attempts:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  lock_password:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  ignore_user_inactivity:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  multi_factor_auth_rules:
+                    type:
+                      - array
+                      - 'null'
+                    items:
+                      type: array
+                      items:
+                        type: string
+                      minItems: 1
+                      uniqueItems: true
+                    uniqueItems: true
+                  multi_factor_auth_enabled:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                additionalProperties: false
+                description: |+
+                  The resource options for the user. Available resource options are
+                  `ignore_change_password_upon_first_use`, `ignore_password_expiry`,
+                  `ignore_lockout_failure_attempts`, `lock_password`,
+                  `multi_factor_auth_enabled`, and `multi_factor_auth_rules`
+                  `ignore_user_inactivity`.
+
+            description: |+
+              A `user` object
+
+          description: |+
+            A list of `user` objects
+
     LimitGetResponse:
       type: object
       description: Response of the limits/limit_id:get operation
@@ -10801,15 +10247,15 @@ components:
     LimitPatchResponse:
       type: object
       description: Response of the limits/limit_id:patch operation
+    LimitsGetResponse:
+      type: object
+      description: Response of the limits:get operation
     LimitsPostRequest:
       type: object
       description: Request of the limits:post operation
     LimitsPostResponse:
       type: object
       description: Response of the limits:post operation
-    LimitsGetResponse:
-      type: object
-      description: Response of the limits:get operation
     LimitsModelGetResponse:
       type: object
       description: Response of the limits/model:get operation
@@ -10825,18 +10271,22 @@ components:
       type: object
       description: Response of the OS-EP-FILTER/endpoint_groups/endpoint_group_id:patch
         operation
+    Os_Ep_FilterEndpoint_GroupsGetResponse:
+      type: object
+      description: Response of the OS-EP-FILTER/endpoint_groups:get operation
     Os_Ep_FilterEndpoint_GroupsPostRequest:
       type: object
       description: Request of the OS-EP-FILTER/endpoint_groups:post operation
     Os_Ep_FilterEndpoint_GroupsPostResponse:
       type: object
       description: Response of the OS-EP-FILTER/endpoint_groups:post operation
-    Os_Ep_FilterEndpoint_GroupsGetResponse:
-      type: object
-      description: Response of the OS-EP-FILTER/endpoint_groups:get operation
     Os_Ep_FilterEndpointsProjectsGetResponse:
       type: object
       description: Response of the OS-EP-FILTER/endpoints/endpoint_id/projects:get
+        operation
+    Os_Ep_FilterProjectsEndpointGetResponse:
+      type: object
+      description: Response of the OS-EP-FILTER/projects/project_id/endpoints/endpoint_id:get
         operation
     Os_Ep_FilterProjectsEndpointPutRequest:
       type: object
@@ -10845,10 +10295,6 @@ components:
     Os_Ep_FilterProjectsEndpointPutResponse:
       type: object
       description: Response of the OS-EP-FILTER/projects/project_id/endpoints/endpoint_id:put
-        operation
-    Os_Ep_FilterProjectsEndpointGetResponse:
-      type: object
-      description: Response of the OS-EP-FILTER/projects/project_id/endpoints/endpoint_id:get
         operation
     Os_Ep_FilterProjectsEndpointsGetResponse:
       type: object
@@ -10866,6 +10312,10 @@ components:
       type: object
       description: Response of the OS-EP-FILTER/endpoint_groups/endpoint_group_id/projects:get
         operation
+    Os_Ep_FilterEndpoint_GroupsProjectGetResponse:
+      type: object
+      description: Response of the OS-EP-FILTER/endpoint_groups/endpoint_group_id/projects/project_id:get
+        operation
     Os_Ep_FilterEndpoint_GroupsProjectPutRequest:
       type: object
       description: Request of the OS-EP-FILTER/endpoint_groups/endpoint_group_id/projects/project_id:put
@@ -10873,10 +10323,6 @@ components:
     Os_Ep_FilterEndpoint_GroupsProjectPutResponse:
       type: object
       description: Response of the OS-EP-FILTER/endpoint_groups/endpoint_group_id/projects/project_id:put
-        operation
-    Os_Ep_FilterEndpoint_GroupsProjectGetResponse:
-      type: object
-      description: Response of the OS-EP-FILTER/endpoint_groups/endpoint_group_id/projects/project_id:get
         operation
     Os_FederationSaml2MetadataGetResponse:
       type: string
@@ -10930,7 +10376,7 @@ components:
                           description: Region name of the endpoint
                         url:
                           type: string
-                          format: url
+                          format: uri
                           description: The endpoint url
                     description: |+
                       A list of `endpoint` objects.
@@ -11052,7 +10498,7 @@ components:
                           description: Region name of the endpoint
                         url:
                           type: string
-                          format: url
+                          format: uri
                           description: The endpoint url
                     description: |+
                       A list of `endpoint` objects.
@@ -11122,6 +10568,35 @@ components:
                   description: DateTime of the user password expiration
                 OS-FEDERATION:
                   type: object
+    Os_FederationIdentity_ProviderGetResponse:
+      type: object
+      properties:
+        identity_provider:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The Identity Provider unique ID
+            description:
+              type: string
+              description: The Identity Provider description
+            domain_id:
+              type: string
+              format: uuid
+              description: The ID of a domain that is associated with the Identity
+                Provider.
+            authorization_ttl:
+              type: integer
+              description: The length of validity in minutes for group memberships
+                carried over through mapping and persisted in the database.
+            enabled:
+              type: boolean
+              description: Whether the Identity Provider is enabled or not
+            remote_ids:
+              type: array
+              description: List of the unique Identity Provider’s remote IDs
+              items:
+                type: string
     Os_FederationIdentity_ProviderPutRequest:
       type: object
       properties:
@@ -11163,35 +10638,6 @@ components:
               uniqueItems: true
           additionalProperties: false
     Os_FederationIdentity_ProviderPutResponse:
-      type: object
-      properties:
-        identity_provider:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The Identity Provider unique ID
-            description:
-              type: string
-              description: The Identity Provider description
-            domain_id:
-              type: string
-              format: uuid
-              description: The ID of a domain that is associated with the Identity
-                Provider.
-            authorization_ttl:
-              type: integer
-              description: The length of validity in minutes for group memberships
-                carried over through mapping and persisted in the database.
-            enabled:
-              type: boolean
-              description: Whether the Identity Provider is enabled or not
-            remote_ids:
-              type: array
-              description: List of the unique Identity Provider’s remote IDs
-              items:
-                type: string
-    Os_FederationIdentity_ProviderGetResponse:
       type: object
       properties:
         identity_provider:
@@ -11314,6 +10760,21 @@ components:
                 description: List of the unique Identity Provider’s remote IDs
                 items:
                   type: string
+    Os_FederationIdentity_ProvidersProtocolGetResponse:
+      type: object
+      properties:
+        protocol:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: The federation protocol ID
+            mapping_id:
+              type: string
+            remote_id_attribute:
+              type: string
+              maxLength: 64
     Os_FederationIdentity_ProvidersProtocolPutRequest:
       type: object
       properties:
@@ -11332,21 +10793,6 @@ components:
             - mapping_id
           additionalProperties: false
     Os_FederationIdentity_ProvidersProtocolPutResponse:
-      type: object
-      properties:
-        protocol:
-          type: object
-          properties:
-            id:
-              type: string
-              format: uuid
-              description: The federation protocol ID
-            mapping_id:
-              type: string
-            remote_id_attribute:
-              type: string
-              maxLength: 64
-    Os_FederationIdentity_ProvidersProtocolGetResponse:
       type: object
       properties:
         protocol:
@@ -11409,6 +10855,174 @@ components:
               remote_id_attribute:
                 type: string
                 maxLength: 64
+    Os_FederationMappingGetResponse:
+      type: object
+      properties:
+        mapping:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The Federation Mapping unique ID
+            rules:
+              minItems: 1
+              type: array
+              items:
+                type: object
+                required:
+                  - local
+                  - remote
+                additionalProperties: false
+                properties:
+                  local:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: false
+                      properties:
+                        user:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                            email:
+                              type: string
+                            domain:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                name:
+                                  type: string
+                              additionalProperties: false
+                            type:
+                              type: string
+                              enum:
+                                - ephemeral
+                                - local
+                          additionalProperties: false
+                        projects:
+                          type: array
+                          items:
+                            type: object
+                            required:
+                              - name
+                              - roles
+                            additionalProperties: false
+                            properties:
+                              name:
+                                type: string
+                              roles:
+                                type: array
+                                items:
+                                  type: object
+                                  required:
+                                    - name
+                                  properties:
+                                    name:
+                                      type: string
+                                    additionalProperties: false
+                        group:
+                          type: object
+                          oneOf:
+                            - type: object
+                              properties:
+                                id:
+                                  type: string
+                              additionalProperties: false
+                              required:
+                                - id
+                            - type: object
+                              properties:
+                                name:
+                                  type: string
+                                domain:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                    name:
+                                      type: string
+                                  additionalProperties: false
+                              additionalProperties: false
+                              required:
+                                - name
+                                - domain
+                        groups:
+                          type: string
+                        group_ids:
+                          type: string
+                        domain:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                          additionalProperties: false
+                  remote:
+                    minItems: 1
+                    type: array
+                    items:
+                      type: object
+                      oneOf:
+                        - type: object
+                          required:
+                            - type
+                          properties:
+                            type:
+                              type: string
+                          additionalProperties: false
+                        - type: object
+                          additionalProperties: false
+                          required:
+                            - type
+                            - any_one_of
+                          properties:
+                            type:
+                              type: string
+                            any_one_of:
+                              type: array
+                            regex:
+                              type: boolean
+                        - type: object
+                          additionalProperties: false
+                          required:
+                            - type
+                            - not_any_of
+                          properties:
+                            type:
+                              type: string
+                            not_any_of:
+                              type: array
+                            regex:
+                              type: boolean
+                        - type: object
+                          additionalProperties: false
+                          required:
+                            - type
+                            - blacklist
+                          properties:
+                            type:
+                              type: string
+                            blacklist:
+                              type: array
+                            regex:
+                              type: boolean
+                        - type: object
+                          additionalProperties: false
+                          required:
+                            - type
+                            - whitelist
+                          properties:
+                            type:
+                              type: string
+                            whitelist:
+                              type: array
+                            regex:
+                              type: boolean
     Os_FederationMappingPutRequest:
       type: object
       properties:
@@ -11577,174 +11191,6 @@ components:
                             regex:
                               type: boolean
     Os_FederationMappingPutResponse:
-      type: object
-      properties:
-        mapping:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The Federation Mapping unique ID
-            rules:
-              minItems: 1
-              type: array
-              items:
-                type: object
-                required:
-                  - local
-                  - remote
-                additionalProperties: false
-                properties:
-                  local:
-                    type: array
-                    items:
-                      type: object
-                      additionalProperties: false
-                      properties:
-                        user:
-                          type: object
-                          properties:
-                            id:
-                              type: string
-                            name:
-                              type: string
-                            email:
-                              type: string
-                            domain:
-                              type: object
-                              properties:
-                                id:
-                                  type: string
-                                name:
-                                  type: string
-                              additionalProperties: false
-                            type:
-                              type: string
-                              enum:
-                                - ephemeral
-                                - local
-                          additionalProperties: false
-                        projects:
-                          type: array
-                          items:
-                            type: object
-                            required:
-                              - name
-                              - roles
-                            additionalProperties: false
-                            properties:
-                              name:
-                                type: string
-                              roles:
-                                type: array
-                                items:
-                                  type: object
-                                  required:
-                                    - name
-                                  properties:
-                                    name:
-                                      type: string
-                                    additionalProperties: false
-                        group:
-                          type: object
-                          oneOf:
-                            - type: object
-                              properties:
-                                id:
-                                  type: string
-                              additionalProperties: false
-                              required:
-                                - id
-                            - type: object
-                              properties:
-                                name:
-                                  type: string
-                                domain:
-                                  type: object
-                                  properties:
-                                    id:
-                                      type: string
-                                    name:
-                                      type: string
-                                  additionalProperties: false
-                              additionalProperties: false
-                              required:
-                                - name
-                                - domain
-                        groups:
-                          type: string
-                        group_ids:
-                          type: string
-                        domain:
-                          type: object
-                          properties:
-                            id:
-                              type: string
-                            name:
-                              type: string
-                          additionalProperties: false
-                  remote:
-                    minItems: 1
-                    type: array
-                    items:
-                      type: object
-                      oneOf:
-                        - type: object
-                          required:
-                            - type
-                          properties:
-                            type:
-                              type: string
-                          additionalProperties: false
-                        - type: object
-                          additionalProperties: false
-                          required:
-                            - type
-                            - any_one_of
-                          properties:
-                            type:
-                              type: string
-                            any_one_of:
-                              type: array
-                            regex:
-                              type: boolean
-                        - type: object
-                          additionalProperties: false
-                          required:
-                            - type
-                            - not_any_of
-                          properties:
-                            type:
-                              type: string
-                            not_any_of:
-                              type: array
-                            regex:
-                              type: boolean
-                        - type: object
-                          additionalProperties: false
-                          required:
-                            - type
-                            - blacklist
-                          properties:
-                            type:
-                              type: string
-                            blacklist:
-                              type: array
-                            regex:
-                              type: boolean
-                        - type: object
-                          additionalProperties: false
-                          required:
-                            - type
-                            - whitelist
-                          properties:
-                            type:
-                              type: string
-                            whitelist:
-                              type: array
-                            regex:
-                              type: boolean
-    Os_FederationMappingGetResponse:
       type: object
       properties:
         mapping:
@@ -12417,6 +11863,37 @@ components:
                                 type: array
                               regex:
                                 type: boolean
+    Os_FederationService_ProviderGetResponse:
+      type: object
+      properties:
+        service_provider:
+          type: object
+          properties:
+            auth_url:
+              type: string
+              description: The URL to authenticate against
+            description:
+              type:
+                - string
+                - 'null'
+              description: The description of the Service Provider
+            id:
+              type: string
+              description: The Service Provider unique ID
+            enabled:
+              type: boolean
+              description: Whether the Service Provider is enabled or not
+            relay_state_prefix:
+              type:
+                - string
+                - 'null'
+              description: The prefix of the RelayState SAML attribute
+            sp_url:
+              type: string
+              description: The Service Provider’s URL
+          required:
+            - auth_url
+            - sp_url
     Os_FederationService_ProviderPutRequest:
       type: object
       properties:
@@ -12456,37 +11933,6 @@ components:
             - sp_url
           additionalProperties: false
     Os_FederationService_ProviderPutResponse:
-      type: object
-      properties:
-        service_provider:
-          type: object
-          properties:
-            auth_url:
-              type: string
-              description: The URL to authenticate against
-            description:
-              type:
-                - string
-                - 'null'
-              description: The description of the Service Provider
-            id:
-              type: string
-              description: The Service Provider unique ID
-            enabled:
-              type: boolean
-              description: Whether the Service Provider is enabled or not
-            relay_state_prefix:
-              type:
-                - string
-                - 'null'
-              description: The prefix of the RelayState SAML attribute
-            sp_url:
-              type: string
-              description: The Service Provider’s URL
-          required:
-            - auth_url
-            - sp_url
-    Os_FederationService_ProviderGetResponse:
       type: object
       properties:
         service_provider:
@@ -12617,6 +12063,11 @@ components:
             required:
               - auth_url
               - sp_url
+    Os_InheritDomainsGroupsRolesInherited_To_ProjectsGetResponse:
+      type: object
+      description: Response of the 
+        OS-INHERIT/domains/domain_id/groups/group_id/roles/role_id/inherited_to_projects:get
+        operation
     Os_InheritDomainsGroupsRolesInherited_To_ProjectsPutRequest:
       type: object
       description: Request of the 
@@ -12627,10 +12078,10 @@ components:
       description: Response of the 
         OS-INHERIT/domains/domain_id/groups/group_id/roles/role_id/inherited_to_projects:put
         operation
-    Os_InheritDomainsGroupsRolesInherited_To_ProjectsGetResponse:
+    Os_InheritDomainsUsersRolesInherited_To_ProjectsGetResponse:
       type: object
       description: Response of the 
-        OS-INHERIT/domains/domain_id/groups/group_id/roles/role_id/inherited_to_projects:get
+        OS-INHERIT/domains/domain_id/users/user_id/roles/role_id/inherited_to_projects:get
         operation
     Os_InheritDomainsUsersRolesInherited_To_ProjectsPutRequest:
       type: object
@@ -12642,10 +12093,10 @@ components:
       description: Response of the 
         OS-INHERIT/domains/domain_id/users/user_id/roles/role_id/inherited_to_projects:put
         operation
-    Os_InheritDomainsUsersRolesInherited_To_ProjectsGetResponse:
+    Os_InheritProjectsUsersRolesInherited_To_ProjectsGetResponse:
       type: object
       description: Response of the 
-        OS-INHERIT/domains/domain_id/users/user_id/roles/role_id/inherited_to_projects:get
+        OS-INHERIT/projects/project_id/users/user_id/roles/role_id/inherited_to_projects:get
         operation
     Os_InheritProjectsUsersRolesInherited_To_ProjectsPutRequest:
       type: object
@@ -12657,10 +12108,10 @@ components:
       description: Response of the 
         OS-INHERIT/projects/project_id/users/user_id/roles/role_id/inherited_to_projects:put
         operation
-    Os_InheritProjectsUsersRolesInherited_To_ProjectsGetResponse:
+    Os_InheritProjectsGroupsRolesInherited_To_ProjectsGetResponse:
       type: object
       description: Response of the 
-        OS-INHERIT/projects/project_id/users/user_id/roles/role_id/inherited_to_projects:get
+        OS-INHERIT/projects/project_id/groups/group_id/roles/role_id/inherited_to_projects:get
         operation
     Os_InheritProjectsGroupsRolesInherited_To_ProjectsPutRequest:
       type: object
@@ -12672,11 +12123,6 @@ components:
       description: Response of the 
         OS-INHERIT/projects/project_id/groups/group_id/roles/role_id/inherited_to_projects:put
         operation
-    Os_InheritProjectsGroupsRolesInherited_To_ProjectsGetResponse:
-      type: object
-      description: Response of the 
-        OS-INHERIT/projects/project_id/groups/group_id/roles/role_id/inherited_to_projects:get
-        operation
     Os_Oauth1ConsumerGetResponse:
       type: object
       description: Response of the OS-OAUTH1/consumers/consumer_id:get operation
@@ -12686,15 +12132,15 @@ components:
     Os_Oauth1ConsumerPatchResponse:
       type: object
       description: Response of the OS-OAUTH1/consumers/consumer_id:patch operation
+    Os_Oauth1ConsumersGetResponse:
+      type: object
+      description: Response of the OS-OAUTH1/consumers:get operation
     Os_Oauth1ConsumersPostRequest:
       type: object
       description: Request of the OS-OAUTH1/consumers:post operation
     Os_Oauth1ConsumersPostResponse:
       type: object
       description: Response of the OS-OAUTH1/consumers:post operation
-    Os_Oauth1ConsumersGetResponse:
-      type: object
-      description: Response of the OS-OAUTH1/consumers:get operation
     Os_Oauth1Request_TokenGetResponse:
       type: object
       description: Response of the OS-OAUTH1/request_token:get operation
@@ -12719,27 +12165,27 @@ components:
     Os_Oauth1AuthorizePutResponse:
       type: object
       description: Response of the OS-OAUTH1/authorize/request_token_id:put operation
+    Os_Oauth2TokenGetResponse:
+      type: object
+      description: Response of the OS-OAUTH2/token:get operation
     Os_Oauth2TokenPutRequest:
       type: object
       description: Request of the OS-OAUTH2/token:put operation
     Os_Oauth2TokenPutResponse:
       type: object
       description: Response of the OS-OAUTH2/token:put operation
-    Os_Oauth2TokenPostRequest:
-      type: object
-      description: Request of the OS-OAUTH2/token:post operation
-    Os_Oauth2TokenPostResponse:
-      type: object
-      description: Response of the OS-OAUTH2/token:post operation
-    Os_Oauth2TokenGetResponse:
-      type: object
-      description: Response of the OS-OAUTH2/token:get operation
     Os_Oauth2TokenPatchRequest:
       type: object
       description: Request of the OS-OAUTH2/token:patch operation
     Os_Oauth2TokenPatchResponse:
       type: object
       description: Response of the OS-OAUTH2/token:patch operation
+    Os_Oauth2TokenPostRequest:
+      type: object
+      description: Request of the OS-OAUTH2/token:post operation
+    Os_Oauth2TokenPostResponse:
+      type: object
+      description: Response of the OS-OAUTH2/token:post operation
     Os_RevokeEventsGetResponse:
       type: object
       description: Response of the OS-REVOKE/events:get operation
@@ -12758,18 +12204,22 @@ components:
     PolicyPatchResponse:
       type: object
       description: Response of the policies/policy_id:patch operation
+    PoliciesGetResponse:
+      type: object
+      description: Response of the policies:get operation
     PoliciesPostRequest:
       type: object
       description: Request of the policies:post operation
     PoliciesPostResponse:
       type: object
       description: Response of the policies:post operation
-    PoliciesGetResponse:
-      type: object
-      description: Response of the policies:get operation
     PoliciesOs_Endpoint_PolicyEndpointsGetResponse:
       type: object
       description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/endpoints:get
+        operation
+    PoliciesOs_Endpoint_PolicyEndpointGetResponse:
+      type: object
+      description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/endpoints/endpoint_id:get
         operation
     PoliciesOs_Endpoint_PolicyEndpointPutRequest:
       type: object
@@ -12779,9 +12229,9 @@ components:
       type: object
       description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/endpoints/endpoint_id:put
         operation
-    PoliciesOs_Endpoint_PolicyEndpointGetResponse:
+    PoliciesOs_Endpoint_PolicyServiceGetResponse:
       type: object
-      description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/endpoints/endpoint_id:get
+      description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/services/service_id:get
         operation
     PoliciesOs_Endpoint_PolicyServicePutRequest:
       type: object
@@ -12791,9 +12241,9 @@ components:
       type: object
       description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/services/service_id:put
         operation
-    PoliciesOs_Endpoint_PolicyServiceGetResponse:
+    PoliciesOs_Endpoint_PolicyServicesRegionGetResponse:
       type: object
-      description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/services/service_id:get
+      description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/services/service_id/regions/region_id:get
         operation
     PoliciesOs_Endpoint_PolicyServicesRegionPutRequest:
       type: object
@@ -12802,10 +12252,6 @@ components:
     PoliciesOs_Endpoint_PolicyServicesRegionPutResponse:
       type: object
       description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/services/service_id/regions/region_id:put
-        operation
-    PoliciesOs_Endpoint_PolicyServicesRegionGetResponse:
-      type: object
-      description: Response of the policies/policy_id/OS-ENDPOINT-POLICY/services/service_id/regions/region_id:get
         operation
     ProjectGetResponse:
       type: object
@@ -13109,6 +12555,111 @@ components:
           description: |+
             A `project` object
 
+    ProjectsGetResponse:
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: |+
+                  The ID for the project.
+
+              description:
+                type:
+                  - string
+                  - 'null'
+                description: |+
+                  The description of the project.
+
+              domain_id:
+                type:
+                  - string
+                  - 'null'
+                minLength: 1
+                maxLength: 64
+                pattern: ^[a-zA-Z0-9-]+$
+                description: |+
+                  The ID of the domain for the project.
+
+              enabled:
+                type: boolean
+                enum:
+                  - true
+                  - false
+                  - 
+                description: |+
+                  If the user is enabled, this value is `true`.
+                  If the user is disabled, this value is `false`.
+
+              is_domain:
+                type: boolean
+                enum:
+                  - true
+                  - false
+                  - 
+                description: |+
+                  If the user is enabled, this value is `true`.
+                  If the user is disabled, this value is `false`.
+
+              parent_id:
+                type:
+                  - string
+                  - 'null'
+                minLength: 1
+                maxLength: 64
+                pattern: ^[a-zA-Z0-9-]+$
+                description: |+
+                  The ID of the parent for the project.
+
+
+                  **New in version 3.4**
+
+              name:
+                type: string
+                minLength: 1
+                maxLength: 64
+                pattern: '[\S]+'
+                description: |+
+                  The name of the project.
+
+              tags:
+                type: array
+                items:
+                  type: string
+                  minLength: 1
+                  maxLength: 255
+                  pattern: ^[^,/]*$
+                required: []
+                maxItems: 80
+                uniqueItems: true
+                description: |+
+                  A list of simple strings assigned to a project.
+
+              options:
+                type: object
+                properties:
+                  immutable:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                additionalProperties: false
+                description: |+
+                  The resource options for the project. Available resource options are
+                  `immutable`.
+
+            additionalProperties: true
+          description: |+
+            A list of `project` objects
+
     ProjectsPostRequest:
       type: object
       properties:
@@ -13339,110 +12890,21 @@ components:
           description: |+
             A `project` object
 
-    ProjectsGetResponse:
+    ProjectsTagsGetResponse:
       type: object
       properties:
-        projects:
+        tags:
           type: array
           items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-                description: |+
-                  The ID for the project.
-
-              description:
-                type:
-                  - string
-                  - 'null'
-                description: |+
-                  The description of the project.
-
-              domain_id:
-                type:
-                  - string
-                  - 'null'
-                minLength: 1
-                maxLength: 64
-                pattern: ^[a-zA-Z0-9-]+$
-                description: |+
-                  The ID of the domain for the project.
-
-              enabled:
-                type: boolean
-                enum:
-                  - true
-                  - false
-                  - 
-                description: |+
-                  If the user is enabled, this value is `true`.
-                  If the user is disabled, this value is `false`.
-
-              is_domain:
-                type: boolean
-                enum:
-                  - true
-                  - false
-                  - 
-                description: |+
-                  If the user is enabled, this value is `true`.
-                  If the user is disabled, this value is `false`.
-
-              parent_id:
-                type:
-                  - string
-                  - 'null'
-                minLength: 1
-                maxLength: 64
-                pattern: ^[a-zA-Z0-9-]+$
-                description: |+
-                  The ID of the parent for the project.
-
-
-                  **New in version 3.4**
-
-              name:
-                type: string
-                minLength: 1
-                maxLength: 64
-                pattern: '[\S]+'
-                description: |+
-                  The name of the project.
-
-              tags:
-                type: array
-                items:
-                  type: string
-                  minLength: 1
-                  maxLength: 255
-                  pattern: ^[^,/]*$
-                required: []
-                maxItems: 80
-                uniqueItems: true
-                description: |+
-                  A list of simple strings assigned to a project.
-
-              options:
-                type: object
-                properties:
-                  immutable:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                additionalProperties: false
-                description: |+
-                  The resource options for the project. Available resource options are
-                  `immutable`.
-
-            additionalProperties: true
+            type: string
+            minLength: 1
+            maxLength: 255
+            pattern: ^[^,/]*$
+          required: []
+          maxItems: 80
+          uniqueItems: true
           description: |+
-            A list of `project` objects
+            A list of simple strings assigned to a project.
 
     ProjectsTagsPutRequest:
       type: array
@@ -13470,22 +12932,6 @@ components:
           description: |+
             A list of simple strings assigned to a project.
 
-    ProjectsTagsGetResponse:
-      type: object
-      properties:
-        tags:
-          type: array
-          items:
-            type: string
-            minLength: 1
-            maxLength: 255
-            pattern: ^[^,/]*$
-          required: []
-          maxItems: 80
-          uniqueItems: true
-          description: |+
-            A list of simple strings assigned to a project.
-
     ProjectsTagPutRequest:
       type: string
       pattern: ^[^,/]*$
@@ -13494,134 +12940,6 @@ components:
     ProjectsTagPutResponse:
       type: object
       description: Response of the projects/project_id/tags/value:put operation
-    ProjectsUsersRolePutRequest:
-      type: object
-      description: Request of the projects/project_id/users/user_id/roles/role_id:put
-        operation
-    ProjectsUsersRolesGetResponse:
-      type: object
-      properties:
-        roles:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-                description: |+
-                  The role ID.
-
-              links:
-                type: object
-                description: |+
-                  The link to the resources in question.
-
-              name:
-                type: string
-                minLength: 1
-                maxLength: 255
-                pattern: '[\S]+'
-                description: |+
-                  The role name.
-
-              description:
-                type: string
-                description: |+
-                  The role description.
-
-              options:
-                type: object
-                properties:
-                  immutable:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                additionalProperties: false
-                description: |+
-                  The resource options for the role. Available resource options are
-                  `immutable`.
-
-          description: |+
-            A list of `role` objects
-
-        links:
-          type: object
-    ProjectsGroupsRolePutRequest:
-      type: object
-      description: Request of the projects/project_id/groups/group_id/roles/role_id:put
-        operation
-    ProjectsGroupsRolePutResponse:
-      type: object
-      description: Response of the projects/project_id/groups/group_id/roles/role_id:put
-        operation
-    ProjectsGroupsRoleGetResponse:
-      type: object
-      description: Response of the projects/project_id/groups/group_id/roles/role_id:get
-        operation
-    ProjectsGroupsRolesGetResponse:
-      type: object
-      properties:
-        roles:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-                description: |+
-                  The role ID.
-
-              links:
-                type: object
-                description: |+
-                  The link to the resources in question.
-
-              name:
-                type: string
-                minLength: 1
-                maxLength: 255
-                pattern: '[\S]+'
-                description: |+
-                  The role name.
-
-              description:
-                type: string
-                description: |+
-                  The role description.
-
-              options:
-                type: object
-                properties:
-                  immutable:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                additionalProperties: false
-                description: |+
-                  The resource options for the role. Available resource options are
-                  `immutable`.
-
-          description: |+
-            A list of `role` objects
-
-        links:
-          type: object
-    RegionPutRequest:
-      type: object
-      description: Request of the regions/region_id:put operation
-    RegionPutResponse:
-      type: object
-      description: Response of the regions/region_id:put operation
     RegionGetResponse:
       type: object
       properties:
@@ -13647,6 +12965,12 @@ components:
           description: |+
             A `region` object
 
+    RegionPutRequest:
+      type: object
+      description: Request of the regions/region_id:put operation
+    RegionPutResponse:
+      type: object
+      description: Response of the regions/region_id:put operation
     RegionPatchRequest:
       type: object
       properties:
@@ -13673,56 +12997,6 @@ components:
             A `region` object
 
     RegionPatchResponse:
-      type: object
-      properties:
-        region:
-          type: object
-          properties:
-            description:
-              type: string
-              description: |+
-                The region description.
-
-            id:
-              type: string
-              format: uuid
-              description: |+
-                The ID for the region.
-
-            parent_id:
-              type: string
-              format: uuid
-              description: To make this region a child of another region, set this
-                parameter to the ID of the parent region.
-          description: |+
-            A `region` object
-
-    RegionsPostRequest:
-      type: object
-      properties:
-        region:
-          type: object
-          properties:
-            description:
-              type: string
-              description: |+
-                The region description.
-
-            id:
-              type: string
-              format: uuid
-              description: |+
-                The ID for the region.
-
-            parent_id:
-              type: string
-              format: uuid
-              description: To make this region a child of another region, set this
-                parameter to the ID of the parent region.
-          description: |+
-            A `region` object
-
-    RegionsPostResponse:
       type: object
       properties:
         region:
@@ -13777,6 +13051,56 @@ components:
           description: |+
             A list of `region` object
 
+    RegionsPostRequest:
+      type: object
+      properties:
+        region:
+          type: object
+          properties:
+            description:
+              type: string
+              description: |+
+                The region description.
+
+            id:
+              type: string
+              format: uuid
+              description: |+
+                The ID for the region.
+
+            parent_id:
+              type: string
+              format: uuid
+              description: To make this region a child of another region, set this
+                parameter to the ID of the parent region.
+          description: |+
+            A `region` object
+
+    RegionsPostResponse:
+      type: object
+      properties:
+        region:
+          type: object
+          properties:
+            description:
+              type: string
+              description: |+
+                The region description.
+
+            id:
+              type: string
+              format: uuid
+              description: |+
+                The ID for the region.
+
+            parent_id:
+              type: string
+              format: uuid
+              description: To make this region a child of another region, set this
+                parameter to the ID of the parent region.
+          description: |+
+            A `region` object
+
     Registered_LimitGetResponse:
       type: object
       description: Response of the registered_limits/registered_limit_id:get operation
@@ -13786,21 +13110,220 @@ components:
     Registered_LimitPatchResponse:
       type: object
       description: Response of the registered_limits/registered_limit_id:patch operation
+    Registered_LimitsGetResponse:
+      type: object
+      description: Response of the registered_limits:get operation
     Registered_LimitsPostRequest:
       type: object
       description: Request of the registered_limits:post operation
     Registered_LimitsPostResponse:
       type: object
       description: Response of the registered_limits:post operation
-    Registered_LimitsGetResponse:
-      type: object
-      description: Response of the registered_limits:get operation
     Role_AssignmentsGetResponse:
       type: object
-      description: Response of the role_assignments:get operation
+      properties:
+        role_assignments:
+          type: array
+          items:
+            type: object
+            properties:
+              role:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: |+
+                      The role ID.
+
+                  name:
+                    type: string
+                    description: |+
+                      The role name.
+
+                  description:
+                    type: string
+                    description: The role description.
+                  links:
+                    type: object
+                    properties:
+                      self:
+                        type: string
+                        format: uri
+                        description: The link to the resource in question.
+                    description: |+
+                      The link to the resources in question.
+
+                description: |+
+                  A prior role object.
+
+              scope:
+                type: object
+                description: The authorization scope, including the system (Since
+                  v3.10), a project, or a domain (Since v3.4). If multiple scopes
+                  are specified in the same request (e.g. project and domain or domain
+                  and system) an HTTP 400 Bad Request will be returned, as a token
+                  cannot be simultaneously scoped to multiple authorization targets.
+                  An ID is sufficient to uniquely identify a project but if a project
+                  is specified by name, then the domain of the project must also be
+                  specified in order to uniquely identify the project by name. A domain
+                  scope may be specified by either the domain’s ID or name with equivalent
+                  results.
+                properties:
+                  project:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Project Name
+                      id:
+                        type: string
+                        description: Project Id
+                      domain:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: Project domain Id
+                          name:
+                            type: string
+                            description: Project domain name
+                  domain:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: Domain id
+                      name:
+                        type: string
+                        description: Domain name
+                  OS-TRUST:trust:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                  system:
+                    type: object
+                    properties:
+                      all:
+                        type: boolean
+              user:
+                type: object
+                description: A user object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: A user UUID
+                  name:
+                    type: string
+                    description: A user name
+                  domain:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                        description: A user domain UUID
+                      name:
+                        type: string
+                        description: A user domain name
+              group:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: A user ID
+                  name:
+                    type: string
+                    description: A user name
+              links:
+                type: object
+                properties:
+                  assignment:
+                    type: string
+                    format: uri
+                    description: a link to the assignment that gave rise to this entity
+                  membership:
+                    type: string
+                    format: uri
     Role_InferencesGetResponse:
       type: object
-      description: Response of the role_inferences:get operation
+      properties:
+        role_inferences:
+          type: array
+          items:
+            type: object
+            properties:
+              prior_role:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: |+
+                      The role ID.
+
+                  name:
+                    type: string
+                    description: |+
+                      The role name.
+
+                  description:
+                    type: string
+                    description: The role description.
+                  links:
+                    type: object
+                    properties:
+                      self:
+                        type: string
+                        format: uri
+                        description: The link to the resource in question.
+                    description: |+
+                      The link to the resources in question.
+
+                description: |+
+                  A prior role object.
+
+              implies:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      description: |+
+                        The role ID.
+
+                    name:
+                      type: string
+                      description: |+
+                        The role name.
+
+                    description:
+                      type: string
+                      description: The role description.
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          type: string
+                          format: uri
+                          description: The link to the resource in question.
+                      description: |+
+                        The link to the resources in question.
+
+                  description: |+
+                    A prior role object.
+
+                description: |+
+                  An implied role object.
+
+          description: |+
+            An array of `role_inference` object.
+
     RoleGetResponse:
       type: object
       properties:
@@ -13812,6 +13335,11 @@ components:
 
         links:
           type: object
+          additionalProperties:
+            type:
+              - string
+              - 'null'
+            format: uri
           description: |+
             The link to the resources in question.
 
@@ -13889,84 +13417,11 @@ components:
 
         links:
           type: object
-          description: |+
-            The link to the resources in question.
-
-        name:
-          type: string
-          minLength: 1
-          maxLength: 255
-          pattern: '[\S]+'
-          description: |+
-            The role name.
-
-        description:
-          type: string
-          description: |+
-            The role description.
-
-        options:
-          type: object
-          properties:
-            immutable:
-              type:
-                - boolean
-                - 'null'
-              enum:
-                - true
-                - false
-                - 
-          additionalProperties: false
-          description: |+
-            The resource options for the role. Available resource options are
-            `immutable`.
-
-    RolesPostRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-          maxLength: 255
-          pattern: '[\S]+'
-          description: |+
-            The role name.
-
-        description:
-          type: string
-          description: |+
-            The role description.
-
-        options:
-          type: object
-          properties:
-            immutable:
-              type:
-                - boolean
-                - 'null'
-              enum:
-                - true
-                - false
-                - 
-          additionalProperties: false
-          description: |+
-            The resource options for the role. Available resource options are
-            `immutable`.
-
-      additionalProperties: true
-      required:
-        - name
-    RolesPostResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: |+
-            The role ID.
-
-        links:
-          type: object
+          additionalProperties:
+            type:
+              - string
+              - 'null'
+            format: uri
           description: |+
             The link to the resources in question.
 
@@ -14015,6 +13470,11 @@ components:
 
               links:
                 type: object
+                additionalProperties:
+                  type:
+                    - string
+                    - 'null'
+                  format: uri
                 description: |+
                   The link to the resources in question.
 
@@ -14052,10 +13512,99 @@ components:
 
         links:
           type: object
+          additionalProperties:
+            type:
+              - string
+              - 'null'
+            format: uri
+    RolesPostRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+          pattern: '[\S]+'
+          description: |+
+            The role name.
+
+        description:
+          type: string
+          description: |+
+            The role description.
+
+        options:
+          type: object
+          properties:
+            immutable:
+              type:
+                - boolean
+                - 'null'
+              enum:
+                - true
+                - false
+                - 
+          additionalProperties: false
+          description: |+
+            The resource options for the role. Available resource options are
+            `immutable`.
+
+      additionalProperties: true
+      required:
+        - name
+    RolesPostResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: |+
+            The role ID.
+
+        links:
+          type: object
+          additionalProperties:
+            type:
+              - string
+              - 'null'
+            format: uri
+          description: |+
+            The link to the resources in question.
+
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+          pattern: '[\S]+'
+          description: |+
+            The role name.
+
+        description:
+          type: string
+          description: |+
+            The role description.
+
+        options:
+          type: object
+          properties:
+            immutable:
+              type:
+                - boolean
+                - 'null'
+              enum:
+                - true
+                - false
+                - 
+          additionalProperties: false
+          description: |+
+            The resource options for the role. Available resource options are
+            `immutable`.
+
     RolesImpliesGetResponse:
       type: object
       properties:
         role_inference:
+          type: object
           properties:
             prior_role:
               type: object
@@ -14066,39 +13615,26 @@ components:
                   description: |+
                     The role ID.
 
-                links:
-                  type: object
-                  description: |+
-                    The link to the resources in question.
-
                 name:
                   type: string
-                  minLength: 1
-                  maxLength: 255
-                  pattern: '[\S]+'
                   description: |+
                     The role name.
 
                 description:
                   type: string
-                  description: |+
-                    The role description.
-
-                options:
+                  description: The role description.
+                links:
                   type: object
                   properties:
-                    immutable:
-                      type:
-                        - boolean
-                        - 'null'
-                      enum:
-                        - true
-                        - false
-                        - 
-                  additionalProperties: false
+                    self:
+                      type: string
+                      format: uri
+                      description: The link to the resource in question.
                   description: |+
-                    The resource options for the role. Available resource options are
-                    `immutable`.
+                    The link to the resources in question.
+
+              description: |+
+                A prior role object.
 
             implies:
               type: array
@@ -14111,39 +13647,99 @@ components:
                     description: |+
                       The role ID.
 
-                  links:
-                    type: object
-                    description: |+
-                      The link to the resources in question.
-
                   name:
                     type: string
-                    minLength: 1
-                    maxLength: 255
-                    pattern: '[\S]+'
                     description: |+
                       The role name.
 
                   description:
                     type: string
-                    description: |+
-                      The role description.
-
-                  options:
+                    description: The role description.
+                  links:
                     type: object
                     properties:
-                      immutable:
-                        type:
-                          - boolean
-                          - 'null'
-                        enum:
-                          - true
-                          - false
-                          - 
-                    additionalProperties: false
+                      self:
+                        type: string
+                        format: uri
+                        description: The link to the resource in question.
                     description: |+
-                      The resource options for the role. Available resource options are
-                      `immutable`.
+                      The link to the resources in question.
+
+                description: |+
+                  A prior role object.
+
+              description: |+
+                An array of implied role objects.
+
+          description: |+
+            Role inference object that contains `prior_role` object
+            and `implies` object.
+
+    RolesImplyGetResponse:
+      type: object
+      properties:
+        role_inference:
+          type: object
+          properties:
+            prior_role:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                  description: |+
+                    The role ID.
+
+                name:
+                  type: string
+                  description: |+
+                    The role name.
+
+                description:
+                  type: string
+                  description: The role description.
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      format: uri
+                      description: The link to the resource in question.
+                  description: |+
+                    The link to the resources in question.
+
+              description: |+
+                A prior role object.
+
+            implies:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                  description: |+
+                    The role ID.
+
+                name:
+                  type: string
+                  description: |+
+                    The role name.
+
+                description:
+                  type: string
+                  description: The role description.
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      format: uri
+                      description: The link to the resource in question.
+                  description: |+
+                    The link to the resources in question.
+
+              description: |+
+                A prior role object.
 
           description: |+
             Role inference object that contains `prior_role` object
@@ -14157,6 +13753,7 @@ components:
       type: object
       properties:
         role_inference:
+          type: object
           properties:
             prior_role:
               type: object
@@ -14167,39 +13764,26 @@ components:
                   description: |+
                     The role ID.
 
-                links:
-                  type: object
-                  description: |+
-                    The link to the resources in question.
-
                 name:
                   type: string
-                  minLength: 1
-                  maxLength: 255
-                  pattern: '[\S]+'
                   description: |+
                     The role name.
 
                 description:
                   type: string
-                  description: |+
-                    The role description.
-
-                options:
+                  description: The role description.
+                links:
                   type: object
                   properties:
-                    immutable:
-                      type:
-                        - boolean
-                        - 'null'
-                      enum:
-                        - true
-                        - false
-                        - 
-                  additionalProperties: false
+                    self:
+                      type: string
+                      format: uri
+                      description: The link to the resource in question.
                   description: |+
-                    The resource options for the role. Available resource options are
-                    `immutable`.
+                    The link to the resources in question.
+
+              description: |+
+                A prior role object.
 
             implies:
               type: object
@@ -14210,134 +13794,26 @@ components:
                   description: |+
                     The role ID.
 
-                links:
-                  type: object
-                  description: |+
-                    The link to the resources in question.
-
                 name:
                   type: string
-                  minLength: 1
-                  maxLength: 255
-                  pattern: '[\S]+'
                   description: |+
                     The role name.
 
                 description:
                   type: string
-                  description: |+
-                    The role description.
-
-                options:
-                  type: object
-                  properties:
-                    immutable:
-                      type:
-                        - boolean
-                        - 'null'
-                      enum:
-                        - true
-                        - false
-                        - 
-                  additionalProperties: false
-                  description: |+
-                    The resource options for the role. Available resource options are
-                    `immutable`.
-
-          description: |+
-            Role inference object that contains `prior_role` object
-            and `implies` object.
-
-    RolesImplyGetResponse:
-      type: object
-      properties:
-        role_inference:
-          properties:
-            prior_role:
-              type: object
-              properties:
-                id:
-                  type: string
-                  format: uuid
-                  description: |+
-                    The role ID.
-
+                  description: The role description.
                 links:
                   type: object
+                  properties:
+                    self:
+                      type: string
+                      format: uri
+                      description: The link to the resource in question.
                   description: |+
                     The link to the resources in question.
 
-                name:
-                  type: string
-                  minLength: 1
-                  maxLength: 255
-                  pattern: '[\S]+'
-                  description: |+
-                    The role name.
-
-                description:
-                  type: string
-                  description: |+
-                    The role description.
-
-                options:
-                  type: object
-                  properties:
-                    immutable:
-                      type:
-                        - boolean
-                        - 'null'
-                      enum:
-                        - true
-                        - false
-                        - 
-                  additionalProperties: false
-                  description: |+
-                    The resource options for the role. Available resource options are
-                    `immutable`.
-
-            implies:
-              type: object
-              properties:
-                id:
-                  type: string
-                  format: uuid
-                  description: |+
-                    The role ID.
-
-                links:
-                  type: object
-                  description: |+
-                    The link to the resources in question.
-
-                name:
-                  type: string
-                  minLength: 1
-                  maxLength: 255
-                  pattern: '[\S]+'
-                  description: |+
-                    The role name.
-
-                description:
-                  type: string
-                  description: |+
-                    The role description.
-
-                options:
-                  type: object
-                  properties:
-                    immutable:
-                      type:
-                        - boolean
-                        - 'null'
-                      enum:
-                        - true
-                        - false
-                        - 
-                  additionalProperties: false
-                  description: |+
-                    The resource options for the role. Available resource options are
-                    `immutable`.
+              description: |+
+                A prior role object.
 
           description: |+
             Role inference object that contains `prior_role` object
@@ -14469,6 +13945,52 @@ components:
           description: |+
             A `service` object.
 
+    ServicesGetResponse:
+      type: object
+      properties:
+        services:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+                description: |+
+                  The service description.
+
+              enabled:
+                type: boolean
+                description: |+
+                  Defines whether the service and its endpoints
+                  appear in the service catalog: - `false`. The service and its
+                  endpoints do not appear in the service catalog. - `true`. The
+                  service and its endpoints appear in the service catalog.
+
+              id:
+                type: string
+                format: uuid
+                description: |+
+                  The UUID of the service to which the endpoint
+                  belongs.
+
+              name:
+                type: string
+                description: |+
+                  The service name.
+
+              type:
+                type: string
+                description: |+
+                  The service type, which describes the API
+                  implemented by the service. Value is `compute`, `ec2`,
+                  `identity`, `image`, `network`, or `volume`.
+
+            description: |+
+              A `service` object.
+
+          description: |+
+            A list of `service` object.
+
     ServicesPostRequest:
       type: object
       properties:
@@ -14546,88 +14068,42 @@ components:
           description: |+
             A `service` object.
 
-    ServicesGetResponse:
-      type: object
-      properties:
-        services:
-          type: array
-          items:
-            type: object
-            properties:
-              description:
-                type: string
-                description: |+
-                  The service description.
-
-              enabled:
-                type: boolean
-                description: |+
-                  Defines whether the service and its endpoints
-                  appear in the service catalog: - `false`. The service and its
-                  endpoints do not appear in the service catalog. - `true`. The
-                  service and its endpoints appear in the service catalog.
-
-              id:
-                type: string
-                format: uuid
-                description: |+
-                  The UUID of the service to which the endpoint
-                  belongs.
-
-              name:
-                type: string
-                description: |+
-                  The service name.
-
-              type:
-                type: string
-                description: |+
-                  The service type, which describes the API
-                  implemented by the service. Value is `compute`, `ec2`,
-                  `identity`, `image`, `network`, or `volume`.
-
-            description: |+
-              A `service` object.
-
-          description: |+
-            A list of `service` object.
-
     SystemUsersRolesGetResponse:
       type: object
       description: Response of the system/users/user_id/roles:get operation
+    SystemUsersRoleGetResponse:
+      type: object
+      description: Response of the system/users/user_id/roles/role_id:get operation
     SystemUsersRolePutRequest:
       type: object
       description: Request of the system/users/user_id/roles/role_id:put operation
     SystemUsersRolePutResponse:
       type: object
       description: Response of the system/users/user_id/roles/role_id:put operation
-    SystemUsersRoleGetResponse:
-      type: object
-      description: Response of the system/users/user_id/roles/role_id:get operation
     SystemGroupsRolesGetResponse:
       type: object
       description: Response of the system/groups/group_id/roles:get operation
+    SystemGroupsRoleGetResponse:
+      type: object
+      description: Response of the system/groups/group_id/roles/role_id:get operation
     SystemGroupsRolePutRequest:
       type: object
       description: Request of the system/groups/group_id/roles/role_id:put operation
     SystemGroupsRolePutResponse:
       type: object
       description: Response of the system/groups/group_id/roles/role_id:put operation
-    SystemGroupsRoleGetResponse:
-      type: object
-      description: Response of the system/groups/group_id/roles/role_id:get operation
     Os_TrustTrustGetResponse:
       type: object
       description: Response of the OS-TRUST/trusts/trust_id:get operation
+    Os_TrustTrustsGetResponse:
+      type: object
+      description: Response of the OS-TRUST/trusts:get operation
     Os_TrustTrustsPostRequest:
       type: object
       description: Request of the OS-TRUST/trusts:post operation
     Os_TrustTrustsPostResponse:
       type: object
       description: Response of the OS-TRUST/trusts:post operation
-    Os_TrustTrustsGetResponse:
-      type: object
-      description: Response of the OS-TRUST/trusts:get operation
     Os_TrustTrustsRolesGetResponse:
       type: object
       description: Response of the OS-TRUST/trusts/trust_id/roles:get operation
@@ -14643,6 +14119,7 @@ components:
             id:
               type: string
               format: uuid
+              readOnly: true
               description: |+
                 The user ID.
 
@@ -14660,9 +14137,6 @@ components:
               type:
                 - string
                 - 'null'
-              description: |+
-                The new description of the group.
-
             domain_id:
               type: string
               minLength: 1
@@ -14832,9 +14306,6 @@ components:
               type:
                 - string
                 - 'null'
-              description: |+
-                The new description of the group.
-
             domain_id:
               type: string
               minLength: 1
@@ -14997,6 +14468,7 @@ components:
             id:
               type: string
               format: uuid
+              readOnly: true
               description: |+
                 The user ID.
 
@@ -15014,9 +14486,6 @@ components:
               type:
                 - string
                 - 'null'
-              description: |+
-                The new description of the group.
-
             domain_id:
               type: string
               minLength: 1
@@ -15166,6 +14635,187 @@ components:
           description: |+
             A `user` object
 
+    UsersGetResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                readOnly: true
+                description: |+
+                  The user ID.
+
+              default_project_id:
+                type:
+                  - string
+                  - 'null'
+                minLength: 1
+                maxLength: 64
+                pattern: ^[a-zA-Z0-9-]+$
+                description: |+
+                  The ID of the default project for the user.
+
+              description:
+                type:
+                  - string
+                  - 'null'
+              domain_id:
+                type: string
+                minLength: 1
+                maxLength: 64
+                pattern: ^[a-zA-Z0-9-]+$
+                description: |+
+                  The ID of the domain.
+
+              enabled:
+                type: boolean
+                enum:
+                  - true
+                  - false
+                  - 
+                description: |+
+                  If the user is enabled, this value is `true`.
+                  If the user is disabled, this value is `false`.
+
+              federated:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idp_id:
+                      type: string
+                    protocols:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          protocol_id:
+                            type: string
+                          unique_id:
+                            type: string
+                        required:
+                          - protocol_id
+                          - unique_id
+                      minItems: 1
+                  required:
+                    - idp_id
+                    - protocols
+                description: |+
+                  List of federated objects associated with a user. Each object in the list
+                  contains the `idp_id` and `protocols`. `protocols` is a list of
+                  objects, each of which contains `protocol_id` and `unique_id` of
+                  the protocol and user respectively. For example:
+
+
+
+                  ```
+                  "federated": [
+                    {
+                      "idp_id": "efbab5a6acad4d108fec6c63d9609d83",
+                      "protocols": [
+                        {"protocol_id": "mapped", "unique_id": "test@example.com"}
+                      ]
+                    }
+                  ]
+
+                  ```
+
+              name:
+                type: string
+                minLength: 1
+                maxLength: 255
+                pattern: '[\S]+'
+                description: |+
+                  The user name. Must be unique within the owning domain.
+
+              password:
+                type:
+                  - string
+                  - 'null'
+                description: |+
+                  The new password for the user.
+
+              options:
+                type: object
+                properties:
+                  ignore_change_password_upon_first_use:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  ignore_password_expiry:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  ignore_lockout_failure_attempts:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  lock_password:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  ignore_user_inactivity:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                  multi_factor_auth_rules:
+                    type:
+                      - array
+                      - 'null'
+                    items:
+                      type: array
+                      items:
+                        type: string
+                      minItems: 1
+                      uniqueItems: true
+                    uniqueItems: true
+                  multi_factor_auth_enabled:
+                    type:
+                      - boolean
+                      - 'null'
+                    enum:
+                      - true
+                      - false
+                      - 
+                additionalProperties: false
+                description: |+
+                  The resource options for the user. Available resource options are
+                  `ignore_change_password_upon_first_use`, `ignore_password_expiry`,
+                  `ignore_lockout_failure_attempts`, `lock_password`,
+                  `multi_factor_auth_enabled`, and `multi_factor_auth_rules`
+                  `ignore_user_inactivity`.
+
+            description: |+
+              A `user` object
+
+          description: |+
+            A list of `user` objects
+
     UsersPostRequest:
       type: object
       properties:
@@ -15186,9 +14836,6 @@ components:
               type:
                 - string
                 - 'null'
-              description: |+
-                The new description of the group.
-
             domain_id:
               type: string
               minLength: 1
@@ -15346,189 +14993,6 @@ components:
     UsersPostResponse:
       type: object
       description: Response of the users:post operation
-    UsersGetResponse:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-                description: |+
-                  The user ID.
-
-              default_project_id:
-                type:
-                  - string
-                  - 'null'
-                minLength: 1
-                maxLength: 64
-                pattern: ^[a-zA-Z0-9-]+$
-                description: |+
-                  The ID of the default project for the user.
-
-              description:
-                type:
-                  - string
-                  - 'null'
-                description: |+
-                  The new description of the group.
-
-              domain_id:
-                type: string
-                minLength: 1
-                maxLength: 64
-                pattern: ^[a-zA-Z0-9-]+$
-                description: |+
-                  The ID of the domain.
-
-              enabled:
-                type: boolean
-                enum:
-                  - true
-                  - false
-                  - 
-                description: |+
-                  If the user is enabled, this value is `true`.
-                  If the user is disabled, this value is `false`.
-
-              federated:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    idp_id:
-                      type: string
-                    protocols:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          protocol_id:
-                            type: string
-                          unique_id:
-                            type: string
-                        required:
-                          - protocol_id
-                          - unique_id
-                      minItems: 1
-                  required:
-                    - idp_id
-                    - protocols
-                description: |+
-                  List of federated objects associated with a user. Each object in the list
-                  contains the `idp_id` and `protocols`. `protocols` is a list of
-                  objects, each of which contains `protocol_id` and `unique_id` of
-                  the protocol and user respectively. For example:
-
-
-
-                  ```
-                  "federated": [
-                    {
-                      "idp_id": "efbab5a6acad4d108fec6c63d9609d83",
-                      "protocols": [
-                        {"protocol_id": "mapped", "unique_id": "test@example.com"}
-                      ]
-                    }
-                  ]
-
-                  ```
-
-              name:
-                type: string
-                minLength: 1
-                maxLength: 255
-                pattern: '[\S]+'
-                description: |+
-                  The user name. Must be unique within the owning domain.
-
-              password:
-                type:
-                  - string
-                  - 'null'
-                description: |+
-                  The new password for the user.
-
-              options:
-                type: object
-                properties:
-                  ignore_change_password_upon_first_use:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                  ignore_password_expiry:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                  ignore_lockout_failure_attempts:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                  lock_password:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                  ignore_user_inactivity:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                  multi_factor_auth_rules:
-                    type:
-                      - array
-                      - 'null'
-                    items:
-                      type: array
-                      items:
-                        type: string
-                      minItems: 1
-                      uniqueItems: true
-                    uniqueItems: true
-                  multi_factor_auth_enabled:
-                    type:
-                      - boolean
-                      - 'null'
-                    enum:
-                      - true
-                      - false
-                      - 
-                additionalProperties: false
-                description: |+
-                  The resource options for the user. Available resource options are
-                  `ignore_change_password_upon_first_use`, `ignore_password_expiry`,
-                  `ignore_lockout_failure_attempts`, `lock_password`,
-                  `multi_factor_auth_enabled`, and `multi_factor_auth_rules`
-                  `ignore_user_inactivity`.
-
-            description: |+
-              A `user` object
-
-          description: |+
-            A list of `user` objects
-
     UsersPasswordPostRequest:
       type: object
       properties:
@@ -16033,7 +15497,7 @@ components:
             properties:
               href:
                 type: string
-                format: url
+                format: uri
               rel:
                 type: string
     UsersAccess_RuleGetResponse:
@@ -16209,6 +15673,24 @@ components:
       schema:
         type: string
       required: true
+    group_domain_id:
+      in: query
+      name: domain_id
+      description: Filters the response by a domain ID.
+      schema:
+        type: string
+        format: uuid
+    group_user_password_expires_at:
+      in: query
+      name: password_expires_at
+      description: "Filter results based on which user passwords have expired. The
+        query should include an operator and a timestamp with a colon (:) separating
+        the two, for example: `password_expires_at={operator}:{timestamp}`.\nValid
+        operators are: `lt`, `lte`, `gt`, `gte`, `eq`, and `neq`.\nValid timestamps
+        are of the form: YYYY-MM-DDTHH:mm:ssZ."
+      schema:
+        type: string
+        format: date-time
     groups_users_user_id:
       in: path
       name: user_id
@@ -16445,21 +15927,21 @@ components:
       schema:
         type: string
       required: true
-    domain_id:
+    project_domain_id:
       in: query
       name: domain_id
       description: Filters the response by a domain ID.
       schema:
         type: string
         format: uuid
-    enabled:
+    project_enabled:
       in: query
       name: enabled
       description: If set to true, then only enabled projects will be returned. Any
         value other than 0 (including no value) will be interpreted as true.
       schema:
         type: boolean
-    is_domain:
+    project_is_domain:
       in: query
       name: is_domain
       description: If this is specified as true, then only projects acting as a domain
@@ -16469,13 +15951,13 @@ components:
         type: boolean
       x-openstack:
         min-ver: '3.6'
-    name:
+    project_name:
       in: query
       name: name
       description: Filters the response by a resource name.
       schema:
         type: string
-    parent_id:
+    project_parent_id:
       in: query
       name: parent_id
       description: Filters the response by a parent ID.
@@ -16547,6 +16029,84 @@ components:
       schema:
         type: string
       required: true
+    role_assignment_group_id:
+      in: query
+      name: group.id
+      description: Filters the response by a group ID.
+      schema:
+        type: string
+        format: uuid
+    role_assignment_role_id:
+      in: query
+      name: role.id
+      description: Filters the response by a role ID.
+      schema:
+        type: string
+        format: uuid
+    role_assignment_user_id:
+      in: query
+      name: user.id
+      description: Filters the response by a user ID.
+      schema:
+        type: string
+        format: uuid
+    role_assignment_scope_domain_id:
+      in: query
+      name: scope.domain.id
+      description: Filters the response by a domain ID.
+      schema:
+        type: string
+        format: uuid
+    role_assignment_scope_project_id:
+      in: query
+      name: scope.project.id
+      description: Filters the response by a project ID.
+      schema:
+        type: string
+        format: uuid
+    role_assignment_inherit:
+      in: query
+      name: scope.OS-INHERIT:inherited_to
+      description: Filters based on role assignments that are inherited. The only
+        value of inherited_to that is currently supported is projects.
+      schema:
+        type: string
+        format: uuid
+    role_assignment_effective:
+      in: query
+      name: effective
+      description: Returns the effective assignments, including any assignments gained
+        by virtue of group membership.
+      schema:
+        type: 'null'
+      x-openstack:
+        is-flag: true
+      allowEmptyValue: true
+    role_assignment_include_names:
+      in: query
+      name: include_names
+      description: If set, then the names of any entities returned will be include
+        as well as their IDs. Any value other than 0 (including no value) will be
+        interpreted as true.
+      schema:
+        type: 'null'
+      x-openstack:
+        min-ver: '3.6'
+        is-flag: true
+      allowEmptyValue: true
+    role_assignment_include_subtree:
+      in: query
+      name: include_subtree
+      description: If set, then relevant assignments in the project hierarchy below
+        the project specified in the scope.project_id query parameter are also included
+        in the response. Any value other than 0 (including no value) for include_subtree
+        will be interpreted as true.
+      schema:
+        type: 'null'
+      x-openstack:
+        min-ver: '3.6'
+        is-flag: 'True'
+      allowEmptyValue: true
     roles_role_id:
       in: path
       name: role_id
@@ -16555,6 +16115,13 @@ components:
       schema:
         type: string
       required: true
+    role_domain_id:
+      in: query
+      name: domain_id
+      description: Filters the response by a domain ID.
+      schema:
+        type: string
+        format: uuid
     roles_prior_role_id:
       in: path
       name: prior_role_id
@@ -16641,6 +16208,26 @@ components:
       schema:
         type: string
       required: true
+    domain_id:
+      in: query
+      name: domain_id
+      description: Filters the response by a domain ID.
+      schema:
+        type: string
+        format: uuid
+    enabled:
+      in: query
+      name: enabled
+      description: If set to true, then only enabled projects will be returned. Any
+        value other than 0 (including no value) will be interpreted as true.
+      schema:
+        type: boolean
+    name:
+      in: query
+      name: name
+      description: Filters the response by a resource name.
+      schema:
+        type: string
     password_expires_at:
       in: query
       name: password_expires_at
