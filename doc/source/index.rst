@@ -39,7 +39,7 @@ to describe different schemas. In order for the OpenStack tooling to be able to 
          x-openstack:
            discriminator: microversion
        foo_v21:
-         type: object 
+         type: object
          properties:
            - foo:
                type: string
@@ -47,7 +47,7 @@ to describe different schemas. In order for the OpenStack tooling to be able to 
            min-ver: 2.1
            max-ver: 2.19
        foo_v220:
-         type: object 
+         type: object
          properties:
            - foo:
                type: string
@@ -59,7 +59,7 @@ to describe different schemas. In order for the OpenStack tooling to be able to 
    `min-ver` and `max-ver` properties are having the same
    meaning as in the services: starting with which microversion
    the schema has been added and till which microversion it
-   eventually is valid 
+   eventually is valid
 
 
 Action
@@ -83,7 +83,7 @@ similar solution like for microversions can be applied.
          x-openstack:
            discriminator: action
        action_foo:
-         type: object 
+         type: object
          properties:
            - foo:
                type: string
@@ -92,7 +92,7 @@ similar solution like for microversions can be applied.
            min-ver: 2.1
            max-ver: 2.19
        action_bar:
-         type: object 
+         type: object
          properties:
            - bar:
                type: integer

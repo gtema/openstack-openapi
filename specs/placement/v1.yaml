@@ -1,21 +1,19 @@
 openapi: 3.1.0
 info:
   title: OpenStack Placement API
-  description: |+
+  description: |-
     This is a reference for the OpenStack Placement API. To learn more about
     OpenStack Placement API concepts, please refer to the
     [Placement Introduction](https://docs.openstack.org/placement/latest/).
-
   version: '1.39'
 paths:
   /:
     get:
-      description: |+
+      description: |-
         Fetch information about all known major versions of the placement API,
         including information about the minimum and maximum microversions.
 
         Normal Response Codes: 200
-
       operationId: :get
       responses:
         '404':
@@ -31,11 +29,10 @@ paths:
       summary: List Versions
   /resource_classes:
     get:
-      description: |+
+      description: |-
         Return a list of all resource classes.
 
         Normal Response Codes: 200
-
       operationId: resource_classes:get
       responses:
         '404':
@@ -50,7 +47,7 @@ paths:
         - resource_classes
       summary: List resource classes
     post:
-      description: |+
+      description: |-
         Create a new resource class. The new class must be a *custom* resource class,
         prefixed with CUSTOM_ and distinct from the standard resource classes.
 
@@ -63,7 +60,6 @@ paths:
 
         A 409 Conflict response code will
         be returned if another resource class exists with the provided name.
-
       operationId: resource_classes:post
       requestBody:
         content:
@@ -86,13 +82,12 @@ paths:
     parameters:
       - $ref: '#/components/parameters/resource_classes_name'
     get:
-      description: |+
+      description: |-
         Return a representation of the resource class identified by {name}.
 
         Normal Response Codes: 200
 
         Error response codes: itemNotFound(404)
-
       operationId: resource_classes/name:get
       responses:
         '404':
@@ -107,7 +102,7 @@ paths:
         - resource_classes
       summary: Show resource class
     delete:
-      description: |+
+      description: |-
         Delete the resource class identified by {name}.
 
         Normal Response Codes: 204
@@ -119,7 +114,6 @@ paths:
 
         A 409 Conflict response code will be returned if there exist
         inventories for the resource class.
-
       operationId: resource_classes/name:delete
       responses:
         '404':
@@ -130,7 +124,7 @@ paths:
         - resource_classes
       summary: Delete resource class
     put:
-      description: |+
+      description: |-
         Create or validate the existence of single resource class identified by {name}.
 
         Normal Response Codes: 201, 204
@@ -141,7 +135,6 @@ paths:
         already exists.
 
         Error response codes: badRequest(400)
-
       operationId: resource_classes/name:put
       requestBody:
         content:
@@ -162,7 +155,7 @@ paths:
       summary: Update resource class
   /resource_providers:
     get:
-      description: |+
+      description: |-
         List an optionally filtered collection of resource providers.
 
         Normal Response Codes: 200
@@ -172,7 +165,6 @@ paths:
         A 400 BadRequest response code will be returned
         if a resource class specified in `resources` request parameter
         does not exist.
-
       operationId: resource_providers:get
       responses:
         '404':
@@ -187,7 +179,7 @@ paths:
         - resource_providers
       summary: List resource providers
     post:
-      description: |+
+      description: |-
         Create a new resource provider.
 
         Normal Response Codes: 201 (microversions 1.0 - 1.19), 200 (microversions
@@ -198,7 +190,6 @@ paths:
         A 409 Conflict response code will
         be returned if another resource provider exists with the provided name
         or uuid.
-
       operationId: resource_providers:post
       requestBody:
         content:
@@ -221,13 +212,12 @@ paths:
     parameters:
       - $ref: '#/components/parameters/resource_providers_uuid'
     get:
-      description: |+
+      description: |-
         Return a representation of the resource provider identified by {uuid}.
 
         Normal Response Codes: 200
 
         Error response codes: itemNotFound(404)
-
       operationId: resource_providers/uuid:get
       responses:
         '404':
@@ -242,7 +232,7 @@ paths:
         - resource_providers
       summary: Show resource provider
     delete:
-      description: |+
+      description: |-
         Delete the resource provider identified by {uuid}.
         This will also disassociate aggregates and delete inventories.
 
@@ -256,7 +246,6 @@ paths:
 
         This error code will be also returned if there are existing child resource
         providers under the parent resource provider being deleted.
-
       operationId: resource_providers/uuid:delete
       responses:
         '404':
@@ -267,7 +256,7 @@ paths:
         - resource_providers
       summary: Delete resource provider
     put:
-      description: |+
+      description: |-
         Update the name of the resource provider identified by {uuid}.
 
         Normal Response Codes: 200
@@ -276,7 +265,6 @@ paths:
 
         A 409 Conflict response code will be returned if another resource
         provider exists with the provided name.
-
       operationId: resource_providers/uuid:put
       requestBody:
         content:
@@ -299,11 +287,10 @@ paths:
     parameters:
       - $ref: '#/components/parameters/resource_providers_uuid'
     get:
-      description: |+
+      description: |-
         Normal Response Codes: 200
 
         Error response codes: itemNotFound(404)
-
       operationId: resource_providers/uuid/inventories:get
       responses:
         '404':
@@ -342,7 +329,7 @@ paths:
       tags:
         - resource_providers
     delete:
-      description: |+
+      description: |-
         Deletes all inventory records for the resource provider identified by {uuid}.
 
         **Troubleshooting**
@@ -354,7 +341,6 @@ paths:
         Normal Response Codes: 204
 
         Error response codes: itemNotFound(404), conflict(409)
-
       operationId: resource_providers/uuid/inventories:delete
       responses:
         '404':
@@ -365,13 +351,12 @@ paths:
         - resource_providers
       summary: Delete resource provider inventories
     put:
-      description: |+
+      description: |-
         Replaces the set of inventory records for the resource provider identified by {uuid}.
 
         Normal Response Codes: 200
 
         Error response codes: badRequest(400), itemNotFound(404), conflict(409)
-
       operationId: resource_providers/uuid/inventories:put
       requestBody:
         content:
@@ -395,11 +380,10 @@ paths:
       - $ref: '#/components/parameters/resource_providers_uuid'
       - $ref: '#/components/parameters/resource_providers_inventories_resource_class'
     get:
-      description: |+
+      description: |-
         Normal Response Codes: 200
 
         Error response codes: itemNotFound(404)
-
       operationId: resource_providers/uuid/inventories/resource_class:get
       responses:
         '404':
@@ -414,11 +398,11 @@ paths:
         - resource_providers
       summary: Show resource provider inventory
     delete:
-      description: |+
+      description: |-
         Delete the inventory record of the {resource_class} for
         the resource provider identified by {uuid}.
 
-        See [Troubleshooting](?expanded=delete-resource-provider-inventories-detail#delete-resource-provider-inventories) section in `Delete resource provider
+        See [Troubleshooting] section in `Delete resource provider
         inventories` for a description. In addition, the request returns
         HTTP 409 when there are allocations for the specified resource
         provider and resource class.
@@ -426,7 +410,6 @@ paths:
         Normal Response Codes: 204
 
         Error response codes: itemNotFound(404), conflict(409)
-
       operationId: resource_providers/uuid/inventories/resource_class:delete
       responses:
         '404':
@@ -437,14 +420,13 @@ paths:
         - resource_providers
       summary: Delete resource provider inventory
     put:
-      description: |+
+      description: |-
         Replace the inventory record of the {resource_class} for the resource
         provider identified by {uuid}.
 
         Normal Response Codes: 200
 
         Error response codes: badRequest(400), itemNotFound(404), conflict(409)
-
       operationId: resource_providers/uuid/inventories/resource_class:put
       requestBody:
         content:
@@ -467,7 +449,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/resource_providers_uuid'
     get:
-      description: |+
+      description: |-
         Return a report of usage information for resources associated with
         the resource provider identified by {uuid}. The value is a dictionary
         of resource classes paired with the sum of the allocations of that
@@ -476,7 +458,6 @@ paths:
         Normal Response Codes: 200
 
         Error response codes: itemNotFound(404)
-
       operationId: resource_providers/uuid/usages:get
       responses:
         '404':
@@ -494,7 +475,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/resource_providers_uuid'
     get:
-      description: |+
+      description: |-
         Return a list of aggregates associated with the resource provider
         identified by {uuid}.
 
@@ -502,7 +483,6 @@ paths:
 
         Error response codes: itemNotFound(404) if the provider does not exist. (If the
         provider has no aggregates, the result is 200 with an empty aggregate list.)
-
       operationId: resource_providers/uuid/aggregates:get
       responses:
         '404':
@@ -517,13 +497,12 @@ paths:
         - resource_providers
       summary: List resource provider aggregates
     put:
-      description: |+
+      description: |-
         Associate a list of aggregates with the resource provider identified by {uuid}.
 
         Normal Response Codes: 200
 
         Error response codes: badRequest(400), itemNotFound(404), conflict(409)
-
       operationId: resource_providers/uuid/aggregates:put
       requestBody:
         content:
@@ -546,7 +525,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/resource_providers_uuid'
     get:
-      description: |+
+      description: |-
         Return a representation of all allocations made against this resource
         provider, keyed by consumer uuid. Each allocation includes one or more
         classes of resource and the amount consumed.
@@ -554,7 +533,6 @@ paths:
         Normal Response Codes: 200
 
         Error response codes: itemNotFound(404)
-
       operationId: resource_providers/uuid/allocations:get
       responses:
         '404':
@@ -570,7 +548,7 @@ paths:
       summary: List resource provider allocations
   /allocations:
     post:
-      description: |+
+      description: |-
         Create, update or delete allocations for multiple consumers in a single
         request. This allows a client to atomically set or swap allocations for
         multiple consumers as may be required during a migration or move type
@@ -585,7 +563,6 @@ paths:
         Normal response codes: 204
 
         Error response codes: badRequest(400), conflict(409)
-
       operationId: allocations:post
       requestBody:
         content:
@@ -608,12 +585,11 @@ paths:
     parameters:
       - $ref: '#/components/parameters/allocations_consumer_uuid'
     get:
-      description: |+
+      description: |-
         List all allocation records for the consumer identified by
         {consumer_uuid} on all the resource providers it is consuming.
 
         Normal Response Codes: 200
-
       operationId: allocations/consumer_uuid:get
       responses:
         '404':
@@ -628,14 +604,13 @@ paths:
         - allocations
       summary: List allocations
     delete:
-      description: |+
+      description: |-
         Delete all allocation records for the consumer identified by
         {consumer_uuid} on all resource providers it is consuming.
 
         Normal Response Codes: 204
 
         Error response codes: itemNotFound(404)
-
       operationId: allocations/consumer_uuid:delete
       responses:
         '404':
@@ -646,7 +621,7 @@ paths:
         - allocations
       summary: Delete allocations
     put:
-      description: |+
+      description: |-
         Create or update one or more allocation records representing the consumption of
         one or more classes of resources from one or more resource providers by
         the consumer identified by {consumer_uuid}.
@@ -655,7 +630,6 @@ paths:
         Normal Response Codes: 204
 
         Error response codes: badRequest(400), itemNotFound(404), conflict(409)
-
       operationId: allocations/consumer_uuid:put
       requestBody:
         content:
@@ -676,7 +650,7 @@ paths:
       summary: Update allocations
   /allocation_candidates:
     get:
-      description: |+
+      description: |-
         Returns a dictionary representing a collection of allocation requests
         and resource provider summaries. Each allocation request has
         information to form a `PUT /allocations/{consumer_uuid}` request to claim
@@ -694,7 +668,6 @@ paths:
         Normal Response Codes: 200
 
         Error response codes: badRequest(400)
-
       operationId: allocation_candidates:get
       responses:
         '404':
@@ -710,11 +683,10 @@ paths:
       summary: List allocation candidates
   /traits:
     get:
-      description: |+
+      description: |-
         Return a list of valid trait strings according to parameters specified.
 
         Normal Response Codes: 200
-
       operationId: traits:get
       responses:
         '404':
@@ -732,13 +704,12 @@ paths:
     parameters:
       - $ref: '#/components/parameters/traits_name'
     get:
-      description: |+
+      description: |-
         Check if a trait name exists in this cloud.
 
         Normal Response Codes: 204
 
         Error response codes: itemNotFound(404)
-
       operationId: traits/name:get
       responses:
         '404':
@@ -753,14 +724,13 @@ paths:
         - traits
       summary: Show traits
     delete:
-      description: |+
+      description: |-
         Delete the trait specified be {name}. Note that only custom traits can be
         deleted.
 
         Normal Response Codes: 204
 
         Error response codes: badRequest(400), itemNotFound(404), conflict(409)
-
       operationId: traits/name:delete
       responses:
         '404':
@@ -771,7 +741,7 @@ paths:
         - traits
       summary: Delete traits
     put:
-      description: |+
+      description: |-
         Insert a new custom trait. If traits already exists 204 will be returned.
 
         There are two kinds of traits: the standard traits and the custom traits.
@@ -785,7 +755,6 @@ paths:
         Normal Response Codes: 201, 204
 
         Error response codes: badRequest(400)
-
       operationId: traits/name:put
       requestBody:
         content:
@@ -808,13 +777,12 @@ paths:
     parameters:
       - $ref: '#/components/parameters/resource_providers_uuid'
     get:
-      description: |+
+      description: |-
         Return a list of traits for the resource provider identified by {uuid}.
 
         Normal Response Codes: 200
 
         Error response codes: itemNotFound(404)
-
       operationId: resource_providers/uuid/traits:get
       responses:
         '404':
@@ -829,13 +797,12 @@ paths:
         - resource_providers
       summary: List resource provider traits
     delete:
-      description: |+
+      description: |-
         Dissociate all the traits from the resource provider identified by {uuid}.
 
         Normal Response Codes: 204
 
         Error response codes: itemNotFound(404), conflict(409)
-
       operationId: resource_providers/uuid/traits:delete
       responses:
         '404':
@@ -846,7 +813,7 @@ paths:
         - resource_providers
       summary: Delete resource provider traits
     put:
-      description: |+
+      description: |-
         Associate traits with the resource provider identified by {uuid}.
         All the associated traits will be replaced by the traits specified in
         the request body.
@@ -854,7 +821,6 @@ paths:
         Normal Response Codes: 200
 
         Error response codes: badRequest(400), itemNotFound(404), conflict(409)
-
       operationId: resource_providers/uuid/traits:put
       requestBody:
         content:
@@ -875,7 +841,7 @@ paths:
       summary: Update resource provider traits
   /usages:
     get:
-      description: |+
+      description: |-
         Return a report of usage information for resources associated with the
         project identified by project_id and user identified by
         user_id. The value is a dictionary of resource classes paired with
@@ -885,7 +851,6 @@ paths:
         Normal Response Codes: 200
 
         Error response codes: badRequest(400)
-
       operationId: usages:get
       responses:
         '404':
@@ -901,7 +866,7 @@ paths:
       summary: List usages
   /reshaper:
     post:
-      description: |+
+      description: |-
         Atomically migrate resource provider inventories and associated allocations.
         This is used when some of the inventory needs to move from one resource
         provider to another, such as when a class of inventory moves from a parent
@@ -910,7 +875,6 @@ paths:
         Normal Response Codes: 204
 
         Error Response Codes: badRequest(400), conflict(409)
-
       operationId: reshaper:post
       requestBody:
         content:
@@ -1118,29 +1082,25 @@ tags:
   - name: resource_classes
   - name: resource_providers
   - name: allocations
-    description: |+
+    description: |-
       Allocations are records representing resources that have been assigned
       and used by some consumer of that resource. They indicate the amount
       of a particular resource that has been allocated to a given consumer
       of that resource from a particular resource provider.
-
   - name: allocation_candidates
   - name: traits
-    description: |+
+    description: |-
       Traits are *qualitative* characteristics of resource providers.
       The classic example for traits can be requesting disk from different
       providers: a user may request 80GiB of disk space for an instance
       (quantitative), but may also expect that the disk be SSD instead of
       spinning disk (qualitative). Traits provide a way to mark that a
       storage provider is SSD or spinning.
-
   - name: usages
-    description: |+
+    description: |-
       Represent the consumption of resources for a project and user.
-
   - name: reshaper
-    description: |+
+    description: |-
       Note
-
 security:
   - ApiKeyAuth: []

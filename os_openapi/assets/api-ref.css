@@ -2,7 +2,11 @@
 
 .accordion, .operation {
   /* Unset default bg color for accordion items */
-  --bs-accordion-active-bg: unset;
+  /* --bs-accordion-active-bg: unset; */
+}
+.accordion-button {
+  /* make background of a button transparent to get the right color */
+  background-color: transparent;
 }
 
 .api-group table.docutils {
@@ -11,6 +15,12 @@
 }
 
 .operation {
+}
+.operation-deprecated {
+  text-decoration: line-through;
+  background: #ebebeb1a;
+  border-color: #ebebeb;
+  opacity: .6;
 }
 .operation-get {
   border:1px solid #61affe;
@@ -45,9 +55,9 @@
 }
 
 .operation-path {
-  align-items: center;
+  align-items: start;
   color: #3b4151;
-  display: flex;
+  display: flex-root;
   font-family: monospace;
   font-size: 16px;
   font-weight: 600;
@@ -59,4 +69,16 @@
   font-family: sans-serif;
   font-size: 13px;
   word-break: break-word;
+}
+
+.requestbody-item {
+  overflow: scroll;
+}
+
+.requestbody-item > p {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+
+  margin-right: 2px
 }

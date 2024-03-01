@@ -1,16 +1,14 @@
 openapi: 3.1.0
 info:
   title: OpenStack Volume API
-  description: |+
+  description: |-
     List All Api Versions
-
   version: '3.70'
 paths:
   /v3/:
     get:
-      description: |+
+      description: |-
         Shows details for Block Storage API v3.
-
       operationId: :get
       responses:
         '404':
@@ -42,11 +40,10 @@ paths:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/consumes_quota'
-      description: |+
+      description: |-
         Lists all Block Storage volumes, with details, that the project can access,
         since v3.31 if non-admin users specify invalid filters in the url, API will
         return bad request.
-
       operationId: project_id/volumes/detail:get
       responses:
         '404':
@@ -66,10 +63,9 @@ paths:
     get:
       parameters:
         - $ref: '#/components/parameters/all_tenants'
-      description: |+
+      description: |-
         Display volumes summary with total number of volumes and total size in GB.
         Available since API microversion 3.12.
-
       operationId: project_id/volumes/summary:get
       responses:
         '404':
@@ -101,11 +97,10 @@ paths:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/consumes_quota'
-      description: |+
+      description: |-
         Lists summary information for all Block Storage volumes that the
         project can access, since v3.31 if non-admin users specify invalid
         filters in the url, API will return bad request.
-
       operationId: project_id/volumes:get
       responses:
         '404':
@@ -120,7 +115,7 @@ paths:
         - volumes
       summary: List accessible volumes
     post:
-      description: |+
+      description: |-
         Creates a volume.
 
         To create a bootable volume, include the UUID of the image from
@@ -132,7 +127,6 @@ paths:
         Asynchronous Postconditions
 
         Troubleshooting
-
       operationId: project_id/volumes:post
       requestBody:
         content:
@@ -468,10 +462,9 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists all messages, since v3.31 if non-admin users
         specify invalid filters in the url, API will return bad request.
-
       operationId: project_id/messages:get
       responses:
         '404':
@@ -753,9 +746,8 @@ paths:
         - $ref: '#/components/parameters/type_limit'
         - $ref: '#/components/parameters/type_marker'
         - $ref: '#/components/parameters/type_offset'
-      description: |+
+      description: |-
         Lists volume types.
-
       operationId: project_id/types:get
       responses:
         '404':
@@ -770,9 +762,8 @@ paths:
         - types
       summary: List all volume types
     post:
-      description: |+
+      description: |-
         Creates a volume type.
-
       operationId: project_id/types:post
       requestBody:
         content:
@@ -989,9 +980,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists group types.
-
       operationId: project_id/group_types:get
       responses:
         '404':
@@ -1008,9 +998,8 @@ paths:
         min-ver: '3.11'
       summary: List group types
     post:
-      description: |+
+      description: |-
         Creates a group type.
-
       operationId: project_id/group_types:post
       requestBody:
         content:
@@ -1183,9 +1172,8 @@ paths:
       - $ref: '#/components/parameters/project_id'
       - $ref: '#/components/parameters/group_types_group_type_id'
     get:
-      description: |+
+      description: |-
         List all the group specs for a group type,
-
       operationId: project_id/group_types/group_type_id/group_specs:get
       responses:
         '404':
@@ -1202,10 +1190,9 @@ paths:
         min-ver: '3.11'
       summary: List group specs for a group type
     post:
-      description: |+
+      description: |-
         Create group specs for a group type, if the specification key already exists in
         group specs, this API will update the specification as well.
-
       operationId: project_id/group_types/group_type_id/group_specs:post
       requestBody:
         content:
@@ -1379,10 +1366,9 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists groups with details, since v3.31 if non-admin
         users specify invalid filters in the url, API will return bad request.
-
       operationId: project_id/groups/detail:get
       responses:
         '404':
@@ -1402,10 +1388,9 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists groups. Since v3.31 if non-admin users specify
         invalid filters in the url, API will return bad request.
-
       operationId: project_id/groups:get
       responses:
         '404':
@@ -1422,9 +1407,8 @@ paths:
         min-ver: '3.13'
       summary: List groups
     post:
-      description: |+
+      description: |-
         Creates a group.
-
       operationId: project_id/groups:post
       requestBody:
         content:
@@ -1823,10 +1807,9 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists all group snapshots with details. Since v3.31 if non-admin
         users specify invalid filters in the url, API will return bad request.
-
       operationId: project_id/group_snapshots/detail:get
       responses:
         '404':
@@ -1846,10 +1829,9 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists all group snapshots, since v3.31 if non-admin users
         specify invalid filters in the url, API will return bad request.
-
       operationId: project_id/group_snapshots:get
       responses:
         '404':
@@ -1866,9 +1848,8 @@ paths:
         min-ver: '3.14'
       summary: List group snapshots
     post:
-      description: |+
+      description: |-
         Creates a group snapshot.
-
       operationId: project_id/group_snapshots:post
       requestBody:
         content:
@@ -2067,11 +2048,10 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists all Block Storage snapshots, with details, that the project can access,
         since v3.31 if non-admin users specify invalid filters in the url, API will
         return bad request.
-
       operationId: project_id/snapshots/detail:get
       responses:
         '404':
@@ -2089,11 +2069,10 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists all Block Storage snapshots, with summary information,
         that the project can access, since v3.31 if non-admin users
         specify invalid filters in the url, API will return bad request.
-
       operationId: project_id/snapshots:get
       responses:
         '404':
@@ -2108,10 +2087,9 @@ paths:
         - snapshots
       summary: List accessible snapshots
     post:
-      description: |+
+      description: |-
         Creates a volume snapshot, which is a point-in-time, complete copy of a volume.
         You can create a volume from a snapshot.
-
       operationId: project_id/snapshots:post
       requestBody:
         content:
@@ -2358,12 +2336,11 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Shows absolute limits for a project.
 
         An absolute limit value of `-1` indicates that the absolute limit
         for the item is infinite.
-
       operationId: project_id/limits:get
       responses:
         '404':
@@ -2398,9 +2375,8 @@ paths:
       - $ref: '#/components/parameters/project_id'
       - $ref: '#/components/parameters/snapshots_snapshot_id'
     get:
-      description: |+
+      description: |-
         Shows metadata for a snapshot.
-
       operationId: project_id/snapshots/snapshot_id/metadata:get
       responses:
         '404':
@@ -2415,12 +2391,11 @@ paths:
         - snapshots
       summary: Show a snapshot’s metadata
     post:
-      description: |+
+      description: |-
         Updates metadata for a snapshot.
 
         Creates or replaces metadata items that match keys. Does not modify items that
         are not in the request.
-
       operationId: project_id/snapshots/snapshot_id/metadata:post
       requestBody:
         content:
@@ -2440,9 +2415,8 @@ paths:
         - snapshots
       summary: Create a snapshot’s metadata
     put:
-      description: |+
+      description: |-
         Replaces all the snapshot’s metadata with the key-value pairs in the request.
-
       operationId: project_id/snapshots/snapshot_id/metadata:put
       requestBody:
         content:
@@ -2617,9 +2591,8 @@ paths:
       - $ref: '#/components/parameters/project_id'
       - $ref: '#/components/parameters/volumes_volume_id'
     get:
-      description: |+
+      description: |-
         Shows metadata for a volume.
-
       operationId: project_id/volumes/volume_id/metadata:get
       responses:
         '404':
@@ -2634,10 +2607,9 @@ paths:
         - volumes
       summary: Show a volume’s metadata
     post:
-      description: |+
+      description: |-
         Creates or replaces metadata for a volume. Does not modify items that are not
         in the request.
-
       operationId: project_id/volumes/volume_id/metadata:post
       requestBody:
         content:
@@ -2657,9 +2629,8 @@ paths:
         - volumes
       summary: Create metadata for volume
     put:
-      description: |+
+      description: |-
         Replaces all the volume’s metadata with the key-value pairs in the request.
-
       operationId: project_id/volumes/volume_id/metadata:put
       requestBody:
         content:
@@ -2833,9 +2804,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists consistency groups with details.
-
       operationId: project_id/consistencygroups/detail:get
       responses:
         '404':
@@ -2853,9 +2823,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists consistency groups.
-
       operationId: project_id/consistencygroups:get
       responses:
         '404':
@@ -2870,9 +2839,8 @@ paths:
         - consistencygroups
       summary: List project’s consistency groups
     post:
-      description: |+
+      description: |-
         Creates a consistency group.
-
       operationId: project_id/consistencygroups:post
       requestBody:
         content:
@@ -3074,10 +3042,9 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Search a volume backend and list detail of volumes which are available to
         manage.
-
       operationId: project_id/manageable_volumes/detail:get
       responses:
         '404':
@@ -3095,10 +3062,9 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Search a volume backend and list summary of volumes which are available to
         manage.
-
       operationId: project_id/manageable_volumes:get
       responses:
         '404':
@@ -3113,7 +3079,7 @@ paths:
         - manageable_volumes
       summary: List summary of volumes available to manage
     post:
-      description: |+
+      description: |-
         Creates a Block Storage volume by using existing storage rather than allocating
         new storage.
 
@@ -3131,7 +3097,6 @@ paths:
         Prior to microversion 3.16 host field was required, with the possibility of
         defining the cluster it is no longer required, but we must have either a host
         or a cluster field but we cannot have them both with values.
-
       operationId: project_id/manageable_volumes:post
       requestBody:
         content:
@@ -3255,10 +3220,9 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Search a volume backend and list detail of snapshots which are available to
         manage.
-
       operationId: project_id/manageable_snapshots/detail:get
       responses:
         '404':
@@ -3276,10 +3240,9 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Search a volume backend and list summary of snapshots which are available to
         manage.
-
       operationId: project_id/manageable_snapshots:get
       responses:
         '404':
@@ -3294,7 +3257,7 @@ paths:
         - manageable_snapshots
       summary: List summary of snapshots available to manage
     post:
-      description: |+
+      description: |-
         Creates a snapshot by using existing storage rather than allocating new
         storage.
 
@@ -3306,7 +3269,6 @@ paths:
 
         The API chooses the size of the snapshot by rounding up the size of
         the existing snapshot to the next gibibyte (GiB).
-
       operationId: project_id/manageable_snapshots:post
       requestBody:
         content:
@@ -3420,11 +3382,10 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists Block Storage backups, with details, to which the project has access,
         since v3.31 if non-admin users specify invalid filters in the url,
         API will return bad request.
-
       operationId: project_id/backups/detail:get
       responses:
         '404':
@@ -3442,11 +3403,10 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists Block Storage backups to which the project has access,
         since v3.31 if non-admin users specify invalid filters in the
         url, API will return bad request.
-
       operationId: project_id/backups:get
       responses:
         '404':
@@ -3461,12 +3421,11 @@ paths:
         - backups
       summary: List backups for project
     post:
-      description: |+
+      description: |-
         Creates a Block Storage backup from a volume or snapshot.
 
         The status of the volume must be `available` or if the `force` flag is
         used, backups of `in-use` volumes may also be created.
-
       operationId: project_id/backups:post
       requestBody:
         content:
@@ -3644,12 +3603,11 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists all attachments with details. Since v3.31 if non-admin
         users specify invalid filters in the url, API will return bad request.
 
         Available starting in the 3.27 microversion.
-
       operationId: project_id/attachments/detail:get
       responses:
         '404':
@@ -3669,12 +3627,11 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists all attachments, since v3.31 if non-admin users
         specify invalid filters in the url, API will return bad request.
 
         Available starting in the 3.27 microversion.
-
       operationId: project_id/attachments:get
       responses:
         '404':
@@ -3691,11 +3648,10 @@ paths:
         min-ver: '3.27'
       summary: List attachments
     post:
-      description: |+
+      description: |-
         Creates an attachment.
 
         Available starting in the 3.27 microversion.
-
       operationId: project_id/attachments:post
       requestBody:
         content:
@@ -4095,9 +4051,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         List filters.
-
       operationId: project_id/resource_filters:get
       responses:
         '404':
@@ -4135,9 +4090,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists volume transfers, with details.
-
       operationId: project_id/volume-transfers/detail:get
       responses:
         '404':
@@ -4155,9 +4109,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists volume transfers.
-
       operationId: project_id/volume-transfers:get
       responses:
         '404':
@@ -4172,11 +4125,10 @@ paths:
         - volume-transfers
       summary: List volume transfers for a project
     post:
-      description: |+
+      description: |-
         Creates a volume transfer.
 
         **Preconditions**
-
       operationId: project_id/volume-transfers:post
       requestBody:
         content:
@@ -4430,9 +4382,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists Block Storage API extensions.
-
       operationId: project_id/extensions:get
       responses:
         '404':
@@ -4805,9 +4756,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists all consistency group snapshots with details.
-
       operationId: project_id/cgsnapshots/detail:get
       responses:
         '404':
@@ -4825,9 +4775,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists all consistency group snapshots.
-
       operationId: project_id/cgsnapshots:get
       responses:
         '404':
@@ -4842,9 +4791,8 @@ paths:
         - cgsnapshots
       summary: List all consistency group snapshots
     post:
-      description: |+
+      description: |-
         Creates a consistency group snapshot.
-
       operationId: project_id/cgsnapshots:post
       requestBody:
         content:
@@ -4978,9 +4926,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     post:
-      description: |+
+      description: |-
         Creates a consistency group from source.
-
       operationId: project_id/consistencygroups/create_from_src:post
       requestBody:
         content:
@@ -5307,9 +5254,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists quality of service (QoS) specifications.
-
       operationId: project_id/qos-specs:get
       responses:
         '404':
@@ -5324,11 +5270,10 @@ paths:
         - qos-specs
       summary: List QoS Specifications
     post:
-      description: |+
+      description: |-
         Creates a QoS specification.
 
         Specify one or more key and value pairs in the request body.
-
       operationId: project_id/qos-specs:post
       requestBody:
         content:
@@ -5898,10 +5843,9 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists all back-end storage pools. Since v3.31 if non-admin users
         specify invalid filters in the url, API will return bad request.
-
       operationId: project_id/scheduler-stats/get_pools:get
       responses:
         '404':
@@ -5935,10 +5879,9 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists all Cinder services. Provides details why any services
         were disabled.
-
       operationId: project_id/os-services:get
       responses:
         '404':
@@ -6669,9 +6612,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists volume transfers, with details.
-
       operationId: project_id/os-volume-transfer/detail:get
       responses:
         '404':
@@ -6689,9 +6631,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/project_id'
     get:
-      description: |+
+      description: |-
         Lists volume transfers.
-
       operationId: project_id/os-volume-transfer:get
       responses:
         '404':
@@ -6706,11 +6647,10 @@ paths:
         - os-volume-transfer
       summary: List volume transfers for a project
     post:
-      description: |+
+      description: |-
         Creates a volume transfer.
 
         **Preconditions**
-
       operationId: project_id/os-volume-transfer:post
       requestBody:
         content:
@@ -7117,21 +7057,18 @@ components:
                 type:
                   - string
                   - 'null'
-                description: |+
+                description: |-
                   The volume name.
-
               description:
                 type:
                   - string
                   - 'null'
-                description: |+
+                description: |-
                   The volume description.
-
               volume_type:
                 type: string
-                description: |+
+                description: |-
                   The associated volume type name for the volume.
-
               metadata:
                 type: object
                 patternProperties:
@@ -7139,60 +7076,51 @@ components:
                     type: string
                     maxLength: 255
                 additionalProperties: false
-                description: |+
+                description: |-
                   A `metadata` object. Contains one or more
                   metadata key and value pairs that are associated with the volume.
-
               snapshot_id:
                 type: string
                 format: uuid
-                description: |+
+                description: |-
                   To create a volume from an existing snapshot,
                   specify the UUID of the volume snapshot. The volume is created in
                   same availability zone and with same size as the snapshot.
-
               source_volid:
                 type: string
                 format: uuid
-                description: |+
+                description: |-
                   The UUID of the source volume. The API creates a new volume with the same
                   size as the source volume unless a larger size is requested.
-
               consistencygroup_id:
                 type: string
                 format: uuid
-                description: |+
+                description: |-
                   The UUID of the consistency group.
-
               size:
                 type: integer
                 format: int64
-                description: |+
+                description: |-
                   The size of the volume, in gibibytes (GiB).
-
               availability_zone:
                 type: string
-                description: |+
+                description: |-
                   The name of the availability zone.
-
               multiattach:
                 type: boolean
-                description: |+
+                description: |-
                   If true, this volume can attach to more than one
                   instance.
-
               status:
                 type: string
-                description: |+
+                description: |-
                   The volume status.
-
               migration_status:
                 type: string
-                description: |+
+                description: |-
                   The volume migration status. Admin only.
-
               attachments:
-                description: |+
+                description: |-
                   Instance attachment information. If this volume
                   is attached to a server instance, the attachments list includes
                   the UUID of the attached server, an attachment UUID, the name of
@@ -7215,7 +7143,6 @@ components:
                   ]
 
                   ```
-
                 type: array
                 items:
                   type: object
@@ -7239,35 +7166,32 @@ components:
                     id:
                       type: string
                       format: uuid
-                      description: |+
+                      description: |-
                         The UUID of the volume.
-
               links:
-                description: |+
+                description: |-
                   The volume links.
-
                 type: array
                 items:
                   type: object
                   description: Links to the resources in question. See [API Guide
-                    / Links and 
+                    / Links and
                     References](https://docs.openstack.org/api-guide/compute/links_and_references.html)
                     for more info.
                   properties:
                     href:
                       type: string
-                      format: url
+                      format: uri
                     rel:
                       type: string
               encrypted:
                 type: boolean
-                description: |+
+                description: |-
                   If true, this volume is encrypted.
-
               created_at:
                 type: string
                 format: date-time
-                description: |+
+                description: |-
                   The date and time when the resource was created.
 
 
@@ -7286,11 +7210,10 @@ components:
 
                   The `±hh:mm` value, if included, is the time zone as an offset
                   from UTC.
-
               updated_at:
                 type: string
                 format: date-time
-                description: |+
+                description: |-
                   The date and time when the resource was updated.
 
 
@@ -7313,12 +7236,10 @@ components:
 
                   If the `updated_at` date and time stamp is not set, its value is
                   `null`.
-
               replication_status:
                 type: string
-                description: |+
+                description: |-
                   The volume replication status.
-
               id:
                 type: string
                 format: uuid
@@ -7326,26 +7247,23 @@ components:
               user_id:
                 type: string
                 format: uuid
-                description: |+
+                description: |-
                   The UUID of the user.
-
               volume_type_id:
                 type: string
                 format: uuid
-                description: |+
+                description: |-
                   The associated volume type ID for the volume.
 
 
                   **New in version 3.63**
-
                 x-openstack:
                   min-ver: '3.63'
               group_id:
                 type: string
                 format: uuid
-                description: |+
+                description: |-
                   The ID of the group.
-
                 x-openstack:
                   min-ver: '3.63'
               provider_id:
@@ -7387,9 +7305,8 @@ components:
                 x-openstack:
                   min-ver: '3.65'
             additionalProperties: true
-          description: |+
+          description: |-
             A list of `volume` objects.
-
     VolumesSummaryResponse:
       type: object
       description: Response of the project_id/volumes/summary:get operation
@@ -7398,26 +7315,23 @@ components:
       properties:
         volume:
           type: object
-          description: |+
+          description: |-
             A `volume` object.
-
           properties:
             name:
               type:
                 - string
                 - 'null'
               format: name_non_mandatory_remove_white_spaces
-              description: |+
+              description: |-
                 The volume name.
-
             description:
               type:
                 - string
                 - 'null'
               format: description_non_mandatory_remove_white_spaces
-              description: |+
+              description: |-
                 The volume description.
-
             display_name:
               type:
                 - string
@@ -7434,7 +7348,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The volume type (either name or ID). To create an environment with
                 multiple-storage back ends, you must specify a volume type. Block
                 Storage volume back ends are spawned as children to `cinder-
@@ -7445,7 +7359,6 @@ components:
                 volume type. Default is `None`. For information about how to
                 use volume types to create multiple- storage back ends, see
                 [Configure multiple-storage back ends](https://docs.openstack.org/cinder/latest/admin/blockstorage-multi-backend.html).
-
             metadata:
               type:
                 - object
@@ -7455,34 +7368,30 @@ components:
                   type: string
                   maxLength: 255
               additionalProperties: false
-              description: |+
+              description: |-
                 One or more metadata key and value pairs to be associated
                 with the new volume.
-
             snapshot_id:
               oneOf:
                 - type: 'null'
                 - type: string
                   format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             source_volid:
               oneOf:
                 - type: 'null'
                 - type: string
                   format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             consistencygroup_id:
               oneOf:
                 - type: 'null'
                 - type: string
                   format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             size:
               type:
                 - integer
@@ -7491,18 +7400,16 @@ components:
               pattern: ^[0-9]+$
               minimum: 1
               maximum: 2147483647
-              description: |+
+              description: |-
                 The size of the volume, in gibibytes (GiB).
-
             availability_zone:
               type:
                 - string
                 - 'null'
               minLength: 1
               maxLength: 255
-              description: |+
+              description: |-
                 The name of the availability zone.
-
             multiattach:
               oneOf:
                 - type: 'null'
@@ -7536,12 +7443,11 @@ components:
                     - no
                     - n
                     - f
-              description: |+
+              description: |-
                 To enable this volume to attach to more than one
                 server, set this value to `true`. Default is `false`.
                 Note that support for multiattach volumes depends on the volume
                 type being used. See [valid boolean values](#valid-boolean-values)
-
             image_id:
               type:
                 - string
@@ -7554,18 +7460,16 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The UUID of the image from which you want to
                 create the volume. Required to create a bootable volume.
-
           additionalProperties: true
         OS-SCH-HNT:scheduler_hints:
           type:
             - object
             - 'null'
-          description: |+
+          description: |-
             The dictionary of data to send to the scheduler.
-
       additionalProperties: false
       x-openstack:
         min-ver: '3.0'
@@ -7577,26 +7481,23 @@ components:
       properties:
         volume:
           type: object
-          description: |+
+          description: |-
             A `volume` object.
-
           properties:
             name:
               type:
                 - string
                 - 'null'
               format: name_non_mandatory_remove_white_spaces
-              description: |+
+              description: |-
                 The volume name.
-
             description:
               type:
                 - string
                 - 'null'
               format: description_non_mandatory_remove_white_spaces
-              description: |+
+              description: |-
                 The volume description.
-
             display_name:
               type:
                 - string
@@ -7613,7 +7514,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The volume type (either name or ID). To create an environment with
                 multiple-storage back ends, you must specify a volume type. Block
                 Storage volume back ends are spawned as children to `cinder-
@@ -7624,7 +7525,6 @@ components:
                 volume type. Default is `None`. For information about how to
                 use volume types to create multiple- storage back ends, see
                 [Configure multiple-storage back ends](https://docs.openstack.org/cinder/latest/admin/blockstorage-multi-backend.html).
-
             metadata:
               type:
                 - object
@@ -7634,34 +7534,30 @@ components:
                   type: string
                   maxLength: 255
               additionalProperties: false
-              description: |+
+              description: |-
                 One or more metadata key and value pairs to be associated
                 with the new volume.
-
             snapshot_id:
               oneOf:
                 - type: 'null'
                 - type: string
                   format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             source_volid:
               oneOf:
                 - type: 'null'
                 - type: string
                   format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             consistencygroup_id:
               oneOf:
                 - type: 'null'
                 - type: string
                   format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             size:
               type:
                 - integer
@@ -7670,18 +7566,16 @@ components:
               pattern: ^[0-9]+$
               minimum: 1
               maximum: 2147483647
-              description: |+
+              description: |-
                 The size of the volume, in gibibytes (GiB).
-
             availability_zone:
               type:
                 - string
                 - 'null'
               minLength: 1
               maxLength: 255
-              description: |+
+              description: |-
                 The name of the availability zone.
-
             multiattach:
               oneOf:
                 - type: 'null'
@@ -7715,12 +7609,11 @@ components:
                     - no
                     - n
                     - f
-              description: |+
+              description: |-
                 To enable this volume to attach to more than one
                 server, set this value to `true`. Default is `false`.
                 Note that support for multiattach volumes depends on the volume
                 type being used. See [valid boolean values](#valid-boolean-values)
-
             image_id:
               type:
                 - string
@@ -7733,10 +7626,9 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The UUID of the image from which you want to
                 create the volume. Required to create a bootable volume.
-
             group_id:
               type:
                 - string
@@ -7748,9 +7640,8 @@ components:
           type:
             - object
             - 'null'
-          description: |+
+          description: |-
             The dictionary of data to send to the scheduler.
-
       additionalProperties: false
       x-openstack:
         min-ver: '3.13'
@@ -7762,26 +7653,23 @@ components:
       properties:
         volume:
           type: object
-          description: |+
+          description: |-
             A `volume` object.
-
           properties:
             name:
               type:
                 - string
                 - 'null'
               format: name_non_mandatory_remove_white_spaces
-              description: |+
+              description: |-
                 The volume name.
-
             description:
               type:
                 - string
                 - 'null'
               format: description_non_mandatory_remove_white_spaces
-              description: |+
+              description: |-
                 The volume description.
-
             display_name:
               type:
                 - string
@@ -7798,7 +7686,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The volume type (either name or ID). To create an environment with
                 multiple-storage back ends, you must specify a volume type. Block
                 Storage volume back ends are spawned as children to `cinder-
@@ -7809,7 +7697,6 @@ components:
                 volume type. Default is `None`. For information about how to
                 use volume types to create multiple- storage back ends, see
                 [Configure multiple-storage back ends](https://docs.openstack.org/cinder/latest/admin/blockstorage-multi-backend.html).
-
             metadata:
               type:
                 - object
@@ -7819,34 +7706,30 @@ components:
                   type: string
                   maxLength: 255
               additionalProperties: false
-              description: |+
+              description: |-
                 One or more metadata key and value pairs to be associated
                 with the new volume.
-
             snapshot_id:
               oneOf:
                 - type: 'null'
                 - type: string
                   format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             source_volid:
               oneOf:
                 - type: 'null'
                 - type: string
                   format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             consistencygroup_id:
               oneOf:
                 - type: 'null'
                 - type: string
                   format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             size:
               type:
                 - integer
@@ -7855,18 +7738,16 @@ components:
               pattern: ^[0-9]+$
               minimum: 1
               maximum: 2147483647
-              description: |+
+              description: |-
                 The size of the volume, in gibibytes (GiB).
-
             availability_zone:
               type:
                 - string
                 - 'null'
               minLength: 1
               maxLength: 255
-              description: |+
+              description: |-
                 The name of the availability zone.
-
             multiattach:
               oneOf:
                 - type: 'null'
@@ -7900,12 +7781,11 @@ components:
                     - no
                     - n
                     - f
-              description: |+
+              description: |-
                 To enable this volume to attach to more than one
                 server, set this value to `true`. Default is `false`.
                 Note that support for multiattach volumes depends on the volume
                 type being used. See [valid boolean values](#valid-boolean-values)
-
             image_id:
               type:
                 - string
@@ -7918,10 +7798,9 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The UUID of the image from which you want to
                 create the volume. Required to create a bootable volume.
-
             group_id:
               type:
                 - string
@@ -7933,20 +7812,18 @@ components:
                 - type: 'null'
                 - type: string
                   format: uuid
-              description: |+
+              description: |-
                 The UUID of the backup.
 
 
                 **New in version 3.47**
-
           additionalProperties: true
         OS-SCH-HNT:scheduler_hints:
           type:
             - object
             - 'null'
-          description: |+
+          description: |-
             The dictionary of data to send to the scheduler.
-
       additionalProperties: false
       x-openstack:
         min-ver: '3.47'
@@ -7958,26 +7835,23 @@ components:
       properties:
         volume:
           type: object
-          description: |+
+          description: |-
             A `volume` object.
-
           properties:
             name:
               type:
                 - string
                 - 'null'
               format: name_non_mandatory_remove_white_spaces
-              description: |+
+              description: |-
                 The volume name.
-
             description:
               type:
                 - string
                 - 'null'
               format: description_non_mandatory_remove_white_spaces
-              description: |+
+              description: |-
                 The volume description.
-
             display_name:
               type:
                 - string
@@ -7994,7 +7868,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The volume type (either name or ID). To create an environment with
                 multiple-storage back ends, you must specify a volume type. Block
                 Storage volume back ends are spawned as children to `cinder-
@@ -8005,7 +7879,6 @@ components:
                 volume type. Default is `None`. For information about how to
                 use volume types to create multiple- storage back ends, see
                 [Configure multiple-storage back ends](https://docs.openstack.org/cinder/latest/admin/blockstorage-multi-backend.html).
-
             metadata:
               type:
                 - object
@@ -8015,34 +7888,30 @@ components:
                   type: string
                   maxLength: 255
               additionalProperties: false
-              description: |+
+              description: |-
                 One or more metadata key and value pairs to be associated
                 with the new volume.
-
             snapshot_id:
               oneOf:
                 - type: 'null'
                 - type: string
                   format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             source_volid:
               oneOf:
                 - type: 'null'
                 - type: string
                   format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             consistencygroup_id:
               oneOf:
                 - type: 'null'
                 - type: string
                   format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             size:
               type:
                 - integer
@@ -8051,18 +7920,16 @@ components:
               pattern: ^[0-9]+$
               minimum: 1
               maximum: 2147483647
-              description: |+
+              description: |-
                 The size of the volume, in gibibytes (GiB).
-
             availability_zone:
               type:
                 - string
                 - 'null'
               minLength: 1
               maxLength: 255
-              description: |+
+              description: |-
                 The name of the availability zone.
-
             multiattach:
               oneOf:
                 - type: 'null'
@@ -8096,12 +7963,11 @@ components:
                     - no
                     - n
                     - f
-              description: |+
+              description: |-
                 To enable this volume to attach to more than one
                 server, set this value to `true`. Default is `false`.
                 Note that support for multiattach volumes depends on the volume
                 type being used. See [valid boolean values](#valid-boolean-values)
-
             image_id:
               type:
                 - string
@@ -8114,10 +7980,9 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The UUID of the image from which you want to
                 create the volume. Required to create a bootable volume.
-
             group_id:
               type:
                 - string
@@ -8129,20 +7994,18 @@ components:
                 - type: 'null'
                 - type: string
                   format: uuid
-              description: |+
+              description: |-
                 The UUID of the backup.
 
 
                 **New in version 3.47**
-
           additionalProperties: false
         OS-SCH-HNT:scheduler_hints:
           type:
             - object
             - 'null'
-          description: |+
+          description: |-
             The dictionary of data to send to the scheduler.
-
       additionalProperties: false
       x-openstack:
         min-ver: '3.53'
@@ -8162,29 +8025,25 @@ components:
       properties:
         volume:
           type: object
-          description: |+
+          description: |-
             A `volume` object.
-
           properties:
             name:
               type:
                 - string
                 - 'null'
-              description: |+
+              description: |-
                 The volume name.
-
             description:
               type:
                 - string
                 - 'null'
-              description: |+
+              description: |-
                 The volume description.
-
             volume_type:
               type: string
-              description: |+
+              description: |-
                 The associated volume type name for the volume.
-
             metadata:
               type: object
               patternProperties:
@@ -8192,60 +8051,51 @@ components:
                   type: string
                   maxLength: 255
               additionalProperties: false
-              description: |+
+              description: |-
                 A `metadata` object. Contains one or more
                 metadata key and value pairs that are associated with the volume.
-
             snapshot_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 To create a volume from an existing snapshot,
                 specify the UUID of the volume snapshot. The volume is created in
                 same availability zone and with same size as the snapshot.
-
             source_volid:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the source volume. The API creates a new volume with the same
                 size as the source volume unless a larger size is requested.
-
             consistencygroup_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             size:
               type: integer
               format: int64
-              description: |+
+              description: |-
                 The size of the volume, in gibibytes (GiB).
-
             availability_zone:
               type: string
-              description: |+
+              description: |-
                 The name of the availability zone.
-
             multiattach:
               type: boolean
-              description: |+
+              description: |-
                 If true, this volume can attach to more than one
                 instance.
-
             status:
               type: string
-              description: |+
+              description: |-
                 The volume status.
-
             migration_status:
               type: string
-              description: |+
+              description: |-
                 The volume migration status. Admin only.
-
             attachments:
-              description: |+
+              description: |-
                 Instance attachment information. If this volume
                 is attached to a server instance, the attachments list includes
                 the UUID of the attached server, an attachment UUID, the name of
@@ -8268,7 +8118,6 @@ components:
                 ]
 
                 ```
-
               type: array
               items:
                 type: object
@@ -8292,35 +8141,32 @@ components:
                   id:
                     type: string
                     format: uuid
-                    description: |+
+                    description: |-
                       The UUID of the volume.
-
             links:
-              description: |+
+              description: |-
                 The volume links.
-
               type: array
               items:
                 type: object
                 description: Links to the resources in question. See [API Guide /
-                  Links and 
+                  Links and
                   References](https://docs.openstack.org/api-guide/compute/links_and_references.html)
                   for more info.
                 properties:
                   href:
                     type: string
-                    format: url
+                    format: uri
                   rel:
                     type: string
             encrypted:
               type: boolean
-              description: |+
+              description: |-
                 If true, this volume is encrypted.
-
             created_at:
               type: string
               format: date-time
-              description: |+
+              description: |-
                 The date and time when the resource was created.
 
 
@@ -8339,11 +8185,10 @@ components:
 
                 The `±hh:mm` value, if included, is the time zone as an offset
                 from UTC.
-
             updated_at:
               type: string
               format: date-time
-              description: |+
+              description: |-
                 The date and time when the resource was updated.
 
 
@@ -8366,12 +8211,10 @@ components:
 
                 If the `updated_at` date and time stamp is not set, its value is
                 `null`.
-
             replication_status:
               type: string
-              description: |+
+              description: |-
                 The volume replication status.
-
             id:
               type: string
               format: uuid
@@ -8379,9 +8222,8 @@ components:
             user_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the user.
-
             volume_type_id:
               type: string
               format: uuid
@@ -8391,9 +8233,8 @@ components:
             group_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The ID of the group.
-
               x-openstack:
                 min-ver: '3.63'
             provider_id:
@@ -8452,35 +8293,31 @@ components:
                 type:
                   - string
                   - 'null'
-                description: |+
+                description: |-
                   The volume name.
-
               links:
-                description: |+
+                description: |-
                   The volume links.
-
                 type: array
                 items:
                   type: object
                   description: Links to the resources in question. See [API Guide
-                    / Links and 
+                    / Links and
                     References](https://docs.openstack.org/api-guide/compute/links_and_references.html)
                     for more info.
                   properties:
                     href:
                       type: string
-                      format: url
+                      format: uri
                     rel:
                       type: string
               id:
                 type: string
                 format: uuid
-                description: |+
+                description: |-
                   The UUID of the volume.
-
-          description: |+
+          description: |-
             A list of `volume` objects.
-
     VolumesActionRevertRequest:
       type: object
       description: Empty body for revert action
@@ -8901,7 +8738,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
           additionalProperties: false
           required:
@@ -8970,7 +8807,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
             visibility:
               type: string
@@ -9289,10 +9126,9 @@ components:
               type: string
               maxLength: 255
           additionalProperties: false
-          description: |+
+          description: |-
             One or more metadata key and value pairs that are
             associated with the volume.
-
     VolumesActionOs-Show_Image_MetadataRequest:
       type: object
       description: Empty body for os-show_image_metadata action
@@ -9313,10 +9149,9 @@ components:
               type: string
               maxLength: 255
           additionalProperties: false
-          description: |+
+          description: |-
             One or more metadata key and value pairs that are
             associated with the volume.
-
     VolumesActionDelete:
       type: object
       properties:
@@ -9445,29 +9280,25 @@ components:
       properties:
         volume:
           type: object
-          description: |+
+          description: |-
             A `volume` object.
-
           properties:
             name:
               type:
                 - string
                 - 'null'
-              description: |+
+              description: |-
                 The volume name.
-
             description:
               type:
                 - string
                 - 'null'
-              description: |+
+              description: |-
                 The volume description.
-
             volume_type:
               type: string
-              description: |+
+              description: |-
                 The associated volume type name for the volume.
-
             metadata:
               type: object
               patternProperties:
@@ -9475,60 +9306,51 @@ components:
                   type: string
                   maxLength: 255
               additionalProperties: false
-              description: |+
+              description: |-
                 A `metadata` object. Contains one or more
                 metadata key and value pairs that are associated with the volume.
-
             snapshot_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 To create a volume from an existing snapshot,
                 specify the UUID of the volume snapshot. The volume is created in
                 same availability zone and with same size as the snapshot.
-
             source_volid:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the source volume. The API creates a new volume with the same
                 size as the source volume unless a larger size is requested.
-
             consistencygroup_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             size:
               type: integer
               format: int64
-              description: |+
+              description: |-
                 The size of the volume, in gibibytes (GiB).
-
             availability_zone:
               type: string
-              description: |+
+              description: |-
                 The name of the availability zone.
-
             multiattach:
               type: boolean
-              description: |+
+              description: |-
                 If true, this volume can attach to more than one
                 instance.
-
             status:
               type: string
-              description: |+
+              description: |-
                 The volume status.
-
             migration_status:
               type: string
-              description: |+
+              description: |-
                 The volume migration status. Admin only.
-
             attachments:
-              description: |+
+              description: |-
                 Instance attachment information. If this volume
                 is attached to a server instance, the attachments list includes
                 the UUID of the attached server, an attachment UUID, the name of
@@ -9551,7 +9373,6 @@ components:
                 ]
 
                 ```
-
               type: array
               items:
                 type: object
@@ -9575,35 +9396,32 @@ components:
                   id:
                     type: string
                     format: uuid
-                    description: |+
+                    description: |-
                       The UUID of the volume.
-
             links:
-              description: |+
+              description: |-
                 The volume links.
-
               type: array
               items:
                 type: object
                 description: Links to the resources in question. See [API Guide /
-                  Links and 
+                  Links and
                   References](https://docs.openstack.org/api-guide/compute/links_and_references.html)
                   for more info.
                 properties:
                   href:
                     type: string
-                    format: url
+                    format: uri
                   rel:
                     type: string
             encrypted:
               type: boolean
-              description: |+
+              description: |-
                 If true, this volume is encrypted.
-
             created_at:
               type: string
               format: date-time
-              description: |+
+              description: |-
                 The date and time when the resource was created.
 
 
@@ -9622,11 +9440,10 @@ components:
 
                 The `±hh:mm` value, if included, is the time zone as an offset
                 from UTC.
-
             updated_at:
               type: string
               format: date-time
-              description: |+
+              description: |-
                 The date and time when the resource was updated.
 
 
@@ -9649,12 +9466,10 @@ components:
 
                 If the `updated_at` date and time stamp is not set, its value is
                 `null`.
-
             replication_status:
               type: string
-              description: |+
+              description: |-
                 The volume replication status.
-
             id:
               type: string
               format: uuid
@@ -9662,9 +9477,8 @@ components:
             user_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the user.
-
             volume_type_id:
               type: string
               format: uuid
@@ -9674,9 +9488,8 @@ components:
             group_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The ID of the group.
-
               x-openstack:
                 min-ver: '3.63'
             provider_id:
@@ -9727,29 +9540,25 @@ components:
       properties:
         volume:
           type: object
-          description: |+
+          description: |-
             A `volume` object.
-
           properties:
             name:
               type:
                 - string
                 - 'null'
-              description: |+
+              description: |-
                 The volume name.
-
             description:
               type:
                 - string
                 - 'null'
-              description: |+
+              description: |-
                 The volume description.
-
             volume_type:
               type: string
-              description: |+
+              description: |-
                 The associated volume type name for the volume.
-
             metadata:
               type: object
               patternProperties:
@@ -9757,60 +9566,51 @@ components:
                   type: string
                   maxLength: 255
               additionalProperties: false
-              description: |+
+              description: |-
                 A `metadata` object. Contains one or more
                 metadata key and value pairs that are associated with the volume.
-
             snapshot_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 To create a volume from an existing snapshot,
                 specify the UUID of the volume snapshot. The volume is created in
                 same availability zone and with same size as the snapshot.
-
             source_volid:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the source volume. The API creates a new volume with the same
                 size as the source volume unless a larger size is requested.
-
             consistencygroup_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the consistency group.
-
             size:
               type: integer
               format: int64
-              description: |+
+              description: |-
                 The size of the volume, in gibibytes (GiB).
-
             availability_zone:
               type: string
-              description: |+
+              description: |-
                 The name of the availability zone.
-
             multiattach:
               type: boolean
-              description: |+
+              description: |-
                 If true, this volume can attach to more than one
                 instance.
-
             status:
               type: string
-              description: |+
+              description: |-
                 The volume status.
-
             migration_status:
               type: string
-              description: |+
+              description: |-
                 The volume migration status. Admin only.
-
             attachments:
-              description: |+
+              description: |-
                 Instance attachment information. If this volume
                 is attached to a server instance, the attachments list includes
                 the UUID of the attached server, an attachment UUID, the name of
@@ -9833,7 +9633,6 @@ components:
                 ]
 
                 ```
-
               type: array
               items:
                 type: object
@@ -9857,35 +9656,32 @@ components:
                   id:
                     type: string
                     format: uuid
-                    description: |+
+                    description: |-
                       The UUID of the volume.
-
             links:
-              description: |+
+              description: |-
                 The volume links.
-
               type: array
               items:
                 type: object
                 description: Links to the resources in question. See [API Guide /
-                  Links and 
+                  Links and
                   References](https://docs.openstack.org/api-guide/compute/links_and_references.html)
                   for more info.
                 properties:
                   href:
                     type: string
-                    format: url
+                    format: uri
                   rel:
                     type: string
             encrypted:
               type: boolean
-              description: |+
+              description: |-
                 If true, this volume is encrypted.
-
             created_at:
               type: string
               format: date-time
-              description: |+
+              description: |-
                 The date and time when the resource was created.
 
 
@@ -9904,11 +9700,10 @@ components:
 
                 The `±hh:mm` value, if included, is the time zone as an offset
                 from UTC.
-
             updated_at:
               type: string
               format: date-time
-              description: |+
+              description: |-
                 The date and time when the resource was updated.
 
 
@@ -9931,12 +9726,10 @@ components:
 
                 If the `updated_at` date and time stamp is not set, its value is
                 `null`.
-
             replication_status:
               type: string
-              description: |+
+              description: |-
                 The volume replication status.
-
             id:
               type: string
               format: uuid
@@ -9944,9 +9737,8 @@ components:
             user_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the user.
-
             volume_type_id:
               type: string
               format: uuid
@@ -9956,9 +9748,8 @@ components:
             group_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The ID of the group.
-
               x-openstack:
                 min-ver: '3.63'
             provider_id:
@@ -10031,37 +9822,33 @@ components:
       properties:
         volume_type:
           type: object
-          description: |+
+          description: |-
             A `volume_type` object.
-
           properties:
             name:
               type: string
               minLength: 1
               maxLength: 255
               format: name
-              description: |+
+              description: |-
                 The name of the volume type.
-
             description:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
-              description: |+
+              description: |-
                 The volume type description.
-
             extra_specs:
               type: object
-              description: |+
+              description: |-
                 A key and value pair that contains additional
                 specifications that are associated with the volume type. Examples
                 include capabilities, capacity, compression, and so on, depending
                 on the storage driver in use.
-
               additionalProperties: false
               patternProperties:
                 ^[a-zA-Z0-9-_:. /]{1,255}$:
@@ -10100,10 +9887,9 @@ components:
                 - no
                 - n
                 - f
-              description: |+
+              description: |-
                 Whether the volume type is publicly visible.
                 See [valid boolean values](#valid-boolean-values)
-
           additionalProperties: false
           required:
             - name
@@ -10118,16 +9904,14 @@ components:
           properties:
             description:
               type: string
-              description: |+
+              description: |-
                 The volume type description.
-
             extra_specs:
-              description: |+
+              description: |-
                 A key and value pair that contains additional
                 specifications that are associated with the volume type. Examples
                 include capabilities, capacity, compression, and so on, depending
                 on the storage driver in use.
-
               type: object
               patternProperties:
                 ^[a-zA-Z0-9-_:.]{1,255}$:
@@ -10140,33 +9924,27 @@ components:
             id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the volume type.
-
             is_public:
               type: boolean
-              description: |+
+              description: |-
                 Whether the volume type is publicly visible.
-
             name:
               type: string
-              description: |+
+              description: |-
                 The name of the volume type.
-
             os-volume-type-access:is_public:
               type: boolean
-              description: |+
+              description: |-
                 Whether the volume type is publicly visible.
-
             qos_specs_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The QoS specifications ID.
-
-          description: |+
+          description: |-
             A `volume_type` object.
-
     TypesListResponse:
       type: object
       properties:
@@ -10177,16 +9955,14 @@ components:
             properties:
               description:
                 type: string
-                description: |+
+                description: |-
                   The volume type description.
-
               extra_specs:
-                description: |+
+                description: |-
                   A key and value pair that contains additional
                   specifications that are associated with the volume type. Examples
                   include capabilities, capacity, compression, and so on, depending
                   on the storage driver in use.
-
                 type: object
                 patternProperties:
                   ^[a-zA-Z0-9-_:.]{1,255}$:
@@ -10199,40 +9975,33 @@ components:
               id:
                 type: string
                 format: uuid
-                description: |+
+                description: |-
                   The UUID of the volume type.
-
               is_public:
                 type: boolean
-                description: |+
+                description: |-
                   Whether the volume type is publicly visible.
-
               name:
                 type: string
-                description: |+
+                description: |-
                   The name of the volume type.
-
               os-volume-type-access:is_public:
                 type: boolean
-                description: |+
+                description: |-
                   Whether the volume type is publicly visible.
-
               qos_specs_id:
                 type: string
                 format: uuid
-                description: |+
+                description: |-
                   The QoS specifications ID.
-
-            description: |+
+            description: |-
               A `volume_type` object.
-
-          description: |+
+          description: |-
             The list of volume types. In an environment with
             multiple-storage back ends, the scheduler determines where to send
             the volume based on the volume type. For information about how to
             use volume types to create multiple- storage back ends, see
             [Configure multiple-storage back ends](https://docs.openstack.org/cinder/latest/admin/blockstorage-multi-backend.html).
-
     TypesAction_Create:
       type: object
       properties:
@@ -10250,7 +10019,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
             extra_specs:
               type: object
@@ -10323,7 +10092,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
             is_public:
               type:
@@ -10434,7 +10203,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
             is_public:
               type:
@@ -10479,16 +10248,14 @@ components:
           properties:
             description:
               type: string
-              description: |+
+              description: |-
                 The volume type description.
-
             extra_specs:
-              description: |+
+              description: |-
                 A key and value pair that contains additional
                 specifications that are associated with the volume type. Examples
                 include capabilities, capacity, compression, and so on, depending
                 on the storage driver in use.
-
               type: object
               patternProperties:
                 ^[a-zA-Z0-9-_:.]{1,255}$:
@@ -10501,33 +10268,27 @@ components:
             id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the volume type.
-
             is_public:
               type: boolean
-              description: |+
+              description: |-
                 Whether the volume type is publicly visible.
-
             name:
               type: string
-              description: |+
+              description: |-
                 The name of the volume type.
-
             os-volume-type-access:is_public:
               type: boolean
-              description: |+
+              description: |-
                 Whether the volume type is publicly visible.
-
             qos_specs_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The QoS specifications ID.
-
-          description: |+
+          description: |-
             A `volume_type` object.
-
     TypeShowResponse:
       type: object
       properties:
@@ -10536,16 +10297,14 @@ components:
           properties:
             description:
               type: string
-              description: |+
+              description: |-
                 The volume type description.
-
             extra_specs:
-              description: |+
+              description: |-
                 A key and value pair that contains additional
                 specifications that are associated with the volume type. Examples
                 include capabilities, capacity, compression, and so on, depending
                 on the storage driver in use.
-
               type: object
               patternProperties:
                 ^[a-zA-Z0-9-_:.]{1,255}$:
@@ -10558,61 +10317,52 @@ components:
             id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the volume type.
-
             is_public:
               type: boolean
-              description: |+
+              description: |-
                 Whether the volume type is publicly visible.
-
             name:
               type: string
-              description: |+
+              description: |-
                 The name of the volume type.
-
             os-volume-type-access:is_public:
               type: boolean
-              description: |+
+              description: |-
                 Whether the volume type is publicly visible.
-
             qos_specs_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The QoS specifications ID.
-
-          description: |+
+          description: |-
             A `volume_type` object.
-
     Group_TypesCreate:
       type: object
       properties:
         group_type:
           type: object
-          description: |+
+          description: |-
             A `group_type` object.
-
           properties:
             name:
               type: string
               minLength: 1
               maxLength: 255
               format: name
-              description: |+
+              description: |-
                 The group type name.
-
             description:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
-              description: |+
+              description: |-
                 The group type description.
-
             is_public:
               type:
                 - boolean
@@ -10644,10 +10394,9 @@ components:
                 - no
                 - n
                 - f
-              description: |+
+              description: |-
                 Whether the group type is publicly visible.
                 See [valid boolean values](#valid-boolean-values)
-
             group_specs:
               type:
                 - object
@@ -10657,10 +10406,9 @@ components:
                   type: string
                   maxLength: 255
               additionalProperties: false
-              description: |+
+              description: |-
                 A set of key and value pairs that contains the
                 specifications for a group type.
-
           additionalProperties: false
           required:
             - name
@@ -10693,7 +10441,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
             is_public:
               type:
@@ -10743,10 +10491,9 @@ components:
       properties:
         group_specs:
           type: object
-          description: |+
+          description: |-
             A set of key and value pairs that contains the
             specifications for a group type.
-
           additionalProperties: false
           patternProperties:
             ^[a-zA-Z0-9-_:.]{1,255}$:
@@ -10796,9 +10543,8 @@ components:
       properties:
         group:
           type: object
-          description: |+
+          description: |-
             A group object.
-
           properties:
             description:
               type:
@@ -10806,26 +10552,23 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
-              description: |+
+              description: |-
                 The group description.
-
             group_type:
               type: string
               format: group_type
-              description: |+
+              description: |-
                 The group type ID.
-
             name:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The group name.
-
             volume_types:
               type: array
               minItems: 1
@@ -10833,21 +10576,19 @@ components:
                 type: string
                 maxLength: 255
               uniqueItems: true
-              description: |+
+              description: |-
                 The list of volume types. In an environment with
                 multiple-storage back ends, the scheduler determines where to send
                 the volume based on the volume type. For information about how to
                 use volume types to create multiple- storage back ends, see
                 [Configure multiple-storage back ends](https://docs.openstack.org/cinder/latest/admin/blockstorage-multi-backend.html).
-
             availability_zone:
               type:
                 - string
                 - 'null'
               format: availability_zone
-              description: |+
+              description: |-
                 The name of the availability zone.
-
           additionalProperties: false
           required:
             - group_type
@@ -10947,7 +10688,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
             name:
               type:
@@ -11098,7 +10839,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
             name:
               type:
@@ -11112,7 +10853,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
             remove_volumes:
               type:
@@ -11120,7 +10861,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
           additionalProperties: false
           anyOf:
@@ -11151,36 +10892,32 @@ components:
       properties:
         group_snapshot:
           type: object
-          description: |+
+          description: |-
             The group snapshot.
-
           properties:
             group_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The ID of the group.
-
             name:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The group snapshot name.
-
             description:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
-              description: |+
+              description: |-
                 The group snapshot description.
-
           additionalProperties: false
           required:
             - group_id
@@ -11230,9 +10967,8 @@ components:
       properties:
         snapshot:
           type: object
-          description: |+
+          description: |-
             A `snapshot` object.
-
           properties:
             name:
               type:
@@ -11240,38 +10976,34 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The name of the snapshot.
-
             display_name:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The name of the snapshot.
-
             description:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
-              description: |+
+              description: |-
                 A description for the snapshot. Default is
                 `None`.
-
             volume_id:
               oneOf:
                 - type: string
                   format: uuid
                 - type: 'null'
-              description: |+
+              description: |-
                 The UUID of the volume.
-
             force:
               type:
                 - boolean
@@ -11303,11 +11035,10 @@ components:
                 - no
                 - n
                 - f
-              description: |+
+              description: |-
                 Indicates whether to snapshot, even if the volume
                 is attached. Default is `false`.
                 See [valid boolean values](#valid-boolean-values)
-
             metadata:
               type:
                 - object
@@ -11317,10 +11048,9 @@ components:
                   type: string
                   maxLength: 255
               additionalProperties: false
-              description: |+
+              description: |-
                 One or more metadata key and value pairs for the
                 snapshot.
-
           additionalProperties: false
           required:
             - volume_id
@@ -11417,7 +11147,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
             display_name:
               type:
@@ -11431,7 +11161,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
           additionalProperties: false
           anyOf:
@@ -11494,10 +11224,9 @@ components:
       properties:
         metadata:
           type: object
-          description: |+
+          description: |-
             One or more metadata key and value pairs that are
             associated with the volume.
-
           additionalProperties: false
           patternProperties:
             ^[a-zA-Z0-9-_:. /]{1,255}$:
@@ -11518,10 +11247,9 @@ components:
               type: string
               maxLength: 255
           additionalProperties: false
-          description: |+
+          description: |-
             One or more metadata key and value pairs that are
             associated with the volume.
-
     VolumesMetadataListResponse:
       type: object
       description: Metadata key and value pairs. The maximum size for each metadata
@@ -11534,10 +11262,9 @@ components:
               type: string
               maxLength: 255
           additionalProperties: false
-          description: |+
+          description: |-
             One or more metadata key and value pairs that are
             associated with the volume.
-
     VolumesMetadataUpdate:
       type: object
       properties:
@@ -11588,10 +11315,9 @@ components:
       properties:
         metadata:
           type: object
-          description: |+
+          description: |-
             One or more metadata key and value pairs that are
             associated with the volume.
-
           additionalProperties: false
           patternProperties:
             ^[a-zA-Z0-9-_:. /]{1,255}$:
@@ -11612,10 +11338,9 @@ components:
               type: string
               maxLength: 255
           additionalProperties: false
-          description: |+
+          description: |-
             One or more metadata key and value pairs that are
             associated with the volume.
-
     ConsistencygroupsDetailResponse:
       type: object
       description: Response of the project_id/consistencygroups/detail:get operation
@@ -11677,36 +11402,32 @@ components:
       properties:
         backup:
           type: object
-          description: |+
+          description: |-
             A `backup` object.
-
           properties:
             volume_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the volume that you want to back up.
-
             container:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The container name or null.
-
             description:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
-              description: |+
+              description: |-
                 The backup description or null.
-
             incremental:
               type:
                 - boolean
@@ -11738,11 +11459,10 @@ components:
                 - no
                 - n
                 - f
-              description: |+
+              description: |-
                 Indicates whether to backup, even if the volume
                 is attached. Default is `false`.
                 See [valid boolean values](#valid-boolean-values)
-
             force:
               type:
                 - boolean
@@ -11774,31 +11494,27 @@ components:
                 - no
                 - n
                 - f
-              description: |+
+              description: |-
                 Indicates whether to backup, even if the volume
                 is attached. Default is `false`.
                 See [valid boolean values](#valid-boolean-values)
-
             name:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The name of the Volume Backup.
-
             snapshot_id:
               oneOf:
                 - type: string
                   format: uuid
-                  description: |+
+                  description: |-
                     The UUID of the volume that you want to back up.
-
                 - type: 'null'
-              description: |+
+              description: |-
                 The UUID of the source snapshot that you want to back up.
-
           additionalProperties: false
           required:
             - volume_id
@@ -11813,36 +11529,32 @@ components:
       properties:
         backup:
           type: object
-          description: |+
+          description: |-
             A `backup` object.
-
           properties:
             volume_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the volume that you want to back up.
-
             container:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The container name or null.
-
             description:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
-              description: |+
+              description: |-
                 The backup description or null.
-
             incremental:
               type:
                 - boolean
@@ -11874,11 +11586,10 @@ components:
                 - no
                 - n
                 - f
-              description: |+
+              description: |-
                 Indicates whether to backup, even if the volume
                 is attached. Default is `false`.
                 See [valid boolean values](#valid-boolean-values)
-
             force:
               type:
                 - boolean
@@ -11910,31 +11621,27 @@ components:
                 - no
                 - n
                 - f
-              description: |+
+              description: |-
                 Indicates whether to backup, even if the volume
                 is attached. Default is `false`.
                 See [valid boolean values](#valid-boolean-values)
-
             name:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The name of the Volume Backup.
-
             snapshot_id:
               oneOf:
                 - type: string
                   format: uuid
-                  description: |+
+                  description: |-
                     The UUID of the volume that you want to back up.
-
                 - type: 'null'
-              description: |+
+              description: |-
                 The UUID of the source snapshot that you want to back up.
-
             metadata:
               type:
                 - object
@@ -11944,12 +11651,11 @@ components:
                   type: string
                   maxLength: 255
               additionalProperties: false
-              description: |+
+              description: |-
                 The backup metadata key value pairs.
 
 
                 **New in version 3.43**
-
           additionalProperties: false
           required:
             - volume_id
@@ -11964,36 +11670,32 @@ components:
       properties:
         backup:
           type: object
-          description: |+
+          description: |-
             A `backup` object.
-
           properties:
             volume_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the volume that you want to back up.
-
             container:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The container name or null.
-
             description:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
-              description: |+
+              description: |-
                 The backup description or null.
-
             incremental:
               type:
                 - boolean
@@ -12025,11 +11727,10 @@ components:
                 - no
                 - n
                 - f
-              description: |+
+              description: |-
                 Indicates whether to backup, even if the volume
                 is attached. Default is `false`.
                 See [valid boolean values](#valid-boolean-values)
-
             force:
               type:
                 - boolean
@@ -12061,31 +11762,27 @@ components:
                 - no
                 - n
                 - f
-              description: |+
+              description: |-
                 Indicates whether to backup, even if the volume
                 is attached. Default is `false`.
                 See [valid boolean values](#valid-boolean-values)
-
             name:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The name of the Volume Backup.
-
             snapshot_id:
               oneOf:
                 - type: string
                   format: uuid
-                  description: |+
+                  description: |-
                     The UUID of the volume that you want to back up.
-
                 - type: 'null'
-              description: |+
+              description: |-
                 The UUID of the source snapshot that you want to back up.
-
             metadata:
               type:
                 - object
@@ -12095,24 +11792,22 @@ components:
                   type: string
                   maxLength: 255
               additionalProperties: false
-              description: |+
+              description: |-
                 The backup metadata key value pairs.
 
 
                 **New in version 3.43**
-
             availability_zone:
               type:
                 - string
                 - 'null'
               minLength: 0
               maxLength: 255
-              description: |+
+              description: |-
                 The backup availability zone key value pair.
 
 
                 **New in version 3.51**
-
           additionalProperties: false
           required:
             - volume_id
@@ -12154,7 +11849,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
           additionalProperties: false
       additionalProperties: false
@@ -12183,7 +11878,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
             metadata:
               type: object
@@ -12218,31 +11913,27 @@ components:
       properties:
         attachment:
           type: object
-          description: |+
+          description: |-
             An attachment object.
-
           properties:
             instance_uuid:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the volume which the attachment belongs
                 to.
-
             connector:
               type:
                 - object
                 - 'null'
-              description: |+
+              description: |-
                 The `connector` object.
-
             volume_uuid:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the volume which the attachment belongs
                 to.
-
           additionalProperties: false
           required:
             - volume_uuid
@@ -12257,43 +11948,38 @@ components:
       properties:
         attachment:
           type: object
-          description: |+
+          description: |-
             An attachment object.
-
           properties:
             instance_uuid:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the volume which the attachment belongs
                 to.
-
             connector:
               type:
                 - object
                 - 'null'
-              description: |+
+              description: |-
                 The `connector` object.
-
             volume_uuid:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the volume which the attachment belongs
                 to.
-
             mode:
               type: string
               enum:
                 - rw
                 - ro
-              description: |+
+              description: |-
                 The attach mode of attachment, acceptable values are
                 read-only (‘ro’) and read-and-write (‘rw’).
 
 
                 **New in version 3.54**
-
           additionalProperties: false
           required:
             - volume_uuid
@@ -12463,24 +12149,21 @@ components:
       properties:
         transfer:
           type: object
-          description: |+
+          description: |-
             The volume transfer object.
-
           properties:
             volume_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the volume.
-
             name:
               oneOf:
                 - type: string
                   format: name_skip_leading_trailing_spaces
                 - type: 'null'
-              description: |+
+              description: |-
                 The name of the Volume Transfer.
-
           additionalProperties: false
           required:
             - volume_id
@@ -12495,24 +12178,21 @@ components:
       properties:
         transfer:
           type: object
-          description: |+
+          description: |-
             The volume transfer object.
-
           properties:
             volume_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the volume.
-
             name:
               oneOf:
                 - type: string
                   format: name_skip_leading_trailing_spaces
                 - type: 'null'
-              description: |+
+              description: |-
                 The name of the Volume Transfer.
-
             no_snapshots:
               type:
                 - boolean
@@ -12544,12 +12224,11 @@ components:
                 - no
                 - n
                 - f
-              description: |+
+              description: |-
                 Transfer volume without snapshots. Defaults to False if not specified.
 
 
                 **New in version 3.55**
-
           additionalProperties: false
           required:
             - volume_id
@@ -12797,16 +12476,14 @@ components:
       properties:
         qos_specs:
           type: object
-          description: |+
+          description: |-
             A `qos_specs` object.
-
           properties:
             name:
               type: string
               format: name_skip_leading_trailing_spaces
-              description: |+
+              description: |-
                 The name of the QoS specification.
-
           additionalProperties: true
           required:
             - name
@@ -12941,7 +12618,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
             metadata:
               type:
@@ -13081,7 +12758,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
             availability_zone:
               type:
@@ -13173,7 +12850,7 @@ components:
                 - 'null'
               minLength: 0
               maxLength: 255
-              pattern: ^[\ 
+              pattern: ^[\
                 -\~ -¬®-ͷͺ-Ϳ΄-ΊΌΎ-ΡΣ-ԯԱ-Ֆՙ-֊֍-֏֑-ׇא-תׯ-״؆-؛؝-ۜ۞-܍ܐ-݊ݍ-ޱ߀-ߺ߽-࠭࠰-࠾ࡀ-࡛࡞ࡠ-ࡪࡰ-ࢎ࢘-ࣣ࣡-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-ৎৗড়-ঢ়য়-ৣ০-৾ਁ-ਃਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ੑਖ਼-ੜਫ਼੦-੶ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠ-ૣ૦-૱ૹ-૿ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୄେ-ୈୋ-୍୕-ୗଡ଼-ଢ଼ୟ-ୣ୦-୷ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹா-ூெ-ைொ-்ௐௗ௦-௺ఀ-ఌఎ-ఐఒ-నప-హ఼-ౄె-ైొ-్ౕ-ౖౘ-ౚౝౠ-ౣ౦-౯౷-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼-ೄೆ-ೈೊ-್ೕ-ೖೝ-ೞೠ-ೣ೦-೯ೱ-ೲഀ-ഌഎ-ഐഒ-ൄെ-ൈൊ-൏ൔ-ൣ൦-ൿඁ-ඃඅ-ඖක-නඳ-රලව-ෆ්ා-ුූෘ-ෟ෦-෯ෲ-෴ก-ฺ฿-๛ກ-ຂຄຆ-ຊຌ-ຣລວ-ຽເ-ໄໆ່-ໍ໐-໙ໜ-ໟༀ-ཇཉ-ཬཱ-ྗྙ-ྼ྾-࿌࿎-࿚က-ჅჇჍა-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚ፝-፼ᎀ-᎙Ꭰ-Ᏽᏸ-ᏽ᐀-᚜ᚠ-ᛸᜀ-᜕ᜟ-᜶ᝀ-ᝓᝠ-ᝬᝮ-ᝰᝲ-ᝳក-៝០-៩៰-៹᠀-᠍᠏-᠙ᠠ-ᡸᢀ-ᢪᢰ-ᣵᤀ-ᤞᤠ-ᤫᤰ-᤻᥀᥄-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉ᧐-᧚᧞-ᨛ᨞-ᩞ᩠-᩿᩼-᪉᪐-᪙᪠-᪭᪰-ᫎᬀ-ᭌ᭐-᭾ᮀ-᯳᯼-᰷᰻-᱉ᱍ-ᲈᲐ-ᲺᲽ-᳇᳐-ᳺᴀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ῄῆ-ΐῖ-Ί῝-`ῲ-ῴῶ-῾ - ‐-‧ - ⁰-ⁱ⁴-₎ₐ-ₜ₠-⃀⃐-⃰℀-↋←-␦⑀-⑊①-⭳⭶-⮕⮗-ⳳ⳹-ⴥⴧⴭⴰ-ⵧⵯ-⵰⵿-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⷠ-⹝⺀-⺙⺛-⻳⼀-⿕⿰-⿻　-〿ぁ-ゖ゙-ヿㄅ-ㄯㄱ-ㆎ㆐-㇣ㇰ-㈞㈠-ꒌ꒐-꓆ꓐ-ꘫꙀ-꛷꜀-ꟊꟐ-ꟑꟓꟕ-ꟙꟲ-꠬꠰-꠹ꡀ-꡷ꢀ-ꣅ꣎-꣙꣠-꥓꥟-ꥼꦀ-꧍ꧏ-꧙꧞-ꧾꨀ-ꨶꩀ-ꩍ꩐-꩙꩜-ꫂꫛ-꫶ꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-꭫ꭰ-꯭꯰-꯹가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִ-זּטּ-לּמּנּ-סּףּ-פּצּ-﯂ﯓ-ﶏﶒ-ﷇ﷏ﷰ-︙︠-﹒﹔-﹦﹨-﹫ﹰ-ﹴﹶ-ﻼ！-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ￠-￦￨-￮￼-�]*$
             availability_zone:
               type:
@@ -13278,24 +12955,21 @@ components:
       properties:
         transfer:
           type: object
-          description: |+
+          description: |-
             The volume transfer object.
-
           properties:
             volume_id:
               type: string
               format: uuid
-              description: |+
+              description: |-
                 The UUID of the volume.
-
             name:
               oneOf:
                 - type: string
                   format: name_skip_leading_trailing_spaces
                 - type: 'null'
-              description: |+
+              description: |-
                 The name of the Volume Transfer.
-
           additionalProperties: false
           required:
             - volume_id

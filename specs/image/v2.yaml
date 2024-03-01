@@ -7,7 +7,7 @@ info:
 paths:
   /v2/schemas/image:
     get:
-      description: |+
+      description: |-
         *(Since Images v2.0)*
 
         Shows a JSON schema document that represents an *image* entity.
@@ -18,7 +18,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 400, 401
-
       operationId: schemas/image:get
       responses:
         '404':
@@ -34,7 +33,7 @@ paths:
       summary: Show image schema
   /v2/schemas/images:
     get:
-      description: |+
+      description: |-
         *(Since Images v2.0)*
 
         Shows a JSON schema document that represents an *images* entity.
@@ -47,7 +46,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 400, 401
-
       operationId: schemas/images:get
       responses:
         '404':
@@ -63,7 +61,7 @@ paths:
       summary: Show images schema
   /v2/schemas/member:
     get:
-      description: |+
+      description: |-
         *(Since Images v2.1)*
 
         Shows a JSON schema document that represents an *image member* entity.
@@ -74,7 +72,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 400, 401
-
       operationId: schemas/member:get
       responses:
         '404':
@@ -90,7 +87,7 @@ paths:
       summary: Show image member schema
   /v2/schemas/members:
     get:
-      description: |+
+      description: |-
         *(Since Images v2.1)*
 
         Shows a JSON schema document that represents an *image members* entity.
@@ -103,7 +100,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 400, 401
-
       operationId: schemas/members:get
       responses:
         '404':
@@ -119,7 +115,7 @@ paths:
       summary: Show image members schema
   /v2/schemas/task:
     get:
-      description: |+
+      description: |-
         *(Since Images v2.2)*
 
         Shows a JSON schema document that represents an *task* entity.
@@ -130,7 +126,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 401
-
       operationId: schemas/task:get
       responses:
         '404':
@@ -146,7 +141,7 @@ paths:
       summary: Show task schema
   /v2/schemas/tasks:
     get:
-      description: |+
+      description: |-
         *(Since Images v2.2)*
 
         Shows a JSON schema document that represents a list of *tasks*.
@@ -160,7 +155,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 401
-
       operationId: schemas/tasks:get
       responses:
         '404':
@@ -750,7 +744,7 @@ paths:
         - $ref: '#/components/parameters/sort_dir'
         - $ref: '#/components/parameters/sort_key'
         - $ref: '#/components/parameters/sort'
-      description: |+
+      description: |-
         Lists public virtual machine (VM) images.
         *(Since Image API v2.0)*
 
@@ -848,7 +842,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 400, 401, 403
-
       operationId: images:get
       responses:
         '404':
@@ -863,7 +856,7 @@ paths:
         - images
       summary: List images
     post:
-      description: |+
+      description: |-
         Creates a catalog record for an operating system disk image.
         *(Since Image API v2.0)*
 
@@ -882,7 +875,6 @@ paths:
         Normal response codes: 201
 
         Error response codes: 400, 401, 403, 409, 413, 415
-
       operationId: images:post
       requestBody:
         content:
@@ -908,7 +900,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/images_image_id'
     get:
-      description: |+
+      description: |-
         Shows details for an image.
         *(Since Image API v2.0)*
 
@@ -919,7 +911,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 400, 401, 403, 404
-
       operationId: images/image_id:get
       responses:
         '404':
@@ -934,7 +925,7 @@ paths:
         - images
       summary: Show image
     delete:
-      description: |+
+      description: |-
         (Since Image API v2.0) Deletes an image.
 
         You cannot delete images with the `protected` attribute set to
@@ -947,7 +938,6 @@ paths:
         Normal response codes: 204
 
         Error response codes: 400, 401, 403, 404, 409
-
       operationId: images/image_id:delete
       responses:
         '404':
@@ -958,7 +948,7 @@ paths:
         - images
       summary: Delete image
     patch:
-      description: |+
+      description: |-
         Updates an image.
         *(Since Image API v2.0)*
 
@@ -987,7 +977,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 400, 401, 403, 404, 409, 413, 415
-
       operationId: images/image_id:patch
       requestBody:
         content:
@@ -1010,7 +999,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/images_image_id'
     get:
-      description: |+
+      description: |-
         Shows tasks associated with an image.
         *(Since Image API v2.12)*
 
@@ -1022,7 +1011,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 404
-
       operationId: images/image_id/tasks:get
       responses:
         '404':
@@ -1040,7 +1028,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/images_image_id'
     post:
-      description: |+
+      description: |-
         Signals the Image Service to complete the image import workflow
         by processing data that has been made available to the OpenStack
         image service.
@@ -1110,7 +1098,6 @@ paths:
 
         If the image import process is not enabled in your cloud, this request
         will result in a 404 response code with an appropriate message.
-
       operationId: images/image_id/import:post
       requestBody:
         content:
@@ -1134,14 +1121,13 @@ paths:
       - $ref: '#/components/parameters/stores_store_id'
       - $ref: '#/components/parameters/stores_image_id'
     delete:
-      description: |+
+      description: |-
         This API allows you to delete a copy of the image from a specific store.
         *(Since Image API v2.10)*
 
         Normal response codes: 204
 
         Error response codes: 400, 401, 403, 404, 409
-
       operationId: stores/store_id/image_id:delete
       responses:
         '404':
@@ -1155,7 +1141,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/images_image_id'
     post:
-      description: |+
+      description: |-
         Deactivates an image.
         *(Since Image API v2.3)*
 
@@ -1173,7 +1159,6 @@ paths:
         Normal response codes: 204
 
         Error response codes: 400, 403, 404
-
       operationId: images/image_id/actions/deactivate:post
       requestBody:
         content:
@@ -1196,7 +1181,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/images_image_id'
     post:
-      description: |+
+      description: |-
         Reactivates an image.
         *(Since Image API v2.3)*
 
@@ -1210,7 +1195,6 @@ paths:
         Normal response codes: 204
 
         Error response codes: 400, 403, 404
-
       operationId: images/image_id/actions/reactivate:post
       requestBody:
         content:
@@ -1235,7 +1219,7 @@ paths:
     get:
       parameters:
         - $ref: '#/components/parameters/range'
-      description: |+
+      description: |-
         Downloads binary image data.
         *(Since Image API v2.0)*
 
@@ -1255,7 +1239,6 @@ paths:
         Normal response codes: 200, 204, 206
 
         Error response codes: 400, 403, 404, 416
-
       operationId: images/image_id/file:get
       responses:
         '404':
@@ -1297,7 +1280,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/content-type'
         - $ref: '#/components/parameters/x-image-meta-store'
-      description: |+
+      description: |-
         Uploads binary image data.
         *(Since Image API v2.0)*
 
@@ -1327,7 +1310,6 @@ paths:
         Normal response codes: 204
 
         Error response codes: 400, 401, 403, 404, 409, 410, 413, 415, 503
-
       operationId: images/image_id/file:put
       requestBody:
         content:
@@ -1346,7 +1328,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/images_image_id'
     put:
-      description: |+
+      description: |-
         Places the binary image data in a staging area. It is not stored in
         the storage backend and is not accessible for download until after
         the [Image Import](#image-import-call) call is made.
@@ -1371,7 +1353,6 @@ paths:
 
         If the image import process is not enabled in your cloud, this request
         will result in a 404 response code with an appropriate message.
-
       operationId: images/image_id/stage:put
       requestBody:
         content:
@@ -1425,7 +1406,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/images_image_id'
     get:
-      description: |+
+      description: |-
         Lists the tenants that share this image.
         *(Since Image API v2.1)*
 
@@ -1443,7 +1424,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 400, 401, 403, 404
-
       operationId: images/image_id/members:get
       responses:
         '404':
@@ -1458,7 +1438,7 @@ paths:
         - images
       summary: List image members
     post:
-      description: |+
+      description: |-
         Adds a tenant ID as an image member.
         *(Since Image API v2.1)*
 
@@ -1471,7 +1451,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 400, 401, 403, 404, 409, 413
-
       operationId: images/image_id/members:post
       requestBody:
         content:
@@ -1495,7 +1474,7 @@ paths:
       - $ref: '#/components/parameters/images_image_id'
       - $ref: '#/components/parameters/images_members_member_id'
     get:
-      description: |+
+      description: |-
         Shows image member details.
         *(Since Image API v2.1)*
 
@@ -1506,7 +1485,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 400, 401, 404
-
       operationId: images/image_id/members/member_id:get
       responses:
         '404':
@@ -1521,7 +1499,7 @@ paths:
         - images
       summary: Show image member details
     delete:
-      description: |+
+      description: |-
         Deletes a tenant ID from the member list of an image.
         *(Since Image API v2.1)*
 
@@ -1534,7 +1512,6 @@ paths:
         Normal response codes: 204
 
         Error response codes: 400, 401, 403, 404
-
       operationId: images/image_id/members/member_id:delete
       responses:
         '404':
@@ -1545,7 +1522,7 @@ paths:
         - images
       summary: Delete image member
     put:
-      description: |+
+      description: |-
         Sets the status for an image member.
         *(Since Image API v2.1)*
 
@@ -1565,7 +1542,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 400, 401, 404, 403
-
       operationId: images/image_id/members/member_id:put
       requestBody:
         content:
@@ -1586,13 +1562,12 @@ paths:
       summary: Update image member
   /v2/tasks:
     get:
-      description: |+
+      description: |-
         Lists tasks.
 
         Normal response codes: 200
 
         Error response codes: 403, 404, 413
-
       operationId: tasks:get
       responses:
         '404':
@@ -1607,13 +1582,12 @@ paths:
         - tasks
       summary: List tasks
     post:
-      description: |+
+      description: |-
         Creates a task.
 
         Normal response codes: 201
 
         Error response codes: 401, 413, 415
-
       operationId: tasks:post
       requestBody:
         content:
@@ -1636,13 +1610,12 @@ paths:
     parameters:
       - $ref: '#/components/parameters/tasks_task_id'
     get:
-      description: |+
+      description: |-
         Shows details for a task.
 
         Normal response codes: 200
 
         Error response codes: 404
-
       operationId: tasks/task_id:get
       responses:
         '404':
@@ -1667,7 +1640,7 @@ paths:
         - tasks
   /v2/info/import:
     get:
-      description: |+
+      description: |-
         Returns information concerning the constraints around image import in
         the cloud in which the call is made, for example, supported container
         formats, supported disk formats, maximum image size, etc. This call
@@ -1679,7 +1652,6 @@ paths:
         Normal response codes: 200
 
         Error response codes: 400, 401, 403
-
       operationId: info/import:get
       responses:
         '404':
@@ -1695,18 +1667,17 @@ paths:
       summary: Import methods and values discovery
   /v2/info/stores:
     get:
-      description: |+
+      description: |-
         A multiple store backend support is introduced in the Rocky release
         as a part of the EXPERIMENTAL Image API v2.8.
 
         In version 2.7 of the API, this call will return a 404 (Not Found).
-        Use the [API versions call](../versions/index.html#versions-call) to determine
+        Use the API versions call to determine
         what API versions are available in your cloud.
 
         Normal response codes: 200
 
         Error response codes: 404
-
       operationId: info/stores:get
       responses:
         '404':
@@ -1722,12 +1693,11 @@ paths:
       summary: List stores
   /v2/info/usage:
     get:
-      description: |+
+      description: |-
         The user’s quota and current usage are displayed, if enabled by
         server-side configuration.
 
         Normal response codes: 200
-
       operationId: info/usage:get
       responses:
         '404':
@@ -1743,14 +1713,13 @@ paths:
       summary: Quota usage
   /v2/info/stores/detail:
     get:
-      description: |+
+      description: |-
         Lists all the backend stores, with detail, accessible to admins,
         for non-admin user API will return bad request.
 
         Normal response codes: 200
 
         Error response codes: 403, 404
-
       operationId: info/stores/detail:get
       responses:
         '404':
@@ -1766,14 +1735,13 @@ paths:
       summary: List stores detail
   /v2/cache:
     get:
-      description: |+
+      description: |-
         Lists all images in cache or queue.
         *(Since Image API v2.14)*
 
         Normal response codes: 200
 
         Error response codes: 400, 401, 403
-
       operationId: cache:get
       responses:
         '404':
@@ -1788,14 +1756,13 @@ paths:
         - cache
       summary: Query cache status
     delete:
-      description: |+
+      description: |-
         Clears the cache and its queue.
         *(Since Image API v2.14)*
 
         Normal response codes: 204
 
         Error response codes: 400, 401, 403
-
       operationId: cache:delete
       responses:
         '404':
@@ -1809,14 +1776,13 @@ paths:
     parameters:
       - $ref: '#/components/parameters/cache_image_id'
     delete:
-      description: |+
+      description: |-
         Deletes a image from cache.
         *(Since Image API v2.14)*
 
         Normal response codes: 204
 
         Error response codes: 400, 401, 403, 404
-
       operationId: cache/image_id:delete
       responses:
         '404':
@@ -1827,14 +1793,13 @@ paths:
         - cache
       summary: Delete image from cache
     put:
-      description: |+
+      description: |-
         Queues image for caching.
         *(Since Image API v2.14)*
 
         Normal response codes: 202
 
         Error response codes: 400, 401, 403, 404
-
       operationId: cache/image_id:put
       requestBody:
         content:
@@ -2257,7 +2222,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -2295,7 +2260,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -2353,7 +2318,7 @@ components:
                         - number
                         - object
                         - string
-                        - 
+                        -
                     required:
                       type: array
                       items:
@@ -2391,7 +2356,7 @@ components:
                             - number
                             - object
                             - string
-                            - 
+                            -
                         enum:
                           type: array
                     maxItems:
@@ -2507,7 +2472,7 @@ components:
                         - number
                         - object
                         - string
-                        - 
+                        -
                     required:
                       type: array
                       items:
@@ -2545,7 +2510,7 @@ components:
                             - number
                             - object
                             - string
-                            - 
+                            -
                         enum:
                           type: array
                     maxItems:
@@ -2603,7 +2568,7 @@ components:
                               - number
                               - object
                               - string
-                              - 
+                              -
                           required:
                             type: array
                             items:
@@ -2641,7 +2606,7 @@ components:
                                   - number
                                   - object
                                   - string
-                                  - 
+                                  -
                               enum:
                                 type: array
                           maxItems:
@@ -2764,7 +2729,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -2802,7 +2767,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -2860,7 +2825,7 @@ components:
                         - number
                         - object
                         - string
-                        - 
+                        -
                     required:
                       type: array
                       items:
@@ -2898,7 +2863,7 @@ components:
                             - number
                             - object
                             - string
-                            - 
+                            -
                         enum:
                           type: array
                     maxItems:
@@ -3008,7 +2973,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -3046,7 +3011,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -3104,7 +3069,7 @@ components:
                         - number
                         - object
                         - string
-                        - 
+                        -
                     required:
                       type: array
                       items:
@@ -3142,7 +3107,7 @@ components:
                             - number
                             - object
                             - string
-                            - 
+                            -
                         enum:
                           type: array
                     maxItems:
@@ -3252,7 +3217,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -3290,7 +3255,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -3348,7 +3313,7 @@ components:
                         - number
                         - object
                         - string
-                        - 
+                        -
                     required:
                       type: array
                       items:
@@ -3386,7 +3351,7 @@ components:
                             - number
                             - object
                             - string
-                            - 
+                            -
                         enum:
                           type: array
                     maxItems:
@@ -3496,7 +3461,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -3534,7 +3499,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -3592,7 +3557,7 @@ components:
                         - number
                         - object
                         - string
-                        - 
+                        -
                     required:
                       type: array
                       items:
@@ -3630,7 +3595,7 @@ components:
                             - number
                             - object
                             - string
-                            - 
+                            -
                         enum:
                           type: array
                     maxItems:
@@ -3740,7 +3705,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -3778,7 +3743,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -3836,7 +3801,7 @@ components:
                         - number
                         - object
                         - string
-                        - 
+                        -
                     required:
                       type: array
                       items:
@@ -3874,7 +3839,7 @@ components:
                             - number
                             - object
                             - string
-                            - 
+                            -
                         enum:
                           type: array
                     maxItems:
@@ -3984,7 +3949,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -4022,7 +3987,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -4080,7 +4045,7 @@ components:
                         - number
                         - object
                         - string
-                        - 
+                        -
                     required:
                       type: array
                       items:
@@ -4118,7 +4083,7 @@ components:
                             - number
                             - object
                             - string
-                            - 
+                            -
                         enum:
                           type: array
                     maxItems:
@@ -4228,7 +4193,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -4266,7 +4231,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -4324,7 +4289,7 @@ components:
                         - number
                         - object
                         - string
-                        - 
+                        -
                     required:
                       type: array
                       items:
@@ -4362,7 +4327,7 @@ components:
                             - number
                             - object
                             - string
-                            - 
+                            -
                         enum:
                           type: array
                     maxItems:
@@ -4412,7 +4377,7 @@ components:
             - number
             - object
             - string
-            - 
+            -
         required:
           type: array
           items:
@@ -4451,7 +4416,7 @@ components:
                 - number
                 - object
                 - string
-                - 
+                -
             enum:
               type: array
         maxItems:
@@ -4501,7 +4466,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -4540,7 +4505,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -4597,7 +4562,7 @@ components:
             - number
             - object
             - string
-            - 
+            -
         required:
           type: array
           items:
@@ -4636,7 +4601,7 @@ components:
                 - number
                 - object
                 - string
-                - 
+                -
             enum:
               type: array
         maxItems:
@@ -4681,7 +4646,7 @@ components:
             - number
             - object
             - string
-            - 
+            -
         required:
           type: array
           items:
@@ -4720,7 +4685,7 @@ components:
                 - number
                 - object
                 - string
-                - 
+                -
             enum:
               type: array
         maxItems:
@@ -4825,7 +4790,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -4863,7 +4828,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -4921,7 +4886,7 @@ components:
                         - number
                         - object
                         - string
-                        - 
+                        -
                     required:
                       type: array
                       items:
@@ -4959,7 +4924,7 @@ components:
                             - number
                             - object
                             - string
-                            - 
+                            -
                         enum:
                           type: array
                     maxItems:
@@ -5009,7 +4974,7 @@ components:
             - number
             - object
             - string
-            - 
+            -
         required:
           type: array
           items:
@@ -5048,7 +5013,7 @@ components:
                 - number
                 - object
                 - string
-                - 
+                -
             enum:
               type: array
         maxItems:
@@ -5093,7 +5058,7 @@ components:
             - number
             - object
             - string
-            - 
+            -
         required:
           type: array
           items:
@@ -5132,7 +5097,7 @@ components:
                 - number
                 - object
                 - string
-                - 
+                -
             enum:
               type: array
         maxItems:
@@ -5177,7 +5142,7 @@ components:
             - number
             - object
             - string
-            - 
+            -
         required:
           type: array
           items:
@@ -5216,7 +5181,7 @@ components:
                 - number
                 - object
                 - string
-                - 
+                -
             enum:
               type: array
         maxItems:
@@ -5261,7 +5226,7 @@ components:
             - number
             - object
             - string
-            - 
+            -
         required:
           type: array
           items:
@@ -5300,7 +5265,7 @@ components:
                 - number
                 - object
                 - string
-                - 
+                -
             enum:
               type: array
         maxItems:
@@ -5345,7 +5310,7 @@ components:
             - number
             - object
             - string
-            - 
+            -
         required:
           type: array
           items:
@@ -5384,7 +5349,7 @@ components:
                 - number
                 - object
                 - string
-                - 
+                -
             enum:
               type: array
         maxItems:
@@ -5447,7 +5412,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -5485,7 +5450,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -5567,7 +5532,7 @@ components:
                         - number
                         - object
                         - string
-                        - 
+                        -
                     required:
                       type: array
                       items:
@@ -5605,7 +5570,7 @@ components:
                             - number
                             - object
                             - string
-                            - 
+                            -
                         enum:
                           type: array
                     maxItems:
@@ -5695,7 +5660,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -5733,7 +5698,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -5810,7 +5775,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -5848,7 +5813,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -5967,7 +5932,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -6005,7 +5970,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -6063,7 +6028,7 @@ components:
                         - number
                         - object
                         - string
-                        - 
+                        -
                     required:
                       type: array
                       items:
@@ -6101,7 +6066,7 @@ components:
                             - number
                             - object
                             - string
-                            - 
+                            -
                         enum:
                           type: array
                     maxItems:
@@ -6169,7 +6134,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -6207,7 +6172,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -6284,7 +6249,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -6322,7 +6287,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -6399,7 +6364,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -6437,7 +6402,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -6514,7 +6479,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -6552,7 +6517,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -6629,7 +6594,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -6667,7 +6632,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -6884,7 +6849,7 @@ components:
                   - number
                   - object
                   - string
-                  - 
+                  -
               required:
                 type: array
                 items:
@@ -6922,7 +6887,7 @@ components:
                       - number
                       - object
                       - string
-                      - 
+                      -
                   enum:
                     type: array
               maxItems:
@@ -6980,7 +6945,7 @@ components:
                         - number
                         - object
                         - string
-                        - 
+                        -
                     required:
                       type: array
                       items:
@@ -7018,7 +6983,7 @@ components:
                             - number
                             - object
                             - string
-                            - 
+                            -
                         enum:
                           type: array
                     maxItems:
@@ -7191,7 +7156,7 @@ components:
         id:
           type: string
           description: An identifier for the image
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
         name:
           type:
@@ -7273,7 +7238,7 @@ components:
             - string
           description: Format of the container
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -7288,7 +7253,7 @@ components:
             - string
           description: Format of the disk
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -7397,7 +7362,7 @@ components:
               id:
                 type: string
                 description: An identifier for the image
-                pattern: 
+                pattern:
                   ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
               name:
                 type:
@@ -7482,7 +7447,7 @@ components:
                   - string
                 description: Format of the container
                 enum:
-                  - 
+                  -
                   - ami
                   - ari
                   - aki
@@ -7497,7 +7462,7 @@ components:
                   - string
                 description: Format of the disk
                 enum:
-                  - 
+                  -
                   - ami
                   - ari
                   - aki
@@ -7596,9 +7561,8 @@ components:
                 href: '{file}'
               - rel: describedby
                 href: '{schema}'
-          description: |+
+          description: |-
             A list of *image* objects, as described by the [Images Schema](#images-schema).
-
         first:
           type: string
         next:
@@ -7618,7 +7582,7 @@ components:
       properties:
         id:
           type: string
-          description: |+
+          description: |-
             A unique, user-defined image UUID, in the format:
 
 
@@ -7645,16 +7609,14 @@ components:
             If you omit this value, the API generates a UUID for the image. If you
             specify a value that has already been assigned, the request fails with
             a `409` response code.
-
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
         name:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             The name of the image.
-
           maxLength: 255
         status:
           type: string
@@ -7672,7 +7634,7 @@ components:
             - deactivated
         visibility:
           type: string
-          description: |+
+          description: |-
             Visibility for this image. Valid value is one of: `public`, `private`,
             `shared`, or `community`.
             At most sites, only an administrator can make an image `public`.
@@ -7680,7 +7642,6 @@ components:
             Some sites may restrict what users can perform member operations on
             a `shared` image.
             *Since the Image API v2.5, the default value is ``shared``.*
-
           enum:
             - community
             - public
@@ -7688,10 +7649,9 @@ components:
             - shared
         protected:
           type: boolean
-          description: |+
+          description: |-
             Image protection for deletion. Valid value is `true` or `false`.
             Default is `false`.
-
         os_hidden:
           type: boolean
           description: If true, image will not appear in default image list response.
@@ -7739,7 +7699,7 @@ components:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             Format of the image container.
 
 
@@ -7753,11 +7713,8 @@ components:
 
 
             The value might be `null` (JSON null data type).
-
-
-
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -7770,7 +7727,7 @@ components:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             The format of the disk.
 
 
@@ -7788,15 +7745,12 @@ components:
 
 
             **Newton changes**: The `vhdx` disk format is a supported
-            value.  
+            value.
 
             **Ocata changes**: The `ploop` disk format is a supported
             value.
-
-
-
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -7818,10 +7772,9 @@ components:
           description: Date and time of the last image modification
         tags:
           type: array
-          description: |+
+          description: |-
             List of tags for this image. Each tag is a string of at most 255 chars.
             The maximum number of tags allowed on an image is set by the operator.
-
           items:
             type: string
             maxLength: 255
@@ -7831,14 +7784,12 @@ components:
           description: URL to access the image file kept in external store
         min_ram:
           type: integer
-          description: |+
+          description: |-
             Amount of RAM in MB that is required to boot the image.
-
         min_disk:
           type: integer
-          description: |+
+          description: |-
             Amount of disk space in GB that is required to boot the image.
-
         self:
           type: string
           readOnly: true
@@ -7906,7 +7857,7 @@ components:
       properties:
         id:
           type: string
-          description: |+
+          description: |-
             A unique, user-defined image UUID, in the format:
 
 
@@ -7931,23 +7882,20 @@ components:
 
 
             If you omit this value, the API generates a UUID for the image.
-
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
         name:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             The name of the image. Value might be `null` (JSON null data type).
-
           maxLength: 255
         status:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The image status.
-
           enum:
             - queued
             - saving
@@ -7960,9 +7908,8 @@ components:
             - deactivated
         visibility:
           type: string
-          description: |+
+          description: |-
             Image visibility, that is, the access permission for the image.
-
           enum:
             - community
             - public
@@ -7970,12 +7917,11 @@ components:
             - shared
         protected:
           type: boolean
-          description: |+
+          description: |-
             A boolean value that must be `false` or the image cannot be deleted.
-
         os_hidden:
           type: boolean
-          description: |+
+          description: |-
             This field controls whether an image is displayed in the default
             image-list response. A “hidden” image is out of date somehow (for
             example, it may not have the latest updates applied) and hence should
@@ -7983,80 +7929,73 @@ components:
             needed for server rebuilds. By hiding it from the default image list,
             it’s easier for end users to find and use a more up-to-date version of
             this image. *(Since Image API v2.7)*
-
         checksum:
           type:
             - 'null'
             - string
           readOnly: true
-          description: |+
+          description: |-
             An MD5 hash over the image data. The value might be `null` (JSON null data type),
-            as this field is no longer populated by the Image Service beginning with the 
+            as this field is no longer populated by the Image Service beginning with the
             Victoria release. It remains present for backward compatibility with legacy
-            images. To validate image data, instead use the secure multihash fields 
+            images. To validate image data, instead use the secure multihash fields
             `os_hash_algo` and `os_hash_value`.
-
           maxLength: 32
         os_hash_algo:
           type:
             - 'null'
             - string
           readOnly: true
-          description: |+
+          description: |-
             The algorithm used to compute a secure hash of the image data for this
             image. The result of the computation is displayed as the value of the
             `os_hash_value` property. The value might be `null` (JSON null
             data type). The algorithm used is chosen by the cloud operator; it
             may not be configured by end users. *(Since Image API v2.7)*
-
           maxLength: 64
         os_hash_value:
           type:
             - 'null'
             - string
           readOnly: true
-          description: |+
+          description: |-
             The hexdigest of the secure hash of the image data computed using the
             algorithm whose name is the value of the `os_hash_algo` property.
             The value might be `null` (JSON null data type) if data has not
             yet been associated with this image, or if the image was created using
             a version of the Image Service API prior to version 2.7.
             *(Since Image API v2.7)*
-
           maxLength: 128
         owner:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             An identifier for the owner of the image, usually the project (also
             called the “tenant”) ID.
             The value might be `null` (JSON null data type).
-
           maxLength: 255
         size:
           type:
             - 'null'
             - integer
           readOnly: true
-          description: |+
+          description: |-
             The size of the image data, in bytes. The value
             might be `null` (JSON null data type).
-
         virtual_size:
           type:
             - 'null'
             - integer
           readOnly: true
-          description: |+
+          description: |-
             The virtual size of the image. The value might
             be `null` (JSON null data type).
-
         container_format:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             Format of the image container.
 
 
@@ -8070,11 +8009,8 @@ components:
 
 
             The value might be `null` (JSON null data type).
-
-
-
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -8087,7 +8023,7 @@ components:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             The format of the disk.
 
 
@@ -8105,15 +8041,12 @@ components:
 
 
             **Newton changes**: The `vhdx` disk format is a supported
-            value.  
+            value.
 
             **Ocata changes**: The `ploop` disk format is a supported
             value.
-
-
-
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -8128,7 +8061,7 @@ components:
         created_at:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The date and time when the resource was created.
 
 
@@ -8147,11 +8080,10 @@ components:
 
             The `±hh:mm` value, if included, is the time zone as an offset
             from UTC.
-
         updated_at:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The date and time when the resource was updated.
 
 
@@ -8174,48 +8106,41 @@ components:
 
             If the `updated_at` date and time stamp is not set, its value is
             `null`.
-
         tags:
           type: array
-          description: |+
+          description: |-
             List of tags for this image, possibly an empty list.
-
           items:
             type: string
             maxLength: 255
         direct_url:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The URL to access the image file kept in external store. *It is present
             only if the* `show_image_direct_url` *option is* `true` *in the Image
             service’s configuration file.* **Because it presents a security risk, this
             option is disabled by default.**
-
         min_ram:
           type: integer
-          description: |+
+          description: |-
             Amount of RAM in MB that is required to boot the image.
             The value might be `null` (JSON null data type).
-
         min_disk:
           type: integer
-          description: |+
+          description: |-
             Amount of disk space in GB that is required to boot the image.
             The value might be `null` (JSON null data type).
-
         self:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The URL for the virtual machine image.
-
         file:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The URL for the virtual machine image file.
-
         stores:
           type: string
           readOnly: true
@@ -8224,9 +8149,8 @@ components:
         schema:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The URL for the schema describing a virtual machine image.
-
         locations:
           type: array
           items:
@@ -8261,7 +8185,7 @@ components:
             required:
               - url
               - metadata
-          description: |+
+          description: |-
             A list of objects, each of which describes an image location. Each object
             contains a `url` key, whose value is a URL specifying a location, and a
             `metadata` key, whose value is a dict of key:value pairs containing
@@ -8270,7 +8194,6 @@ components:
             *option is set to* `true` *in the Image service’s configuration file.*
             **Because it presents a security risk, this option is disabled by
             default.**
-
       additionalProperties:
         type: string
       name: image
@@ -8289,7 +8212,7 @@ components:
       properties:
         id:
           type: string
-          description: |+
+          description: |-
             A unique, user-defined image UUID, in the format:
 
 
@@ -8314,23 +8237,20 @@ components:
 
 
             If you omit this value, the API generates a UUID for the image.
-
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
         name:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             The name of the image. Value might be `null` (JSON null data type).
-
           maxLength: 255
         status:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The image status.
-
           enum:
             - queued
             - saving
@@ -8343,9 +8263,8 @@ components:
             - deactivated
         visibility:
           type: string
-          description: |+
+          description: |-
             Image visibility, that is, the access permission for the image.
-
           enum:
             - community
             - public
@@ -8353,12 +8272,11 @@ components:
             - shared
         protected:
           type: boolean
-          description: |+
+          description: |-
             A boolean value that must be `false` or the image cannot be deleted.
-
         os_hidden:
           type: boolean
-          description: |+
+          description: |-
             This field controls whether an image is displayed in the default
             image-list response. A “hidden” image is out of date somehow (for
             example, it may not have the latest updates applied) and hence should
@@ -8366,66 +8284,60 @@ components:
             needed for server rebuilds. By hiding it from the default image list,
             it’s easier for end users to find and use a more up-to-date version of
             this image. *(Since Image API v2.7)*
-
         checksum:
           type:
             - 'null'
             - string
           readOnly: true
-          description: |+
+          description: |-
             An MD5 hash over the image data. The value might be `null` (JSON null data type),
-            as this field is no longer populated by the Image Service beginning with the 
+            as this field is no longer populated by the Image Service beginning with the
             Victoria release. It remains present for backward compatibility with legacy
-            images. To validate image data, instead use the secure multihash fields 
+            images. To validate image data, instead use the secure multihash fields
             `os_hash_algo` and `os_hash_value`.
-
           maxLength: 32
         os_hash_algo:
           type:
             - 'null'
             - string
           readOnly: true
-          description: |+
+          description: |-
             The algorithm used to compute a secure hash of the image data for this
             image. The result of the computation is displayed as the value of the
             `os_hash_value` property. The value might be `null` (JSON null
             data type). The algorithm used is chosen by the cloud operator; it
             may not be configured by end users. *(Since Image API v2.7)*
-
           maxLength: 64
         os_hash_value:
           type:
             - 'null'
             - string
           readOnly: true
-          description: |+
+          description: |-
             The hexdigest of the secure hash of the image data computed using the
             algorithm whose name is the value of the `os_hash_algo` property.
             The value might be `null` (JSON null data type) if data has not
             yet been associated with this image, or if the image was created using
             a version of the Image Service API prior to version 2.7.
             *(Since Image API v2.7)*
-
           maxLength: 128
         owner:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             An identifier for the owner of the image, usually the project (also
             called the “tenant”) ID.
             The value might be `null` (JSON null data type).
-
           maxLength: 255
         size:
           type:
             - 'null'
             - integer
           readOnly: true
-          description: |+
+          description: |-
             The size of the image data, in bytes. The value
             might be `null` (JSON null data type).
-
         virtual_size:
           type:
             - 'null'
@@ -8436,7 +8348,7 @@ components:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             Format of the image container.
 
 
@@ -8450,11 +8362,8 @@ components:
 
 
             The value might be `null` (JSON null data type).
-
-
-
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -8467,7 +8376,7 @@ components:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             The format of the disk.
 
 
@@ -8485,15 +8394,12 @@ components:
 
 
             **Newton changes**: The `vhdx` disk format is a supported
-            value.  
+            value.
 
             **Ocata changes**: The `ploop` disk format is a supported
             value.
-
-
-
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -8508,7 +8414,7 @@ components:
         created_at:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The date and time when the resource was created.
 
 
@@ -8527,11 +8433,10 @@ components:
 
             The `±hh:mm` value, if included, is the time zone as an offset
             from UTC.
-
         updated_at:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The date and time when the resource was updated.
 
 
@@ -8554,48 +8459,41 @@ components:
 
             If the `updated_at` date and time stamp is not set, its value is
             `null`.
-
         tags:
           type: array
-          description: |+
+          description: |-
             List of tags for this image, possibly an empty list.
-
           items:
             type: string
             maxLength: 255
         direct_url:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The URL to access the image file kept in external store. *It is present
             only if the* `show_image_direct_url` *option is* `true` *in the Image
             service’s configuration file.* **Because it presents a security risk, this
             option is disabled by default.**
-
         min_ram:
           type: integer
-          description: |+
+          description: |-
             Amount of RAM in MB that is required to boot the image.
             The value might be `null` (JSON null data type).
-
         min_disk:
           type: integer
-          description: |+
+          description: |-
             Amount of disk space in GB that is required to boot the image.
             The value might be `null` (JSON null data type).
-
         self:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The URL for the virtual machine image.
-
         file:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The URL for the virtual machine image file.
-
         stores:
           type: string
           readOnly: true
@@ -8604,9 +8502,8 @@ components:
         schema:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The URL for the schema describing a virtual machine image.
-
         locations:
           type: array
           items:
@@ -8641,7 +8538,7 @@ components:
             required:
               - url
               - metadata
-          description: |+
+          description: |-
             A list of objects, each of which describes an image location. Each object
             contains a `url` key, whose value is a URL specifying a location, and a
             `metadata` key, whose value is a dict of key:value pairs containing
@@ -8650,7 +8547,6 @@ components:
             *option is set to* `true` *in the Image service’s configuration file.*
             **Because it presents a security risk, this option is disabled by
             default.**
-
       additionalProperties:
         type: string
       name: image
@@ -8667,7 +8563,7 @@ components:
         id:
           type: string
           description: An identifier for the image
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
         name:
           type:
@@ -8749,7 +8645,7 @@ components:
             - string
           description: Format of the container
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -8764,7 +8660,7 @@ components:
             - string
           description: Format of the disk
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -8867,7 +8763,7 @@ components:
       properties:
         id:
           type: string
-          description: |+
+          description: |-
             A unique, user-defined image UUID, in the format:
 
 
@@ -8892,23 +8788,20 @@ components:
 
 
             If you omit this value, the API generates a UUID for the image.
-
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
         name:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             The name of the image. Value might be `null` (JSON null data type).
-
           maxLength: 255
         status:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The image status.
-
           enum:
             - queued
             - saving
@@ -8921,9 +8814,8 @@ components:
             - deactivated
         visibility:
           type: string
-          description: |+
+          description: |-
             Image visibility, that is, the access permission for the image.
-
           enum:
             - community
             - public
@@ -8931,12 +8823,11 @@ components:
             - shared
         protected:
           type: boolean
-          description: |+
+          description: |-
             A boolean value that must be `false` or the image cannot be deleted.
-
         os_hidden:
           type: boolean
-          description: |+
+          description: |-
             This field controls whether an image is displayed in the default
             image-list response. A “hidden” image is out of date somehow (for
             example, it may not have the latest updates applied) and hence should
@@ -8944,82 +8835,75 @@ components:
             needed for server rebuilds. By hiding it from the default image list,
             it’s easier for end users to find and use a more up-to-date version of
             this image. *(Since Image API v2.7)*
-
         checksum:
           type:
             - 'null'
             - string
           readOnly: true
-          description: |+
+          description: |-
             An MD5 hash over the image data. The value might be `null` (JSON null data type),
-            as this field is no longer populated by the Image Service beginning with the 
+            as this field is no longer populated by the Image Service beginning with the
             Victoria release. It remains present for backward compatibility with legacy
-            images. To validate image data, instead use the secure multihash fields 
+            images. To validate image data, instead use the secure multihash fields
             `os_hash_algo` and `os_hash_value`.
-
           maxLength: 32
         os_hash_algo:
           type:
             - 'null'
             - string
           readOnly: true
-          description: |+
+          description: |-
             The algorithm used to compute a secure hash of the image data for this
             image. The result of the computation is displayed as the value of the
             `os_hash_value` property. The value might be `null` (JSON null
             data type). The algorithm used is chosen by the cloud operator; it
             may not be configured by end users. *(Since Image API v2.7)*
-
           maxLength: 64
         os_hash_value:
           type:
             - 'null'
             - string
           readOnly: true
-          description: |+
+          description: |-
             The hexdigest of the secure hash of the image data computed using the
             algorithm whose name is the value of the `os_hash_algo` property.
             The value might be `null` (JSON null data type) if data has not
             yet been associated with this image, or if the image was created using
             a version of the Image Service API prior to version 2.7.
             *(Since Image API v2.7)*
-
           maxLength: 128
         owner:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             An identifier for the owner of the image, usually the project (also
             called the “tenant”) ID.
             The value might be `null` (JSON null data type).
-
           maxLength: 255
         size:
           type:
             - 'null'
             - integer
           readOnly: true
-          description: |+
+          description: |-
             The size of the image data, in bytes. The value
             might be `null` (JSON null data type).
-
           format: int64
         virtual_size:
           type:
             - 'null'
             - integer
           readOnly: true
-          description: |+
+          description: |-
             The virtual size of the image. The value might
             be `null` (JSON null data type).
-
           format: int64
         container_format:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             Format of the image container.
 
 
@@ -9033,11 +8917,8 @@ components:
 
 
             The value might be `null` (JSON null data type).
-
-
-
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -9050,7 +8931,7 @@ components:
           type:
             - 'null'
             - string
-          description: |+
+          description: |-
             The format of the disk.
 
 
@@ -9068,15 +8949,12 @@ components:
 
 
             **Newton changes**: The `vhdx` disk format is a supported
-            value.  
+            value.
 
             **Ocata changes**: The `ploop` disk format is a supported
             value.
-
-
-
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -9091,7 +8969,7 @@ components:
         created_at:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The date and time when the resource was created.
 
 
@@ -9110,11 +8988,10 @@ components:
 
             The `±hh:mm` value, if included, is the time zone as an offset
             from UTC.
-
         updated_at:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The date and time when the resource was updated.
 
 
@@ -9137,48 +9014,41 @@ components:
 
             If the `updated_at` date and time stamp is not set, its value is
             `null`.
-
         tags:
           type: array
-          description: |+
+          description: |-
             List of tags for this image, possibly an empty list.
-
           items:
             type: string
             maxLength: 255
         direct_url:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The URL to access the image file kept in external store. *It is present
             only if the* `show_image_direct_url` *option is* `true` *in the Image
             service’s configuration file.* **Because it presents a security risk, this
             option is disabled by default.**
-
         min_ram:
           type: integer
-          description: |+
+          description: |-
             Amount of RAM in MB that is required to boot the image.
             The value might be `null` (JSON null data type).
-
         min_disk:
           type: integer
-          description: |+
+          description: |-
             Amount of disk space in GB that is required to boot the image.
             The value might be `null` (JSON null data type).
-
         self:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The URL for the virtual machine image.
-
         file:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The URL for the virtual machine image file.
-
         stores:
           type: string
           readOnly: true
@@ -9187,9 +9057,8 @@ components:
         schema:
           type: string
           readOnly: true
-          description: |+
+          description: |-
             The URL for the schema describing a virtual machine image.
-
         locations:
           type: array
           items:
@@ -9224,7 +9093,7 @@ components:
             required:
               - url
               - metadata
-          description: |+
+          description: |-
             A list of objects, each of which describes an image location. Each object
             contains a `url` key, whose value is a URL specifying a location, and a
             `metadata` key, whose value is a dict of key:value pairs containing
@@ -9233,7 +9102,6 @@ components:
             *option is set to* `true` *in the Image service’s configuration file.*
             **Because it presents a security risk, this option is disabled by
             default.**
-
       additionalProperties:
         type: string
       name: image
@@ -9250,7 +9118,7 @@ components:
         id:
           type: string
           description: An identifier for the image
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
         name:
           type:
@@ -9332,7 +9200,7 @@ components:
             - string
           description: Format of the container
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -9347,7 +9215,7 @@ components:
             - string
           description: Format of the disk
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -9455,7 +9323,7 @@ components:
             properties:
               id:
                 description: An identifier for the task
-                pattern: 
+                pattern:
                   ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
                 type: string
               type:
@@ -9516,9 +9384,8 @@ components:
                 readOnly: true
                 type: string
             additionalProperties: false
-          description: |+
+          description: |-
             A list of *task* objects, associated with the given image.
-
         first:
           type: string
         next:
@@ -9539,7 +9406,7 @@ components:
         id:
           type: string
           description: An identifier for the image
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
         name:
           type:
@@ -9621,7 +9488,7 @@ components:
             - string
           description: Format of the container
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -9636,7 +9503,7 @@ components:
             - string
           description: Format of the disk
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -9750,29 +9617,26 @@ components:
               type: string
             glance_service_interface:
               type: string
-          description: |+
+          description: |-
             A JSON object indicating what import method you wish to use to import
             your image. The content of this JSON object is another JSON object
             with a `name` field whose value is the identifier for the import
             method.
-
         stores:
           type: array
           items:
             type: string
-          description: |+
+          description: |-
             If present contains the list of store id to import the image binary data
             to.
-
         all_stores:
           type: boolean
-          description: |+
+          description: |-
             When set to True the data will be imported to the set of stores you may
             consume from this particular deployment of Glance (ie: the same set of
             stores returned to a call to /v2/info/stores on the glance-api the request
             hits).
             This can’t be used simultaneously with the `stores` parameter.
-
         all_stores_must_success:
           type: boolean
     ImagesImportImport_ImageResponse: {}
@@ -9782,7 +9646,7 @@ components:
         id:
           type: string
           description: An identifier for the image
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
         name:
           type:
@@ -9864,7 +9728,7 @@ components:
             - string
           description: Format of the container
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -9879,7 +9743,7 @@ components:
             - string
           description: Format of the disk
           enum:
-            - 
+            -
             - ami
             - ari
             - aki
@@ -10021,7 +9885,7 @@ components:
               image_id:
                 type: string
                 description: An identifier for the image
-                pattern: 
+                pattern:
                   ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
               created_at:
                 type: string
@@ -10040,10 +9904,9 @@ components:
                 readOnly: true
                 type: string
             additionalProperties: false
-          description: |+
+          description: |-
             A list of *member* objects, as described by the [Image Members Schema](#image-members-schema). Each *member* object describes a member with whom
             this image is being shared.
-
         first:
           type: string
         next:
@@ -10066,20 +9929,18 @@ components:
       properties:
         member_id:
           type: string
-          description: |+
+          description: |-
             The ID of the image member. An image member is usually a project (also
             called the “tenant”) with whom the image is shared.
-
         image_id:
           type: string
-          description: |+
+          description: |-
             The UUID of the image.
-
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
         created_at:
           type: string
-          description: |+
+          description: |-
             The date and time when the resource was created.
 
 
@@ -10098,10 +9959,9 @@ components:
 
             The `±hh:mm` value, if included, is the time zone as an offset
             from UTC.
-
         updated_at:
           type: string
-          description: |+
+          description: |-
             The date and time when the resource was updated.
 
 
@@ -10124,13 +9984,11 @@ components:
 
             If the `updated_at` date and time stamp is not set, its value is
             `null`.
-
         status:
           type: string
-          description: |+
+          description: |-
             The status of this image member. Value is one of `pending`,
             `accepted`, `rejected`.
-
           enum:
             - pending
             - accepted
@@ -10138,9 +9996,8 @@ components:
         schema:
           readOnly: true
           type: string
-          description: |+
+          description: |-
             The URL for the schema describing an image member.
-
       additionalProperties: false
       name: member
     ImagesMemberShowResponse:
@@ -10148,20 +10005,18 @@ components:
       properties:
         member_id:
           type: string
-          description: |+
+          description: |-
             The ID of the image member. An image member is usually a project (also
             called the “tenant”) with whom the image is shared.
-
         image_id:
           type: string
-          description: |+
+          description: |-
             The UUID of the image.
-
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
         created_at:
           type: string
-          description: |+
+          description: |-
             The date and time when the resource was created.
 
 
@@ -10180,10 +10035,9 @@ components:
 
             The `±hh:mm` value, if included, is the time zone as an offset
             from UTC.
-
         updated_at:
           type: string
-          description: |+
+          description: |-
             The date and time when the resource was updated.
 
 
@@ -10206,13 +10060,11 @@ components:
 
             If the `updated_at` date and time stamp is not set, its value is
             `null`.
-
         status:
           type: string
-          description: |+
+          description: |-
             The status of this image member. Value is one of `pending`,
             `accepted`, `rejected`.
-
           enum:
             - pending
             - accepted
@@ -10220,9 +10072,8 @@ components:
         schema:
           readOnly: true
           type: string
-          description: |+
+          description: |-
             The URL for the schema describing an image member.
-
       additionalProperties: false
       name: member
     ImagesMemberUpdateRequest:
@@ -10233,20 +10084,18 @@ components:
       properties:
         member_id:
           type: string
-          description: |+
+          description: |-
             The ID of the image member. An image member is usually a project (also
             called the “tenant”) with whom the image is shared.
-
         image_id:
           type: string
-          description: |+
+          description: |-
             The UUID of the image.
-
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
         created_at:
           type: string
-          description: |+
+          description: |-
             The date and time when the resource was created.
 
 
@@ -10265,10 +10114,9 @@ components:
 
             The `±hh:mm` value, if included, is the time zone as an offset
             from UTC.
-
         updated_at:
           type: string
-          description: |+
+          description: |-
             The date and time when the resource was updated.
 
 
@@ -10291,13 +10139,11 @@ components:
 
             If the `updated_at` date and time stamp is not set, its value is
             `null`.
-
         status:
           type: string
-          description: |+
+          description: |-
             The status of this image member. Value is one of `pending`,
             `accepted`, `rejected`.
-
           enum:
             - pending
             - accepted
@@ -10305,9 +10151,8 @@ components:
         schema:
           readOnly: true
           type: string
-          description: |+
+          description: |-
             The URL for the schema describing an image member.
-
       additionalProperties: false
       name: member
     TasksCreateRequest:
@@ -10315,13 +10160,12 @@ components:
       properties:
         id:
           description: An identifier for the task
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
           type: string
         type:
-          description: |+
+          description: |-
             The type of task represented by this content.
-
           enum:
             - import
             - api_image_import
@@ -10335,10 +10179,9 @@ components:
             - failure
           type: string
         input:
-          description: |+
+          description: |-
             A JSON object specifying the input parameters to the task. Consult your
             cloud provider’s documentation for details.
-
           type:
             - 'null'
             - object
@@ -10386,25 +10229,22 @@ components:
       type: object
       properties:
         id:
-          description: |+
+          description: |-
             The UUID of the task.
-
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
           type: string
         type:
-          description: |+
+          description: |-
             The type of task represented by this content.
-
           enum:
             - import
             - api_image_import
           type: string
         status:
-          description: |+
+          description: |-
             The current status of this task. The value can be `pending`,
             `processing`, `success` or `failure`.
-
           enum:
             - pending
             - processing
@@ -10412,31 +10252,27 @@ components:
             - failure
           type: string
         input:
-          description: |+
+          description: |-
             A JSON object specifying the input parameters to the task. Consult your
             cloud provider’s documentation for details.
-
           type:
             - 'null'
             - object
         result:
-          description: |+
+          description: |-
             A JSON object specifying information about the ultimate outcome of the
             task. Consult your cloud provider’s documentation for details.
-
           type:
             - 'null'
             - object
         owner:
-          description: |+
+          description: |-
             An identifier for the owner of the task, usually the tenant ID.
-
           type: string
         message:
-          description: |+
+          description: |-
             Human-readable text, possibly an empty string, usually displayed in an
             error situation to provide more information about what has occurred.
-
           type: string
         image_id:
           description: Image associated with the task
@@ -10453,15 +10289,14 @@ components:
             - 'null'
             - string
         created_at:
-          description: |+
+          description: |-
             The date and time when the task was created.
 
 
             The date and time stamp format is [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
-
           type: string
         updated_at:
-          description: |+
+          description: |-
             The date and time when the task was updated.
 
 
@@ -10470,20 +10305,17 @@ components:
 
             If the `updated_at` date and time stamp is not set, its value is
             `null`.
-
           type: string
         self:
           readOnly: true
           type: string
-          description: |+
+          description: |-
             A URI for this task.
-
         schema:
           readOnly: true
           type: string
-          description: |+
+          description: |-
             The URI for the schema describing an image task.
-
       additionalProperties: false
       name: task
     TasksIndexRequest:
@@ -10491,7 +10323,7 @@ components:
       properties:
         id:
           description: An identifier for the task
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
           type: string
         type:
@@ -10558,9 +10390,8 @@ components:
       properties:
         schema:
           type: string
-          description: |+
+          description: |-
             The URI for the schema describing an image task list.
-
         tasks:
           type: array
           items:
@@ -10568,7 +10399,7 @@ components:
             properties:
               id:
                 description: An identifier for the task
-                pattern: 
+                pattern:
                   ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
                 type: string
               type:
@@ -10628,7 +10459,7 @@ components:
               schema:
                 readOnly: true
                 type: string
-          description: |
+          description: |-
             A list of sparse *task* objects. Each object contains the following
             fields:
 
@@ -10647,7 +10478,7 @@ components:
       properties:
         id:
           description: An identifier for the task
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
           type: string
         type:
@@ -10713,25 +10544,22 @@ components:
       type: object
       properties:
         id:
-          description: |+
+          description: |-
             The UUID of the task.
-
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
           type: string
         type:
-          description: |+
+          description: |-
             The type of task represented by this content.
-
           enum:
             - import
             - api_image_import
           type: string
         status:
-          description: |+
+          description: |-
             The current status of this task. The value can be `pending`,
             `processing`, `success` or `failure`.
-
           enum:
             - pending
             - processing
@@ -10739,31 +10567,27 @@ components:
             - failure
           type: string
         input:
-          description: |+
+          description: |-
             A JSON object specifying the input parameters to the task. Consult your
             cloud provider’s documentation for details.
-
           type:
             - 'null'
             - object
         result:
-          description: |+
+          description: |-
             A JSON object specifying information about the ultimate outcome of the
             task. Consult your cloud provider’s documentation for details.
-
           type:
             - 'null'
             - object
         owner:
-          description: |+
+          description: |-
             An identifier for the owner of the task, usually the tenant ID.
-
           type: string
         message:
-          description: |+
+          description: |-
             Human-readable text, possibly an empty string, usually displayed in an
             error situation to provide more information about what has occurred.
-
           type: string
         image_id:
           description: Image associated with the task
@@ -10775,7 +10599,7 @@ components:
           description: User associated with the task
           type: string
         expires_at:
-          description: |+
+          description: |-
             The date and time when the task is subject to removal. While the *task
             object*, that is, the record describing the task is subject to deletion,
             the result of the task (for example, an imported image) still exists.
@@ -10787,20 +10611,18 @@ components:
             This value is only set when the task reaches status `success` or
             `failure`. Otherwise its value is `null`. It may not appear in
             the response when its value is `null`.
-
           type:
             - 'null'
             - string
         created_at:
-          description: |+
+          description: |-
             The date and time when the task was created.
 
 
             The date and time stamp format is [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
-
           type: string
         updated_at:
-          description: |+
+          description: |-
             The date and time when the task was updated.
 
 
@@ -10809,20 +10631,17 @@ components:
 
             If the `updated_at` date and time stamp is not set, its value is
             `null`.
-
           type: string
         self:
           readOnly: true
           type: string
-          description: |+
+          description: |-
             A URI for this task.
-
         schema:
           readOnly: true
           type: string
-          description: |+
+          description: |-
             The URI for the schema describing an image task.
-
       additionalProperties: false
       name: task
     TaskDeleteRequest:
@@ -10830,7 +10649,7 @@ components:
       properties:
         id:
           description: An identifier for the task
-          pattern: 
+          pattern:
             ^([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}$
           type: string
         type:
@@ -10906,11 +10725,10 @@ components:
               type: array
               items:
                 type: string
-          description: |+
+          description: |-
             A JSON object containing a `value` element, which is an array of
             string identifiers indicating what import methods are available in
             the cloud in which the call is made. This list may be empty.
-
     InfoStoresGet_StoresResponse:
       type: object
       properties:
@@ -10925,7 +10743,7 @@ components:
                 type: string
               default:
                 type: boolean
-          description: |+
+          description: |-
             A list of store objects, where each store object may contain the
             following fields:
 
@@ -10948,9 +10766,6 @@ components:
 
 
             `read-only` (optional)Included only when the store is read only.
-
-
-
     InfoUsageGet_UsageResponse:
       type: object
       properties:
@@ -10990,7 +10805,7 @@ components:
               properties:
                 type: object
                 additionalProperties: true
-          description: |+
+          description: |-
             A list of store objects, where each store object may contain the
             following fields:
 
@@ -11026,9 +10841,6 @@ components:
 
 
             `properties`Contains store specific properties
-
-
-
     CacheGet_Cache_StateResponse:
       type: object
       description: Response of the cache:get operation

@@ -12,10 +12,7 @@ directives.register_directive("code", CodeBlock)
 
 project = "openstack-openapi"
 
-extensions = [
-    "openstackdocstheme",
-    "os_openapi"
-]
+extensions = ["openstackdocstheme", "os_openapi"]
 source_suffix = ".rst"
 master_doc = "index"
 exclude_patterns = ["_build"]
