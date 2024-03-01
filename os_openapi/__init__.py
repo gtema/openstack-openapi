@@ -686,6 +686,7 @@ def visit_openapi_operation_header(self, node):
     """Render a bootstrap accordion for the operation header"""
     tag_id = node["operationId"]
     method = node["method"]
+    summary = node.get("summary", "")
     path = "/".join(
         [
             f'<span class="path_parameter">{x}</span>' if x[0] == "{" else x
@@ -698,8 +699,8 @@ def visit_openapi_operation_header(self, node):
     else:
         path = "/"
     self.body.append(
-        f'<button class="accordion-button collapsed" type="button" '
-        'data-bs-toggle="collapse" data-bs-target="#collapse{tag_id}" '
+        '<button class="accordion-button collapsed" type="button" '
+        f'data-bs-toggle="collapse" data-bs-target="#collapse{tag_id}" '
         f'aria-expanded="false" aria-controls="collapse{tag_id}">'
     )
     self.body.append('<div class="container">')
@@ -710,7 +711,7 @@ def visit_openapi_operation_header(self, node):
     )
     self.body.append(
         f'<div class="col-11"><div class="operation-path">{path}</div>'
-        '<div class="operation-summary">{summary or ""}</div></div>'
+        f'<div class="operation-summary">{summary or ""}</div></div>'
     )
     self.body.append("</div>")
     self.body.append("</div>")
