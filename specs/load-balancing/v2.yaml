@@ -1110,7 +1110,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/LbaasAvailabilityzoneShowResponse'
       tags:
-        - avaiability-zones
+        - availability-zones
     delete:
       description: |-
         Deletes an Availability Zone
@@ -1121,7 +1121,7 @@ paths:
         '204':
           description: Ok
       tags:
-        - avaiability-zones
+        - availability-zones
     put:
       operationId: lbaas/availabilityzones/availabilityzone_id:put
       requestBody:
@@ -1139,7 +1139,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/LbaasAvailabilityzoneUpdateResponse'
       tags:
-        - avaiability-zones
+        - availability-zones
   /v2/lbaas/availabilityzones:
     get:
       description: |-
@@ -1155,7 +1155,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/LbaasAvailabilityzonesListResponse'
       tags:
-        - avaiability-zones
+        - availability-zones
     post:
       description: |-
         Creates an Availability Zone.
@@ -1175,7 +1175,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/LbaasAvailabilityzonesCreateResponse'
       tags:
-        - avaiability-zones
+        - availability-zones
   /v2/lbaas/availabilityzoneprofiles/{availabilityzoneprofile_id}:
     parameters:
       - $ref: '#/components/parameters/lbaas_availabilityzoneprofiles_availabilityzoneprofile_id'
@@ -1193,7 +1193,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/LbaasAvailabilityzoneprofileShowResponse'
       tags:
-        - avaiability-zone-profiles
+        - availability-zone-profiles
     delete:
       description: |-
         Deletes an Availability Zone Profile
@@ -1204,7 +1204,7 @@ paths:
         '204':
           description: Ok
       tags:
-        - avaiability-zone-profiles
+        - availability-zone-profiles
     put:
       description: |-
         Updates an Availability Zone Profile.
@@ -1224,7 +1224,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/LbaasAvailabilityzoneprofileUpdateResponse'
       tags:
-        - avaiability-zone-profiles
+        - availability-zone-profiles
   /v2/lbaas/availabilityzoneprofiles:
     get:
       description: |-
@@ -1240,7 +1240,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/LbaasAvailabilityzoneprofilesListResponse'
       tags:
-        - avaiability-zone-profiles
+        - availability-zone-profiles
     post:
       description: |-
         Creates an Availability Zone Profile.
@@ -1260,7 +1260,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/LbaasAvailabilityzoneprofilesCreateResponse'
       tags:
-        - avaiability-zone-profiles
+        - availability-zone-profiles
   /v2/octavia:
     get:
       operationId: octavia:get
@@ -11198,8 +11198,8 @@ tags:
   - name: providers
   - name: flavors
   - name: flavor-profiles
-  - name: avaiability-zones
-  - name: avaiability-zone-profiles
+  - name: availability-zones
+  - name: availability-zone-profiles
   - name: octavia
   - name: amphorae
   - name: l7-rules
