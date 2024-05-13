@@ -2068,7 +2068,7 @@ paths:
         as a part of the EXPERIMENTAL Image API v2.8.
 
         In version 2.7 of the API, this call will return a 404 (Not Found).
-        Use the API versions call to determine
+        Use the [API versions call](../versions/index.html#versions-call) to determine
         what API versions are available in your cloud.
 
         Normal response codes: 200
