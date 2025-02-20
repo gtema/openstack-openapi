@@ -1,6 +1,10 @@
 OpenStack OpenAPI specs
 =======================
+** Archived **
+--------------
 
-This project is currently (temporarily until it is all upstreamed) hosting OpenAPI specs of diverse OpenStack APIs and a Sphinx extension to render them into html in the OpenStack style
+The project is archived since most of the work has gone upstream:
 
-**This is all a work in progress**
+- codegenerator lives under https://opendev.org/openstack/codegenerator
+- every change in codegenerator is building fresh openapi schemas. Those are published as build artifacts
+- publishing of the openapi specs is not directly in scope here and is being worked on upstream
